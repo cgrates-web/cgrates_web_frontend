@@ -1,0 +1,8 @@
+{
+  "name": "cgrates-web-frontend",
+  "dependencies": {
+    "ember-mocha": "~0.4.0",
+    "ember-cli-test-loader": "ember-cli/ember-cli-test-loader=ember-cli/ember-cli-test-loader#0.1.0",
+    "materialize": "0.97.6"
+  }
+}

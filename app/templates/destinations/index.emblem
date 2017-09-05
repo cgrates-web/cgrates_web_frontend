@@ -1,0 +1,19 @@
+h2 List
+table.striped.responsive-table
+  thead
+    tr
+      td ID
+      td Prefixes
+      td Actoins
+  tbody
+    each model as |destination|
+      tr
+        td = destination.id
+        td = destination.prefixesString
+        td
+          a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' destination}
+            i.material-icons remove
+
+.fixed-action-btn
+  link-to 'destinations.new' class='btn-floating btn-large green'
+    i.material-icons add

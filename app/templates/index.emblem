@@ -1,0 +1,5 @@
+header
+  nav.top-nav
+    .container
+      h1.page-title Dashboard
+main

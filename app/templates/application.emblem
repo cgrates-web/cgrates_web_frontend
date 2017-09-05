@@ -1,0 +1,6 @@
+outlet
+
+ul.side-nav.fixed#slide-out
+  li
+    link-to 'destinations'
+      | Destinations

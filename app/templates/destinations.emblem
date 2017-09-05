@@ -1,0 +1,7 @@
+header
+  nav.top-nav
+    .container
+      h1.page-title Destinations
+main
+  .container
+    outlet

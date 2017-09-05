@@ -1,0 +1,14 @@
+// Fix for Roboto font path
+$roboto-font-path: '../assets/';
+
+// Materialize styles
+@import 'components/color';
+
+// Custom color settings go here
+$primary-color: color("grey", "darken-3");
+
+@import 'components/variables';
+@import 'materialize';
+@import 'ember-cli-materialize';
+
+@import "layouts/base"

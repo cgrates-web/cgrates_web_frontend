@@ -1,0 +1,11 @@
+h2 New destination
+.card-panel
+  form{action 'save' on='submit'}
+    .field
+      label for='id' ID
+      = input id='id' value=model.id
+    .field
+      label for='prefixes' Prefixes
+      = input id='prefixes' value=model.prefixesString
+
+    button.waves-effect.waves-light.btn type='submit'
