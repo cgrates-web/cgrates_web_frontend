@@ -1,10 +1,12 @@
 # jshint expr:true
-`import Ember from 'ember'`
-`import startApp from '../helpers/start-app'`
+import Ember from 'ember'
+import startApp from '../helpers/start-app'
+import { authenticateSession } from '../helpers/ember-simple-auth'
 
 describe "Acceptance: CreateNewDestination", ->
   beforeEach ->
     @App = startApp()
+    authenticateSession(@App, {email: "user@exmple.com"})
     return
 
   afterEach ->

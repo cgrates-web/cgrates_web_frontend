@@ -1,6 +1,8 @@
 import Ember from 'ember'
 
 export default Ember.Controller.extend
+  router: Ember.inject.service()
+
   actions:
     save: ->
-      @model.save().then => @transitionToRoute('destinations')
+      @model.save().then => @get('router').transitionTo('destinations')

@@ -1,6 +1,11 @@
 outlet
 
-ul.side-nav.fixed#slide-out
-  li
-    link-to 'destinations'
-      | Destinations
+if session.isAuthenticated
+  ul.side-nav.fixed#slide-out
+    li
+      link-to 'index'
+        | Dashboard
+
+    li
+      link-to 'destinations'
+        | Destinations

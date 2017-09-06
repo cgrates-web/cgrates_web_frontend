@@ -6,6 +6,8 @@ Router = Ember.Router.extend
   rootURL: config.rootURL
 
 Router.map ->
+  @route 'login'
+  
   @route 'destinations', ->
     @route 'new'
     @route 'destination', ->

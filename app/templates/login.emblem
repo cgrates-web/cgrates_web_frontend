@@ -1,0 +1,13 @@
+.container
+  h1 Log in
+
+  .card-panel
+    form{action 'signIn' on='submit'}
+      .field
+        label for='identification' Email
+        = input id='identification' value=identification
+      .field
+        label for='password' Password
+        = input id='password' value=password type='password'
+
+      button.waves-effect.waves-light.btn type='submit' Log in

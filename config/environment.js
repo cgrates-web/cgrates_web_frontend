@@ -59,5 +59,16 @@ module.exports = function(environment) {
 
   }
 
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: `${ENV.API_HOST}/sessions`,
+    identificationField: 'email',
+    passwordField: 'password',
+    tokenPropertyName: 'token',
+    refreshTokenPropertyName: 'refresh_token',
+    authorizationPrefix: 'Bearer ',
+    authorizationHeaderName: 'Authorization',
+    headers: {'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json'},
+  };
+
   return ENV;
 };

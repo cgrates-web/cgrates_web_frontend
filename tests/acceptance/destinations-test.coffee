@@ -3,11 +3,13 @@ import Ember from 'ember'
 import { describe } from 'mocha'
 import { expect } from 'chai'
 import startApp from '../helpers/start-app'
+import { authenticateSession } from '../helpers/ember-simple-auth'
 
 describe "Acceptance: Destinations", ->
   beforeEach ->
     @App = startApp()
     server.createList('destination', 2)
+    authenticateSession(@App, {email: "user@exmple.com"})
     return
 
   afterEach ->

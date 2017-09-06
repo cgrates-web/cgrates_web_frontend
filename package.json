@@ -47,6 +47,8 @@
     "ember-new-computed": "~1.0.2",
     "ember-radio-button": "1.0.7",
     "ember-resolver": "^4.0.0",
+    "ember-simple-auth": "^1.4.0",
+    "ember-simple-auth-token": "^2.1.0",
     "ember-source": "~2.15.0",
     "ember-truth-helpers": "1.2.0",
     "loader.js": "^4.2.3",
