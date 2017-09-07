@@ -15,11 +15,12 @@ describe "Acceptance: Destinations", ->
   afterEach ->
     Ember.run(@App, "destroy")
 
-  it "renders table with destinations", ->
+  it "renders table with destinations sorted by id", ->
     visit "/destinations"
     andThen ->
       expect(find('header h1').text()).to.eq('Destinations')
       expect(find('table tbody tr').length).to.eq(2)
+      expect(find('table tbody tr:first-child td:first-child').text()).to.eq('1')
 
   describe 'click on remove btn', ->
     it 'removes destination', ->

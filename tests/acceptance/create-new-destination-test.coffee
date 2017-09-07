@@ -12,6 +12,14 @@ describe "Acceptance: CreateNewDestination", ->
   afterEach ->
     Ember.run(@App, "destroy")
 
+  describe 'go away without save', ->
+    it 'removes not saved destination', ->
+      visit '/destinations'
+      click '.fixed-action-btn a'
+      click "ul#slide-out li a:contains('Destinations')"
+      andThen ->
+        expect(find('table tbody tr').length).to.eq(0)
+
   describe 'click to button on /destinations page', ->
     it 'redirects to /destinations/new', ->
       visit "/destinations"

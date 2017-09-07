@@ -9,3 +9,4 @@ h2 New destination
       = input id='prefixes' value=model.prefixesString
 
     button.waves-effect.waves-light.btn type='submit'
+      | Save

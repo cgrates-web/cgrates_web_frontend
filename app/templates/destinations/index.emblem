@@ -6,7 +6,7 @@ table.striped.responsive-table
       td Prefixes
       td Actoins
   tbody
-    each model as |destination|
+    each sortedDestinations as |destination|
       tr
         td = destination.id
         td = destination.prefixesString

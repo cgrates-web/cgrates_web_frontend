@@ -7,7 +7,7 @@ export default {
   after: 'ember-simple-auth-token'
 
   initialize: (app) ->
-    if config.environment == 'development'
+    if config.environment == 'production'
       host = location.host
       protocol = location.protocol
 
