@@ -7,4 +7,4 @@ export default Ember.Controller.extend
   actions:
     signIn: ->
       @get('session').authenticate('authenticator:jwt', @getProperties('identification', 'password')).then =>
-        @get('router').transitionTo('/')
+        @get('router').transitionTo('realtime')

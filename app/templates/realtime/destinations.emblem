@@ -1,0 +1,6 @@
+section.page-header
+  .container
+    h1.page-title Destinations
+main
+  .container
+    outlet

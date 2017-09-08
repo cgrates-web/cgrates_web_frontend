@@ -1,0 +1,4 @@
+section.page-header
+  .container
+    h1.page-title Dashboard
+main

@@ -1,9 +1,9 @@
 # jshint expr:true
 import Ember from 'ember'
-import startApp from '../helpers/start-app'
-import { authenticateSession } from '../helpers/ember-simple-auth'
+import startApp from 'cgrates-web-frontend/tests/helpers/start-app'
+import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth'
 
-describe "Acceptance: CreateNewDestination", ->
+describe "Acceptance: NewDestination", ->
   beforeEach ->
     @App = startApp()
     authenticateSession(@App, {email: "user@exmple.com"})
@@ -14,7 +14,7 @@ describe "Acceptance: CreateNewDestination", ->
 
   describe 'go away without save', ->
     it 'removes not saved destination', ->
-      visit '/destinations'
+      visit '/realtime/destinations'
       click '.fixed-action-btn a'
       click "ul#slide-out li a:contains('Destinations')"
       andThen ->
@@ -22,14 +22,14 @@ describe "Acceptance: CreateNewDestination", ->
 
   describe 'click to button on /destinations page', ->
     it 'redirects to /destinations/new', ->
-      visit "/destinations"
+      visit "/realtime/destinations"
       click '.fixed-action-btn a'
       andThen ->
-        expect(currentPath()).to.equal "destinations.new"
+        expect(currentPath()).to.equal "realtime.destinations.new"
 
-  describe 'visit /destinations/new', ->
+  describe 'visit /realtime/destinations/new', ->
     it 'renders destination form', ->
-      visit '/destinations/new'
+      visit '/realtime/destinations/new'
       andThen ->
         expect(find('form input').length).to.eq(2)
 
@@ -46,7 +46,7 @@ describe "Acceptance: CreateNewDestination", ->
         return { data: {id: 'DST_RU', type: 'destinations'} }
       )
 
-      visit '/destinations/new'
+      visit '/realtime/destinations/new'
       fillIn 'input#id', 'DST_RU'
       fillIn 'input#prefixes', '+7913, +7923'
       click 'button[type="submit"]'

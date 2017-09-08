@@ -5,4 +5,4 @@ export default Ember.Controller.extend
 
   actions:
     save: ->
-      @model.save().then => @get('router').transitionTo('destinations')
+      @model.save().then => @get('router').transitionTo('realtime.destinations')

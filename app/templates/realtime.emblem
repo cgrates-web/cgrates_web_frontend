@@ -1,0 +1,10 @@
+= outlet
+
+ul.side-nav.fixed#slide-out
+  li
+    link-to 'realtime'
+      | Dashboard
+
+  li
+    link-to 'realtime.destinations'
+      | Destinations

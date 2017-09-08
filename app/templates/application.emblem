@@ -1,11 +1,13 @@
-outlet
-
 if session.isAuthenticated
-  ul.side-nav.fixed#slide-out
-    li
-      link-to 'index'
-        | Dashboard
+  header
+    .navbar-fixed
+      nav
+        .nav-wrapper
+          a.brand-logo href="/" CGRates WEB
+          ul.right
+            link-to 'realtime' tagName='li'
+              a Realtime
+            link-to 'tp' tagName='li'
+              a Tariff Plans
 
-    li
-      link-to 'destinations'
-        | Destinations
+outlet

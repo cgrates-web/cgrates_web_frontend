@@ -15,5 +15,5 @@ table.striped.responsive-table
             i.material-icons remove
 
 .fixed-action-btn
-  link-to 'destinations.new' class='btn-floating btn-large green'
+  link-to 'realtime.destinations.new' class='btn-floating btn-large green'
     i.material-icons add

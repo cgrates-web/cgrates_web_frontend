@@ -1,10 +1,16 @@
-header, main, footer {
+main, footer, section.page-header {
   padding-left: 240px;
 }
 
-nav.top-nav {
+ul#slide-out.side-nav {
+  margin-top: 64px;
+}
+
+section.page-header {
   height: 122px;
+  background-color: color("teal", "darken-1");
   h1 {
+    color: white;
     margin: 0 0 1.68rem 0;
     padding-top: 2.1rem;
   }

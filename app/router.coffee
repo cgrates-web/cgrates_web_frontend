@@ -7,10 +7,13 @@ Router = Ember.Router.extend
 
 Router.map ->
   @route 'login'
-  
-  @route 'destinations', ->
-    @route 'new'
-    @route 'destination', ->
-      @route 'edit'
+
+  @route 'realtime', ->
+    @route 'destinations', ->
+      @route 'new'
+      @route 'destination', ->
+        @route 'edit'
+
+  @route 'tp'
 
 export default Router
