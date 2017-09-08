@@ -1,5 +1,8 @@
 main, footer, section.page-header {
   padding-left: 240px;
+  &.full-width {
+    padding-left: 0px;
+  }
 }
 
 ul#slide-out.side-nav {

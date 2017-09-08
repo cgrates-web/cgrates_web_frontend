@@ -1,0 +1,8 @@
+section.page-header.full-width
+  .container
+    h1.page-title
+      | Edit Tariff Plan:&nbsp;
+      = model.name
+main.full-width
+  .container
+    partial 'tariff-plan/form'

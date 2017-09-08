@@ -14,6 +14,9 @@ Router.map ->
       @route 'destination', ->
         @route 'edit'
 
-  @route 'tp'
+  @route 'tariff-plans', ->
+    @route 'new'
+    @route 'tariff-plan', resetNamespace: true, path: ':id', ->
+      @route 'edit'
 
 export default Router

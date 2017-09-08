@@ -1,0 +1,8 @@
+section.page-header
+  .container
+    h1.page-title Tariff plan: #{model.name}
+main
+  .container
+    outlet
+
+ul.side-nav.fixed#slide-out

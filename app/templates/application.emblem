@@ -7,7 +7,7 @@ if session.isAuthenticated
           ul.right
             link-to 'realtime' tagName='li'
               a Realtime
-            link-to 'tp' tagName='li'
+            link-to 'tariff-plans' tagName='li'
               a Tariff Plans
 
 outlet
