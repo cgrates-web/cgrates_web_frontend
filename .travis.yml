@@ -20,6 +20,7 @@ before_install:
 install:
   - yarn install --non-interactive
   - bower install
+  - npm rebuild node-sass
 
 script:
   - yarn test
