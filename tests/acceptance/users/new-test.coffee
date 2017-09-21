@@ -16,7 +16,7 @@ describe "Acceptance: Users.New", ->
     it 'renders user form', ->
       visit '/users/new'
       andThen ->
-        expect(find('form input').length).to.eq(1)
+        expect(find('form input').length).to.eq(2)
 
   describe 'go away without save', ->
     it 'removes not saved user', ->
@@ -31,9 +31,11 @@ describe "Acceptance: Users.New", ->
       visit 'users/new'
       andThen ->
         fillIn "##{find("label:contains('Email')").attr('for')}", 'not.an.email'
+        fillIn "##{find("label:contains('Password')").attr('for')}", ''
         click 'button[type="submit"]'
         andThen ->
           expect(find("##{find("label:contains('Email')").attr('for')}").length).to.eq 1
+          expect(find("##{find("label:contains('Password')").attr('for')}").length).to.eq 1
 
   describe 'fill form with correct data and submit', ->
     it 'saves new user with correct data', (done) ->
@@ -49,4 +51,5 @@ describe "Acceptance: Users.New", ->
       visit '/users/new'
       andThen ->
         fillIn "##{find("label:contains('Email')").attr('for')}", 'test@example.com'
+        fillIn "##{find("label:contains('Password')").attr('for')}", 'secret'
         click 'button[type="submit"]'

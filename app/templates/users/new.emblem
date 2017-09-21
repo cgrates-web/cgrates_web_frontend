@@ -3,4 +3,9 @@ section.page-header.full-width
     h1.page-title Add a User
 main.full-width
   .container
-    partial 'user/form'
+    form{action 'save' on='submit'}
+      md-input value=model.email type='email' label='Email' errors=model.errors.email required=true validate=true
+      md-input value=model.password type='password' label='Password' errors=model.errors.password required=true validate=true
+
+      button.waves-effect.waves-light.btn type='submit'
+        | Save
