@@ -19,4 +19,9 @@ Router.map ->
     @route 'tariff-plan', resetNamespace: true, path: ':id', ->
       @route 'edit'
 
+  @route 'users', ->
+    @route 'new'
+    @route 'user', resetNamespace: true, path: ':id', ->
+      @route 'edit'
+
 export default Router

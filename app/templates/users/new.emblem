@@ -1,0 +1,6 @@
+section.page-header.full-width
+  .container
+    h1.page-title Add a User
+main.full-width
+  .container
+    partial 'user/form'

@@ -1,0 +1,34 @@
+section.page-header.full-width
+  .container
+    h1.page-title Users
+main.full-width
+  .container
+    h2 List
+    table.striped.responsive-table
+      thead
+        tr
+          td ID
+          td Email
+          td Inserted at
+          td Updated at
+          td Actions
+      tbody
+        each sortedUsers as |user|
+          tr
+            td: link-to 'user' user.id
+              = user.id
+            td: link-to 'user' user.id
+              = user.email
+            td: link-to 'user' user.id
+              = moment-format user.insertedAt
+            td: link-to 'user' user.id
+              = moment-format user.updatedAt
+            td.actions
+              link-to 'user.edit' user class='btn-floating waves-effect waves-light edit'
+                i.material-icons edit
+              a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' user}
+                i.material-icons remove
+
+.fixed-action-btn
+  link-to 'users.new' class='btn-floating btn-large green'
+    i.material-icons add
