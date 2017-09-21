@@ -1,0 +1,6 @@
+h2 Edit
+form{action 'save' on='submit'}
+  md-input value=model.email type='email' label='Email' errors=model.errors.email required=true validate=true
+
+  button.waves-effect.waves-light.btn type='submit'
+    | Save

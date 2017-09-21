@@ -18,3 +18,17 @@ section.page-header {
     padding-top: 2.1rem;
   }
 }
+
+td a {
+  color: inherit;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+td.actions a {
+  margin-right: 10px;
+  &:last-child {
+    margin-right: inherit;
+  }
+}

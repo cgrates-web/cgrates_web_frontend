@@ -23,6 +23,10 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    moment: {
+      outputFormat: 'DD/MM/YYYY HH:mm:ss'
+    },
+
     emblemOptions: {
       blueprints: false
     },

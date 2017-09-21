@@ -9,5 +9,7 @@ if session.isAuthenticated
               a Realtime
             link-to 'tariff-plans' tagName='li'
               a Tariff Plans
+            link-to 'users' tagName='li'
+              a Users
 
 outlet
