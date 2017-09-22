@@ -1,0 +1,29 @@
+h2 TpDestinations list
+table.striped.responsive-table
+  thead
+    tr
+      td ID
+      td Tag
+      td Prefix
+      td Created at
+      td Actions
+  tbody
+    each model as |tpDestination|
+      tr
+        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+          = tpDestination.id
+        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+          = tpDestination.tag
+        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+          = tpDestination.prefix
+        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+          = moment-format tpDestination.createdAt
+        td.actions
+          link-to 'tariff-plan.tp-destinations.tp-destination.edit' tpDestination class='btn-floating waves-effect waves-light edit'
+            i.material-icons edit
+          a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpDestination}
+            i.material-icons remove
+
+.fixed-action-btn
+  link-to 'tariff-plan.tp-destinations.new' class='btn-floating btn-large green'
+    i.material-icons add

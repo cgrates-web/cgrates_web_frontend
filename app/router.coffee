@@ -16,8 +16,12 @@ Router.map ->
 
   @route 'tariff-plans', ->
     @route 'new'
-    @route 'tariff-plan', resetNamespace: true, path: ':id', ->
+    @route 'tariff-plan', resetNamespace: true, path: ':tariff-plan_id', ->
       @route 'edit'
+      @route 'tp-destinations', ->
+        @route 'new'
+        @route 'tp-destination', path: ':tp-destination_id', ->
+          @route 'edit'
 
   @route 'users', ->
     @route 'new'

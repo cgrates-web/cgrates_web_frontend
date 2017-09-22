@@ -1,0 +1,3 @@
+h2 New tpDestination
+.card-panel
+  partial 'tariff-plan/tp-destinations/tp-destination/form'

@@ -4,7 +4,7 @@ table.striped.responsive-table
     tr
       td ID
       td Prefixes
-      td Actoins
+      td Actions
   tbody
     each sortedDestinations as |destination|
       tr
