@@ -1,3 +1,4 @@
+h2 TpDestination: #{model.prefix}
 .section
   h5 ID
   p = model.id

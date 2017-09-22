@@ -16,8 +16,15 @@ export default function() {
   this.del('/destinations/:id');
 
   this.get('tariff-plans');
+  this.get('tariff-plans/:id');
 
   this.get('/users');
   this.get('/users/:id');
   this.del('/users/:id');
+
+  this.get('/tp_destinations', function(db, request) {
+    return db.tpDestinations.where(request.queryParams);
+  });
+  this.get('/tp_destinations/:id');
+  this.del('/tp_destinations/:id');
 }
