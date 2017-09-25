@@ -9,8 +9,8 @@ describe "Acceptance: TpDestinations.Index", ->
   beforeEach ->
     @App = startApp()
     @tariffPlan = server.create 'tariff-plan', name: 'Test', alias: 'tptest'
-    @tpDestinations = server.createList('tpDestination', 2, {tpid: @tariffPlan.alias})
-    @other = server.createList('tpDestination', 2, {tpid: 'other'})
+    @tpDestinations = server.createList('tp-destination', 2, {tpid: @tariffPlan.alias})
+    @other = server.createList('tp-destination', 2, {tpid: 'other'})
     authenticateSession(@App, {email: "user@example.com"})
     return
 

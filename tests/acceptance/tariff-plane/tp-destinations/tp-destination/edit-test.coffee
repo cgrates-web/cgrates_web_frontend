@@ -29,7 +29,7 @@ describe "Acceptance: TpDestination.Edit", ->
 
   describe 'fill form with correct data and submit', ->
     it 'sends correct data to the backend', (done) ->
-      server.patch('/tp_destinations/:id', (schema, request) =>
+      server.patch('/tp-destinations/:id', (schema, request) =>
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.tpid).to.eq 'tptest'
         expect(params.data.attributes.tag).to.eq 'edited'

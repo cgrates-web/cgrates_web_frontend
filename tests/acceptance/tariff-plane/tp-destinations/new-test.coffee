@@ -40,7 +40,7 @@ describe "Acceptance: TpDestinations.New", ->
 
   describe 'fill form with correct data and submit', ->
     it 'saves new tp-destination with correct data', (done) ->
-      server.post('/tp_destinations/', (schema, request) =>
+      server.post('/tp-destinations/', (schema, request) =>
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.tpid).to.eq 'tptest'
         expect(params.data.attributes.tag).to.eq 'tagtest'

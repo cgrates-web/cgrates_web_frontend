@@ -1,11 +1,12 @@
 h2 TpDestinations list
+filters-pane filters=filters search='search'
 table.striped.responsive-table
   thead
     tr
-      td ID
-      td Tag
-      td Prefix
-      td Created at
+      td: sort-header label='ID'         key='id'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+      td: sort-header label='Tag'        key='tag'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+      td: sort-header label='Prefix'     key='prefix'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+      td: sort-header label='Created at' key='createdAt' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
       td Actions
   tbody
     each model as |tpDestination|

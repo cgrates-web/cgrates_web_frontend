@@ -22,9 +22,9 @@ export default function() {
   this.get('/users/:id');
   this.del('/users/:id');
 
-  this.get('/tp_destinations', function(db, request) {
-    return db.tpDestinations.where(request.queryParams);
+  this.get('/tp-destinations', function(db, request) {
+    return db.tpDestinations.where({tpid: request.queryParams['tpid']});
   });
-  this.get('/tp_destinations/:id');
-  this.del('/tp_destinations/:id');
+  this.get('/tp-destinations/:id');
+  this.del('/tp-destinations/:id');
 }

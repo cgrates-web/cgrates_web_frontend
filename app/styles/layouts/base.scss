@@ -26,9 +26,18 @@ td a {
   }
 }
 
-td.actions a {
+.actions a, .actions button {
   margin-right: 10px;
   &:last-child {
     margin-right: inherit;
+  }
+}
+
+.sort-header {
+  a {
+    cursor: pointer;
+  }
+  i {
+    font-size: inherit;
   }
 }
