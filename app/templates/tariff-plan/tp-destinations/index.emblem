@@ -1,5 +1,10 @@
 h2 TpDestinations list
-filters-pane filters=filters search='search'
+filters-block search='search' as |filtersBlock|
+  .row
+    each filters as |filter|
+      .col.s12.m6.l3
+        component filter.type filter=filter onValueChange=(action 'pushValue' target=filtersBlock)
+
 table.striped.responsive-table
   thead
     tr

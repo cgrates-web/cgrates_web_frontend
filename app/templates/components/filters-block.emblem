@@ -1,10 +1,7 @@
 .card-panel
   h5 Filters
   form{action 'search' on='submit'}
-    .row
-      each filters as |filter|
-        .col.s12.m6.l3
-          component filter.type filter=filter filtersPane=this
+    = yield this
 
     .actions
       button.waves-effect.waves-light.btn type='submit'
