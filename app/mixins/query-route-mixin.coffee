@@ -15,3 +15,9 @@ export default Ember.Mixin.create
         "-#{params.sortColumn.underscore()}"
       else
         "#{params.sortColumn.underscore()}"
+
+  _getPaginationQuery: (params) ->
+    {
+      'page': params.page,
+      'page-size': params.pageSize
+    }

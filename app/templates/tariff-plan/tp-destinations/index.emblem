@@ -2,7 +2,7 @@ h2 TpDestinations list
 filters-block search='search' as |filtersBlock|
   .row
     each filters as |filter|
-      .col.s12.m6.l3
+      .col.s12.m6
         component filter.type filter=filter onValueChange=(action 'pushValue' target=filtersBlock)
 
 table.striped.responsive-table
@@ -29,6 +29,8 @@ table.striped.responsive-table
             i.material-icons edit
           a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpDestination}
             i.material-icons remove
+
+md-pagination min=1 max=totalPages current=page range=5
 
 .fixed-action-btn
   link-to 'tariff-plan.tp-destinations.new' class='btn-floating btn-large green'

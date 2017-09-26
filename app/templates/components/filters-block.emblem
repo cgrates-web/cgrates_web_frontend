@@ -4,7 +4,7 @@
     = yield this
 
     .actions
-      button.waves-effect.waves-light.btn type='submit'
+      button.waves-effect.waves-light.btn.search-button type='submit'
         | Search
-      button.waves-effect.waves-light.btn{action 'reset'}
+      button.waves-effect.waves-light.btn.reset-button{action 'reset'}
         | Reset

@@ -1,13 +1,19 @@
 import Ember from 'ember'
 
 export default Ember.Controller.extend
-  queryParams: ['tag', 'prefix', 'sortColumn', 'sortOrder']
+  queryParams: ['tag', 'prefix', 'sortColumn', 'sortOrder', 'page', 'pageSize']
 
   tag:    null
   prefix: null
 
   sortColumn: 'id'
   sortOrder:  'asc'
+
+  page:     1
+  pageSize: 10
+
+  totalPages: Ember.computed 'meta.total_pages', ->
+    @get('meta.total_pages')
 
   filters: Ember.computed ->
     [
