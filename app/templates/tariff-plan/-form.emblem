@@ -1,0 +1,7 @@
+form{action 'save' on='submit'}
+  md-input value=model.name label='Name' errors=model.errors.name required=true validate=true
+  md-input value=model.alias label='Alias' errors=model.errors.alias required=true validate=true
+  md-input value=model.description label='Description' errors=model.errors.description
+
+  button.waves-effect.waves-light.btn type='submit'
+    | Save
