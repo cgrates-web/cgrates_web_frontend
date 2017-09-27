@@ -1,7 +1,11 @@
 import Ember from 'ember'
 
 export default Ember.Component.extend
-  activeFilters: {}
+  classNames: ['card-panel']
+
+  init: ->
+    @_super(arguments...)
+    @set('activeFilters', {})
 
   actions:
     pushValue: (key, value) ->

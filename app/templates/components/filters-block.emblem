@@ -1,10 +1,9 @@
-.card-panel
-  h5 Filters
-  form{action 'search' on='submit'}
-    = yield this
+h5 Filters
+form{action 'search' on='submit'}
+  = yield this
 
-    .actions
-      button.waves-effect.waves-light.btn.search-button type='submit'
-        | Search
-      button.waves-effect.waves-light.btn.reset-button{action 'reset'}
-        | Reset
+  .actions
+    button.waves-effect.waves-light.btn.search-button type='submit'
+      | Search
+    button.waves-effect.waves-light.btn.reset-button{action 'reset'}
+      | Reset

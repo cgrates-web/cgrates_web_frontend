@@ -51,3 +51,63 @@ describe "Acceptance: TpDestinations.Index", ->
       click '.fixed-action-btn a'
       andThen ->
         expect(currentPath()).to.equal 'tariff-plans.tariff-plan.tp-destinations.new'
+
+  describe 'set filters and click search button', ->
+    it 'makes a correct filter query', ->
+      firstVisit = true
+
+      server.get('/tp-destinations/', (schema, request) ->
+        filterTag = request.queryParams['filter[tag]']
+        filterPrefix = request.queryParams['filter[prefix]']
+        if (firstVisit)
+          expect(Ember.isBlank(filterTag)).to.eq true
+          expect(Ember.isBlank(filterPrefix)).to.eq true
+        else
+          expect(filterTag).to.eq 'tagtest'
+          expect(filterPrefix).to.eq '+44'
+        firstVisit = false
+        return { data: [{id: '1', type: 'tp-destination'}] }
+      )
+
+      visit '/tariff-plans/1/tp-destinations'
+      andThen ->
+        fillIn "##{find("label:contains('Tag')").attr('for')}", 'tagtest'
+        fillIn "##{find("label:contains('Prefix')").attr('for')}", '+44'
+        click 'button.search-button'
+
+  describe 'click column header', ->
+    it 'makes a correct sort query', ->
+      firstVisit = true
+
+      server.get('/tp-destinations/', (schema, request) ->
+        sort = request.queryParams['sort']
+        if (firstVisit)
+          expect(sort).to.eq 'id'
+        else
+          expect(sort).to.eq '-id'
+        firstVisit = false
+        return { data: [{id: '1', type: 'tp-destination'}] }
+      )
+
+      visit '/tariff-plans/1/tp-destinations'
+      click '.sort-header:first-child a'
+
+  describe 'click pagination link', ->
+    it 'makes a correct pagination query', ->
+      firstVisit = true
+
+      server.get('/tp-destinations/', (schema, request) ->
+        pagePage = request.queryParams['page[page]']
+        pagePageSize = request.queryParams['page[page-size]']
+        if (firstVisit)
+          expect(pagePage).to.eq '1'
+          expect(pagePageSize).to.eq '10'
+        else
+          expect(pagePage).to.eq '2'
+          expect(pagePageSize).to.eq '10'
+        firstVisit = false
+        return { data: [{id: '1', type: 'tp-destination'}], meta: {total_pages: 2} }
+      )
+
+      visit '/tariff-plans/1/tp-destinations'
+      click 'ul.pagination li:last-child a'

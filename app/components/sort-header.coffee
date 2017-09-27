@@ -4,7 +4,7 @@ export default Ember.Component.extend
   classNames: ['sort-header']
 
   currentColumn: Ember.computed 'key', 'sortColumn', ->
-    if (Ember.isEqual @get('key'), @get('sortColumn')) then true else false
+    Ember.isEqual @get('key'), @get('sortColumn')
 
   actions:
     toggleSort: ->

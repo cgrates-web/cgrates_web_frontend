@@ -41,11 +41,3 @@ td a {
     font-size: inherit;
   }
 }
-
-ul.pagination {
-  li:not(.disabled) {
-    a.decrement, a.increment {
-      cursor: pointer;
-    }
-  }
-}

@@ -21,15 +21,6 @@ describe 'Integration: FiltersBlock', ->
       expect(@$('form')).to.have.length 1
       expect(@$('button')).to.have.length 2
 
-  describe 'clicking search button', ->
-    it 'sends associated action', ->
-      @set 'actionTriggered', false
-      @set 'search', ->
-        @set 'actionTriggered', true
-      @render(hbs "{{filters-block search=(action search)}}")
-      click 'button[type="submit"]'
-      expect(@get('actionTriggered')).to.be.ok
-
   describe 'setting filter values and clicking search button', ->
     it 'sends action with correct arguments', ->
       @set 'filter', testFilter
@@ -38,10 +29,26 @@ describe 'Integration: FiltersBlock', ->
         @set 'actionTriggered', true
         expect(filters).to.deep.equal {'test': 'valuetest'}
       @render(hbs "
-        {{#filters-block search=(action search)}}
-          {{filter-text filter=filter}}
+        {{#filters-block search=(action search) as |filtersBlock|}}
+          {{filter-text filter=filter onValueChange=(action 'pushValue' target=filtersBlock)}}
         {{/filters-block}}
       ")
       fillIn 'input', 'valuetest'
       click 'button.search-button'
+      expect(@get('actionTriggered')).to.be.ok
+
+  describe 'setting filter values and clicking reset button', ->
+    it 'sends action and passes null values', ->
+      @set 'filter', testFilter
+      @set 'actionTriggered', false
+      @set 'search', (filters) ->
+        @set 'actionTriggered', true
+        expect(filters).to.deep.equal {'test': null}
+      @render(hbs "
+        {{#filters-block search=(action search) as |filtersBlock|}}
+          {{filter-text filter=filter onValueChange=(action 'pushValue' target=filtersBlock)}}
+        {{/filters-block}}
+      ")
+      fillIn 'input', 'valuetest'
+      click 'button.reset-button'
       expect(@get('actionTriggered')).to.be.ok

@@ -1,9 +1,9 @@
 # jshint expr:true
-`import { describeModel, it } from 'ember-mocha'`
+import { describeModel, it } from 'ember-mocha'
 
 describeModel "user", "User", {
   # Specify the other units that are required for this test.
-    needs: []
+  needs: []
 }, ->
   # Replace this with your real tests.
   it "exists", ->

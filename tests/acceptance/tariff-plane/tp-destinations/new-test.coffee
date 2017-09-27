@@ -39,15 +39,12 @@ describe "Acceptance: TpDestinations.New", ->
           expect(find("##{find("label:contains('Prefix')").attr('for')}").length).to.eq 1
 
   describe 'fill form with correct data and submit', ->
-    it 'saves new tp-destination with correct data', (done) ->
-      server.post('/tp-destinations/', (schema, request) =>
+    it 'saves new tp-destination with correct data', ->
+      server.post('/tp-destinations/', (schema, request) ->
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.tpid).to.eq 'tptest'
         expect(params.data.attributes.tag).to.eq 'tagtest'
         expect(params.data.attributes.prefix).to.eq '+44'
-        setTimeout (->
-          done()
-          ), 100
         return { data: {id: '1', type: 'tp-destination'} }
       )
 

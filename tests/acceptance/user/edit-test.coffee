@@ -1,7 +1,7 @@
 # jshint expr:true
 import Ember from 'ember'
 import startApp from 'cgrates-web-frontend/tests/helpers/start-app'
-import { Response } from 'ember-cli-mirage';
+import { Response } from 'ember-cli-mirage'
 import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth'
 
 describe "Acceptance: User.Edit", ->
@@ -25,13 +25,10 @@ describe "Acceptance: User.Edit", ->
           expect(find("##{find("label:contains('Email')").attr('for')}").length).to.eq 1
 
   describe 'fill form with correct data and submit', ->
-    it 'sends correct data to the backend', (done) ->
+    it 'sends correct data to the backend', ->
       server.patch('/users/:id', (schema, request) =>
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.email).to.eq 'edited@example.com'
-        setTimeout (->
-          done()
-          ), 100
         return { data: {id: @user.id, type: 'user'} }
       )
 

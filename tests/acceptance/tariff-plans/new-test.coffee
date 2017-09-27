@@ -1,7 +1,7 @@
 # jshint expr:true
 import Ember from 'ember'
 import startApp from 'cgrates-web-frontend/tests/helpers/start-app'
-import { Response } from 'ember-cli-mirage';
+import { Response } from 'ember-cli-mirage'
 import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth'
 
 describe "Acceptance: TariffPlans.New", ->
@@ -22,16 +22,12 @@ describe "Acceptance: TariffPlans.New", ->
         expect(find('table tbody tr').length).to.eq(0)
 
   describe 'fill form with correct data and submit', ->
-    it 'sends correct data to the backend', (done) ->
-      server.post('/tariff-plans/', (schema, request) =>
+    it 'sends correct data to the backend', ->
+      server.post('/tariff-plans/', (schema, request) ->
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.name).to.eq 'New Tariff'
         expect(params.data.attributes.alias).to.eq 'new_tariff'
         expect(params.data.attributes.description).to.eq 'description'
-
-        setTimeout (->
-          done()
-          ), 100
         return { data: {id: '1', type: 'tariff-plans'} }
       )
 
