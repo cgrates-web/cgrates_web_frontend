@@ -15,12 +15,6 @@ export default Ember.Controller.extend
   totalPages: Ember.computed 'meta.total_pages', ->
     @get('meta.total_pages')
 
-  filters: Ember.computed 'tag', 'prefix', ->
-    [
-      {type: 'filter-text', label: 'Tag',    key: 'tag',    value: @get('tag')   }
-      {type: 'filter-text', label: 'Prefix', key: 'prefix', value: @get('prefix')}
-    ]
-
   actions:
     search: (query) ->
       query['page'] = 1

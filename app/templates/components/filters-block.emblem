@@ -1,9 +1,11 @@
 h5 Filters
 form{action 'search' on='submit'}
-  = yield this
+  yield this
 
   .actions
-    button.waves-effect.waves-light.btn.search-button type='submit'
-      | Search
-    button.waves-effect.waves-light.btn.reset-button{action 'reset'}
-      | Reset
+    .action
+      button.waves-effect.waves-light.btn.search-button type='submit'
+        | Search
+    .action
+      button.waves-effect.waves-light.btn.reset-button{action 'reset'}
+        | Reset

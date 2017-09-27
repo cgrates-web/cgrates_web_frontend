@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
 export default Ember.Component.extend
-  classNames: ['card-panel']
+  classNames: ['card-panel', 'filter-block']
 
   init: ->
     @_super(arguments...)

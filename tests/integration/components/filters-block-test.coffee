@@ -23,14 +23,14 @@ describe 'Integration: FiltersBlock', ->
 
   describe 'setting filter values and clicking search button', ->
     it 'sends action with correct arguments', ->
-      @set 'filter', testFilter
+      @set 'filterValue', ''
       @set 'actionTriggered', false
       @set 'search', (filters) ->
         @set 'actionTriggered', true
         expect(filters).to.deep.equal {'test': 'valuetest'}
       @render(hbs "
         {{#filters-block search=(action search) as |filtersBlock|}}
-          {{filter-text filter=filter onValueChange=(action 'pushValue' target=filtersBlock)}}
+          {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=filtersBlock)}}
         {{/filters-block}}
       ")
       fillIn 'input', 'valuetest'
@@ -46,7 +46,7 @@ describe 'Integration: FiltersBlock', ->
         expect(filters).to.deep.equal {'test': null}
       @render(hbs "
         {{#filters-block search=(action search) as |filtersBlock|}}
-          {{filter-text filter=filter onValueChange=(action 'pushValue' target=filtersBlock)}}
+          {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=filtersBlock)}}
         {{/filters-block}}
       ")
       fillIn 'input', 'valuetest'

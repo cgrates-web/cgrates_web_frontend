@@ -1,2 +1,4 @@
 h2 Edit
-partial 'tariff-plan/form'
+.row
+  .col.s12.m6.card-panel
+    partial 'tariff-plan/form'

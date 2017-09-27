@@ -1,17 +1,19 @@
 h2 TpDestination: #{model.prefix}
-.section
-  h5 ID
-  p = model.id
-.section
-  h5 Tag
-  p = model.tag
-.section
-  h5 Prefix
-  p = model.prefix
-.section
-  h5 Created at
-  p = moment-format model.createdAt
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 Tag
+      p = model.tag
+    .section
+      h5 Prefix
+      p = model.prefix
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
 
-.fixed-action-btn
-  link-to 'tariff-plan.tp-destinations.tp-destination.edit' model class='btn-floating btn-large'
-    i.material-icons edit
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-destinations.tp-destination.edit' model class='btn-floating btn-large'
+        i.material-icons edit

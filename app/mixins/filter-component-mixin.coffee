@@ -1,6 +1,9 @@
 import Ember from 'ember'
 
 export default Ember.Mixin.create
-  valueChanged: Ember.on 'init', Ember.observer 'filter.value', ->
-    Ember.run.once this, ->
-      @sendAction 'onValueChange', @get('filter.key'), @get('filter.value')
+  _onInit: Ember.on 'didReceiveAttrs', ->
+    @set('valueWrapper', @get('value'))
+    @sendAction 'onValueChange', @get('key'), @get('valueWrapper')
+
+  valueChanged: Ember.observer 'valueWrapper', ->
+    @sendAction 'onValueChange', @get('key'), @get('valueWrapper') if @get('value') != @get('valueWrapper')

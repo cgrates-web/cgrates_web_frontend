@@ -2,6 +2,7 @@ import Ember from 'ember'
 
 export default Ember.Component.extend
   classNames: ['sort-header']
+  tagName: 'td'
 
   currentColumn: Ember.computed 'key', 'sortColumn', ->
     Ember.isEqual @get('key'), @get('sortColumn')

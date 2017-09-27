@@ -1,1 +1,1 @@
-md-input value=filter.value label=filter.label
+md-input value=valueWrapper label=label

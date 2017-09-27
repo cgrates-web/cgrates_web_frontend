@@ -1,8 +1,8 @@
 section.page-header
-  .container
+  .row: .col.s12
     h1.page-title Tariff plan: #{model.name}
 main
-  .container
+  .row: .col.s12
     outlet
 
 ul.side-nav.fixed#slide-out

@@ -1,37 +1,39 @@
 h2 TpDestinations list
-filters-block search='search' as |filtersBlock|
-  .row
-    each filters as |filter|
-      .col.s12.m6
-        component filter.type filter=filter onValueChange=(action 'pushValue' target=filtersBlock)
 
-table.striped.responsive-table
-  thead
-    tr
-      td: sort-header label='ID'         key='id'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
-      td: sort-header label='Tag'        key='tag'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
-      td: sort-header label='Prefix'     key='prefix'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
-      td: sort-header label='Created at' key='createdAt' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
-      td Actions
-  tbody
-    each model as |tpDestination|
-      tr
-        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
-          = tpDestination.id
-        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
-          = tpDestination.tag
-        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
-          = tpDestination.prefix
-        td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
-          = moment-format tpDestination.createdAt
-        td.actions
-          link-to 'tariff-plan.tp-destinations.tp-destination.edit' tpDestination class='btn-floating waves-effect waves-light edit'
-            i.material-icons edit
-          a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpDestination}
-            i.material-icons remove
+.row
+  .col.s12.m10
+    table.striped.responsive-table
+      thead
+        tr
+          sort-header label='ID'         key='id'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Tag'        key='tag'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Prefix'     key='prefix'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Created at' key='createdAt' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          td Actions
+      tbody
+        each model as |tpDestination|
+          tr
+            td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+              = tpDestination.id
+            td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+              = tpDestination.tag
+            td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+              = tpDestination.prefix
+            td: link-to 'tariff-plan.tp-destinations.tp-destination' tpDestination
+              = moment-format tpDestination.createdAt
+            td.actions
+              link-to 'tariff-plan.tp-destinations.tp-destination.edit' tpDestination class='btn-floating waves-effect waves-light edit'
+                i.material-icons edit
+              a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpDestination}
+                i.material-icons remove
 
-md-pagination min=1 max=totalPages current=page range=5
+    md-pagination min=1 max=totalPages current=page range=5
 
-.fixed-action-btn
-  link-to 'tariff-plan.tp-destinations.new' class='btn-floating btn-large green'
-    i.material-icons add
+  .col.s12.m2
+    filters-block search='search' as |filtersBlock|
+      filter-text label='Tag'    key='tag'    value=tag     onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text label='Prefix' key='prefix' value=prefix  onValueChange=(action 'pushValue' target=filtersBlock)
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-destinations.new' class='btn-floating btn-large green'
+        i.material-icons add
