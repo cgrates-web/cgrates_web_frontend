@@ -35,14 +35,11 @@ describe "Acceptance: NewDestination", ->
 
 
   describe 'fill in and submit form', ->
-    it 'saves new destination', (done) ->
-      server.post('/destinations/', (schema, request) =>
+    it 'saves new destination', ->
+      server.post('/destinations/', (schema, request) ->
         params = JSON.parse(request.requestBody)
         expect(params.data.id).to.eq 'DST_RU'
         expect(params.data.attributes.prefixes.length).to.eq(2)
-        setTimeout (->
-          done()
-          ), 100
         return { data: {id: 'DST_RU', type: 'destinations'} }
       )
 

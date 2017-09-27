@@ -15,13 +15,13 @@ main.full-width
       tbody
         each sortedUsers as |user|
           tr
-            td: link-to 'user' user.id
+            td: link-to 'user' user
               = user.id
-            td: link-to 'user' user.id
+            td: link-to 'user' user
               = user.email
-            td: link-to 'user' user.id
+            td: link-to 'user' user
               = moment-format user.insertedAt
-            td: link-to 'user' user.id
+            td: link-to 'user' user
               = moment-format user.updatedAt
             td.actions
               link-to 'user.edit' user class='btn-floating waves-effect waves-light edit'

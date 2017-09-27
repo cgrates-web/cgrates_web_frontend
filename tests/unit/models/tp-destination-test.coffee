@@ -1,7 +1,7 @@
 # jshint expr:true
 import { describeModel, it } from 'ember-mocha'
 
-describeModel "user", "User", {
+describeModel "tp-destination", "TpDestination", {
   # Specify the other units that are required for this test.
   needs: []
 }, ->

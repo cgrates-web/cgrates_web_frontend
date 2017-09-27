@@ -12,5 +12,5 @@
   p = moment-format model.updatedAt
 
 .fixed-action-btn
-  link-to 'user.edit' model.id class='btn-floating btn-large'
+  link-to 'user.edit' model class='btn-floating btn-large'
     i.material-icons edit

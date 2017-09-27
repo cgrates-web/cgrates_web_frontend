@@ -38,13 +38,10 @@ describe "Acceptance: Users.New", ->
           expect(find("##{find("label:contains('Password')").attr('for')}").length).to.eq 1
 
   describe 'fill form with correct data and submit', ->
-    it 'saves new user with correct data', (done) ->
-      server.post('/users/', (schema, request) =>
+    it 'saves new user with correct data', ->
+      server.post('/users/', (schema, request) ->
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.email).to.eq 'test@example.com'
-        setTimeout (->
-          done()
-          ), 100
         return { data: {id: '1', type: 'user'} }
       )
 

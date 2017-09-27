@@ -1,0 +1,6 @@
+form{action 'save' on='submit'}
+  md-input value=model.tag label='Tag' errors=model.errors.tag required=true validate=true
+  md-input value=model.prefix label='Prefix' errors=model.errors.prefix required=true validate=true
+
+  button.waves-effect.waves-light.btn type='submit'
+    | Save
