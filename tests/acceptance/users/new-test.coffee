@@ -39,7 +39,10 @@ describe "Acceptance: Users.New", ->
 
   describe 'fill form with correct data and submit', ->
     it 'saves new user with correct data', ->
+      counter = 0
+
       server.post('/users/', (schema, request) ->
+        counter = counter + 1
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.email).to.eq 'test@example.com'
         return { data: {id: '1', type: 'user'} }
@@ -50,3 +53,5 @@ describe "Acceptance: Users.New", ->
         fillIn "##{find("label:contains('Email')").attr('for')}", 'test@example.com'
         fillIn "##{find("label:contains('Password')").attr('for')}", 'secret'
         click 'button[type="submit"]'
+        andThen ->
+          expect(counter).to.eq 1

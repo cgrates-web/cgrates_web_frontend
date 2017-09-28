@@ -9,3 +9,5 @@ ul.side-nav.fixed#slide-out
   li
     link-to 'tariff-plan.tp-destinations' model
       | TpDestinations
+    link-to 'tariff-plan.tp-rates' model
+      | TpRates

@@ -1,0 +1,31 @@
+h2 TpRate: #{model.tag}
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 Tag
+      p = model.tag
+    .section
+      h5 Rate unit
+      p = model.rateUnit
+    .section
+      h5 Rate increment
+      p = model.rateIncrement
+    .section
+      h5 Rate
+      p = model.rate
+    .section
+      h5 Group interval start
+      p = model.groupIntervalStart
+    .section
+      h5 Connect fee
+      p = model.connectFee
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-rates.tp-rate.edit' model class='btn-floating btn-large'
+        i.material-icons edit

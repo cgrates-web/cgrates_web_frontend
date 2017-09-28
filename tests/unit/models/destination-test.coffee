@@ -14,7 +14,7 @@ describe "Destination", ->
         model = @subject()
         Ember.run ->
           model.set 'prefixes', ["+7", "+44"]
-          expect(model.get('prefixesString', "+7, +44"))
+          expect(model.get('prefixesString')).to.equal '+7, +44'
 
     describe 'set', ->
       it 'sets prefixes array', ->

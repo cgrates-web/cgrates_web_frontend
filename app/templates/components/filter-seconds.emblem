@@ -1,0 +1,1 @@
+md-input value=valueNumber label=label type='number' step=step
