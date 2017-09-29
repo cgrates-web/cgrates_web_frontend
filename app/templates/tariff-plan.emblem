@@ -11,3 +11,5 @@ ul.side-nav.fixed#slide-out
       | TpDestinations
     link-to 'tariff-plan.tp-rates' model
       | TpRates
+    link-to 'tariff-plan.tp-timings' model
+      | TpTimings

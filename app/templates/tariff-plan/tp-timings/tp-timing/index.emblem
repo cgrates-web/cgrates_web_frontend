@@ -1,0 +1,28 @@
+h2 Timing: #{model.tag}
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 Tag
+      p = model.tag
+    .section
+      h5 Years
+      p = model.years
+    .section
+      h5 Months
+      p = model.months
+    .section
+      h5 Month Days
+      p = model.monthDays
+    .section
+      h5 Week Days
+      p = model.weekDays
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-timings.tp-timing.edit' model class='btn-floating btn-large'
+        i.material-icons edit

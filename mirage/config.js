@@ -33,4 +33,10 @@ export default function() {
   });
   this.get('/tp-rates/:id');
   this.del('/tp-rates/:id');
+
+  this.get('/tp-timings', function(db, request) {
+    return db.tpTimings.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-timings/:id');
+  this.del('/tp-timings/:id');
 }
