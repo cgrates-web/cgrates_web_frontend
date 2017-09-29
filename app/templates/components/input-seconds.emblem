@@ -1,0 +1,1 @@
+md-input value=valueNumber label=label errors=errors required=required validate=validate type='number' step='10' min='0'

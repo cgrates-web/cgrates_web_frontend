@@ -5,19 +5,19 @@ import hbs from 'htmlbars-inline-precompile'
 import { click, fillIn, find, findAll, keyEvent, triggerEvent } from 'ember-native-dom-helpers'
 
 
-describe 'Integration: FilterText', ->
-  setupComponentTest 'filter-text', { integration: true }
+describe 'Integration: FilterSeconds', ->
+  setupComponentTest 'filter-seconds', { integration: true }
 
   describe 'basic rendering', ->
-    it 'renders text input field', ->
+    it 'renders number input field', ->
       @set 'filterValue', null
-      @render(hbs "{{filter-text label='Test' key='test' value=filterValue}}")
-      expect(@$('input[type="text"]')).to.have.length 1
+      @render(hbs "{{filter-seconds label='Test' key='test' value=filterValue}}")
+      expect(@$('input[type="number"]')).to.have.length 1
       expect(@$('label').text().trim()).to.eq 'Test'
 
-  describe 'typing into text input', ->
+  describe 'entering valid number', ->
     it 'sends associated action', ->
-      @set 'filterValue', null
+      @set 'value', null
       @set 'actionCounter', 0
       @set 'pushValue', (key, value) ->
         @set 'actionCounter', @get('actionCounter') + 1
@@ -25,8 +25,8 @@ describe 'Integration: FilterText', ->
         if(Ember.isEqual(@get('actionCounter'), 1))
           expect(value).to.eq null
         else
-          expect(value).to.eq 'valuetest'
-      @render(hbs "{{filter-text label='Test' key='test' value=filterValue onValueChange=(action pushValue)}}")
+          expect(value).to.eq '60s'
+      @render(hbs "{{filter-seconds label='Test' key='test' value=value onValueChange=(action pushValue) step='0.01'}}")
       expect(@get('actionCounter')).to.eq 1
-      fillIn 'input', 'valuetest'
+      fillIn 'input', '60'
       expect(@get('actionCounter')).to.eq 2

@@ -22,6 +22,10 @@ Router.map ->
         @route 'new'
         @route 'tp-destination', path: ':tp-destination_id', ->
           @route 'edit'
+      @route 'tp-rates', ->
+        @route 'new'
+        @route 'tp-rate', path: ':tp-rate_id', ->
+          @route 'edit'
 
   @route 'users', ->
     @route 'new'

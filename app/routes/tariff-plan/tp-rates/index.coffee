@@ -5,7 +5,15 @@ export default Ember.Route.extend QueryRouteMixin,
   queryParams:
     tag:
       refreshModel: true
-    prefix:
+    rateUnit:
+      refreshModel: true
+    rateIncrement:
+      refreshModel: true
+    rate:
+      refreshModel: true
+    groupIntervalStart:
+      refreshModel: true
+    connectFee:
       refreshModel: true
     sortColumn:
       refreshModel: true
@@ -16,6 +24,6 @@ export default Ember.Route.extend QueryRouteMixin,
     pageSize:
       refreshModel: true
 
-  filterParams: ['tag', 'prefix']
+  filterParams: ['tag', 'rateUnit', 'rateIncrement', 'rate', 'groupIntervalStart', 'connectFee']
 
-  modelName: 'tp-destination'
+  modelName: 'tp-rate'

@@ -26,7 +26,10 @@ describe "Acceptance: User.Edit", ->
 
   describe 'fill form with correct data and submit', ->
     it 'sends correct data to the backend', ->
+      counter = 0
+
       server.patch('/users/:id', (schema, request) =>
+        counter = counter + 1
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.email).to.eq 'edited@example.com'
         return { data: {id: @user.id, type: 'user'} }
@@ -37,3 +40,5 @@ describe "Acceptance: User.Edit", ->
       andThen ->
         fillIn "##{find("label:contains('Email')").attr('for')}", 'edited@example.com'
         click 'button[type="submit"]'
+        andThen ->
+          expect(counter).to.eq 1

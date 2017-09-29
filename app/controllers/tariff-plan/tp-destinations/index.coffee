@@ -1,27 +1,8 @@
 import Ember from 'ember'
+import QueryControllerMixin from 'cgrates-web-frontend/mixins/query-controller-mixin'
 
-export default Ember.Controller.extend
+export default Ember.Controller.extend QueryControllerMixin,
   queryParams: ['tag', 'prefix', 'sortColumn', 'sortOrder', 'page', 'pageSize']
 
   tag:    null
   prefix: null
-
-  sortColumn: 'id'
-  sortOrder:  'asc'
-
-  page:     1
-  pageSize: 10
-
-  totalPages: Ember.computed 'meta.total_pages', ->
-    @get('meta.total_pages')
-
-  actions:
-    search: (query) ->
-      query['page'] = 1
-      @transitionToRoute {queryParams: query}
-
-    sortBy: (sortColumn, sortOrder) ->
-      @set 'sortColumn', sortColumn
-      @set 'sortOrder', sortOrder
-
-    remove: (tpDestination) -> tpDestination.destroyRecord()

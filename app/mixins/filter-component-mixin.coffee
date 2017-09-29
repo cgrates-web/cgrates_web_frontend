@@ -6,4 +6,5 @@ export default Ember.Mixin.create
     @sendAction 'onValueChange', @get('key'), @get('valueWrapper')
 
   valueChanged: Ember.observer 'valueWrapper', ->
+    @set('valueWrapper', null) if Ember.isBlank(@get('valueWrapper'))
     @sendAction 'onValueChange', @get('key'), @get('valueWrapper') if @get('value') != @get('valueWrapper')

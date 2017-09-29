@@ -36,7 +36,10 @@ describe "Acceptance: NewDestination", ->
 
   describe 'fill in and submit form', ->
     it 'saves new destination', ->
+      counter = 0
+
       server.post('/destinations/', (schema, request) ->
+        counter = counter + 1
         params = JSON.parse(request.requestBody)
         expect(params.data.id).to.eq 'DST_RU'
         expect(params.data.attributes.prefixes.length).to.eq(2)
@@ -47,3 +50,5 @@ describe "Acceptance: NewDestination", ->
       fillIn 'input#id', 'DST_RU'
       fillIn 'input#prefixes', '+7913, +7923'
       click 'button[type="submit"]'
+      andThen ->
+        expect(counter).to.eq 1

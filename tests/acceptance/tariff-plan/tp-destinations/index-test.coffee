@@ -17,7 +17,7 @@ describe "Acceptance: TpDestinations.Index", ->
   afterEach ->
     Ember.run(@App, "destroy")
 
-  describe 'visit /tariff-plans/:tariff-paln_id/tp-destinations', ->
+  describe 'visit /tariff-plans/1/tp-destinations', ->
     it "renders table with tp-destinations", ->
       visit '/tariff-plans/1/tp-destinations'
       andThen ->
@@ -54,18 +54,19 @@ describe "Acceptance: TpDestinations.Index", ->
 
   describe 'set filters and click search button', ->
     it 'makes a correct filter query', ->
-      firstVisit = true
+      counter = 0
 
       server.get('/tp-destinations/', (schema, request) ->
+        counter = counter + 1
         filterTag = request.queryParams['filter[tag]']
         filterPrefix = request.queryParams['filter[prefix]']
-        if (firstVisit)
-          expect(Ember.isBlank(filterTag)).to.eq true
-          expect(Ember.isBlank(filterPrefix)).to.eq true
-        else
-          expect(filterTag).to.eq 'tagtest'
-          expect(filterPrefix).to.eq '+44'
-        firstVisit = false
+        switch counter
+          when 1
+            expect(Ember.isBlank(filterTag)).to.eq true
+            expect(Ember.isBlank(filterPrefix)).to.eq true
+          else
+            expect(filterTag).to.eq 'tagtest'
+            expect(filterPrefix).to.eq '+44'
         return { data: [{id: '1', type: 'tp-destination'}] }
       )
 
@@ -74,40 +75,48 @@ describe "Acceptance: TpDestinations.Index", ->
         fillIn "##{find("label:contains('Tag')").attr('for')}", 'tagtest'
         fillIn "##{find("label:contains('Prefix')").attr('for')}", '+44'
         click 'button.search-button'
+        andThen ->
+          expect(counter).to.eq 2
 
   describe 'click column header', ->
     it 'makes a correct sort query', ->
-      firstVisit = true
+      counter = 0
 
       server.get('/tp-destinations/', (schema, request) ->
+        counter = counter + 1
         sort = request.queryParams['sort']
-        if (firstVisit)
-          expect(sort).to.eq 'id'
-        else
-          expect(sort).to.eq '-id'
-        firstVisit = false
+        switch counter
+          when 1
+            expect(sort).to.eq 'id'
+          else
+            expect(sort).to.eq '-id'
         return { data: [{id: '1', type: 'tp-destination'}] }
       )
 
       visit '/tariff-plans/1/tp-destinations'
       click '.sort-header:first-child a'
+      andThen ->
+        expect(counter).to.eq 2
 
   describe 'click pagination link', ->
     it 'makes a correct pagination query', ->
-      firstVisit = true
+      counter = 0
 
       server.get('/tp-destinations/', (schema, request) ->
+        counter = counter + 1
         pagePage = request.queryParams['page[page]']
         pagePageSize = request.queryParams['page[page-size]']
-        if (firstVisit)
-          expect(pagePage).to.eq '1'
-          expect(pagePageSize).to.eq '10'
-        else
-          expect(pagePage).to.eq '2'
-          expect(pagePageSize).to.eq '10'
-        firstVisit = false
+        switch counter
+          when 1
+            expect(pagePage).to.eq '1'
+            expect(pagePageSize).to.eq '10'
+          else
+            expect(pagePage).to.eq '2'
+            expect(pagePageSize).to.eq '10'
         return { data: [{id: '1', type: 'tp-destination'}], meta: {total_pages: 2} }
       )
 
       visit '/tariff-plans/1/tp-destinations'
       click 'ul.pagination li:last-child a'
+      andThen ->
+        expect(counter).to.eq 2

@@ -23,7 +23,10 @@ describe "Acceptance: TariffPlans.New", ->
 
   describe 'fill form with correct data and submit', ->
     it 'sends correct data to the backend', ->
+      counter = 0
+
       server.post('/tariff-plans/', (schema, request) ->
+        counter = counter + 1
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes.name).to.eq 'New Tariff'
         expect(params.data.attributes.alias).to.eq 'new_tariff'
@@ -37,6 +40,8 @@ describe "Acceptance: TariffPlans.New", ->
         fillIn "##{find("label:contains('Alias')").attr('for')}", 'new_tariff'
         fillIn "##{find("label:contains('Description')").attr('for')}", 'description'
         click 'button[type="submit"]'
+        andThen ->
+          expect(counter).to.eq 1
 
   describe 'fill form with incorrect data and submit', ->
     it 'sets invalid class for inputs', ->
