@@ -1,0 +1,8 @@
+.row {
+  .table-col {
+    @extend .col, .s12, .m8, .l9
+  }
+  .filters-col {
+    @extend .col, .s12, .m4, .l3
+  }
+}

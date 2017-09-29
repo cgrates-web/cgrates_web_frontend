@@ -12,5 +12,7 @@ $primary-color: color("grey", "darken-3");
 @import 'ember-cli-materialize';
 
 @import "layouts/base";
+@import "layouts/index-page";
+
 @import "components/pagination";
 @import "components/filter-block";

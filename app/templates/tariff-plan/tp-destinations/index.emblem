@@ -1,7 +1,7 @@
 h2 TpDestinations list
 
 .row
-  .col.s12.m10
+  .table-col
     table.striped.responsive-table
       thead
         tr
@@ -29,7 +29,7 @@ h2 TpDestinations list
 
     md-pagination min=1 max=totalPages current=page range=5
 
-  .col.s12.m2
+  .filters-col
     filters-block search='search' as |filtersBlock|
       filter-text label='Tag'    key='tag'    value=tag     onValueChange=(action 'pushValue' target=filtersBlock)
       filter-text label='Prefix' key='prefix' value=prefix  onValueChange=(action 'pushValue' target=filtersBlock)
