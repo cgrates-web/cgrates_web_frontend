@@ -6,7 +6,5 @@ export default Ember.Mixin.create
       return null if Ember.isBlank(@get('valueWrapper'))
       @get('valueWrapper').replace(/s$/, '')
     set: (key, value) ->
-      console.log(value)
       @set 'valueWrapper', "#{value}s"
-      console.log(@get('valueWrapper'))
       value

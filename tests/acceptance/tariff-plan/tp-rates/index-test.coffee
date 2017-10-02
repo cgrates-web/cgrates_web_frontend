@@ -58,7 +58,6 @@ describe "Acceptance: TpRates.Index", ->
 
       server.get('/tp-rates/', (schema, request) ->
         counter = counter + 1
-        console.log(request.queryParams)
         filterTag = request.queryParams['filter[tag]']
         filterRateUnit = request.queryParams['filter[rate_unit]']
         filterRateIncrement = request.queryParams['filter[rate_increment]']

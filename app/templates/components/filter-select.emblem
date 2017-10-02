@@ -1,0 +1,12 @@
+power-select [
+  triggerId=id
+  placeholder='...'
+  searchEnabled=false
+  allowClear=true
+  options=content
+  selected=valueWrapper
+  onchange=(action (mut valueWrapper))
+] as |item|
+  item
+label.active for=id
+  = label

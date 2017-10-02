@@ -31,11 +31,15 @@ td a {
   }
 }
 
-.actions a, .actions button {
+.actions a {
   margin-right: 10px;
   &:last-child {
     margin-right: inherit;
   }
+}
+
+td.actions {
+  white-space: nowrap;
 }
 
 td.sort-header {
@@ -45,4 +49,8 @@ td.sort-header {
   i {
     font-size: inherit;
   }
+}
+
+.input-field:last-of-type {
+  margin-bottom: 15px;
 }

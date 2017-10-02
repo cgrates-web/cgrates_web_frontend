@@ -1,0 +1,34 @@
+h2 TpDestinationRate: #{model.tag}
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 Tag
+      p = model.tag
+    .section
+      h5 Rates tag
+      p = model.ratesTag
+    .section
+      h5 Destinations tag
+      p = model.destinationsTag
+    .section
+      h5 Rounding decimals
+      p = model.roundingDecimals
+    .section
+      h5 Max cost
+      p = model.maxCost
+    .section
+      h5 Rounding method
+      p = model.roundingMethod
+    .section
+      h5 Max cost strategy
+      p = model.maxCostStrategy
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-destination-rates.tp-destination-rate.edit' model class='btn-floating btn-large'
+        i.material-icons edit

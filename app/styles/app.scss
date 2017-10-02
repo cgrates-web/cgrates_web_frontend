@@ -11,8 +11,16 @@ $primary-color: color("grey", "darken-3");
 @import 'materialize';
 @import 'ember-cli-materialize';
 
+@import "ember-power-select/themes/material";
+$ember-power-select-active-trigger-border-bottom: 1px solid $ember-power-select-material-active-color;
+$ember-power-select-focus-box-shadow: 0 1px 0 0 $ember-power-select-material-active-color;
+$ember-power-select-dropdown-margin: 1px;
+$ember-power-select-line-height: 3;
+@import "ember-power-select";
+
 @import "layouts/base";
 @import "layouts/index-page";
 
 @import "components/pagination";
+@import "components/power-select";
 @import "components/filter-block";
