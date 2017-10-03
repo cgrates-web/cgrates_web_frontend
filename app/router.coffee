@@ -30,6 +30,10 @@ Router.map ->
         @route 'new'
         @route 'tp-destination-rate', path: ':tp-destination-rate_id', ->
           @route 'edit'
+      @route 'tp-timings', ->
+        @route 'new'
+        @route 'tp-timing', path: ':tp-timing_id', ->
+          @route 'edit'
 
   @route 'users', ->
     @route 'new'

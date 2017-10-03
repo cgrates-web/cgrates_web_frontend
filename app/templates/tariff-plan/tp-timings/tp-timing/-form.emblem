@@ -1,0 +1,9 @@
+form{action 'save' on='submit'}
+  md-input value=model.tag label='Tag' errors=model.errors.tag required=true validate=true
+  md-input value=model.years label='Years' errors=model.errors.years required=true validate=true
+  md-input value=model.months label='Months' errors=model.errors.months required=true validate=true
+  md-input value=model.monthDays label='Month Days' errors=model.errors.monthDays required=true validate=true
+  md-input value=model.weekDays label='Week Days' errors=model.errors.weekDays required=true validate=true
+
+  button.waves-effect.waves-light.btn type='submit'
+    | Save
