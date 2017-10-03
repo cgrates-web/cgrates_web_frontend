@@ -39,7 +39,7 @@ h2 TpDestinationRates list
             td.actions
               link-to 'tariff-plan.tp-destination-rates.tp-destination-rate.edit' tpDestinationRate class='btn-floating waves-effect waves-light edit'
                 i.material-icons edit
-              a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpRtpDestinationRateate}
+              a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpDestinationRate}
                 i.material-icons remove
 
     md-pagination min=1 max=totalPages current=page range=5

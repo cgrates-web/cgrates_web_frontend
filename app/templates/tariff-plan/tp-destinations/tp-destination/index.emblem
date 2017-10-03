@@ -1,4 +1,4 @@
-h2 TpDestination: #{model.prefix}
+h2 TpDestination: #{model.tag}
 .row
   .col.m12.l6: .card-panel
     .section

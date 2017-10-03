@@ -23,13 +23,27 @@ export default function() {
   this.del('/users/:id');
 
   this.get('/tp-destinations', function(db, request) {
-    return db.tpDestinations.where({tpid: request.queryParams['tpid']});
+    let tag = request.queryParams['filter[tag]'];
+    let records = db.tpDestinations.where({tpid: request.queryParams['tpid']});
+    if(tag) {
+      records = records.filter((record) => {
+        return record.tag.includes(tag);
+      });
+    }
+    return records;
   });
   this.get('/tp-destinations/:id');
   this.del('/tp-destinations/:id');
 
   this.get('/tp-rates', function(db, request) {
-    return db.tpRates.where({tpid: request.queryParams['tpid']});
+    let tag = request.queryParams['filter[tag]'];
+    let records = db.tpRates.where({tpid: request.queryParams['tpid']});
+    if(tag) {
+      records = records.filter((record) => {
+        return record.tag.includes(tag);
+      });
+    }
+    return records;
   });
   this.get('/tp-rates/:id');
   this.del('/tp-rates/:id');
