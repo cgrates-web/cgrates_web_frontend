@@ -58,7 +58,6 @@ describe "Acceptance: TpRates.Index", ->
 
       server.get('/tp-rates/', (schema, request) ->
         counter = counter + 1
-        console.log(request.queryParams)
         filterTag = request.queryParams['filter[tag]']
         filterRateUnit = request.queryParams['filter[rate_unit]']
         filterRateIncrement = request.queryParams['filter[rate_increment]']
@@ -105,15 +104,18 @@ describe "Acceptance: TpRates.Index", ->
         switch counter
           when 1
             expect(sort).to.eq 'id'
+          when 2
+            expect(sort).to.eq 'tag'
           else
-            expect(sort).to.eq '-id'
+            expect(sort).to.eq '-tag'
         return { data: [{id: '1', type: 'tp-rate'}] }
       )
 
       visit '/tariff-plans/1/tp-rates'
-      click '.sort-header:first-child a'
+      click ".sort-header a:contains('Tag')"
+      click ".sort-header a:contains('Tag')"
       andThen ->
-        expect(counter).to.eq 2
+        expect(counter).to.eq 3
 
   describe 'click pagination link', ->
     it 'makes a correct pagination query', ->
@@ -134,6 +136,6 @@ describe "Acceptance: TpRates.Index", ->
       )
 
       visit '/tariff-plans/1/tp-rates'
-      click 'ul.pagination li:last-child a'
+      click "ul.pagination li a:contains('2')"
       andThen ->
         expect(counter).to.eq 2

@@ -13,7 +13,7 @@ describe "Acceptance: TpRates.New", ->
   afterEach ->
     Ember.run(@App, "destroy")
 
-  describe 'visit /tariff-plans/:id/tp-rates/new', ->
+  describe 'visit /tariff-plans/1/tp-rates/new', ->
     it 'renders tp-rate form', ->
       visit '/tariff-plans/1/tp-rates/new'
       andThen ->

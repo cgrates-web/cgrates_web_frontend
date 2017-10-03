@@ -13,7 +13,7 @@ describe "Acceptance: TpDestinations.New", ->
   afterEach ->
     Ember.run(@App, "destroy")
 
-  describe 'visit /tariff-plans/:id/tp-destinations/new', ->
+  describe 'visit /tariff-plans/1/tp-destinations/new', ->
     it 'renders tp-destination form', ->
       visit '/tariff-plans/1/tp-destinations/new'
       andThen ->

@@ -1,0 +1,4 @@
+h2 Edit tpDestinationRate
+.row
+  .col.m12.l6: .card-panel
+    partial 'tariff-plan/tp-destination-rates/tp-destination-rate/form'

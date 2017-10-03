@@ -1,0 +1,29 @@
+.ember-power-select-trigger {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 9px;
+  &.invalid {
+    border-bottom-color: $error-color;
+    box-shadow: 0 1px 0 0 $error-color;
+  }
+}
+
+.ember-power-select-selected-item {
+  margin-left: 0;
+}
+
+.ember-power-select-placeholder {
+  margin-left: 0;
+  .ember-power-select-trigger--active & {
+    transform: none;
+    color: $ember-power-select-placeholder-color;
+  }
+}
+
+small.error-message {
+  font-size: 0.8rem;
+  position: absolute;
+  top: 50px;
+  top: calc(65px - 0.8rem);
+  left: 0.75rem;
+}
