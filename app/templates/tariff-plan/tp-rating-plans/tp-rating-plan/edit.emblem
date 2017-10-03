@@ -1,0 +1,4 @@
+h2 Edit tpRatingPlan
+.row
+  .col.m12.l6: .card-panel
+    partial 'tariff-plan/tp-rating-plans/tp-rating-plan/form'

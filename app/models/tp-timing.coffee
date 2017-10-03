@@ -1,6 +1,6 @@
 import DS from 'ember-data'
 
-export default DS.Model.extend {
+export default DS.Model.extend
   tpid:      DS.attr 'string'
   tag:       DS.attr 'string'
   years:     DS.attr 'string'
@@ -9,4 +9,3 @@ export default DS.Model.extend {
   weekDays:  DS.attr 'string'
   time:      DS.attr 'string'
   createdAt: DS.attr 'date'
-}
