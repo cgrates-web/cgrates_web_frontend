@@ -20,6 +20,9 @@ h2 Timing: #{model.tag}
       h5 Week Days
       p = model.weekDays
     .section
+      h5 Time
+      p = model.time
+    .section
       h5 Created at
       p = moment-format model.createdAt
 

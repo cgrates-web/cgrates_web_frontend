@@ -36,6 +36,7 @@ describe "Acceptance: TpTiming.Edit", ->
         expect(params.data.attributes.tag).to.eq 'tagtest'
         expect(params.data.attributes.years).to.eq '2017'
         expect(params.data.attributes.months).to.eq 'june'
+        expect(params.data.attributes.time).to.eq '14'
         expect(params.data.attributes["month-days"]).to.eq '30'
         expect(params.data.attributes["week-days"]).to.eq '14'
         return { data: {id: '1', type: 'tp-timing'} }
@@ -49,6 +50,7 @@ describe "Acceptance: TpTiming.Edit", ->
         fillIn "##{find("label:contains('Months')").attr('for')}", 'june'
         fillIn "##{find("label:contains('Month Days')").attr('for')}", '30'
         fillIn "##{find("label:contains('Week Days')").attr('for')}", '14'
+        fillIn "##{find("label:contains('Time')").attr('for')}", '14'
         click 'button[type="submit"]'
         andThen ->
           expect(counter).to.eq 1

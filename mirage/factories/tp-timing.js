@@ -7,4 +7,5 @@ export default Factory.extend({
   months()    { faker.lorem.word() },
   monthDays() { faker.lorem.word() },
   weekDays()  { faker.lorem.word() },
+  time()      { faker.lorem.word() }
 });

@@ -7,5 +7,6 @@ export default DS.Model.extend {
   months:    DS.attr 'string'
   monthDays: DS.attr 'string'
   weekDays:  DS.attr 'string'
+  time:      DS.attr 'string'
   createdAt: DS.attr 'date'
 }

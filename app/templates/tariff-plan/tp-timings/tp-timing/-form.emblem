@@ -4,6 +4,7 @@ form{action 'save' on='submit'}
   md-input value=model.months label='Months' errors=model.errors.months required=true validate=true
   md-input value=model.monthDays label='Month Days' errors=model.errors.monthDays required=true validate=true
   md-input value=model.weekDays label='Week Days' errors=model.errors.weekDays required=true validate=true
+  md-input value=model.time label='Time' errors=model.errors.time required=true validate=true
 
   button.waves-effect.waves-light.btn type='submit'
     | Save
