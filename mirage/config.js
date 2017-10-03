@@ -49,14 +49,34 @@ export default function() {
   this.del('/tp-rates/:id');
 
   this.get('/tp-destination-rates', function(db, request) {
-    return db.tpDestinationRates.where({tpid: request.queryParams['tpid']});
+    let tag = request.queryParams['filter[tag]'];
+    let records = db.tpDestinationRates.where({tpid: request.queryParams['tpid']});
+    if(tag) {
+      records = records.filter((record) => {
+        return record.tag.includes(tag);
+      });
+    }
+    return records;
   });
   this.get('/tp-destination-rates/:id');
   this.del('/tp-destination-rates/:id');
 
   this.get('/tp-timings', function(db, request) {
-    return db.tpTimings.where({tpid: request.queryParams['tpid']});
+    let tag = request.queryParams['filter[tag]'];
+    let records = db.tpTimings.where({tpid: request.queryParams['tpid']});
+    if(tag) {
+      records = records.filter((record) => {
+        return record.tag.includes(tag);
+      });
+    }
+    return records;
   });
   this.get('/tp-timings/:id');
   this.del('/tp-timings/:id');
+
+  this.get('/tp-rating-plans', function(db, request) {
+    return db.tpRatingPlans.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-rating-plans/:id');
+  this.del('/tp-rating-plans/:id');
 }

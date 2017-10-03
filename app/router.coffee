@@ -34,6 +34,10 @@ Router.map ->
         @route 'new'
         @route 'tp-timing', path: ':tp-timing_id', ->
           @route 'edit'
+      @route 'tp-rating-plans', ->
+        @route 'new'
+        @route 'tp-rating-plan', path: ':tp-rating-plan_id', ->
+          @route 'edit'
 
   @route 'users', ->
     @route 'new'

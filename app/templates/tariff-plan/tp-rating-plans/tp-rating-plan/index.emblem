@@ -1,0 +1,25 @@
+h2 TpRatingPlan: #{model.tag}
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 Tag
+      p = model.tag
+    .section
+      h5 Destination rates tag
+      p = model.destratesTag
+    .section
+      h5 Timing tag
+      p = model.timingTag
+    .section
+      h5 Weight
+      p = model.weight
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-rating-plans.tp-rating-plan.edit' model class='btn-floating btn-large'
+        i.material-icons edit
