@@ -11,8 +11,9 @@ Router.map ->
   @route 'realtime', ->
     @route 'destinations', ->
       @route 'new'
-      @route 'destination', ->
-        @route 'edit'
+    @route 'accounts', ->
+      @route 'new'
+      @route 'account', path: ':id', ->
 
   @route 'tariff-plans', ->
     @route 'new'

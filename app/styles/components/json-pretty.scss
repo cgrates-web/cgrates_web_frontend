@@ -1,0 +1,13 @@
+.json-pretty pre {
+  outline-style: none;
+  font-size: 0.8rem;
+  .key {
+    color: color("teal", "darken-1");
+  }
+  .string {
+    color: color("deep-orange", "darken-4");
+  }
+  .number, .boolean, .null {
+    color: inherit;
+  }
+}

@@ -1,0 +1,2 @@
+h2 Account: #{model.id}
+outlet
