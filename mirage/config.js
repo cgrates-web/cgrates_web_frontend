@@ -15,6 +15,9 @@ export default function() {
   this.get('/destinations');
   this.del('/destinations/:id');
 
+  this.get('/accounts');
+  this.del('/accounts/:id');
+
   this.get('tariff-plans');
   this.get('tariff-plans/:id');
 

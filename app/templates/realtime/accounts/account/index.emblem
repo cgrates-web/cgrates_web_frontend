@@ -1,0 +1,31 @@
+.card-panel
+  .section
+    h5 ID
+    p = model.id
+  .section
+    h5 Balance
+    p = model.balance
+  .section
+    h5 Allow negative
+    p = model.allowNegative
+  .section
+    h5 Disabled
+    p = model.disabled
+  .section
+    h5 Balance map (json)
+    if model.balanceMap
+      json-pretty obj=model.balanceMap
+    else
+      p Not present
+  .section
+    h5 Unit counters (json)
+    if model.unitCounters
+      json-pretty obj=model.unitCounters
+    else
+      p Not present
+  .section
+    h5 Action triggers (json)
+    if model.actionTriggers
+      json-pretty obj=model.actionTriggers
+    else
+     p Not present

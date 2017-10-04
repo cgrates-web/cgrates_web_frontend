@@ -8,3 +8,7 @@ ul.side-nav.fixed#slide-out
   li
     link-to 'realtime.destinations'
       | Destinations
+
+  li
+    link-to 'realtime.accounts'
+      | Accounts

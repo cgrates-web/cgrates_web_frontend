@@ -2383,6 +2383,10 @@ ember-cli-is-package-missing@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-is-package-missing/-/ember-cli-is-package-missing-1.0.0.tgz#6e6184cafb92635dd93ca6c946b104292d4e3390"
 
+ember-cli-json-pretty@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-json-pretty/-/ember-cli-json-pretty-0.1.2.tgz#8727b947ac0fcd59fc183656ed2f88b37a71d1fc"
+
 ember-cli-legacy-blueprints@^0.1.1, ember-cli-legacy-blueprints@^0.1.2:
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/ember-cli-legacy-blueprints/-/ember-cli-legacy-blueprints-0.1.5.tgz#93c15ca242ec5107d62a8af7ec30f6ac538f3ad9"
