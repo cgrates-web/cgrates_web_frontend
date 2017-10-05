@@ -17,3 +17,5 @@ ul.side-nav.fixed#slide-out
       | TpTimings
     link-to 'tariff-plan.tp-rating-plans' model
       | TpRatingPlans
+    link-to 'tariff-plan.upload-to-redis' model
+      | Upload to redis
