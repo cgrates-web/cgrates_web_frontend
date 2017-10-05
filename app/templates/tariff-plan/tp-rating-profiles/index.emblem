@@ -1,0 +1,67 @@
+h2 TpRatingProfiles list
+
+.row
+  .table-col
+    table.striped.responsive-table
+      thead
+        tr
+          sort-header label='ID'                 key='id'               sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Load ID'            key='loadid'           sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Direction'          key='direction'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Tenant'             key='tenant'           sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Category'           key='category'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Subject'            key='subject'          sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Fallback subjects'  key='fallbackSubjects' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Activation time'    key='activationTime'   sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='CDR stat queue IDs' key='cdrStatQueueIds'  sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Rating plan tag'    key='ratingPlanTag'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Created at'         key='createdAt'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          td Actions
+      tbody
+        each model as |tpRatingProfile|
+          tr
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.id
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.loadid
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.direction
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.tenant
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.category
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.subject
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.fallbackSubjects
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.activationTime
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.cdrStatQueueIds
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = tpRatingProfile.ratingPlanTag
+            td: link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile
+              = moment-format tpRatingProfile.createdAt
+            td.actions
+              link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile.edit' tpRatingProfile class='btn-floating waves-effect waves-light edit'
+                i.material-icons edit
+              a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpRatingProfile}
+                i.material-icons remove
+
+    md-pagination min=1 max=totalPages current=page range=5
+
+  .filters-col
+    filters-block search='search' as |filtersBlock|
+      filter-text   label='Load ID'            key='loadid'           value=loadid           onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-select label='Direction'          key='direction'        value=direction        onValueChange=(action 'pushValue' target=filtersBlock) content=directionList
+      filter-text   label='Tenant'             key='tenant'           value=tenant           onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Category'           key='category'         value=category         onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Subject'            key='subject'          value=subject          onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Fallback subjects'  key='fallbackSubjects' value=fallbackSubjects onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Activation time'    key='activationTime'   value=activationTime   onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='CDR stat queue IDs' key='cdrStatQueueIds'  value=cdrStatQueueIds  onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Rating plan tag'    key='ratingPlanTag'    value=ratingPlanTag    onValueChange=(action 'pushValue' target=filtersBlock)
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-rating-profiles.new' class='btn-floating btn-large green'
+        i.material-icons add

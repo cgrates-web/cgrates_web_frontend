@@ -41,6 +41,10 @@ Router.map ->
         @route 'new'
         @route 'tp-rating-plan', path: ':tp-rating-plan_id', ->
           @route 'edit'
+      @route 'tp-rating-profiles', ->
+        @route 'new'
+        @route 'tp-rating-profile', path: ':tp-rating-profile_id', ->
+          @route 'edit'
 
   @route 'users', ->
     @route 'new'
