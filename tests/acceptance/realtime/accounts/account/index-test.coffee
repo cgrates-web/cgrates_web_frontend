@@ -19,3 +19,11 @@ describe "Acceptance: Account.Index", ->
       click "table tbody tr:first-child td a:contains('test')"
       andThen ->
         expect(find('main h2').text()).to.eq('Account: test')
+
+  describe 'click add balance button', ->
+    it 'redirects to add balance page', ->
+      visit '/realtime/accounts'
+      click "table tbody tr:first-child td a:contains('test')"
+      click "a:contains('Add balance')"
+      andThen ->
+        expect(currentPath()).to.equal 'realtime.accounts.account.add-balance'
