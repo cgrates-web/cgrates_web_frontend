@@ -29,3 +29,6 @@
       json-pretty obj=model.actionTriggers
     else
      p Not present
+  .section
+    link-to 'realtime.accounts.account.add-balance' class='btn'
+      | Add balance

@@ -14,6 +14,7 @@ Router.map ->
     @route 'accounts', ->
       @route 'new'
       @route 'account', path: ':id', ->
+        @route 'add-balance'
 
   @route 'tariff-plans', ->
     @route 'new'
