@@ -49,6 +49,10 @@ Router.map ->
         @route 'new'
         @route 'tp-action', path: ':tp-action_id', ->
           @route 'edit'
+      @route 'tp-action-plans', ->
+        @route 'new'
+        @route 'tp-action-plan', path: ':tp-action-plan_id', ->
+          @route 'edit'
 
   @route 'users', ->
     @route 'new'

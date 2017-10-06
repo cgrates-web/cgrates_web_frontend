@@ -21,5 +21,7 @@ ul.side-nav.fixed#slide-out
       | TpRatingProfiles
     link-to 'tariff-plan.tp-actions' model
       | TpActions
+    link-to 'tariff-plan.tp-action-plans' model
+      | TpActionPlans
     link-to 'tariff-plan.upload-to-redis' model
       | Upload to redis
