@@ -2,6 +2,8 @@ import Ember from 'ember'
 import QueryControllerMixin from 'cgrates-web-frontend/mixins/query-controller-mixin'
 
 export default Ember.Controller.extend QueryControllerMixin,
+  selectValues: Ember.inject.service()
+
   queryParams: ['loadid', 'direction', 'tenant', 'category', 'subject', 'fallbackSubjects', 'activationTime',
                 'cdrStatQueueIds', 'ratingPlanTag', 'sortColumn', 'sortOrder', 'page', 'pageSize']
 
@@ -14,5 +16,3 @@ export default Ember.Controller.extend QueryControllerMixin,
   activationTime:   null
   cdrStatQueueIds:  null
   ratingPlanTag:    null
-
-  directionList: ['IN', 'OUT']

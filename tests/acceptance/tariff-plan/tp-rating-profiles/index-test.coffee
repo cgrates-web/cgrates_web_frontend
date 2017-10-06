@@ -83,7 +83,7 @@ describe "Acceptance: TpRatingProfiles.Index", ->
             expect(Ember.isBlank(filterRatingPlanTag)).to.eq true
           else
             expect(filterLoadid).to.eq 'loadtest'
-            expect(filterDirection).to.eq 'IN'
+            expect(filterDirection).to.eq '*in'
             expect(filterTenant).to.eq 'tenanttest'
             expect(filterCategory).to.eq 'categorytest'
             expect(filterSubject).to.eq 'subject1'
@@ -97,7 +97,7 @@ describe "Acceptance: TpRatingProfiles.Index", ->
       visit '/tariff-plans/1/tp-rating-profiles'
       andThen ->
         fillIn "##{find("label:contains('Load ID')").attr('for')}", 'loadtest'
-        selectChoose "##{find("label:contains('Direction')").attr('for')}", 'IN'
+        selectChoose "##{find("label:contains('Direction')").attr('for')}", '*in'
         fillIn "##{find("label:contains('Tenant')").attr('for')}", 'tenanttest'
         fillIn "##{find("label:contains('Category')").attr('for')}", 'categorytest'
         fillIn "##{find("label:contains('Subject')").attr('for')}", 'subject1'

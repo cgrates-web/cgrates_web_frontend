@@ -2,6 +2,8 @@ import Ember from 'ember'
 import QueryControllerMixin from 'cgrates-web-frontend/mixins/query-controller-mixin'
 
 export default Ember.Controller.extend QueryControllerMixin,
+  selectValues: Ember.inject.service()
+
   queryParams: ['tag', 'roundingMethod', 'roundingDecimals', 'ratesTag', 'maxCostStrategy',
                 'maxCost', 'destinationsTag', 'sortColumn', 'sortOrder', 'page', 'pageSize']
 
@@ -12,6 +14,3 @@ export default Ember.Controller.extend QueryControllerMixin,
   maxCostStrategy:  null
   maxCost:          null
   destinationsTag:  null
-
-  roundingMethodList:  ['*up', '*down', '*middle']
-  maxCostStrategyList: ['*free', '*disconnect']

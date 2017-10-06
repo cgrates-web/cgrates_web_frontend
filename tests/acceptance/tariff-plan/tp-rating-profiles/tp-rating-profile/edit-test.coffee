@@ -56,7 +56,7 @@ describe "Acceptance: TpRatingProfile.Edit", ->
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes['tpid']).to.eq 'tptest'
         expect(params.data.attributes['loadid']).to.eq 'loadtest'
-        expect(params.data.attributes['direction']).to.eq 'OUT'
+        expect(params.data.attributes['direction']).to.eq '*out'
         expect(params.data.attributes['tenant']).to.eq 'tenanttest'
         expect(params.data.attributes['category']).to.eq 'categorytest'
         expect(params.data.attributes['subject']).to.eq 'subject1'
@@ -71,7 +71,7 @@ describe "Acceptance: TpRatingProfile.Edit", ->
       click 'table tbody tr:first-child a.edit'
       andThen ->
         fillIn "##{find("label:contains('Load ID')").attr('for')}", 'loadtest'
-        selectChoose "##{find("label:contains('Direction')").attr('for')}", 'OUT'
+        selectChoose "##{find("label:contains('Direction')").attr('for')}", '*out'
         fillIn "##{find("label:contains('Tenant')").attr('for')}", 'tenanttest'
         fillIn "##{find("label:contains('Category')").attr('for')}", 'categorytest'
         fillIn "##{find("label:contains('Subject')").attr('for')}", 'subject1'

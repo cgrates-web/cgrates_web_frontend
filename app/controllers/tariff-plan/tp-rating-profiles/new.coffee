@@ -1,7 +1,7 @@
 import Ember from 'ember'
 
 export default Ember.Controller.extend
-  directionList: ['IN', 'OUT']
+  selectValues: Ember.inject.service()
 
   actions:
     save: ->

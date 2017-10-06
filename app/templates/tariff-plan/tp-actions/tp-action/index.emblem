@@ -1,0 +1,67 @@
+h2 TpAction: #{model.tag}
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 Tag
+      p = model.tag
+    .section
+      h5 Action
+      p = model.action
+    .section
+      h5 Balance tag
+      p = model.balanceTag
+    .section
+      h5 Balance type
+      p = model.balanceType
+    .section
+      h5 Directions
+      p = model.directions
+    .section
+      h5 Units
+      p = model.units
+    .section
+      h5 Expiry time
+      p = model.expiryTime
+    .section
+      h5 Timing tags
+      p = model.timingTags
+    .section
+      h5 Destination tags
+      p = model.destinationTags
+    .section
+      h5 Rating subject
+      p = model.ratingSubject
+    .section
+      h5 Categories
+      p = model.categories
+    .section
+      h5 Shared groups
+      p = model.sharedGroups
+    .section
+      h5 Balance weight
+      p = model.balanceWeight
+    .section
+      h5 Balance blocker
+      p = model.balanceBlocker
+    .section
+      h5 Balance disabled
+      p = model.balanceDisabled
+    .section
+      h5 Extra parameters
+      p = model.extraParameters
+    .section
+      h5 Filter
+      p = model.filter
+    .section
+      h5 Weight
+      p = model.weight
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-actions.tp-action.edit' model class='btn-floating btn-large'
+        i.material-icons edit

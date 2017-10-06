@@ -95,4 +95,10 @@ export default function() {
   });
   this.get('/tp-rating-profiles/:id');
   this.del('/tp-rating-profiles/:id');
+
+  this.get('/tp-actions', function(db, request) {
+    return db.tpActions.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-actions/:id');
+  this.del('/tp-actions/:id');
 }

@@ -5,4 +5,4 @@ export default Ember.Controller.extend
 
   actions:
     save: ->
-      @model.save().then => @transitionToRoute('tariff-plan.tp-destination-rates')
+      @model.save().then => @transitionToRoute('tariff-plan.tp-actions')
