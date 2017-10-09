@@ -53,7 +53,7 @@ h2 TpRatingProfiles list
   .filters-col
     filters-block search='search' as |filtersBlock|
       filter-text   label='Load ID'            key='loadid'           value=loadid           onValueChange=(action 'pushValue' target=filtersBlock)
-      filter-select label='Direction'          key='direction'        value=direction        onValueChange=(action 'pushValue' target=filtersBlock) content=directionList
+      filter-select label='Direction'          key='direction'        value=direction        onValueChange=(action 'pushValue' target=filtersBlock) content=selectValues.direction
       filter-text   label='Tenant'             key='tenant'           value=tenant           onValueChange=(action 'pushValue' target=filtersBlock)
       filter-text   label='Category'           key='category'         value=category         onValueChange=(action 'pushValue' target=filtersBlock)
       filter-text   label='Subject'            key='subject'          value=subject          onValueChange=(action 'pushValue' target=filtersBlock)

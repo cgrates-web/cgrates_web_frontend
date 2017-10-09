@@ -7,7 +7,7 @@ describe "Acceptance: TpRatingProfile.Index", ->
   beforeEach ->
     @App = startApp()
     @tariffPlan = server.create 'tariff-plan', name: 'Test', alias: 'tptest'
-    @tpRatingProfile = server.create 'tp-rating-profile', tpid: @tariffPlan.alias, tenant: 'tenanttest'
+    @tpRatingProfile = server.create 'tp-rating-profile', tpid: @tariffPlan.alias, id: 'test'
     authenticateSession(@App, {email: "user@example.com"})
     return
 
@@ -17,14 +17,14 @@ describe "Acceptance: TpRatingProfile.Index", ->
   describe 'basic rendering', ->
     it 'renders specific header', ->
       visit '/tariff-plans/1/tp-rating-profiles'
-      click "table tbody tr:first-child td a:contains('tenanttest')"
+      click "table tbody tr:first-child td a:contains('test')"
       andThen ->
-        expect(find('main h2').text()).to.eq('TpRatingProfile: tenanttest')
+        expect(find('main h2').text()).to.eq('TpRatingProfile: test')
 
   describe 'click edit button', ->
     it 'redirects to tp-rating-profile edit page', ->
       visit '/tariff-plans/1/tp-rating-profiles'
-      click "table tbody tr:first-child td a:contains('tenanttest')"
+      click "table tbody tr:first-child td a:contains('test')"
       click '.fixed-action-btn a'
       andThen ->
         expect(currentPath()).to.equal 'tariff-plans.tariff-plan.tp-rating-profiles.tp-rating-profile.edit'

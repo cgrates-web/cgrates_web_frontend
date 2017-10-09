@@ -65,7 +65,7 @@ describe "Acceptance: TpRatingProfiles.New", ->
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes['tpid']).to.eq 'tptest'
         expect(params.data.attributes['loadid']).to.eq 'loadtest'
-        expect(params.data.attributes['direction']).to.eq 'IN'
+        expect(params.data.attributes['direction']).to.eq '*in'
         expect(params.data.attributes['tenant']).to.eq 'tenanttest'
         expect(params.data.attributes['category']).to.eq 'categorytest'
         expect(params.data.attributes['subject']).to.eq 'subject1'
@@ -79,7 +79,7 @@ describe "Acceptance: TpRatingProfiles.New", ->
       visit '/tariff-plans/1/tp-rating-profiles/new'
       andThen ->
         fillIn "##{find("label:contains('Load ID')").attr('for')}", 'loadtest'
-        selectChoose "##{find("label:contains('Direction')").attr('for')}", 'IN'
+        selectChoose "##{find("label:contains('Direction')").attr('for')}", '*in'
         fillIn "##{find("label:contains('Tenant')").attr('for')}", 'tenanttest'
         fillIn "##{find("label:contains('Category')").attr('for')}", 'categorytest'
         fillIn "##{find("label:contains('Subject')").attr('for')}", 'subject1'

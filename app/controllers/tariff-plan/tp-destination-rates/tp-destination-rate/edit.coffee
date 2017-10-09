@@ -1,8 +1,7 @@
 import Ember from 'ember'
 
 export default Ember.Controller.extend
-  roundingMethodList:  ['*up', '*down', '*middle']
-  maxCostStrategyList: ['*free', '*disconnect']
+  selectValues: Ember.inject.service()
 
   actions:
     save: ->

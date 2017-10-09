@@ -95,4 +95,23 @@ export default function() {
   });
   this.get('/tp-rating-profiles/:id');
   this.del('/tp-rating-profiles/:id');
+
+  this.get('/tp-actions', function(db, request) {
+    let tag = request.queryParams['filter[tag]'];
+    let records = db.tpActions.where({tpid: request.queryParams['tpid']});
+    if(tag) {
+      records = records.filter((record) => {
+        return record.tag.includes(tag);
+      });
+    }
+    return records;
+  });
+  this.get('/tp-actions/:id');
+  this.del('/tp-actions/:id');
+
+  this.get('/tp-action-plans', function(db, request) {
+    return db.tpActionPlans.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-action-plans/:id');
+  this.del('/tp-action-plans/:id');
 }

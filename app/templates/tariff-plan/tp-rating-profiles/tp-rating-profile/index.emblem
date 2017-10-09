@@ -1,4 +1,4 @@
-h2 TpRatingProfile: #{model.tenant}
+h2 TpRatingProfile: #{model.id}
 .row
   .col.m12.l6: .card-panel
     .section

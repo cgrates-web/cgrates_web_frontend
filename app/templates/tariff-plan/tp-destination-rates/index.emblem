@@ -51,8 +51,8 @@ h2 TpDestinationRates list
       filter-text   label='Destinations tag'   key='destinationsTag'  value=destinationsTag  onValueChange=(action 'pushValue' target=filtersBlock)
       filter-number label='Rounding decimals'  key='roundingDecimals' value=roundingDecimals onValueChange=(action 'pushValue' target=filtersBlock) step='1'    min='0'
       filter-number label='Max cost (decimal)' key='maxCost'          value=maxCost          onValueChange=(action 'pushValue' target=filtersBlock) step='0.01' min='0'
-      filter-select label='Rounding method'    key='roundingMethod'   value=roundingMethod   onValueChange=(action 'pushValue' target=filtersBlock) content=roundingMethodList
-      filter-select label='Max cost strategy'  key='maxCostStrategy'  value=maxCostStrategy  onValueChange=(action 'pushValue' target=filtersBlock) content=maxCostStrategyList
+      filter-select label='Rounding method'    key='roundingMethod'   value=roundingMethod   onValueChange=(action 'pushValue' target=filtersBlock) content=selectValues.roundingMethod
+      filter-select label='Max cost strategy'  key='maxCostStrategy'  value=maxCostStrategy  onValueChange=(action 'pushValue' target=filtersBlock) content=selectValues.maxCostStrategy
 
     .fixed-action-btn
       link-to 'tariff-plan.tp-destination-rates.new' class='btn-floating btn-large green'

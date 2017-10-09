@@ -1,6 +1,6 @@
 form{action 'save' on='submit'}
   md-input     value=model.loadid           label='Load ID'            errors=model.errors.loadid           required=true validate=true
-  input-select value=model.direction        label='Direction'          errors=model.errors.direction        content=directionList
+  input-select value=model.direction        label='Direction'          errors=model.errors.direction        content=selectValues.direction
   md-input     value=model.tenant           label='Tenant'             errors=model.errors.tenant           required=true validate=true
   md-input     value=model.category         label='Category'           errors=model.errors.category         required=true validate=true
   md-input     value=model.subject          label='Subject'            errors=model.errors.subject          required=true validate=true

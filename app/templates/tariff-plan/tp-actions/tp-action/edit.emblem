@@ -1,0 +1,4 @@
+h2 Edit tpAction
+.row
+  .col.m12.l6: .card-panel
+    partial 'tariff-plan/tp-actions/tp-action/form'

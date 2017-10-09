@@ -3,7 +3,7 @@ import { Factory, faker } from 'ember-cli-mirage';
 export default Factory.extend({
   tpid()               { 'tptest' },
   loadid()             { faker.lorem.word() },
-  direction()          { 'IN' },
+  direction()          { '*in' },
   tenant()             { faker.lorem.word() },
   category()           { faker.lorem.word() },
   subject()            { faker.lorem.word() },
