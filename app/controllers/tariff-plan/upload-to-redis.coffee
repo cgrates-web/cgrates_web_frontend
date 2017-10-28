@@ -17,7 +17,7 @@ export default Ember.Controller.extend
   actions:
     upload: ->
       attrs = {
-        "tpid":     @get('model.id')
+        "tpid":     @get('model.alias')
         "flush-db": @get('flushDB')
         "dry-run":  @get('dryRun')
         "validate": @get('validate')
