@@ -59,4 +59,7 @@ Router.map ->
     @route 'user', resetNamespace: true, path: ':id', ->
       @route 'edit'
 
+  @route 'cdrs', ->
+    @route 'cdr', path: ':id'
+
 export default Router
