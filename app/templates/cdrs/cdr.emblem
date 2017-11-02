@@ -88,11 +88,8 @@ main.full-width
       else
         p Not present
     .section
-      h5 Extra info (json)
-      if model.extraInfoObj
-        json-pretty obj=model.extraInfoObj
-      else
-        p Not present
+      h5 Extra info
+      p = model.extraInfo
     .section
       h5 Created at
       p = moment-format model.createdAt

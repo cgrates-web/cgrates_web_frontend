@@ -25,7 +25,7 @@ export default DS.Model.extend
   cost:            DS.attr 'number'
   costDetails:     DS.attr defaultValue: null
   accountSummary:  DS.attr defaultValue: null
-  extraInfo:       DS.attr defaultValue: null
+  extraInfo:       DS.attr 'string'
 
   createdAt:       DS.attr 'date'
   updatedAt:       DS.attr 'date'
@@ -39,6 +39,3 @@ export default DS.Model.extend
 
   accountSummaryObj: Ember.computed 'accountSummary', ->
     JSON.parse(@get('accountSummary')) if @get('accountSummary')
-
-  extraInfoObj: Ember.computed 'extraInfo', ->
-    JSON.parse(@get('extraInfo')) if @get('extraInfo')
