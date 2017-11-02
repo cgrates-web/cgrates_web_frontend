@@ -1,0 +1,2 @@
+rating_plan_tag,destination_tag,prefix,connect_fee,rate,rate_increment,rate_unit,group_interval_start,timing_tag,weight,rounding_decimals,rounding_method,max_cost_strategy,max_cost
+RETAIL,DST_EU,44,120.5,120.5,60s,60s,60s,PEAK,100,4,*up,*free,0

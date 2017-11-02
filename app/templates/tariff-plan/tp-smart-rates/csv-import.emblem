@@ -4,6 +4,9 @@ h2 Upload csv
     if model.isNew
       form{action 'save' on='submit'}
         .row
+          a href="/smart-rates.csv" target="_blank"
+            | Example
+        .row
           input#csv_import type="file"
 
         .row
