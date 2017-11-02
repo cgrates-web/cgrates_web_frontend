@@ -11,5 +11,7 @@ if session.isAuthenticated
               a Tariff Plans
             link-to 'users' tagName='li'
               a Users
+            link-to 'cdrs' tagName='li'
+              a CDRs
 
 outlet

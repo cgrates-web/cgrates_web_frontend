@@ -1,0 +1,104 @@
+section.page-header.full-width
+  .container
+    h1.page-title CDR: #{model.id}
+main.full-width
+  .container
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 CGRatesID
+      p = model.cgrid
+    .section
+      h5 Run ID
+      p = model.runId
+    .section
+      h5 Origin host
+      p = model.originHost
+    .section
+      h5 Source
+      p = model.source
+    .section
+      h5 Origin ID
+      p = model.originId
+    .section
+      h5 Type of record
+      p = model.tor
+    .section
+      h5 Request type
+      p = model.requestType
+    .section
+      h5 Direction
+      p = model.direction
+    .section
+      h5 Tenant
+      p = model.tenant
+    .section
+      h5 Category
+      p = model.category
+    .section
+      h5 Account
+      p = model.account
+    .section
+      h5 Subject
+      p = model.subject
+    .section
+      h5 Destination
+      p = model.destination
+    .section
+      h5 Setup time
+      p = moment-format model.setupTime
+    .section
+      h5 Post dial delay
+      p = model.pdd
+    .section
+      h5 Answer time
+      p = moment-format model.answerTime
+    .section
+      h5 Usage
+      p = model.usage
+    .section
+      h5 Supplier
+      p = model.supplier
+    .section
+      h5 Disconnect cause
+      p = model.disconnectCause
+    .section
+      h5 Extra fields (json)
+      if model.extraFieldsObj
+        json-pretty obj=model.extraFieldsObj
+      else
+        p Not present
+    .section
+      h5 Cost source
+      p = model.costSource
+    .section
+      h5 Cost
+      p = model.cost
+    .section
+      h5 Cost details (json)
+      if model.costDetailsObj
+        json-pretty obj=model.costDetailsObj
+      else
+        p Not present
+    .section
+      h5 Account summary (json)
+      if model.accountSummaryObj
+        json-pretty obj=model.accountSummaryObj
+      else
+        p Not present
+    .section
+      h5 Extra info
+      p = model.extraInfo
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+    .section
+      h5 Updated at
+      p = moment-format model.updatedAt
+    .section
+      h5 Deleted at
+      if model.deletedAt
+        p = moment-format model.deletedAt
+      else
+        p ---

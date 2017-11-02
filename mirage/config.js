@@ -25,6 +25,9 @@ export default function() {
   this.get('/users/:id');
   this.del('/users/:id');
 
+  this.get('/cdrs');
+  this.get('/cdrs/:id');
+
   this.get('/tp-destinations', function(db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpDestinations.where({tpid: request.queryParams['tpid']});

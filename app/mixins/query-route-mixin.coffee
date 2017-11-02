@@ -26,15 +26,20 @@ export default Ember.Mixin.create
     filterQuery = @_getFilterQuery(params)
     sortQuery = @_getSortQuery(params)
     paginationQuery = @_getPaginationQuery(params)
-    @store.query(
-      @get('modelName'),
-      {
+    if @get('notInTariffPlan')
+      fullQuery = {
+        filter: filterQuery,
+        sort: sortQuery,
+        page: paginationQuery
+      }
+    else
+      fullQuery = {
         tpid: @modelFor('tariff-plan').get('alias'),
         filter: filterQuery,
         sort: sortQuery,
         page: paginationQuery
       }
-    ).then (results) ->
+    @store.query(@get('modelName'), fullQuery).then (results) ->
       {
         records: results,
         meta: results.get('meta')
