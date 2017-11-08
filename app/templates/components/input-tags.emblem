@@ -2,6 +2,7 @@ power-select [
   triggerId=id
   triggerClass=(if errors 'invalid')
   placeholder='Select item...'
+  options=anyIfAllowed
   search=(perform searchTask)
   selected=value
   onchange=(action (mut value))
