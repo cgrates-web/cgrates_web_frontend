@@ -20,8 +20,8 @@ describe "Acceptance: TpActions.New", ->
     it 'renders tp-action form', ->
       visit '/tariff-plans/1/tp-actions/new'
       andThen ->
-        expect(find('form input').length).to.eq(13)
-        expect(find('form .ember-power-select-trigger').length).to.eq(5)
+        expect(find('form input').length).to.eq(12)
+        expect(find('form .ember-power-select-trigger').length).to.eq(6)
 
   describe 'go away without save', ->
     it 'removes not saved tp-action', ->
@@ -40,7 +40,6 @@ describe "Acceptance: TpActions.New", ->
         fillIn "##{find("label:contains('Units')").attr('for')}", ''
         fillIn "##{find("label:contains('Expiry time')").attr('for')}", ''
         fillIn "##{find("label:contains('Timing tags')").attr('for')}", ''
-        fillIn "##{find("label:contains('Destination tags')").attr('for')}", ''
         fillIn "##{find("label:contains('Rating subject')").attr('for')}", ''
         fillIn "##{find("label:contains('Categories')").attr('for')}", ''
         fillIn "##{find("label:contains('Shared groups')").attr('for')}", ''
@@ -85,7 +84,7 @@ describe "Acceptance: TpActions.New", ->
         expect(params.data.attributes['units']).to.eq '120'
         expect(params.data.attributes['expiry-time']).to.eq '*unlimited'
         expect(params.data.attributes['timing-tags']).to.eq 'timingtest'
-        expect(params.data.attributes['destination-tags']).to.eq 'destinationtest'
+        expect(params.data.attributes['destination-tags']).to.eq '*any'
         expect(params.data.attributes['rating-subject']).to.eq 'subjecttest'
         expect(params.data.attributes['categories']).to.eq 'categoriestest'
         expect(params.data.attributes['shared-groups']).to.eq 'groupstest'
@@ -108,7 +107,7 @@ describe "Acceptance: TpActions.New", ->
         fillIn "##{find("label:contains('Units')").attr('for')}", '120'
         fillIn "##{find("label:contains('Expiry time')").attr('for')}", '*unlimited'
         fillIn "##{find("label:contains('Timing tags')").attr('for')}", 'timingtest'
-        fillIn "##{find("label:contains('Destination tags')").attr('for')}", 'destinationtest'
+        selectChoose "##{find("label:contains('Destination tags')").attr('for')}", '*any'
         fillIn "##{find("label:contains('Rating subject')").attr('for')}", 'subjecttest'
         fillIn "##{find("label:contains('Categories')").attr('for')}", 'categoriestest'
         fillIn "##{find("label:contains('Shared groups')").attr('for')}", 'groupstest'

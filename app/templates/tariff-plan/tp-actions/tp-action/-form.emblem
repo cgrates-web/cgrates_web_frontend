@@ -7,7 +7,7 @@ form{action 'save' on='submit'}
   md-input     value=model.units           label='Units'            errors=model.errors.units           required=true validate=true type='number' min='0'
   md-input     value=model.expiryTime      label='Expiry time'      errors=model.errors.expiryTime      required=true validate=true
   md-input     value=model.timingTags      label='Timing tags'      errors=model.errors.timingTags      required=true validate=true
-  md-input     value=model.destinationTags label='Destination tags' errors=model.errors.destinationTags required=true validate=true
+  input-tags   value=model.destinationTags label='Destination tags' errors=model.errors.destinationTags modelName='tp-destination' tpid=model.tpid allowAny=true
   md-input     value=model.ratingSubject   label='Rating subject'   errors=model.errors.ratingSubject   required=true validate=true
   md-input     value=model.categories      label='Categories'       errors=model.errors.categories      required=true validate=true
   md-input     value=model.sharedGroups    label='Shared groups'    errors=model.errors.sharedGroups    required=true validate=true
