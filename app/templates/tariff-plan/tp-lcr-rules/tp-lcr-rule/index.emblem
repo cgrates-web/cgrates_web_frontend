@@ -1,0 +1,46 @@
+h2 TpLcrRule: #{model.id}
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 ID
+      p = model.id
+    .section
+      h5 Direction
+      p = model.direction
+    .section
+      h5 Tenant
+      p = model.tenant
+    .section
+      h5 Category
+      p = model.category
+    .section
+      h5 Account
+      p = model.account
+    .section
+      h5 Subject
+      p = model.subject
+    .section
+      h5 Destination tag
+      p = model.destinationTag
+    .section
+      h5 RP category
+      p = model.rpCategory
+    .section
+      h5 Strategy
+      p = model.strategy
+    .section
+      h5 Strategy params
+      p = model.strategyParams
+    .section
+      h5 Activation time
+      p = model.activationTime
+    .section
+      h5 Weight
+      p = model.weight
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule.edit' model class='btn-floating btn-large'
+        i.material-icons edit
