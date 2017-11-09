@@ -56,6 +56,10 @@ Router.map ->
         @route 'new'
         @route 'tp-action-plan', path: ':tp-action-plan_id', ->
           @route 'edit'
+      @route 'tp-lcr-rules', ->
+        @route 'new'
+        @route 'tp-lcr-rule', path: ':tp-lcr-rule_id', ->
+          @route 'edit'
 
   @route 'users', ->
     @route 'new'

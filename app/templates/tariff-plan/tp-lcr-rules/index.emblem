@@ -1,0 +1,63 @@
+h2 TpLcrRules list
+
+.row
+  .table-col
+    table.striped.responsive-table
+      thead
+        tr
+          sort-header label='ID'              key='id'             sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Direction'       key='direction'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Tenant'          key='tenant'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Category'        key='category'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Account'         key='account'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Subject'         key='subject'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Destination tag' key='destinationTag' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='RP category'     key='rpCategory'     sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Strategy'        key='strategy'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Created at'      key='createdAt'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          td Actions
+      tbody
+        each model as |tpLcrRule|
+          tr
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.id
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.direction
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.tenant
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.category
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.account
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.subject
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.destinationTag
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.rpCategory
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = tpLcrRule.strategy
+            td: link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule
+              = moment-format tpLcrRule.createdAt
+            td.actions
+              link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule.edit' tpLcrRule class='btn-floating waves-effect waves-light edit'
+                i.material-icons edit
+              a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpLcrRule}
+                i.material-icons remove
+
+    md-pagination min=1 max=totalPages current=page range=5
+
+  .filters-col
+    filters-block search='search' as |filtersBlock|
+      filter-select label='Direction'       key='direction'      value=direction      onValueChange=(action 'pushValue' target=filtersBlock) content=selectValues.direction
+      filter-text   label='Tenant'          key='tenant'         value=tenant         onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Category'        key='category'       value=category       onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Account'         key='account'        value=account        onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Subject'         key='subject'        value=subject        onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='Destination tag' key='destinationTag' value=destinationTag onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-text   label='RP category'     key='rpCategory'     value=rpCategory     onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-select label='Strategy'        key='strategy'       value=strategy       onValueChange=(action 'pushValue' target=filtersBlock) content=selectValues.strategy
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-lcr-rules.new' class='btn-floating btn-large green'
+        i.material-icons add

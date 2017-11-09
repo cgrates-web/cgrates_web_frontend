@@ -117,4 +117,10 @@ export default function() {
   });
   this.get('/tp-action-plans/:id');
   this.del('/tp-action-plans/:id');
+
+  this.get('/tp-lcr-rules', function(db, request) {
+    return db.tpLcrRules.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-lcr-rules/:id');
+  this.del('/tp-lcr-rules/:id');
 }

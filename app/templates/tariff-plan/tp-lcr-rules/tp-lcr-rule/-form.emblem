@@ -1,0 +1,15 @@
+form{action 'save' on='submit'}
+  input-select value=model.direction      label='Direction'       errors=model.errors.direction      content=selectValues.direction
+  md-input     value=model.tenant         label='Tenant'          errors=model.errors.tenant         required=true validate=true
+  md-input     value=model.category       label='Category'        errors=model.errors.category       required=true validate=true
+  md-input     value=model.account        label='Account'         errors=model.errors.account        required=true validate=true
+  md-input     value=model.subject        label='Subject'         errors=model.errors.subject        required=true validate=true
+  input-tags   value=model.destinationTag label='Destination tag' errors=model.errors.destinationTag modelName='tp-destination' tpid=model.tpid allowAny=true
+  md-input     value=model.rpCategory     label='RP category'     errors=model.errors.rpCategory     required=true validate=true
+  input-select value=model.strategy       label='Strategy'        errors=model.errors.strategy       content=selectValues.strategy
+  md-input     value=model.strategyParams label='Strategy params' errors=model.errors.strategyParams validate=true
+  md-input     value=model.activationTime label='Activation time' errors=model.errors.activationTime required=true validate=true
+  md-input     value=model.weight         label='Weight'          errors=model.errors.weight         required=true validate=true type='number' step='0.1' min='0'
+
+  button.waves-effect.waves-light.btn type='submit'
+    | Save

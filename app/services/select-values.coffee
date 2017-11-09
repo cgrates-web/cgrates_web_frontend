@@ -9,6 +9,7 @@ export default Ember.Service.extend
   direction:       ['*in', '*out']
   maxCostStrategy: ['*free', '*disconnect']
   roundingMethod:  ['*up', '*down', '*middle']
+  strategy:        ['*static', '*lowest_cost', '*highest_cost', '*qos_threshold', '*qos', '*load_distribution']
   typeOfRecord:    ['*voice', '*data', '*sms']
 
   boolean:     ['true', 'false']
