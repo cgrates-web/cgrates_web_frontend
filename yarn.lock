@@ -2446,10 +2446,6 @@ ember-cli-mirage@^0.3.4:
     pretender "^1.4.2"
     route-recognizer "^0.2.3"
 
-"ember-cli-mocha-coffeescript@git+https://github.com/Ibotta/ember-cli-mocha-coffeescript.git":
-  version "0.0.0"
-  resolved "git+https://github.com/Ibotta/ember-cli-mocha-coffeescript.git#21e288c2765f1158e3f9d2eb47f4975ae7bacf8f"
-
 ember-cli-mocha@^0.14.4:
   version "0.14.4"
   resolved "https://registry.yarnpkg.com/ember-cli-mocha/-/ember-cli-mocha-0.14.4.tgz#5f63907f952ec6d6609d551ce321dc83823ba63f"
