@@ -2,7 +2,7 @@
   form{action 'save' on='submit'}
     md-input value=model.balanceType    label='Balance type' errors=model.errors.balanceType required=true validate=true
     md-input value=model.directions     label='Directions'
-    md-input value=model.value          label='Value'  type='number' step='0.01'
+    md-input value=model.value          label='Value'
     md-input value=model.weight         label='Weight' type='number' step='0.1' min='0'
     md-input value=model.balanceUuid    label='Balance UUID'
     md-input value=model.balanceId      label='Balance ID'
