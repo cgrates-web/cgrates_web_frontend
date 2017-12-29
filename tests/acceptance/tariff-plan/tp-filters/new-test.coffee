@@ -17,7 +17,7 @@ describe "Acceptance: TpFilter.New", ->
     it 'renders tp-filter form', ->
       visit '/tariff-plans/1/tp-filters/new'
       andThen ->
-        expect(find('form input').length).to.eq(6)
+        expect(find('form input').length).to.eq(5)
 
   describe 'go away without save', ->
     it 'removes not saved tp-filter', ->
@@ -33,18 +33,18 @@ describe "Acceptance: TpFilter.New", ->
       server.post('/tp-filters/', (schema, request) ->
         counter = counter + 1
         {}
+      )
 
       visit '/tariff-plans/1/tp-filters/new'
       andThen ->
         fillIn "##{find("label:contains('Tenant')").attr('for')}", ''
-        fillIn "##{find("label:contains('Id')").attr('for')}", ''
-        fillIn "##{find("label:contains('Filter field name").attr('for')}", ''
+        fillIn "##{find("label:contains('ID')").attr('for')}", ''
+        fillIn "##{find("label:contains('Filter field name')").attr('for')}", ''
         fillIn "##{find("label:contains('Filter field values')").attr('for')}", ''
         fillIn "##{find("label:contains('Activation interval')").attr('for')}", ''
         click 'button[type="submit"]'
         andThen ->
           expect(counter).to.eq 0
-
 
   describe 'fill form with correct data and submit', ->
     it 'saves new tp-filter with correct data', ->
@@ -54,21 +54,20 @@ describe "Acceptance: TpFilter.New", ->
         counter = counter + 1
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes['tpid']).to.eq 'tptest'
-        expect(params.data.attributes['tag']).to.eq 'tagtest'
-        expect(params.data.attributes['rate-unit']).to.eq '60s'
-        expect(params.data.attributes['rate-increment']).to.eq '60s'
-        expect(params.data.attributes['rate']).to.eq 0.01
-        expect(params.data.attributes['group-interval-start']).to.eq '60s'
-        expect(params.data.attributes['connect-fee']).to.eq 0.01
+        expect(params.data.attributes['custom-id']).to.eq 'Test'
+        expect(params.data.attributes['filter-type']).to.eq '*gt'
+        expect(params.data.attributes['filter-field-name']).to.eq 'Test'
+        expect(params.data.attributes['filter-field-values']).to.eq 'Test'
+        expect(params.data.attributes['activation-interval']).to.eq 'Test'
         return { data: {id: '1', type: 'tp-filter'} }
       )
 
       visit '/tariff-plans/1/tp-filters/new'
       andThen ->
-        selectChoose '.fiter-type-select', '*string'
+        selectChoose "##{find("label:contains('Filter type')").attr('for')}", '*gt'
         fillIn "##{find("label:contains('Tenant')").attr('for')}", 'Test'
-        fillIn "##{find("label:contains('Id')").attr('for')}", 'Test'
-        fillIn "##{find("label:contains('Filter field name").attr('for')}", 'Test'
+        fillIn "##{find("label:contains('ID')").attr('for')}", 'Test'
+        fillIn "##{find("label:contains('Filter field name')").attr('for')}", 'Test'
         fillIn "##{find("label:contains('Filter field values')").attr('for')}", 'Test'
         fillIn "##{find("label:contains('Activation interval')").attr('for')}", 'Test'
         click 'button[type="submit"]'

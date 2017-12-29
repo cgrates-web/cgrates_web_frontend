@@ -3,17 +3,15 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin'
 
 export default Ember.Route.extend QueryRouteMixin,
   queryParams:
-    tag:
+    tenant:
       refreshModel: true
-    rateUnit:
+    id:
       refreshModel: true
-    rateIncrement:
+    filterType:
       refreshModel: true
-    rate:
+    filterFieldName:
       refreshModel: true
-    groupIntervalStart:
-      refreshModel: true
-    connectFee:
+    activationInterval:
       refreshModel: true
     sortColumn:
       refreshModel: true
@@ -24,6 +22,6 @@ export default Ember.Route.extend QueryRouteMixin,
     pageSize:
       refreshModel: true
 
-  filterParams: ['tag', 'rateUnit', 'rateIncrement', 'rate', 'groupIntervalStart', 'connectFee']
+  filterParams: ['tenant', 'id', 'filterType', 'filterFieldName', 'activationInterval']
 
-  modelName: 'tp-rate'
+  modelName: 'tp-filter'

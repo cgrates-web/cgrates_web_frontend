@@ -60,7 +60,10 @@ Router.map ->
         @route 'new'
         @route 'tp-lcr-rule', path: ':tp-lcr-rule_id', ->
           @route 'edit'
-
+      @route 'tp-filters', ->
+        @route 'new'
+        @route 'tp-filter', path: ':id', ->
+          @route 'edit'
   @route 'users', ->
     @route 'new'
     @route 'user', resetNamespace: true, path: ':id', ->

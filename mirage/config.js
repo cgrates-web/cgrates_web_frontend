@@ -1,4 +1,5 @@
 export default function() {
+  this.passthrough('/write-coverage');
 
   // These comments are here to help you get started. Feel free to delete them.
 
@@ -123,4 +124,10 @@ export default function() {
   });
   this.get('/tp-lcr-rules/:id');
   this.del('/tp-lcr-rules/:id');
+
+  this.get('/tp-filters', function(db, request) {
+    return db.tpFilters.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-filters/:id');
+  this.del('/tp-filters/:id');
 }

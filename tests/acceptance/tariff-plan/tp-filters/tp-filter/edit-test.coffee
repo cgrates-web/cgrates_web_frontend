@@ -21,12 +21,13 @@ describe "Acceptance: TpFilter.Edit", ->
       server.post('/tp-filters/', (schema, request) ->
         counter = counter + 1
         {}
+      )
       visit '/tariff-plans/1/tp-filters'
       click 'table tbody tr:first-child a.edit'
       andThen ->
         fillIn "##{find("label:contains('Tenant')").attr('for')}", ''
-        fillIn "##{find("label:contains('Id')").attr('for')}", ''
-        fillIn "##{find("label:contains('Filter field name").attr('for')}", ''
+        fillIn "##{find("label:contains('ID')").attr('for')}", ''
+        fillIn "##{find("label:contains('Filter field name')").attr('for')}", ''
         fillIn "##{find("label:contains('Filter field values')").attr('for')}", ''
         fillIn "##{find("label:contains('Activation interval')").attr('for')}", ''
         click 'button[type="submit"]'
@@ -37,27 +38,26 @@ describe "Acceptance: TpFilter.Edit", ->
     it 'sends correct data to the backend', ->
       counter = 0
 
-      server.post('/tp-filters/', (schema, request) ->
+      server.patch('/tp-filters/:id', (schema, request) ->
         counter = counter + 1
         params = JSON.parse(request.requestBody)
         expect(params.data.attributes['tpid']).to.eq 'tptest'
-        expect(params.data.attributes['tag']).to.eq 'tagtest'
-        expect(params.data.attributes['rate-unit']).to.eq '60s'
-        expect(params.data.attributes['rate-increment']).to.eq '60s'
-        expect(params.data.attributes['rate']).to.eq 0.01
-        expect(params.data.attributes['group-interval-start']).to.eq '60s'
-        expect(params.data.attributes['connect-fee']).to.eq 0.01
+        expect(params.data.attributes['custom-id']).to.eq 'Test'
+        expect(params.data.attributes['filter-type']).to.eq '*gt'
+        expect(params.data.attributes['filter-field-name']).to.eq 'Test'
+        expect(params.data.attributes['filter-field-values']).to.eq 'Test'
+        expect(params.data.attributes['activation-interval']).to.eq 'Test'
         return { data: {id: '1', type: 'tp-filter'} }
       )
 
       visit '/tariff-plans/1/tp-filters'
       click 'table tbody tr:first-child a.edit'
-      
+
       andThen ->
-        selectChoose '.fiter-type-select', '*string'
+        selectChoose "##{find("label:contains('Filter type')").attr('for')}", '*gt'
         fillIn "##{find("label:contains('Tenant')").attr('for')}", 'Test'
-        fillIn "##{find("label:contains('Id')").attr('for')}", 'Test'
-        fillIn "##{find("label:contains('Filter field name").attr('for')}", 'Test'
+        fillIn "##{find("label:contains('ID')").attr('for')}", 'Test'
+        fillIn "##{find("label:contains('Filter field name')").attr('for')}", 'Test'
         fillIn "##{find("label:contains('Filter field values')").attr('for')}", 'Test'
         fillIn "##{find("label:contains('Activation interval')").attr('for')}", 'Test'
         click 'button[type="submit"]'

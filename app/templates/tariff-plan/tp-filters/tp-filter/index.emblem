@@ -1,31 +1,31 @@
-h2 TpRate: #{model.tag}
+h2 TpFilter: #{model.customId}
 .row
   .col.m12.l6: .card-panel
     .section
-      h5 ID
+      h5 PK
       p = model.id
     .section
-      h5 Tag
-      p = model.tag
+      h5 ID
+      p = model.customId
     .section
-      h5 Rate unit
-      p = model.rateUnit
+      h5 Tenant
+      p = model.tenant
     .section
-      h5 Rate increment
-      p = model.rateIncrement
+      h5 Filter type
+      p = model.filterType
     .section
-      h5 Rate
-      p = model.rate
+      h5 Filter field name
+      p = model.filterFieldName
     .section
-      h5 Group interval start
-      p = model.groupIntervalStart
+      h5 Filter field values
+      p = model.filterFieldValues
     .section
-      h5 Connect fee
-      p = model.connectFee
+      h5 Activation Interval
+      p = model.activationInterval
     .section
       h5 Created at
       p = moment-format model.createdAt
 
     .fixed-action-btn
-      link-to 'tariff-plan.tp-rates.tp-rate.edit' model class='btn-floating btn-large'
+      link-to 'tariff-plan.tp-filters.tp-filter.edit' model class='btn-floating btn-large'
         i.material-icons edit

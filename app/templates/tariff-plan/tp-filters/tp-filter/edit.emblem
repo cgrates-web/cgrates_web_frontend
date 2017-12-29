@@ -1,4 +1,4 @@
-h2 Edit tpRate
+h2 Edit Filter
 .row
   .col.m12.l6: .card-panel
-    partial 'tariff-plan/tp-rates/tp-rate/form'
+    partial 'tariff-plan/tp-filters/tp-filter/form'

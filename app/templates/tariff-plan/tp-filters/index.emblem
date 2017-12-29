@@ -1,12 +1,12 @@
-h2 TpRates list
+h2 Filters list
 
 .row
   .table-col
     table.striped.responsive-table
       thead
         tr
-          sort-header label='PK'                  key='pk'                 sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
-          sort-header label='ID'                  key='id'                 sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='PK'                  key='id'                 sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='ID'                  key='customId'           sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
           sort-header label='Tenant'              key='tenant'             sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
           sort-header label='Filter type'         key='filterType'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
           sort-header label='Filter field name'   key='filterFieldName'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
@@ -17,9 +17,9 @@ h2 TpRates list
         each model as |tpFilter|
           tr
             td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
-              = tpFilter.pk
-            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
               = tpFilter.id
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = tpFilter.customId
             td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
               = tpFilter.tenant
             td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
@@ -40,9 +40,38 @@ h2 TpRates list
 
   .filters-col
     filters-block search='search' as |filtersBlock|
-      filter-text label='ID'     key='id'                value=id                onValueChange=(action 'pushValue' target=filtersBlock)
-      filter-text label='Tenant' key='tenant'           value=rateUnit           onValueChange=(action 'pushValue' target=filtersBlock)
-
+      filter-text[
+        label='ID'
+        key='id'
+        value=id
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
+      filter-text[
+        label='Tenant'
+        key='tenant'
+        value=rateUnit
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
+      filter-select[
+        label='Filter type'
+        key='filterType'
+        value=filterType
+        onValueChange=(action 'pushValue' target=filtersBlock)
+        content=selectValues.filterTypes
+        class="fiter-type-select"
+      ]
+      filter-text[
+        label='Filter field name'
+        key='filterFieldName'
+        value=filterFieldName
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
+      filter-text[
+        label='Activation interval'
+        key='activationInterval'
+        value=activationInterval
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
 
     .fixed-action-btn
       link-to 'tariff-plan.tp-filters.new' class='btn-floating btn-large green'

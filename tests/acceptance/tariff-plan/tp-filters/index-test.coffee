@@ -55,29 +55,25 @@ describe "Acceptance: TpFilters.Index", ->
   describe 'set filters and click search button', ->
     it 'makes a correct filter query', ->
       counter = 0
-
       server.get('/tp-filters/', (schema, request) ->
         counter = counter + 1
         tenant = request.queryParams['filter[tenant]']
         id = request.queryParams['filter[id]']
         filterType = request.queryParams['filter[filter_type]']
         filterFieldName = request.queryParams['filter[filter_field_name]']
-        filterFieldValues = request.queryParams['filter[filter_field_values]']
         activationInterval = request.queryParams['filter[activation_interval]']
         switch counter
           when 1
             expect(Ember.isBlank(tenant)).to.eq true
             expect(Ember.isBlank(id)).to.eq true
-            expect(Ember.isBlank(filterRateIncrement)).to.eq true
-            expect(Ember.isBlank(filterRate)).to.eq true
-            expect(Ember.isBlank(filterGroupIntervalStart)).to.eq true
-            expect(Ember.isBlank(filterConnectFee)).to.eq true
+            expect(Ember.isBlank(filterType)).to.eq true
+            expect(Ember.isBlank(filterFieldName)).to.eq true
+            expect(Ember.isBlank(activationInterval)).to.eq true
           else
             expect(tenant).to.eq 'tagtest'
-            expect(id).to.eq '60s'
+            expect(id).to.eq '60'
             expect(filterType).to.eq '*string'
             expect(filterFieldName).to.eq '0.01'
-            expect(filterFieldValues).to.eq '60s'
             expect(activationInterval).to.eq '0.01'
         return { data: [{id: '1', type: 'tp-filter'}] }
       )
@@ -85,9 +81,8 @@ describe "Acceptance: TpFilters.Index", ->
       visit '/tariff-plans/1/tp-filters'
       andThen ->
         fillIn "##{find("label:contains('Tenant')").attr('for')}", 'tagtest'
-        fillIn "##{find("label:contains('Id')").attr('for')}", '60'
+        fillIn "##{find("label:contains('ID')").attr('for')}", '60'
         fillIn "##{find("label:contains('Filter field name')").attr('for')}", '0.01'
-        fillIn "##{find("label:contains('Filter field values')").attr('for')}", '60'
         fillIn "##{find("label:contains('Activation interval')").attr('for')}", '0.01'
         selectChoose '.fiter-type-select', '*string'
         click 'button.search-button'
