@@ -1,0 +1,4 @@
+h2 New Filter
+.row
+  .col.m12.l6: .card-panel
+    partial 'tariff-plan/tp-suppliers/tp-supplier/form'

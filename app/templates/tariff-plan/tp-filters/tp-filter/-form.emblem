@@ -1,0 +1,39 @@
+form{action 'save' on='submit'}
+  md-input[
+    value=model.tenant
+    label='Tenant'
+    errors=model.errors.tenant
+    required=true
+    validate=true
+  ]
+  md-input[
+    value=model.customId
+    label='ID'
+    errors=model.errors.customId
+    required=true
+    validate=true
+  ]
+  input-select[
+    value=model.filterType
+    label='Filter type'
+    errors=model.errors.strategy
+    content=selectValues.filterTypes
+  ]
+  md-input[
+    value=model.filterFieldName
+    label='Filter field name'
+    errors=model.errors.filterFieldName
+  ]
+  md-input[
+    value=model.filterFieldValues
+    label='Filter field values'
+    errors=model.errors.filterFieldValues
+  ]
+  md-input[
+    value=model.activationInterval
+    label='Activation interval'
+    errors=model.errors.activationInterval
+  ]
+
+  button.waves-effect.waves-light.btn type='submit'
+    | Save

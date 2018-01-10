@@ -29,7 +29,7 @@ describe "Acceptance: TpActionPlans.New", ->
     it 'removes not saved tp-action-plan', ->
       visit '/tariff-plans/1/tp-action-plans'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpActionPlans')"
+      click "ul#slide-out li a:contains('ActionPlans')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

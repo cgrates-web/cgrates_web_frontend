@@ -29,7 +29,7 @@ describe "Acceptance: TpLcrRules.New", ->
     it 'removes not saved tp-lcr-rule', ->
       visit '/tariff-plans/1/tp-lcr-rules'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpLcrRules')"
+      click "ul#slide-out li a:contains('LcrRules')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

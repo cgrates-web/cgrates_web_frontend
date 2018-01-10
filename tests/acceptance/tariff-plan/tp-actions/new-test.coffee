@@ -27,7 +27,7 @@ describe "Acceptance: TpActions.New", ->
     it 'removes not saved tp-action', ->
       visit '/tariff-plans/1/tp-actions'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpActions')"
+      click "ul#slide-out li a:contains('Actions')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

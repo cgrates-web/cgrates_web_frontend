@@ -8,23 +8,27 @@ main
 ul.side-nav.fixed#slide-out
   li
     link-to 'tariff-plan.tp-destinations' model
-      | TpDestinations
+      | Destinations
     link-to 'tariff-plan.tp-rates' model
-      | TpRates
+      | Rates
     link-to 'tariff-plan.tp-destination-rates' model
-      | TpDestinationRates
+      | DestinationRates
     link-to 'tariff-plan.tp-timings' model
-      | TpTimings
+      | Timings
     link-to 'tariff-plan.tp-rating-plans' model
-      | TpRatingPlans
+      | RatingPlans
     link-to 'tariff-plan.tp-rating-profiles' model
-      | TpRatingProfiles
+      | RatingProfiles
     link-to 'tariff-plan.tp-actions' model
-      | TpActions
+      | Actions
     link-to 'tariff-plan.tp-action-plans' model
-      | TpActionPlans
+      | ActionPlans
     link-to 'tariff-plan.tp-lcr-rules' model
-      | TpLcrRules
+      | LcrRules
+    link-to 'tariff-plan.tp-filters' model
+      | Filters
+    link-to 'tariff-plan.tp-suppliers' model
+      | Suppliers
     link-to 'tariff-plan.tp-smart-rates.csv-import' model
       | Import from csv
     link-to 'tariff-plan.upload-to-redis' model

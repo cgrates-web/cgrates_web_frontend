@@ -1,0 +1,78 @@
+h2 Filters list
+
+.row
+  .table-col
+    table.striped.responsive-table
+      thead
+        tr
+          sort-header label='PK'                  key='id'                 sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='ID'                  key='customId'           sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Tenant'              key='tenant'             sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Filter type'         key='filterType'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Filter field name'   key='filterFieldName'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Activation interval' key='activationInterval' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          sort-header label='Created at'          key='createdAt'          sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
+          td Actions
+      tbody
+        each model as |tpFilter|
+          tr
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = tpFilter.id
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = tpFilter.customId
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = tpFilter.tenant
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = tpFilter.filterType
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = tpFilter.filterFieldName
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = tpFilter.activationInterval
+            td: link-to 'tariff-plan.tp-filters.tp-filter' tpFilter
+              = moment-format tpFilter.createdAt
+            td.actions
+              link-to 'tariff-plan.tp-filters.tp-filter.edit' tpFilter class='btn-floating waves-effect waves-light edit'
+                i.material-icons edit
+              a.btn-floating.waves-effect.waves-light.red.remove{action 'remove' tpFilter}
+                i.material-icons remove
+
+    md-pagination min=1 max=totalPages current=page range=5
+
+  .filters-col
+    filters-block search='search' as |filtersBlock|
+      filter-text[
+        label='ID'
+        key='id'
+        value=id
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
+      filter-text[
+        label='Tenant'
+        key='tenant'
+        value=tenant
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
+      filter-select[
+        label='Filter type'
+        key='filterType'
+        value=filterType
+        onValueChange=(action 'pushValue' target=filtersBlock)
+        content=selectValues.filterTypes
+        class="fiter-type-select"
+      ]
+      filter-text[
+        label='Filter field name'
+        key='filterFieldName'
+        value=filterFieldName
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
+      filter-text[
+        label='Activation interval'
+        key='activationInterval'
+        value=activationInterval
+        onValueChange=(action 'pushValue' target=filtersBlock)
+      ]
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-filters.new' class='btn-floating btn-large green'
+        i.material-icons add
