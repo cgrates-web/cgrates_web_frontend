@@ -49,7 +49,7 @@ h2 Filters list
       filter-text[
         label='Tenant'
         key='tenant'
-        value=rateUnit
+        value=tenant
         onValueChange=(action 'pushValue' target=filtersBlock)
       ]
       filter-select[

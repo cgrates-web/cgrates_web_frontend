@@ -1,0 +1,56 @@
+h2 Supplier: #{model.customId}
+.row
+  .col.m12.l6: .card-panel
+    .section
+      h5 PK
+      p = model.id
+    .section
+      h5 ID
+      p = model.customId
+    .section
+      h5 Tenant
+      p = model.tenant
+    .section
+      h5 Filter IDs
+      p = model.filterIds
+    .section
+      h5 Sorting
+      p = model.sorting
+    .section
+      h5 Sorting params
+      p = model.sortingParams
+    .section
+      h5 Supplier ID
+      p = model.supplierId
+    .section
+      h5 Supplier Filter IDs
+      p = model.supplierFilterIds
+    .section
+      h5 Supplier Account IDs
+      p = model.supplierAccountIds
+    .section
+      h5 Supplier Ratingplan IDs
+      p = model.supplierRatingplanIds
+    .section
+      h5 Supplier Resource IDs
+      p = model.supplierResourceIds
+    .section
+      h5 Supplier Stat IDs
+      p = model.filterFieldValues
+    .section
+      h5 Supplier Weight
+      p = model.supplierWeight
+    .section
+      h5 Blocker
+      p 
+        if model.blocker
+          i.material-icons check
+        else 
+          i.material-icons remove
+    .section
+      h5 Created at
+      p = moment-format model.createdAt
+
+    .fixed-action-btn
+      link-to 'tariff-plan.tp-suppliers.tp-supplier.edit' model class='btn-floating btn-large'
+        i.material-icons edit

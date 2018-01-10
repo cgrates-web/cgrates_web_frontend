@@ -1,0 +1,21 @@
+import DS from 'ember-data'
+
+export default DS.Model.extend {
+  tpid: DS.attr 'string'
+  tenant: DS.attr 'string'
+  customId: DS.attr 'string'
+  filterIds: DS.attr 'string'
+  activationInterval: DS.attr 'string'
+  sorting: DS.attr 'string'
+  sortingParams: DS.attr 'string'
+  supplierId: DS.attr 'string'
+  supplierFilterIds: DS.attr 'string'
+  supplierAccountIds: DS.attr 'string'
+  supplierRatingplanIds: DS.attr 'string'
+  supplierResourceIds: DS.attr 'string'
+  supplierStatIds: DS.attr 'string'
+  supplierWeight: DS.attr 'number'
+  blocker: DS.attr 'boolean'
+  weight: DS.attr 'number'
+  createdAt: DS.attr 'date'
+}

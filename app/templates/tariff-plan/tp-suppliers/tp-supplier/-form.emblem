@@ -1,0 +1,90 @@
+form{action 'save' on='submit'}
+  md-input[
+    value=model.tenant
+    label='Tenant'
+    errors=model.errors.tenant
+    required=true
+    validate=true
+  ]
+  md-input[
+    value=model.customId
+    label='ID'
+    errors=model.errors.customId
+    required=true
+    validate=true
+  ]
+  md-input[
+    value=model.filterIds
+    label='Filter IDs'
+    errors=model.errors.filterIds
+  ]
+  md-input[
+    value=model.filterFieldName
+    label='Filter field name'
+    errors=model.errors.filterFieldName
+  ]
+  md-input[
+    value=model.sorting
+    label='Sorting'
+    errors=model.errors.sorting
+  ]
+  md-input[
+    value=model.activationInterval
+    label='Activation interval'
+    errors=model.errors.activationInterval
+  ]
+  md-input[
+    value=model.sorting
+    label='Sorting'
+    errors=model.errors.sorting
+  ]
+  md-input[
+    value=model.sortingParams
+    label='Sorting params'
+    errors=model.errors.sortingParams
+  ]
+  md-input[
+    value=model.supplierId
+    label='Supplier ID'
+    errors=model.errors.supplierId
+  ]
+  md-input[
+    value=model.supplierFilterIds
+    label='Supplier Filter IDs'
+    errors=model.errors.supplierFilterIds
+  ]
+  md-input[
+    value=model.supplierAccountIds
+    label='Supplier Account IDs'
+    errors=model.errors.supplierAccountIds
+  ]
+  md-input[
+    value=model.supplierRatingplanIds
+    label='Supplier Ratingplan IDs'
+    errors=model.errors.supplierRatingplanIds
+  ]
+  md-input[
+    value=model.supplierResourceIds
+    label='Supplier Resource IDs'
+    errors=model.errors.supplierResourceIds
+  ]
+  md-input[
+    value=model.supplierStatIds
+    label='Supplier Stat IDs'
+    errors=model.errors.supplierStatIds
+  ]
+  md-input[
+    value=model.supplierWeight
+    label='Supplier weight'
+    type='number'
+    errors=model.errors.supplierWeight
+  ]
+  md-input[
+    value=model.weight
+    label='Weight'
+    type='number'
+    errors=model.errors.weight
+  ]
+  md-check checked=model.blocker name='Blocker'  
+  button.waves-effect.waves-light.btn type='submit'
+    | Save

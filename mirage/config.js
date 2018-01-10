@@ -130,4 +130,6 @@ export default function() {
   });
   this.get('/tp-filters/:id');
   this.del('/tp-filters/:id');
+
+  this.resource('tp-suppliers')
 }
