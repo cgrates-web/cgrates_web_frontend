@@ -31,7 +31,7 @@ describe "Acceptance: TpRatingPlans.New", ->
     it 'removes not saved tp-rating-plan', ->
       visit '/tariff-plans/1/tp-rating-plans'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpRatingPlans')"
+      click "ul#slide-out li a:contains('RatingPlans')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

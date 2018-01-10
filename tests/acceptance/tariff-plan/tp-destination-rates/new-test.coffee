@@ -31,7 +31,7 @@ describe "Acceptance: TpDestinationRates.New", ->
     it 'removes not saved tp-destination-rate', ->
       visit '/tariff-plans/1/tp-destination-rates'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpDestinationRates')"
+      click "ul#slide-out li a:contains('DestinationRates')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

@@ -23,7 +23,7 @@ describe "Acceptance: TpDestinations.New", ->
     it 'removes not saved tp-destination', ->
       visit '/tariff-plans/1/tp-destinations'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpDestinations')"
+      click "ul#slide-out li a:contains('Destinations')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

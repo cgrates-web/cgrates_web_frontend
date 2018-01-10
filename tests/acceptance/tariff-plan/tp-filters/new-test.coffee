@@ -23,7 +23,7 @@ describe "Acceptance: TpFilter.New", ->
     it 'removes not saved tp-filter', ->
       visit '/tariff-plans/1/tp-filters'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpRates')"
+      click "ul#slide-out li a:contains('Rates') "
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

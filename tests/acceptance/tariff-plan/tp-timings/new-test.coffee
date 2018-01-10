@@ -23,7 +23,7 @@ describe "Acceptance: TpTimings.New", ->
     it 'removes not saved tp-timing', ->
       visit '/tariff-plans/1/tp-timings'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpTimings')"
+      click "ul#slide-out li a:contains('Timings')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 

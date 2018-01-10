@@ -29,7 +29,7 @@ describe "Acceptance: TpRatingProfiles.New", ->
     it 'removes not saved tp-rating-profile', ->
       visit '/tariff-plans/1/tp-rating-profiles'
       click '.fixed-action-btn a'
-      click "ul#slide-out li a:contains('TpRatingProfiles')"
+      click "ul#slide-out li a:contains('RatingProfiles')"
       andThen ->
         expect(find('table tbody tr').length).to.eq(0)
 
