@@ -52,7 +52,10 @@ describe "Acceptance: TpSuppliers.New", ->
         fillIn "##{find("label:contains('Supplier Filter IDs')").attr('for')}", '1'
         fillIn "##{find("label:contains('Supplier Account IDs')").attr('for')}", '1'
         fillIn "##{find("label:contains('Supplier Ratingplan IDs')").attr('for')}", '1'
-
+        fillIn "##{find("label:contains('Supplier Resource IDs')").attr('for')}", '1'
+        fillIn "##{find("label:contains('Supplier Stat IDs')").attr('for')}", '1'
+        fillIn "##{find("label:contains('Supplier weight')").attr('for')}", 1
+        fillIn "##{find("label:contains('Weight')").attr('for')}", 100
         click 'button[type="submit"]'
         andThen ->
           expect(server.db.tpSuppliers.length).to.eq 1
