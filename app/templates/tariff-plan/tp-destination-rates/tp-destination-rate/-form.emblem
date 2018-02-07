@@ -3,7 +3,7 @@ form{action 'save' on='submit'}
   input-tags   value=model.ratesTag         label='Rates tag'          errors=model.errors.ratesTag         modelName='tp-rate'        tpid=model.tpid
   input-tags   value=model.destinationsTag  label='Destinations tag'   errors=model.errors.destinationsTag  modelName='tp-destination' tpid=model.tpid allowAny=true
   md-input     value=model.roundingDecimals label='Rounding decimals'  errors=model.errors.roundingDecimals required=true validate=true type='number' step='1'    min='0'
-  md-input     value=model.maxCost          label='Max cost (decimal)' errors=model.errors.maxCost          required=true validate=true type='number' step='0.01' min='0'
+  md-input     value=model.maxCost          label='Max cost (decimal)' errors=model.errors.maxCost          required=true validate=true type='number' step='0.0001' min='0'
   input-select value=model.roundingMethod   label='Rounding method'    errors=model.errors.roundingMethod   content=selectValues.roundingMethod
   input-select value=model.maxCostStrategy  label='Max cost strategy'  errors=model.errors.maxCostStrategy  content=selectValues.maxCostStrategy
 

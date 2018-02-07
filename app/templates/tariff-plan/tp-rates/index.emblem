@@ -46,9 +46,9 @@ h2 TpRates list
       filter-text    label='Tag'                   key='tag'                value=tag                onValueChange=(action 'pushValue' target=filtersBlock)
       filter-seconds label='Rate unit'             key='rateUnit'           value=rateUnit           onValueChange=(action 'pushValue' target=filtersBlock)
       filter-seconds label='Rate increment'        key='rateIncrement'      value=rateIncrement      onValueChange=(action 'pushValue' target=filtersBlock)
-      filter-number  label='Rate (value)'          key='rate'               value=rate               onValueChange=(action 'pushValue' target=filtersBlock) step='0.01' min='0'
+      filter-number  label='Rate (value)'          key='rate'               value=rate               onValueChange=(action 'pushValue' target=filtersBlock) step='0.0001' min='0'
       filter-seconds label='Group interval start'  key='groupIntervalStart' value=groupIntervalStart onValueChange=(action 'pushValue' target=filtersBlock)
-      filter-number  label='Connect fee'           key='connectFee'         value=connectFee         onValueChange=(action 'pushValue' target=filtersBlock) step='0.01' min='0'
+      filter-number  label='Connect fee'           key='connectFee'         value=connectFee         onValueChange=(action 'pushValue' target=filtersBlock) step='0.0001' min='0'
 
     .fixed-action-btn
       link-to 'tariff-plan.tp-rates.new' class='btn-floating btn-large green'
