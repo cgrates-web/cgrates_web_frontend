@@ -15,7 +15,6 @@ export default DS.Model.extend {
   supplierResourceIds: DS.attr 'string'
   supplierStatIds: DS.attr 'string'
   supplierWeight: DS.attr 'number'
-  blocker: DS.attr 'boolean'
   weight: DS.attr 'number'
   createdAt: DS.attr 'date'
 }

@@ -41,13 +41,6 @@ h2 Supplier: #{model.customId}
       h5 Supplier Weight
       p = model.supplierWeight
     .section
-      h5 Blocker
-      p 
-        if model.blocker
-          i.material-icons check
-        else 
-          i.material-icons remove
-    .section
       h5 Created at
       p = moment-format model.createdAt
 

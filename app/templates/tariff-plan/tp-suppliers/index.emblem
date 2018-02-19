@@ -12,7 +12,6 @@ h2 Suppliers list
           sort-header label='Sorting'     key='sorting'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
           sort-header label='Supplier ID' key='supplierId' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
           sort-header label='Weight'      key='weight'     sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
-          sort-header label='Blocker'     key='blocker'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
           sort-header label='Created at'  key='createdAt'  sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'
           td Actions
       tbody
@@ -32,8 +31,6 @@ h2 Suppliers list
               = tpSupplier.supplierId
             td: link-to 'tariff-plan.tp-suppliers.tp-supplier' tpSupplier
               = tpSupplier.weight
-            td: link-to 'tariff-plan.tp-suppliers.tp-supplier' tpSupplier
-              = tpSupplier.blocker
             td: link-to 'tariff-plan.tp-suppliers.tp-supplier' tpSupplier
               = moment-format tpSupplier.createdAt
             td.actions
@@ -80,12 +77,6 @@ h2 Suppliers list
         label='Weight'
         key='weight'
         value=weight
-        onValueChange=(action 'pushValue' target=filtersBlock)
-      ]
-      filter-text[
-        label='Blocker'
-        key='blocker'
-        value=blocker
         onValueChange=(action 'pushValue' target=filtersBlock)
       ]
     .fixed-action-btn

@@ -85,6 +85,5 @@ form{action 'save' on='submit'}
     type='number'
     errors=model.errors.weight
   ]
-  md-check checked=model.blocker name='Blocker'  
   button.waves-effect.waves-light.btn type='submit'
     | Save
