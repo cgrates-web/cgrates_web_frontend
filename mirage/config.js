@@ -132,4 +132,7 @@ export default function() {
   this.del('/tp-filters/:id');
 
   this.resource('tp-suppliers')
+  this.resource('raw-supplier-rates')
+
+  this.post('/raw-supplier-resolve-jobs')
 }

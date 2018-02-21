@@ -32,7 +32,10 @@ module.exports = function(environment) {
     },
 
     coffeeOptions: {
-      blueprints: true
+      blueprints: false
+    },
+    flashMessageDefaults: {
+      extendedTimeout: 2000
     }
   };
 

@@ -15,3 +15,12 @@ if session.isAuthenticated
               a CDRs
 
 outlet
+
+.flash
+  each flashMessages.queue as |flash|
+    flash-message flash=flash class="card-panel" as |component flash|
+      if flash.componentName
+        component flash.componentName content=flash.content
+      else
+        h6 = component.flashType
+        p = flash.message

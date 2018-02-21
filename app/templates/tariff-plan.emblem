@@ -29,6 +29,8 @@ ul.side-nav.fixed#slide-out
       | Filters
     link-to 'tariff-plan.tp-suppliers' model
       | Suppliers
+    link-to 'tariff-plan.raw-supplier-rates' model
+      | Raw Suppliers Rates
     link-to 'tariff-plan.tp-smart-rates.csv-import' model
       | Import from csv
     link-to 'tariff-plan.upload-to-redis' model
