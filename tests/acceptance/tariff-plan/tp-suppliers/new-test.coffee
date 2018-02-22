@@ -17,7 +17,7 @@ describe "Acceptance: TpSuppliers.New", ->
     it 'renders tp-supplier form', ->
       visit '/tariff-plans/1/tp-suppliers/new'
       andThen ->
-        expect(find('form input').length).to.eq(16)
+        expect(find('form input').length).to.eq(17)
 
   describe 'go away without save', ->
     it 'removes not saved tp-supplier', ->

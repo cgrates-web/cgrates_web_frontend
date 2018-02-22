@@ -8,7 +8,7 @@ export default Controller.extend({
       this.model.set('csv', file);
       this.model.save().then(() => {
         this.get('flashMessages').success('Import from CSV is starting')
-        this.transitionsToRoute('tariff-plan.raw-supplier-rates.index')
+        this.transitionToRoute('tariff-plan.raw-supplier-rates.index')
       }).catch(() => {
         this.get('flashMessages').alert('Somethings went wrong')
       })

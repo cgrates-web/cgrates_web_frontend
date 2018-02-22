@@ -15,6 +15,10 @@ export default Route.extend(QueryRouteMixin, {
   filterParams: Object.freeze(['rate', 'prefix', 'supplierName']),
   modelName: 'raw-supplier-rate',
 
+  _getTtpid() {
+    return this.modelFor('tariff-plan').get('id');
+  },
+
   actions: {
     refresh() {
       this.refresh();
