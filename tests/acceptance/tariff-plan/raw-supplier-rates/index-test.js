@@ -24,7 +24,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
     })
     it('renders table with rates', function () {
       andThen(() => {
-        expect(find('tbody tr').length).to.eq(3)
+        expect(find('[data-test-rate]').length).to.eq(3)
       })
     })
   })
@@ -66,11 +66,40 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
       click('[data-test-delete-rate=1]')
     })
     it('removes rate from table', function () {
-      expect(find('tbody tr').length).to.eq(2)
+      expect(find('[data-test-rate]').length).to.eq(2)
     })
     it('removes from DB', function () {      
       andThen(() => {
         expect(server.db.rawSupplierRates.length).to.eq(2)
+      })
+    })
+  })
+
+  describe('filter and delete all', function () {
+    let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+    beforeEach(function () {
+      server.post('/raw-supplier-rates/delete-all', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          const params = JSON.parse(request.requestBody);
+          expect(params.filter.prefix).to.eq('1');
+          expect(Object.keys(params.filter).length).to.eq(1);
+          expect(params.tpid).to.eq('1');
+        }
+      })
+      visit('/tariff-plans/1/raw-supplier-rates?prefix=1');
+      click('[data-test-menu]')
+      click('[data-test-delete-all]')
+    })
+
+    it('sends request to the server with filters', function () {
+      andThen(() => {
+        expectRequestToBeCorrect();
+      })
+    })
+
+    it('shows flash messages', function () {
+      andThen(() => {
+        expect(find('.alert-success')).to.exist
       })
     })
   })

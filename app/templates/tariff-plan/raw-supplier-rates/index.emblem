@@ -19,7 +19,7 @@ h2
           td Actions
       tbody
         each model as |rate|
-          tr
+          tr data-test-rate=true
             td = rate.id
             td = rate.prefix
             td = rate.supplierName
@@ -37,7 +37,8 @@ h2
       filter-text   label='Prefix'   key='prefix'        value=prefix        onValueChange=(action 'pushValue' target=filtersBlock)
       filter-text   label='Supplier' key='supplierName'  value=supplierName  onValueChange=(action 'pushValue' target=filtersBlock)
       filter-number label='rate'     key='rate'          value=rate          onValueChange=(action 'pushValue' target=filtersBlock) step='0.0001' min='0'
-
+      filter-date   label='from'     key='insertedAtGt'  value=insertedAtGt  onValueChange=(action 'pushValue' target=filtersBlock)
+      filter-date   label='to'       key='insertedAtLt'  value=insertedAtLt  onValueChange=(action 'pushValue' target=filtersBlock)
 
 .fixed-action-btn.click-to-toggle data-test-menu=true
   a.btn-floating.btn-large.green
@@ -53,5 +54,8 @@ h2
       a.btn-floating.gray{action 'refresh'}
         i.material-icons refresh
     li
-      a.btn-floating.red{action 'resolve'} data-test-resolve=true
+      a.btn-floating.green{action 'resolve'} data-test-resolve=true
         i.material-icons healing
+    li
+      a.btn-floating.red{action 'deleteAll'} data-test-delete-all=true
+        i.material-icons cancel

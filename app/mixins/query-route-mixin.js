@@ -1,20 +1,15 @@
-import Ember from 'ember'
+import Mixin from '@ember/object/mixin';
+import { isBlank, isEqual } from '@ember/utils';
+import normalizeFilters from 'cgrates-web-frontend/utils/normalize-filters';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   _getFilterQuery(params) {
-    const query = {};
-    this.get('filterParams').forEach(function(key) {
-      const value = params[key];
-      if (!Ember.isBlank(value)) {
-        return query[key.underscore()] = value;
-      }
-    });
-    return query;
+    return normalizeFilters(params, this.get('filterParams'));
   },
 
   _getSortQuery(params) {
-    if (!Ember.isBlank(params.sortColumn)) {
-      if (Ember.isEqual(params.sortOrder, 'desc')) {
+    if (!isBlank(params.sortColumn)) {
+      if (isEqual(params.sortOrder, 'desc')) {
         return `-${params.sortColumn.underscore()}`;
       } else {
         return `${params.sortColumn.underscore()}`;
