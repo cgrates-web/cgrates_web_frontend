@@ -43,7 +43,13 @@ h2 Supplier: #{model.customId}
     .section
       h5 Created at
       p = moment-format model.createdAt
-
+    .section
+      h5 Blocker
+      p
+        if model.blocker
+          i.material-icons check
+        else
+          i.material-icons remove
     .fixed-action-btn
       link-to 'tariff-plan.tp-suppliers.tp-supplier.edit' model class='btn-floating btn-large'
         i.material-icons edit

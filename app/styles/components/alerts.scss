@@ -13,7 +13,7 @@
     @extend .yellow, .yellow-text;
   }
 
-  &.alert-danger {
+  &.alert-danger, &.alert-alert {
     @extend .red, .red-text;
   }
 

@@ -19,6 +19,8 @@ Router.map ->
   @route 'tariff-plans', ->
     @route 'new'
     @route 'tariff-plan', resetNamespace: true, path: ':tariff_plan_id', ->
+      @route 'raw-supplier-rates', ->
+        @route 'csv-import'
       @route 'tp-smart-rates', ->
         @route 'new'
         @route 'csv-import'
