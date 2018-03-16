@@ -1,7 +1,6 @@
 ---
 language: node_js
-node_js:
-  - "6"
+node_js: 8.5
 
 sudo: false
 dist: trusty
@@ -10,6 +9,8 @@ addons:
   chrome: stable
 
 cache:
+  directories:
+    - node_modules
   yarn: true
 
 before_install:
@@ -20,7 +21,6 @@ before_install:
 install:
   - yarn install --non-interactive
   - bower install
-  - npm rebuild node-sass
 
 script:
   - yarn test
