@@ -1,6 +1,8 @@
 module.exports = {
   globals: {
     server: true,
+    selectChoose: false,
+    selectSearch: false
   },
   root: true,
   parserOptions: {
