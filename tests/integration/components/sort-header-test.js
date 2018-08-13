@@ -2,6 +2,7 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
+import { click } from 'ember-native-dom-helpers';
 
 describe('Integration: SortHeader', function() {
   setupComponentTest('sort-header', { integration: true });
@@ -36,7 +37,7 @@ describe('Integration: SortHeader', function() {
 
   return describe('clicking', function() {
     describe('not a current column', () =>
-      it('sets column as current with ascending sorting', function() {
+      it('sets column as current with ascending sorting',async function() {
         this.set('actionTriggered', false);
         this.set('sortBy', function(column, direction) {
           this.set('actionTriggered', true);
@@ -44,13 +45,13 @@ describe('Integration: SortHeader', function() {
           return expect(direction).to.equal('asc');
         });
         this.render(hbs("{{sort-header key='testkey' sortColumn='other' sortOrder='desc' sortAction=(action sortBy)}}"));
-        click('a');
+        await click('a');
         return expect(this.get('actionTriggered')).to.be.ok;
       })
     );
 
     describe('current column, ascending sorting', () =>
-      it('leaves column as current and sets descending sorting', function() {
+      it('leaves column as current and sets descending sorting', async function() {
         this.set('actionTriggered', false);
         this.set('sortBy', function(column, direction) {
           this.set('actionTriggered', true);
@@ -58,13 +59,13 @@ describe('Integration: SortHeader', function() {
           return expect(direction).to.equal('desc');
         });
         this.render(hbs("{{sort-header key='testkey' sortColumn='testkey' sortOrder='asc' sortAction=(action sortBy)}}"));
-        click('a');
+        await click('a');
         return expect(this.get('actionTriggered')).to.be.ok;
       })
     );
 
     return describe('current column, descending sorting', () =>
-      it('leaves column as current and sets ascending sorting', function() {
+      it('leaves column as current and sets ascending sorting', async function() {
         this.set('actionTriggered', false);
         this.set('sortBy', function(column, direction) {
           this.set('actionTriggered', true);
@@ -72,7 +73,7 @@ describe('Integration: SortHeader', function() {
           return expect(direction).to.equal('asc');
         });
         this.render(hbs("{{sort-header key='testkey' sortColumn='testkey' sortOrder='desc' sortAction=(action sortBy)}}"));
-        click('a');
+        await click('a');
         return expect(this.get('actionTriggered')).to.be.ok;
       })
     );

@@ -6,6 +6,7 @@ import { clickTrigger, typeInSearch } from 'cgrates-web-frontend/tests/helpers/e
 import { startMirage } from 'cgrates-web-frontend/initializers/ember-cli-mirage';
 import wait from 'ember-test-helpers/wait';
 import { isEqual } from '@ember/utils';
+import $ from 'jquery';
 
 describe('Integration: InputTags', function() {
   setupComponentTest('input-tags', { integration: true });
@@ -24,15 +25,15 @@ describe('Integration: InputTags', function() {
         this.set('value', 'test1');
         this.set('errors', ['errortest']);
         this.render(hbs("{{input-tags value=value label='Test' errors=errors}}"));
-        expect(this.$('.input-field .ember-power-select-trigger')).to.have.length(1);
-        expect(this.$('label').text().trim()).to.eq('Test');
-        expect(this.$('.ember-power-select-selected-item').text().trim()).to.eq('test1');
-        expect(this.$('.error-message').text().trim()).to.eq('errortest');
-        expect(this.$('label').attr('for')).to.eq(this.$('.ember-power-select-trigger').attr('id'));
-        expect(this.$('.ember-power-select-trigger').attr('id')).to.eq(`${this.$('.input-field').attr('id')}-select`);
+        expect($('.input-field .ember-power-select-trigger')).to.have.length(1);
+        expect($('label').text().trim()).to.eq('Test');
+        expect($('.ember-power-select-selected-item').text().trim()).to.eq('test1');
+        expect($('.error-message').text().trim()).to.eq('errortest');
+        expect($('label').attr('for')).to.eq($('.ember-power-select-trigger').attr('id'));
+        expect($('.ember-power-select-trigger').attr('id')).to.eq(`${$('.input-field').attr('id')}-select`);
         clickTrigger();
-        expect(this.$('.ember-power-select-options')).to.have.length(1);
-        return expect(this.$('.ember-power-select-option--search-message')).to.have.length(1);
+        expect($('.ember-power-select-options')).to.have.length(1);
+        return expect($('.ember-power-select-option--search-message')).to.have.length(1);
       })
     );
 
@@ -41,11 +42,11 @@ describe('Integration: InputTags', function() {
         this.set('value', 'test1');
         this.set('errors', ['errortest']);
         this.render(hbs("{{input-tags value=value label='Test' errors=errors allowAny=true}}"));
-        expect(this.$('.input-field .ember-power-select-trigger')).to.have.length(1);
+        expect($('.input-field .ember-power-select-trigger')).to.have.length(1);
         clickTrigger();
-        expect(this.$('.ember-power-select-option--search-message')).to.have.length(0);
-        expect(this.$('.ember-power-select-options .ember-power-select-option')).to.have.length(1);
-        return expect(this.$('.ember-power-select-options .ember-power-select-option').text().trim()).to.eq('*any');
+        expect($('.ember-power-select-option--search-message')).to.have.length(0);
+        expect($('.ember-power-select-options .ember-power-select-option')).to.have.length(1);
+        return expect($('.ember-power-select-options .ember-power-select-option').text().trim()).to.eq('*any');
       })
     );
   });
@@ -82,9 +83,9 @@ describe('Integration: InputTags', function() {
         clickTrigger();
         typeInSearch('tagtest');
         return wait().then(function() {
-          expect(this.$('.ember-power-select-options .ember-power-select-option')).to.have.length(2);
-          expect(this.$('.ember-power-select-options .ember-power-select-option:first-of-type').text().trim()).to.eq('test');
-          return expect(this.$('.ember-power-select-options .ember-power-select-option:last-of-type').text().trim()).to.eq('*any');
+          expect($('.ember-power-select-options .ember-power-select-option')).to.have.length(2);
+          expect($('.ember-power-select-options .ember-power-select-option:first-of-type').text().trim()).to.eq('test');
+          return expect($('.ember-power-select-options .ember-power-select-option:last-of-type').text().trim()).to.eq('*any');
         });
       })
     );

@@ -4,6 +4,7 @@ import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { isEqual } from '@ember/utils';
 import { clickTrigger, selectChoose } from 'cgrates-web-frontend/tests/helpers/ember-power-select';
+import $ from 'jquery';
 
 describe('Integration: FilterSelect', function() {
   setupComponentTest('filter-select', { integration: true });
@@ -13,16 +14,16 @@ describe('Integration: FilterSelect', function() {
       this.set('value', 'test1');
       this.set('content', ['test1', 'test2']);
       this.render(hbs("{{filter-select label='Test' key='test' value=value content=content}}"));
-      expect(this.$('.input-field .ember-power-select-trigger')).to.have.length(1);
-      expect(this.$('label').text().trim()).to.eq('Test');
-      expect(this.$('.ember-power-select-selected-item').text().trim()).to.eq('test1');
-      expect(this.$('label').attr('for')).to.eq(this.$('.ember-power-select-trigger').attr('id'));
-      expect(this.$('.ember-power-select-trigger').attr('id')).to.eq(`${this.$('.input-field').attr('id')}-select`);
+      expect($('.input-field .ember-power-select-trigger')).to.have.length(1);
+      expect($('label').text().trim()).to.eq('Test');
+      expect($('.ember-power-select-selected-item').text().trim()).to.eq('test1');
+      expect($('label').attr('for')).to.eq(this.$('.ember-power-select-trigger').attr('id'));
+      expect($('.ember-power-select-trigger').attr('id')).to.eq(`${this.$('.input-field').attr('id')}-select`);
       clickTrigger();
-      expect(this.$('.ember-power-select-options')).to.have.length(1);
-      expect(this.$('.ember-power-select-option')).to.have.length(2);
-      expect(this.$('.ember-power-select-option:nth-child(1)').text().trim()).to.eq('test1');
-      return expect(this.$('.ember-power-select-option:nth-child(2)').text().trim()).to.eq('test2');
+      expect($('.ember-power-select-options')).to.have.length(1);
+      expect($('.ember-power-select-option')).to.have.length(2);
+      expect($('.ember-power-select-option:nth-child(1)').text().trim()).to.eq('test1');
+      return expect($('.ember-power-select-option:nth-child(2)').text().trim()).to.eq('test2');
     })
   );
 

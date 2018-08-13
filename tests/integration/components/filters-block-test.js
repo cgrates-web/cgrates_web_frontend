@@ -30,12 +30,12 @@ describe('Integration: FiltersBlock', function() {
       this.set('search', function(filters) {
         this.set('actionTriggered', true);
         return expect(filters).to.deep.equal({'test': 'valuetest'});
-    });
-      this.render(hbs(`\
-        {{#filters-block search=(action search) as |block|}} \
-        {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=block)}} \
-        {{/filters-block}}\
-      `));
+      });
+      this.render(hbs`(
+        {{#filters-block search=(action search) as |block|}}
+        {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=block)}}
+        {{/filters-block}}
+      )`);
       fillIn('input', 'valuetest');
       click('button.search-button');
       return expect(this.get('actionTriggered')).to.be.ok;
@@ -50,11 +50,11 @@ describe('Integration: FiltersBlock', function() {
         this.set('actionTriggered', true);
         return expect(filters).to.deep.equal({'test': null});
     });
-      this.render(hbs(`\
-        {{#filters-block search=(action search) as |block|}} \
-        {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=block)}} \
+      this.render(hbs`(
+        {{#filters-block search=(action search) as |block|}} 
+        {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=block)}} 
         {{/filters-block}}\
-      `));
+      )`);
       fillIn('input', 'valuetest');
       click('button.reset-button');
       return expect(this.get('actionTriggered')).to.be.ok;
