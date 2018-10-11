@@ -1,0 +1,37 @@
+<section class="page-header">
+  <h1 class="page-title container">
+    User
+  </h1>
+</section>
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>{{model.email}}</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'user.edit'}}
+            <i class="material-icons circle btn btn-primary" data-test-user-edit>edit</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Email</h5>
+        <p>{{model.email}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Inserted at</h5>
+        <p>{{moment-format model.insertedAt}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Updated at</h5>
+        <p>{{moment-format model.updatedAt}}</p>
+      </div>
+    </div>
+  </div>
+</main>

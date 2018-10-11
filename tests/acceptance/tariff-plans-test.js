@@ -1,51 +1,60 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from '../helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, findAll, click, currentURL } from '@ember/test-helpers';
 
 describe("Acceptance: TariffPlans", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tps = server.createList('tariff-plan', 5);
-    authenticateSession(this.App, {email: "user@exmple.com"});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    await authenticateSession({email: "user@exmple.com"});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
+  describe('visit /tariff-plans', function () {
+    it('renders list of tariff-plans cards', async function() {
+      server.createList('tariff-plan', 5);
+      await visit('/tariff-plans');
+      expect(findAll('[data-test-tarif-plan-card]').length).to.eq(5);
+    });
+    it('displays tp-plan name', async function() {
+      this.tpPlan = server.create('tariff-plan');
+      await visit('/tariff-plans');
+      expect(find('[data-test-tarif-plan-card] .card-header').textContent).to.eq(this.tpPlan.name);
+    });
+    it('displays tp-plan description', async function() {
+      this.tpPlan = server.create('tariff-plan');
+      await visit('/tariff-plans');
+      expect(find('[data-test-tarif-plan-card] .card-text').textContent.trim()).to.eq(this.tpPlan.description);
+    });
   });
-
-  describe('visit /tariff-plans', () =>
-    it('renders list of tariff-plans cards', function() {
-      visit('/tariff-plans');
-      return andThen(() => {
-        expect(find('.row .card').length).to.eq(5);
-        return expect(find('.row .card .card-title').text()).to.eq(this.tps.map(tp => tp.name).join(''));
-      });
-    })
-  );
 
   describe('select tariff plan', () =>
-    it('reditects to tariff plan page', function() {
-      visit('/tariff-plans');
-      click(".row .card:first-child .card-action a:contains('Select')");
-      return andThen(() => expect(currentPath()).to.equal("tariff-plans.tariff-plan.index"));
+    it('reditects to tariff plan page', async function() {
+      this.tpPlan = server.create('tariff-plan');
+      await visit('/tariff-plans');
+      await click('[data-test-tarif-plan-card] [data-test-select-tp-plan]');
+      expect(currentURL()).to.eq(`/tariff-plans/${this.tpPlan.id}`)
     })
   );
 
-  describe('go to edit tariff plan page', () =>
-    it('reditects to tariff plan page', function() {
-      visit('/tariff-plans');
-      click(".row .card:first-child .card-action a:contains('Edit')");
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.tariff-plan.edit'));
+  describe('click to edit button', () =>
+    it('reditects to edit tariff plan page', async function() {
+      this.tpPlan = server.create('tariff-plan');
+      await visit('/tariff-plans');
+      await click('[data-test-tarif-plan-card] [data-test-edit-tp-plan]');
+      expect(currentURL()).to.equal(`/tariff-plans/${this.tpPlan.id}/edit`)
     })
   );
 
-  return describe('click to add button', () =>
-    it('redirects to tariff-plans/new page', function() {
-      visit('/tariff-plans');
-      click('.fixed-action-btn a');
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.new'));
+  describe('click to add button', () =>
+    it('redirects to tariff-plans/new page', async function() {
+      this.tpPlan = server.create('tariff-plan');
+      await visit('/tariff-plans');
+      await click('[data-test-add-tp-plan]');
+      expect(currentURL()).to.equal('/tariff-plans/new')
     })
   );
 });

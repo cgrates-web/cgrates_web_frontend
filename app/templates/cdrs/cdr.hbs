@@ -1,0 +1,133 @@
+<section class="page-header">
+  <h1 class="page-title container">
+    CDRs: {{model.id}}
+  </h1>
+</section>
+<main class="page-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>CGRatesID</h5>
+        <p>{{model.cgrid}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Run ID</h5>
+        <p>{{model.runId}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Origin host</h5>
+        <p>{{model.originHost}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Source</h5>
+        <p>{{model.source}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Origin ID</h5>
+        <p>{{model.originId}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Type of record</h5>
+        <p>{{model.tor}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Request type</h5>
+        <p>{{model.requestType}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Direction</h5>
+        <p>{{model.direction}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tenant</h5>
+        <p>{{model.tenant}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Category</h5>
+        <p>{{model.category}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Account</h5>
+        <p>{{model.account}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Subject</h5>
+        <p>{{model.subject}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Destination</h5>
+        <p>{{model.destination}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Setup time</h5>
+        <p>{{moment-format model.setupTime}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Post dial delay</h5>
+        <p>{{model.pdd}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Answer time</h5>
+        <p>{{moment-format model.answerTime}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Usage</h5>
+        <p>{{model.usage}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier</h5>
+        <p>{{model.supplier}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Disconnect cause</h5>
+        <p>{{model.disconnectCause}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Extra fields (json)</h5>
+        <p>
+          {{#if model.extraFieldsObj}}
+            {{json-pretty obj=model.extraFieldsObj}}
+            {{else}}
+            Not present
+          {{/if}}
+        </p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Account summary (json)</h5>
+        <p>
+          {{#if model.accountSummaryObj}}
+            {{json-pretty obj=model.accountSummaryObj}}
+          {{else}}
+            Not present
+          {{/if}}
+        </p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Extra info</h5>
+        <p>{{model.extraInfo}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{moment-format model.createdAt}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Updated at</h5>
+        <p>{{moment-format model.updatedAt}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Deleted at</h5>
+        <p>
+          {{#if model.deletedAt}}
+            {{moment-format model.deletedAt}}
+          {{else}}
+            <i class="material-icons">remove</i>-
+          {{/if}}
+        </p>
+      </div>
+    </div>
+  </div>
+</main>

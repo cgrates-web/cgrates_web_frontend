@@ -1,4 +1,0 @@
-h2 Edit
-.row
-  .col.s12.m6.card-panel
-    partial 'tariff-plan/form'

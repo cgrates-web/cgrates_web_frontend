@@ -1,0 +1,32 @@
+<section class="page-header">
+  <h1 class="page-title container">
+    Select Tariff plan
+  </h1>
+</section>
+<main class="page-content">
+  <div class="container">
+    <div class="row">
+      {{#each model as |tp|}}
+        <div class="col-md-3 mb-4" data-test-tarif-plan-card>
+          <div class="card bg-light h-100">
+            <div class="card-header">{{tp.name}}</div>
+            <div class="card-body d-flex flex-column">
+              <div class="card-text pb-2">
+                {{tp.description}}
+              </div>
+              <div class="btn-group mt-auto mr-auto ml-auto">
+                {{#link-to 'tariff-plan' tp class='btn btn-primary m-1' data-test-select-tp-plan=true}}Select{{/link-to}}
+                {{#link-to 'tariff-plan.edit' tp class='btn btn-primary m-1' data-test-edit-tp-plan=true}}Edit{{/link-to}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div  class="fixed-action-btn">
+    {{#link-to 'tariff-plans.new'}}
+      <i class="material-icons circle btn-success" data-test-add-tp-plan>add</i>
+    {{/link-to}}
+  </div>
+</main>

@@ -26,7 +26,7 @@ export default Controller.extend(QueryControllerMixin, {
           .createRecord('raw-supplier-resolve-job', {tpid: this.get('tariffPlan.id')})
           .save()
           .then(()  => { this.get('flashMessages').success('Resolve job is starting') })
-          .catch(() => { this.get('flashMessages').alert('Somethings went wrong') });
+          .catch(() => { this.get('flashMessages').danger('Somethings went wrong') });
     },
 
     deleteAll() {
@@ -39,7 +39,7 @@ export default Controller.extend(QueryControllerMixin, {
           filter: filter
         }
       }).then(()  => { this.get('flashMessages').success('Records have been deleted') })
-        .catch(() => { this.get('flashMessages').alert('Somethings went wrong') });
+        .catch(() => { this.get('flashMessages').danger('Somethings went wrong') });
     }
   }
 });

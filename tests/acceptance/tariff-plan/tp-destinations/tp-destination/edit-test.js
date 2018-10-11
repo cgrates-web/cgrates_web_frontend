@@ -1,39 +1,22 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: TpDestination.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    this.tpDestination = server.create('tp-destination', {tpid: this.tariffPlan.alias});
-    authenticateSession(this.App, {email: "user@example.com"});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    this.tpDestination = server.create('tp-destination', {id: '1', tpid: this.tariffPlan.alias});
+    await authenticateSession({email: "user@example.com"});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-destinations');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Prefix')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Prefix')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
-
-  return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+  describe('fill form with correct data and submit', () =>
+    it('sends correct data to the backend', async function() {
       let counter = 0;
 
       server.patch('/tp-destinations/:id', (schema, request) => {
@@ -45,14 +28,11 @@ describe("Acceptance: TpDestination.Edit", function() {
         return { data: {id: this.tpDestination.id, type: 'tp-destination'} };
       });
 
-      visit('/tariff-plans/1/tp-destinations');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'edited');
-        fillIn(`#${find("label:contains('Prefix')").attr('for')}`, '+44');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-destinations/1/edit');
+      await fillIn('[data-test-tag] input', 'edited');
+      await fillIn('[data-test-prefix] input', '+44');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1)
     })
   );
 });

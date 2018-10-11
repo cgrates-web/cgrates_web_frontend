@@ -1,106 +1,87 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth'
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, findAll, find, currentURL } from '@ember/test-helpers';
 
 describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
-  let application;
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  beforeEach(function() {
-    application = startApp();
-    server.createList('raw-supplier-rate', 3)
-    server.create('tariff-plan', { name: 'Test', alias: 'tptest' })
-    authenticateSession(application, { email: 'user@example.com' })
-  });
-
-  afterEach(function() {
-    destroyApp(application);
+  beforeEach(async function() {
+    server.createList('raw-supplier-rate', 3);
+    server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/:id/raw-supplier-rates', function () {
-    beforeEach(function () {
-      visit('/tariff-plans/1/raw-supplier-rates')
-    })
+    beforeEach(async function() {
+      await visit('/tariff-plans/1/raw-supplier-rates');
+    });
     it('renders table with rates', function () {
-      andThen(() => {
-        expect(find('[data-test-rate]').length).to.eq(3)
-      })
-    })
-  })
+      expect(findAll('[data-test-rate]').length).to.eq(3);
+    });
+  });
 
   describe('click to upload csv link', function () {
-    it('redirects to upload csv page', function () {
-      visit('/tariff-plans/1/raw-supplier-rates')
-      click('[data-test-menu]')
-      click('[data-test-upload]')
-      andThen(() => {
-        expect(currentURL()).to.eq('/tariff-plans/1/raw-supplier-rates/csv-import')
-      })
+    it('redirects to upload csv page', async function() {
+      await visit('/tariff-plans/1/raw-supplier-rates');
+      await click('[data-test-upload]');
+      expect(currentURL()).to.eq('/tariff-plans/1/raw-supplier-rates/csv-import');
     })
-  })
+  });
 
   describe('click to resolve', function () {
-    beforeEach(function () {
-      visit('/tariff-plans/1/raw-supplier-rates')
-      click('[data-test-menu]')
-      click('[data-test-resolve]')
+    beforeEach(async function() {
+      await visit('/tariff-plans/1/raw-supplier-rates');
+      await click('[data-test-resolve]');
     });
 
     it('creates resolve job on the serve', function () {
-      andThen(() => {
-        expect(server.db.rawSupplierResolveJobs.length).to.eq(1)
-      })
+      expect(server.db.rawSupplierResolveJobs.length).to.eq(1);
     });
 
-    it('showns success flash msg', function () {
-      andThen(() => {
-        expect(find('.alert-success')).to.exist
-      })
+    it('shows success flash msg', function () {
+      expect(find('.flash-message.alert-success')).to.exist;
     });
-  })
+  });
 
   describe('delete rate', function() {
-    beforeEach(function () {
-      visit('/tariff-plans/1/raw-supplier-rates')
-      click('[data-test-delete-rate=1]')
-    })
+    beforeEach(async function() {
+      await visit('/tariff-plans/1/raw-supplier-rates');
+      await click('table tr:first-child [data-test-delete-rate]');
+    });
     it('removes rate from table', function () {
-      expect(find('[data-test-rate]').length).to.eq(2)
-    })
-    it('removes from DB', function () {      
-      andThen(() => {
-        expect(server.db.rawSupplierRates.length).to.eq(2)
-      })
-    })
-  })
+      expect(findAll('[data-test-rate]').length).to.eq(2);
+    });
+    it('removes from DB', function () {
+      expect(server.db.rawSupplierRates.length).to.eq(2);
+    });
+  });
 
   describe('filter and delete all', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-    beforeEach(function () {
+    beforeEach(async function() {
       server.post('/raw-supplier-rates/delete-all', function (_schema, request) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);
           expect(params.filter.prefix).to.eq('1');
           expect(Object.keys(params.filter).length).to.eq(1);
           expect(params.tpid).to.eq('1');
-        }
-      })
-      visit('/tariff-plans/1/raw-supplier-rates?prefix=1');
-      click('[data-test-menu]')
-      click('[data-test-delete-all]')
-    })
+        };
+        return { raw_supplier_rates: { id: '0' } };
+      });
+      await visit('/tariff-plans/1/raw-supplier-rates?prefix=1');
+      await click('[data-test-delete-all]')
+    });
 
     it('sends request to the server with filters', function () {
-      andThen(() => {
-        expectRequestToBeCorrect();
-      })
-    })
+      expectRequestToBeCorrect();
+    });
 
     it('shows flash messages', function () {
-      andThen(() => {
-        expect(find('.alert-success')).to.exist
-      })
-    })
+      expect(find('.flash-message.alert-success')).to.exist;
+    });
   })
 });

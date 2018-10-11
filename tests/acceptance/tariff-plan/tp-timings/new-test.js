@@ -1,38 +1,66 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: TpTimings.New", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('visit /tariff-plans/:id/tp-timings/new', () =>
-    it('renders tp-timing form', function() {
-      visit('/tariff-plans/1/tp-timings/new');
-      return andThen(() => expect(find('form input').length).to.eq(6));
+    it('renders tp-timing form', async function() {
+      await visit('/tariff-plans/1/tp-timings/new');
+      expect(findAll('form input').length).to.eq(6);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-timing', function() {
-      visit('/tariff-plans/1/tp-timings');
-      click('.fixed-action-btn a');
-      click("ul#slide-out li a:contains('Timings')");
-      return andThen(() => expect(find('table tbody tr').length).to.eq(0));
+    it('removes not saved tp-timing', async function() {
+      await visit('/tariff-plans/1/tp-timings/new');
+      await click('[data-test-tp-timings-link]');
+      expect(findAll('table tbody tr').length).to.eq(0);
     })
   );
+  describe('submit empty form', function () {
+    beforeEach(async function () {
+      await visit('/tariff-plans/1/tp-timings/new');
+      await click('[data-test-submit-button]');
+    });
+    it('displays tag error', function () {
+      expect(find('[data-test-tag] input')).to.have.class('is-invalid');
+      expect(find('[data-test-tag] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays years error', function () {
+      expect(find('[data-test-years] input')).to.have.class('is-invalid');
+      expect(find('[data-test-years] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays months error', function () {
+      expect(find('[data-test-months] input')).to.have.class('is-invalid');
+      expect(find('[data-test-months] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays month-days error', function () {
+      expect(find('[data-test-month-days] input')).to.have.class('is-invalid');
+      expect(find('[data-test-month-days] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays week-days error', function () {
+      expect(find('[data-test-week-days] input')).to.have.class('is-invalid');
+      expect(find('[data-test-week-days] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays time error', function () {
+      expect(find('[data-test-time] input')).to.have.class('is-invalid');
+      expect(find('[data-test-time] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
 
-  return describe('fill form with correct data and submit', () =>
-    it('saves new tp-timing with correct data', function() {
+  describe('fill form with correct data and submit', () =>
+    it('saves new tp-timing with correct data', async function() {
       let counter = 0;
 
       server.post('/tp-timings/', function(schema, request) {
@@ -48,17 +76,15 @@ describe("Acceptance: TpTimings.New", function() {
         return { data: {id: '1', type: 'tp-timing'} };
       });
 
-      visit('/tariff-plans/1/tp-timings/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'tagtest');
-        fillIn(`#${find("label:contains('Years')").attr('for')}`, '2017');
-        fillIn(`#${find("label:contains('Months')").attr('for')}`, 'june');
-        fillIn(`#${find("label:contains('Month Days')").attr('for')}`, '30');
-        fillIn(`#${find("label:contains('Week Days')").attr('for')}`, '14');
-        fillIn(`#${find("label:contains('Time')").attr('for')}`, '14');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-timings/new');
+      await fillIn('[data-test-tag] input', 'tagtest');
+      await fillIn('[data-test-years] input', '2017');
+      await fillIn('[data-test-months] input', 'june');
+      await fillIn('[data-test-month-days] input', '30');
+      await fillIn('[data-test-week-days] input', '14');
+      await fillIn('[data-test-time] input', '14');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

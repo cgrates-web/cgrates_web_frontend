@@ -1,34 +1,31 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, click, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: User.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.user = server.create('user');
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.user = server.create('user', { id: '1', });
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('fill form with incorrect data and submit', () =>
-    it('sets invalid class for inputs', function() {
-      visit('/users');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Email')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(() => expect(find(`#${find("label:contains('Email')").attr('for')}`).length).to.eq(1));
-      });
+    it('sets invalid class for inputs', async function() {
+      await visit('/users/1/edit');
+      await fillIn('[data-test-email] input', '');
+      await click('[data-test-submit-button]');
+      expect(find('[data-test-email] input')).to.have.class('is-invalid');
+      expect(find('[data-test-email] .invalid-feedback')).to.have.class('d-block');
     })
   );
 
   return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+    it('sends correct data to the backend', async function() {
       let counter = 0;
 
       server.patch('/users/:id', (schema, request) => {
@@ -38,13 +35,10 @@ describe("Acceptance: User.Edit", function() {
         return { data: {id: this.user.id, type: 'user'} };
       });
 
-      visit('/users');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Email')").attr('for')}`, 'edited@example.com');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/users/1/edit');
+      await fillIn('[data-test-email] input', 'edited@example.com');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

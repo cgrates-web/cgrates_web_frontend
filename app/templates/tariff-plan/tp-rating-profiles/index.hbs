@@ -1,0 +1,155 @@
+<main class="page-content">
+  <div class="container xl">
+    <div class="actions-subtitle">
+      <h2>TpRatingProfiles list</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'tariff-plan.tp-rating-profiles.new'}}
+            <i class="material-icons circle btn btn-success" data-test-rating-profile-add>add</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <div class=" col-md-9">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              {{sort-header label='ID'                 key='id'               sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Load ID'            key='loadid'           sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Direction'          key='direction'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Tenant'             key='tenant'           sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy' data-test-sort-tenant=true}}
+              {{sort-header label='Category'           key='category'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Subject'            key='subject'          sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Fallback subjects'  key='fallbackSubjects' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Activation time'    key='activationTime'   sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='CDR stat queue IDs' key='cdrStatQueueIds'  sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Rating plan tag'    key='ratingPlanTag'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Created at'         key='createdAt'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              <td>Actions</td>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each model as |tpRatingProfile|}}
+              <tr>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.id}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.loadid}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.direction}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.tenant}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.category}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.subject}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.fallbackSubjects}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.activationTime}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.cdrStatQueueIds}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{tpRatingProfile.ratingPlanTag}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile' tpRatingProfile}}{{moment-format tpRatingProfile.createdAt}}{{/link-to}}
+                </td>
+                <td class="actions">
+                  {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile.edit' tpRatingProfile}}
+                    <i class="material-icons circle btn btn-primary" data-test-rating-profile-edit>edit</i>
+                  {{/link-to}}
+                  <a {{action 'remove' tpRatingProfile}} class="ml-1">
+                    <i class="material-icons circle btn btn-danger" data-test-rating-profile-remove>remove</i>
+                  </a>
+                </td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+        {{page-numbers content=pagination action='toPage'}}
+      </div>
+      <div class="col-md-3">
+        {{#filters-block search='search' as |filtersBlock|}}
+          {{filter-text
+            label='Load ID'
+            key='loadid'
+            value=loadid
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-loadid=true
+          }}
+          {{filter-select
+            label='Direction'
+            key='direction'
+            value=direction
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            content=selectValues.direction
+            data-test-filter-direction=true
+          }}
+          {{filter-text
+            label='Tenant'
+            key='tenant'
+            value=tenant
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-tenant=true
+          }}
+          {{filter-text
+            label='Category'
+            key='category'
+            value=category
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-category=true
+          }}
+          {{filter-text
+            label='Subject'
+            key='subject'
+            value=subject
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-subject=true
+          }}
+          {{filter-text
+            label='Fallback subjects'
+            key='fallbackSubjects'
+            value=fallbackSubjects
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-fallback-subjects=true
+          }}
+          {{filter-text
+            label='Activation time'
+            key='activationTime'
+            value=activationTime
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-activation-time=true
+          }}
+          {{filter-text
+            label='CDR stat queue IDs'
+            key='cdrStatQueueIds'
+            value=cdrStatQueueIds
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-cdr-stat-queue-ids=true
+          }}
+          {{filter-text
+            label='Rating plan tag'
+            key='ratingPlanTag'
+            value=ratingPlanTag
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-rating-plan-tags=true
+          }}
+        {{/filters-block}}
+      </div>
+    </div>
+  </div>
+</main>

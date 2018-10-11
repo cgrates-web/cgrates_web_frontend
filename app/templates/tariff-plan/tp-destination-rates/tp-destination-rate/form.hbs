@@ -1,0 +1,64 @@
+{{#bs-form model=model onSubmit=(action 'save') novalidate=true as |form|}}
+  <div class='form-row'>
+    {{form.element
+      label='Tag'
+      property='tag'
+      class='col-md-6'
+      data-test-tag=true
+    }}
+    {{input-tags
+      property='ratesTag'
+      form=form
+      label='Rates tag'
+      modelName='tp-rate'
+      tpid=model.tpid
+      class='col-md-6'
+      dataTest='rates'
+    }}
+    {{input-tags
+      property='destinationsTag'
+      form=form
+      label='Destinations tag'
+      modelName='tp-destination'
+      tpid=model.tpid
+      allowAny=true
+      class='col-md-6'
+      dataTest='destinations'
+    }}
+    {{form.element
+      controlType='number'
+      label='Rounding decimals'
+      property='roundingDecimals'
+      class='col-md-6'
+      step='1'
+      min='0'
+      data-test-rounding-decimals=true
+    }}
+    {{form.element
+      controlType='number'
+      label='Max cost (decimal)'
+      property='maxCost'
+      class='col-md-6'
+      step='0.0001'
+      min='0'
+      data-test-max-cost=true
+    }}
+    {{input-select
+      property='roundingMethod'
+      form=form
+      label='Rounding method'
+      content=selectValues.roundingMethod
+      class='col-md-6'
+      dataTest='rounding-method'
+    }}
+    {{input-select
+      property='maxCostStrategy'
+      form=form
+      label='Max cost strategy'
+      content=selectValues.maxCostStrategy
+      class='col-md-6'
+      dataTest='max-cost-strategy'
+    }}
+  </div>
+  {{bs-button defaultText='Save' type='primary' buttonType='submit' data-test-submit-button=true}}
+{{/bs-form}}

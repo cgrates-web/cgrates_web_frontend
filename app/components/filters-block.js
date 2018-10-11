@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['card-panel', 'filter-block'],
+  classNames: ['card', 'filter-block'],
 
   init() {
     this._super(...arguments);

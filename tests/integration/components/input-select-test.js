@@ -1,41 +1,64 @@
-import { describe, it } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import { setupComponentTest } from 'ember-mocha';
+import { setupRenderingTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import { clickTrigger, selectChoose } from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-import $ from 'jquery';
+import { find, click, render } from '@ember/test-helpers';
+import { selectChoose } from 'ember-power-select/test-support/helpers';
+import EmberObject from '@ember/object';
 
 describe('Integration: InputSelect', function() {
-  setupComponentTest('input-select', { integration: true });
+  setupRenderingTest();
 
-  describe('basic rendering', () =>
-    it('renders select with options', function() {
-      this.set('value', 'test1');
-      this.set('errors', ['errortest']);
+  describe('basic rendering', function () {
+    beforeEach(async function () {
       this.set('content', ['test1', 'test2']);
-      this.render(hbs("{{input-select value=value label='Test' errors=errors content=content}}"));
-      expect($('.input-field .ember-power-select-trigger')).to.have.length(1);
-      expect($('label').text().trim()).to.eq('Test');
-      expect($('.ember-power-select-selected-item').text().trim()).to.eq('test1');
-      expect($('.error-message').text().trim()).to.eq('errortest');
-      expect($('label').attr('for')).to.eq($('.ember-power-select-trigger').attr('id'));
-      expect($('.ember-power-select-trigger').attr('id')).to.eq(`${$('.input-field').attr('id')}-select`);
-      clickTrigger();
-      expect($('.ember-power-select-options')).to.have.length(1);
-      expect($('.ember-power-select-option')).to.have.length(2);
-      expect($('.ember-power-select-option:nth-child(1)').text().trim()).to.eq('test1');
-      return expect($('.ember-power-select-option:nth-child(2)').text().trim()).to.eq('test2');
-    })
-  );
+      this.set('model', EmberObject.create({inputSelect: 'test1'}));
+      await render(hbs`('
+        {{#bs-form model=model as |form|}}
+          {{input-select
+            property='inputSelect'
+            form=form
+            label='Test'
+            content=content
+            class='test-class'
+            dataTest='test'
+          }}
+        {{/bs-form}}
+      ')`);
+    });
+    it('displays selected item', function () {
+      expect(find('.ember-power-select-selected-item').textContent.trim()).to.eq('test1');
+    });
+    it('displays options', async function () {
+      await click('.ember-power-select-trigger');
+      expect(find('.ember-power-select-option:nth-child(1)').textContent.trim()).to.eq('test1');
+      expect(find('.ember-power-select-option:nth-child(2)').textContent.trim()).to.eq('test2');
+    });
+    it('displays label', function () {
+      expect(find('label').textContent.trim()).to.eq('Test');
+
+    });
+    it('has correct class', function () {
+      expect(find('[data-test-select="test"]')).to.have.class('test-class');
+    });
+  });
 
   return describe('selecting an item', () =>
-    it('changes value', function() {
-      this.set('value', 'test1');
+    it('changes value', async function() {
       this.set('content', ['test1', 'test2']);
-      this.render(hbs("{{input-select value=value label='Test' content=content}}"));
-      clickTrigger();
-      selectChoose('.ember-power-select-trigger', 'test2');
-      return expect(this.get('value')).to.eq('test2');
+      this.set('model', EmberObject.create({inputSelect: 'test1'}));
+      await render(hbs`('
+        {{#bs-form model=model as |form|}}
+          {{input-select
+            property='inputSelect'
+            form=form
+            label='Test'
+            content=content
+          }}
+        {{/bs-form}}
+      ')`);
+      await selectChoose('.ember-power-select-trigger', 'test2');
+      expect(this.get('model.inputSelect')).to.eq('test2');
     })
   );
 });

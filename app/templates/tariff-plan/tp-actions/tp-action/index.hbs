@@ -1,0 +1,93 @@
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>TpAction: {{model.tag}}</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'tariff-plan.tp-actions.tp-action.edit' model}}
+            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tag</h5>
+        <p>{{model.tag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Action</h5>
+        <p>{{model.action}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Balance tag</h5>
+        <p>{{model.balanceTag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Balance type</h5>
+        <p>{{model.balanceType}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Units</h5>
+        <p>{{model.units}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Expiry time</h5>
+        <p>{{model.expiryTime}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Timing tags</h5>
+        <p>{{model.timingTags}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Destination tags</h5>
+        <p>{{model.destinationTags}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Rating subject</h5>
+        <p>{{model.ratingSubject}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Categories</h5>
+        <p>{{model.categories}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Shared groups</h5>
+        <p>{{model.sharedGroups}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Balance weight</h5>
+        <p>{{model.balanceWeight}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Balance blocker</h5>
+        <p>{{model.balanceBlocker}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Balance disabled</h5>
+        <p>{{model.balanceDisabled}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Extra parameters</h5>
+        <p>{{model.extraParameters}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Filter</h5>
+        <p>{{model.filter}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Weight</h5>
+        <p>{{model.weight}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{moment-format model.createdAt}}</p>
+      </div>
+    </div>
+  </div>
+</main>

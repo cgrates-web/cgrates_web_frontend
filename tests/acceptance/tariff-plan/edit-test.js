@@ -1,24 +1,21 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach, context } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, fillIn, click } from '@ember/test-helpers';
 
-describe("Acceptance: TariffPlan.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
+describe('Acceptance: TariffPlan.Edit', function() {
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+  beforeEach(async function() {
     this.tp = server.create('tariff-plan');
-    authenticateSession(this.App, {email: "user@exmple.com"});
-  });
-
-  afterEach(function () {
-    destroyApp(this.App);
+    await authenticateSession({email: "user@exmple.com"});
   });
 
   describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+    it('sends correct data to the backend', async function() {
       let counter = 0;
-
       server.patch('/tariff-plans/:id', (schema, request) => {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
@@ -28,27 +25,54 @@ describe("Acceptance: TariffPlan.Edit", function() {
         return { data: {id: this.tp.id, type: 'tariff-plans'} };
       });
 
-      visit('/tariff-plans');
-      click(".row .card:first-child .card-action a:contains('Edit')");
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Name')").attr('for')}`, 'New Tariff');
-        fillIn(`#${find("label:contains('Alias')").attr('for')}`, 'new_tariff');
-        fillIn(`#${find("label:contains('Description')").attr('for')}`, 'description');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans');
+      await click('[data-test-edit-tp-plan]');
+      await fillIn('[data-test-name] input', 'New Tariff');
+      await fillIn('[data-test-alias] input', 'new_tariff');
+      await fillIn('[data-test-description] input', 'description');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 
-  return describe('fill form with incorrect data and submit', () =>
-    it('sets invalid class for inputs', function() {
-      visit('/tariff-plans');
-      click(".row .card:first-child .card-action a:contains('Edit')");
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Name')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return expect(find(`#${find("label:contains('Name')").attr('for')}`).length).to.eq(1);
+  describe('fill form with incorrect data and submit', function () {
+    context('request', function () {
+      it('does not send request', async function () {
+        let expectRequest = false;
+        server.patch('/tariff-plans/:id', function() {
+          expectRequest = true;
+        });
+        await visit('/tariff-plans');
+        await click('[data-test-edit-tp-plan]');
+        await fillIn('[data-test-name] input', '');
+        await fillIn('[data-test-alias] input', '');
+        await fillIn('[data-test-description] input', '');
+        await click('[data-test-submit-button]');
+        expect(expectRequest).to.be.false;
       });
-    })
-  );
+    });
+    context('validation', function () {
+      beforeEach(async function () {
+        await visit('/tariff-plans');
+        await click('[data-test-edit-tp-plan]');
+        await fillIn('[data-test-name] input', '');
+        await fillIn('[data-test-alias] input', '');
+        await fillIn('[data-test-description] input', '');
+        await click('[data-test-submit-button]');
+      });
+
+      it('displays name error', async function () {
+        expect(find('[data-test-name] input')).to.have.class('is-invalid');
+        expect(find('[data-test-name] .invalid-feedback')).to.have.class('d-block');
+      });
+      it('displays alias error', async function () {
+        expect(find('[data-test-alias] input')).to.have.class('is-invalid');
+        expect(find('[data-test-alias] .invalid-feedback')).to.have.class('d-block');
+      });
+      it('displays description error', async function () {
+        expect(find('[data-test-description] input')).to.have.class('is-invalid');
+        expect(find('[data-test-description] .invalid-feedback')).to.have.class('d-block');
+      });
+    });
+  });
 });

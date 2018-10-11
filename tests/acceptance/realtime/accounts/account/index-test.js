@@ -1,34 +1,31 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, find, currentRouteName } from '@ember/test-helpers';
 
 describe("Acceptance: Account.Index", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.account = server.create('account', {id: 'test'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.account = server.create('account', {id: 'test'});
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('basic rendering', () =>
-    it('renders specific header', function() {
-      visit('/realtime/accounts');
-      click("table tbody tr:first-child td a:contains('test')");
-      return andThen(() => expect(find('main h2').text()).to.eq('Account: test'));
+    it('renders specific header', async function() {
+      await visit('/realtime/accounts/test');
+      expect(find('main h2').textContent).to.eq('Account: test');
     })
   );
 
-  return describe('click add balance button', () =>
-    it('redirects to add balance page', function() {
-      visit('/realtime/accounts');
-      click("table tbody tr:first-child td a:contains('test')");
-      click("a:contains('Add balance')");
-      return andThen(() => expect(currentPath()).to.equal('realtime.accounts.account.add-balance'));
+  describe('click add balance button', () =>
+    it('redirects to add balance page', async function() {
+      await visit('/realtime/accounts/test');
+      await click('[data-test-account-blabce-add]');
+      expect(currentRouteName()).to.equal('realtime.accounts.account.add-balance');
     })
   );
 });

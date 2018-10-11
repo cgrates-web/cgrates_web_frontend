@@ -5,6 +5,7 @@ import SelectComponentMixin from 'cgrates-web-frontend/mixins/select-component-m
 import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend(SelectComponentMixin, {
+  tagName: '',
   store: service(),
 
   allowAny: false,

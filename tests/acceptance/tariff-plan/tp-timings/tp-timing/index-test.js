@@ -1,35 +1,32 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, click, currentRouteName } from '@ember/test-helpers';
 
 describe("Acceptance: TpTiming.Index", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    this.tpTiming = server.create('tp-timing', {tpid: this.tariffPlan.alias, tag: 'new-timing'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    this.tpTiming = server.create('tp-timing', {id: '1', tpid: this.tariffPlan.alias, tag: 'new-timing'});
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('basic rendering', () =>
-    it('renders specific header', function() {
-      visit('/tariff-plans/1/tp-timings');
-      click("table tbody tr:first-child td a:contains('new-timing')");
-      return andThen(() => expect(find('main h2').text()).to.eq('Timing: new-timing'));
+    it('renders specific header', async function() {
+      await visit('/tariff-plans/1/tp-timings/1');
+      expect(find('main h2').textContent).to.eq('Timing: new-timing');
     })
   );
 
-  return describe('click edit button', () =>
-    it('redirects to tp-timing edit page', function() {
-      visit('/tariff-plans/1/tp-timings');
-      click("table tbody tr:first-child td a:contains('new-timing')");
-      click('.fixed-action-btn a');
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.tariff-plan.tp-timings.tp-timing.edit'));
+  describe('click edit button', () =>
+    it('redirects to tp-timing edit page', async function() {
+      await visit('/tariff-plans/1/tp-timings/1');
+      await click('[data-test-tp-timing]');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-timings.tp-timing.edit');
     })
   );
 });

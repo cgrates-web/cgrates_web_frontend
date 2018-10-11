@@ -1,0 +1,87 @@
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>Supplier: {{model.customId}}</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'tariff-plan.tp-suppliers.tp-supplier.edit'}}
+            <i class="material-icons circle btn btn-primary" data-test-tp-supplier-edit>edit</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>PK</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>ID</h5>
+        <p>{{model.customId}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tenant</h5>
+        <p>{{model.tenant}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Filter IDs</h5>
+        <p>{{model.filterIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Sorting</h5>
+        <p>{{model.sorting}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Sorting params</h5>
+        <p>{{model.sortingParams}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier ID</h5>
+        <p>{{model.supplierId}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier Filter IDs</h5>
+        <p>{{model.supplierFilterIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier Account IDs</h5>
+        <p>{{model.supplierAccountIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier Rating plan IDs</h5>
+        <p>{{model.supplierRatingplanIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier Resource IDs</h5>
+        <p>{{model.supplierResourceIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier Stat IDs</h5>
+        <p>{{model.supplierStatIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Supplier Weight</h5>
+        <p>{{model.supplierWeight}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>ID</h5>
+        <p>{{model.customId}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{moment-format model.createdAt}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Blocker</h5>
+        <p>
+          {{#if model.blocker}}
+            <i class="material-icons">check</i>
+          {{else}}
+            <i class="material-icons">remove</i>
+          {{/if}}
+        </p>
+      </div>
+    </div>
+  </div>
+</main>

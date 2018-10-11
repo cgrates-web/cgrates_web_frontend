@@ -1,71 +1,39 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, find, findAll, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: Account.AddBalance", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.account = server.create('account', {id: 'test'});
-    authenticateSession(this.App, {email: "user@eaxmple.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.account = server.create('account', {id: 'test'});
+    await authenticateSession({email: "user@eaxmple.com"});
   });
 
   describe('visit /realtime/accounts/:id/add-balance', () =>
-    it('renders add balance form', function() {
-      visit('/realtime/accounts');
-      click("table tbody tr:first-child td a:contains('test')");
-      click("a:contains('Add balance')");
-      return andThen(() => expect(find('form input').length).to.eq(15));
+    it('renders add balance form', async function() {
+      await visit('/realtime/accounts/test/add-balance');
+      expect(findAll('form input').length).to.eq(15);
     })
   );
 
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/realtime/accounts');
-      click("table tbody tr:first-child td a:contains('test')");
-      click("a:contains('Add balance')");
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Balance type')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Directions')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Value')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Weight')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Balance UUID')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Balance ID')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Expiry time')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rating subject')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Categories')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Destination IDs')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Timing IDs')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Shared groups')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Balance type')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Directions')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Value')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Weight')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance UUID')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance ID')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Expiry time')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rating subject')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Categories')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Destination IDs')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Timing IDs')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Shared groups')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Overwrite')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Blocker')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Disabled')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
+  describe('submit empty form', function () {
+    beforeEach(async function () {
+      await visit('/realtime/accounts/test/add-balance');
+      await click('[data-test-submit-button]');
+    });
+    it('displays balance-type error', async function () {
+      expect(find('[data-test-balance-type] input')).to.have.class('is-invalid');
+      expect(find('[data-test-balance-type] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
 
-  return describe('fill form with correct data and submit', () =>
-    it('submits correct data', function() {
+  describe('fill form with correct data and submit', () =>
+    it('submits correct data', async function() {
       let counter = 0;
 
       server.post('/add-balance/', function(schema, request) {
@@ -90,28 +58,24 @@ describe("Acceptance: Account.AddBalance", function() {
         return { data: {id: '1', type: 'add-balance'} };
       });
 
-      visit('/realtime/accounts');
-      click("table tbody tr:first-child td a:contains('test')");
-      click("a:contains('Add balance')");
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Balance type')").attr('for')}`, '*monetary');
-        fillIn(`#${find("label:contains('Directions')").attr('for')}`, '*out');
-        fillIn(`#${find("label:contains('Value')").attr('for')}`, '100');
-        fillIn(`#${find("label:contains('Weight')").attr('for')}`, '10');
-        fillIn(`#${find("label:contains('Balance UUID')").attr('for')}`, '11111111-2222-3333-4444-555555555555');
-        fillIn(`#${find("label:contains('Balance ID')").attr('for')}`, 'balancetest');
-        fillIn(`#${find("label:contains('Expiry time')").attr('for')}`, '0001-01-01T00:00:00Z');
-        fillIn(`#${find("label:contains('Rating subject')").attr('for')}`, 'ratingsubject');
-        fillIn(`#${find("label:contains('Categories')").attr('for')}`, 'category1, category2');
-        fillIn(`#${find("label:contains('Destination IDs')").attr('for')}`, 'destination1, destination2');
-        fillIn(`#${find("label:contains('Timing IDs')").attr('for')}`, 'timing1, timing2');
-        fillIn(`#${find("label:contains('Shared groups')").attr('for')}`, 'group1, group2');
-        click(`#${find("label:contains('Overwrite')").attr('for')}`);
-        click(`#${find("label:contains('Blocker')").attr('for')}`);
-        click(`#${find("label:contains('Disabled')").attr('for')}`);
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/realtime/accounts/test/add-balance');
+      await fillIn('[data-test-balance-type] input', '*monetary');
+      await fillIn('[data-test-directions] input', '*out');
+      await fillIn('[data-test-value] input', '100');
+      await fillIn('[data-test-weight] input', '10');
+      await fillIn('[data-test-balance-uuid] input', '11111111-2222-3333-4444-555555555555');
+      await fillIn('[data-test-balance-id] input', 'balancetest');
+      await fillIn('[data-test-expiry-time] input', '0001-01-01T00:00:00Z');
+      await fillIn('[data-test-rating-subject] input', 'ratingsubject');
+      await fillIn('[data-test-categories] input', 'category1, category2');
+      await fillIn('[data-test-destination-ids] input', 'destination1, destination2');
+      await fillIn('[ data-test-timing-ids] input', 'timing1, timing2');
+      await fillIn('[data-test-shared-groups] input', 'group1, group2');
+      await click('[data-test-overwrite] input');
+      await click('[data-test-blocker] input');
+      await click('[data-test-disabled] input');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1)
     })
   );
 });

@@ -1,6 +1,0 @@
-section.page-header
-  .container
-    h1.page-title Accounts
-main
-  .container
-    outlet

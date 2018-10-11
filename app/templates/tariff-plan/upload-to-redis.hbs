@@ -1,0 +1,26 @@
+<div class="page-content">
+  <div class="container">
+    <h2 class="subtitle">Upload to redis</h2>
+    <form {{action "upload" on="submit"}}>
+      <div class="form-check" data-test-flush-db>
+        {{input checked=flushDB id="flush-db" type="checkbox" class="form-check-input"}}
+        <label class="form-check-label" for="flush-db">
+          Flush DB
+        </label>
+      </div>
+      <div class="form-check">
+        {{input checked=dryRun id="dry-run" type="checkbox" class="form-check-input"}}
+        <label class="form-check-label" for="dry-run">
+          Dry run
+        </label>
+      </div>
+      <div class="form-check">
+        {{input checked=validate id="validate" type="checkbox" class="form-check-input"}}
+        <label class="form-check-label" for="validate">
+          Validate
+        </label>
+      </div>
+      <button class="btn btn-primary mt-2" type="submit" data-test-submit-button>Upload</button>
+    </form>
+  </div>
+</div>

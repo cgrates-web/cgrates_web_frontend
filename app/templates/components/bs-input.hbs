@@ -1,0 +1,15 @@
+<label>{{label}}</label>
+{{input
+  value=value
+  class=(if errors 'is-invalid form-control' 'form-control')
+  type=type
+  required=required
+  disabled=disabled
+  step=step
+  min=min
+  max=max}}
+{{#if errors}}
+  <div class="invalid-feedback">
+    {{errors.firstObject.message}}
+  </div>
+{{/if}}

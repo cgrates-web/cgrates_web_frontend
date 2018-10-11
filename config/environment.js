@@ -45,13 +45,19 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.API_HOST = "http://localhost:4000";
-    ENV['ember-cli-mirage'] = { enabled: false };
+
+    // ENV.API_HOST = "http://cgrates-web.staging.yufuphone.com:4000";
+    // ENV['ember-cli-mirage'] = { enabled: false };
+
+    ENV.API_HOST = 'http://localhost:4200';
+    ENV['ember-cli-mirage'] = { enabled: true };
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
+
+    ENV.APP.autoboot = false;
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -71,7 +77,7 @@ module.exports = function(environment) {
     identificationField: 'email',
     passwordField: 'password',
     tokenPropertyName: 'token',
-    refreshTokenPropertyName: 'refresh_token',
+    refreshTokenPropertyName: 'token',
     authorizationPrefix: 'Bearer ',
     authorizationHeaderName: 'Authorization',
     headers: {'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json'},

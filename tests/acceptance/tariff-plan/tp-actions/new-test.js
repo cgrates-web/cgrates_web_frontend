@@ -1,85 +1,118 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
-import registerPowerSelectHelpers from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-
-registerPowerSelectHelpers();
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
+import { selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe("Acceptance: TpActions.New", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('visit /tariff-plans/1/tp-actions/new', () =>
-    it('renders tp-action form', function() {
-      visit('/tariff-plans/1/tp-actions/new');
-      return andThen(function() {
-        expect(find('form input').length).to.eq(12);
-        return expect(find('form .ember-power-select-trigger').length).to.eq(6);
-      });
+    it('renders tp-action form', async function() {
+      await visit('/tariff-plans/1/tp-actions/new');
+      expect(findAll('form input').length).to.eq(12);
+      expect(findAll('form .ember-power-select-trigger').length).to.eq(6);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-action', function() {
-      visit('/tariff-plans/1/tp-actions');
-      click('.fixed-action-btn a');
-      click("ul#slide-out li a:contains('Actions')");
-      return andThen(() => expect(find('table tbody tr').length).to.eq(0));
+    it('removes not saved tp-action', async function() {
+      await visit('/tariff-plans/1/tp-actions/new');
+      await click('[data-test-actions-link]');
+      expect(findAll('table tbody tr').length).to.eq(0);
     })
   );
 
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-actions/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Balance tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Units')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Expiry time')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Timing tags')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rating subject')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Categories')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Shared groups')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Balance weight')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Extra parameters')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Filter')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Weight')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Action')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance type')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Directions')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Units')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Expiry time')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Timing tags')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Destination tags')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rating subject')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Categories')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Shared groups')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance weight')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance blocker')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance disabled')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Extra parameters')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Filter')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Weight')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
+  describe('submit empty form', function () {
+    beforeEach(async function () {
+      await visit('/tariff-plans/1/tp-actions/new');
+      await click('[data-test-submit-button]');
+    });
+    it('displays tag error', async function () {
+      expect(find('[data-test-tag] input')).to.have.class('is-invalid');
+      expect(find('[data-test-tag] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays action error', async function () {
+      expect(find('[data-test-select="action"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-select="action"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays balance-tag error', async function () {
+      expect(find('[data-test-balance-tag] input')).to.have.class('is-invalid');
+      expect(find('[data-test-balance-tag] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays balance-type error', async function () {
+      expect(find('[data-test-select="balance-type"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-select="balance-type"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays directions error', async function () {
+      expect(find('[data-test-select="directions"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-select="directions"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays units error', async function () {
+      expect(find('[data-test-units] input')).to.have.class('is-invalid');
+      expect(find('[data-test-units] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays expiry-time error', async function () {
+      expect(find('[data-test-expiry-time] input')).to.have.class('is-invalid');
+      expect(find('[data-test-expiry-time] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays timing-tags error', async function () {
+      expect(find('[data-test-timing-tags] input')).to.have.class('is-invalid');
+      expect(find('[data-test-timing-tags] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays destination tag error', async function () {
+      expect(find('[data-test-tag="destination"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-tag="destination"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays rating-subject error', async function () {
+      expect(find('[data-test-rating-subject] input')).to.have.class('is-invalid');
+      expect(find('[data-test-rating-subject] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays categories error', async function () {
+      expect(find('[data-test-categories] input')).to.have.class('is-invalid');
+      expect(find('[data-test-categories] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays shared-groups error', async function () {
+      expect(find('[data-test-shared-groups] input')).to.have.class('is-invalid');
+      expect(find('[data-test-shared-groups] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays balance-weight error', async function () {
+      expect(find('[data-test-balance-weight] input')).to.have.class('is-invalid');
+      expect(find('[data-test-balance-weight] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays balance-blocker error', async function () {
+      expect(find('[data-test-select="balance-blocker"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-select="balance-blocker"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays balance-disabled error', async function () {
+      expect(find('[data-test-select="balance-disabled"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-select="balance-disabled"] .invalid-feedback')).to.have.class('d-block');
+    });
 
-  return describe('fill form with correct data and submit', () =>
-    it('saves new tp-action with correct data', function() {
+    it('displays extra-parameters error', async function () {
+      expect(find('[data-test-extra-parameters] input')).to.have.class('is-invalid');
+      expect(find('[data-test-extra-parameters] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays filter error', async function () {
+      expect(find('[data-test-filter] input')).to.have.class('is-invalid');
+      expect(find('[data-test-filter] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays weight error', async function () {
+      expect(find('[data-test-weight] input')).to.have.class('is-invalid');
+      expect(find('[data-test-weight] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
+
+  describe('fill form with correct data and submit', () =>
+    it('saves new tp-action with correct data', async function() {
       let counter = 0;
 
       server.post('/tp-actions/', function(schema, request) {
@@ -107,29 +140,27 @@ describe("Acceptance: TpActions.New", function() {
         return { data: {id: '1', type: 'tp-action'} };
       });
 
-      visit('/tariff-plans/1/tp-actions/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'tagtest');
-        selectChoose(`#${find("label:contains('Action')").attr('for')}`, '*log');
-        fillIn(`#${find("label:contains('Balance tag')").attr('for')}`, 'balancetest');
-        selectChoose(`#${find("label:contains('Balance type')").attr('for')}`, '*monetary');
-        selectChoose(`#${find("label:contains('Directions')").attr('for')}`, '*out');
-        fillIn(`#${find("label:contains('Units')").attr('for')}`, '120');
-        fillIn(`#${find("label:contains('Expiry time')").attr('for')}`, '*unlimited');
-        fillIn(`#${find("label:contains('Timing tags')").attr('for')}`, 'timingtest');
-        selectChoose(`#${find("label:contains('Destination tags')").attr('for')}`, '*any');
-        fillIn(`#${find("label:contains('Rating subject')").attr('for')}`, 'subjecttest');
-        fillIn(`#${find("label:contains('Categories')").attr('for')}`, 'categoriestest');
-        fillIn(`#${find("label:contains('Shared groups')").attr('for')}`, 'groupstest');
-        fillIn(`#${find("label:contains('Balance weight')").attr('for')}`, '20');
-        selectChoose(`#${find("label:contains('Balance blocker')").attr('for')}`, 'false');
-        selectChoose(`#${find("label:contains('Balance disabled')").attr('for')}`, 'false');
-        fillIn(`#${find("label:contains('Extra parameters')").attr('for')}`, 'parameterstest');
-        fillIn(`#${find("label:contains('Filter')").attr('for')}`, 'filtertest');
-        fillIn(`#${find("label:contains('Weight')").attr('for')}`, '10');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-actions/new');
+      await fillIn('[data-test-tag] input', 'tagtest');
+      await selectChoose('[data-test-select="action"]', '*log');
+      await fillIn('[data-test-balance-tag] input', 'balancetest');
+      await selectChoose('[data-test-select="balance-type"]', '*monetary');
+      await selectChoose('[data-test-select="directions"]', '*out');
+      await fillIn('[data-test-units] input', '120');
+      await fillIn('[data-test-expiry-time] input', '*unlimited');
+      await fillIn('[data-test-timing-tags] input', 'timingtest');
+      await selectChoose('[data-test-tag="destination"]', '*any');
+      await fillIn('[data-test-rating-subject] input', 'subjecttest');
+      await fillIn('[data-test-categories] input', 'categoriestest');
+      await fillIn('[data-test-shared-groups] input', 'groupstest');
+      await fillIn('[data-test-balance-weight] input', '20');
+      await selectChoose('[data-test-select="balance-blocker"]', 'false');
+      await selectChoose('[data-test-select="balance-disabled"]', 'false');
+      await fillIn('[data-test-extra-parameters] input', 'parameterstest');
+      await fillIn('[data-test-filter] input', 'filtertest');
+      await fillIn('[data-test-weight] input', '10');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });
