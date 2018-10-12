@@ -1,70 +1,64 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
-import registerPowerSelectHelpers from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-
-registerPowerSelectHelpers();
 
 describe("Acceptance: TpRatingPlans.Index", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRatingPlans = server.createList('tp-rating-plan', 2, {tpid: this.tariffPlan.alias});
     this.other = server.createList('tp-rating-plan', 2, {tpid: 'other'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
-
-  afterEach(function () {
-    destroyApp(this.App);
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('visit /tariff-plans/1/tp-rating-plans', () =>
-    it("renders table with tp-rating-plans", function() {
-      visit('/tariff-plans/1/tp-rating-plans');
-      return andThen(function() {
-        expect(find('main h2').text()).to.eq('TpRatingPlans list');
-        return expect(find('table tbody tr').length).to.eq(2);
-      });
+    it("renders table with tp-rating-plans", async function() {
+      await visit('/tariff-plans/1/tp-rating-plans');
+      expect(find('main h2').textContent).to.eq('TpRatingPlans list');
+      expect(findAll('table tbody tr').length).to.eq(2);
     })
   );
 
   describe('select tp-rating-plan', () =>
-    it('reditects to tp-rating-plan page', function() {
-      visit('/tariff-plans/1/tp-rating-plans');
-      click('table tbody tr:first-child td:first-child a');
-      return andThen(() => expect(currentPath()).to.equal("tariff-plans.tariff-plan.tp-rating-plans.tp-rating-plan.index"));
+    it('reditects to tp-rating-plan page', async function() {
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await click('table tbody tr:first-child td:first-child a');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-rating-plans.tp-rating-plan.index');
     })
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-rating-plan page', function() {
-      visit('/tariff-plans/1/tp-rating-plans');
-      click('table tbody tr:first-child a.edit');
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.tariff-plan.tp-rating-plans.tp-rating-plan.edit'));
+    it('reditects to edit tp-rating-plan page', async function() {
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await click('[data-test-tp-rating-plan-edit]');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-rating-plans.tp-rating-plan.edit');
     })
   );
 
   describe('click remove button', () =>
-    it('removes tp-rating-plan', function() {
-      visit('/tariff-plans/1/tp-rating-plans');
-      click('table tbody tr:first-child a.remove');
-      return andThen(() => expect(find('table tbody tr').length).to.eq(1));
+    it('removes tp-rating-plan', async function() {
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await click('[data-test-tp-rating-plan-remove]');
+      expect(findAll('table tbody tr').length).to.eq(1);
     })
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-rating-plan page', function() {
-      visit('/tariff-plans/1/tp-rating-plans');
-      click('.fixed-action-btn a');
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.tariff-plan.tp-rating-plans.new'));
+    it('redirects to new tp-rating-plan page', async function() {
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await click('[data-test-tp-rating-plan-add]');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-rating-plans.new');
     })
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', function() {
+    it('makes a correct filter query', async function() {
       let counter = 0;
 
       server.get('/tp-rating-plans/', function(schema, request) {
@@ -90,20 +84,18 @@ describe("Acceptance: TpRatingPlans.Index", function() {
         return { data: [{id: '1', type: 'tp-rating-plan'}] };
       });
 
-      visit('/tariff-plans/1/tp-rating-plans');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'tagtest');
-        fillIn(`#${find("label:contains('Destination rates tag')").attr('for')}`, 'destratetest');
-        fillIn(`#${find("label:contains('Timing tag')").attr('for')}`, 'timingtest');
-        fillIn(`#${find("label:contains('Weight')").attr('for')}`, '12.1');
-        click('button.search-button');
-        return andThen(() => expect(counter).to.eq(2));
-      });
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await fillIn('[data-test-filter-tag] input', 'tagtest');
+      await fillIn('[data-test-filter-destrates-tag] input', 'destratetest');
+      await fillIn('[data-test-filter-timing-tag] input', 'timingtest');
+      await fillIn('[data-test-filter-weight] input', '12.1');
+      await click('[data-test-filter-search-btn]');
+      expect(counter).to.eq(2);
     })
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', function() {
+    it('makes a correct sort query', async function() {
       let counter = 0;
 
       server.get('/tp-rating-plans/', function(schema, request) {
@@ -122,15 +114,15 @@ describe("Acceptance: TpRatingPlans.Index", function() {
         return { data: [{id: '1', type: 'tp-rating-plan'}] };
       });
 
-      visit('/tariff-plans/1/tp-rating-plans');
-      click(".sort-header a:contains('Tag')");
-      click(".sort-header a:contains('Tag')");
-      return andThen(() => expect(counter).to.eq(3));
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await click('[data-test-sort-tag] a');
+      await click('[data-test-sort-tag] a');
+      expect(counter).to.eq(3);
     })
   );
 
   return describe('click pagination link', () =>
-    it('makes a correct pagination query', function() {
+    it('makes a correct pagination query', async function() {
       let counter = 0;
 
       server.get('/tp-rating-plans/', function(schema, request) {
@@ -149,9 +141,9 @@ describe("Acceptance: TpRatingPlans.Index", function() {
         return { data: [{id: '1', type: 'tp-rating-plan'}], meta: {total_pages: 2} };
       });
 
-      visit('/tariff-plans/1/tp-rating-plans');
-      click("ul.pagination li a:contains('2')");
-      return andThen(() => expect(counter).to.eq(2));
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await click('[data-test-pagination-forward]');
+      expect(counter).to.eq(2);
     })
   );
 });

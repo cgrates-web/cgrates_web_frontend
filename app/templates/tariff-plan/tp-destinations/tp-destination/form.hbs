@@ -1,0 +1,13 @@
+{{#bs-form model=model onSubmit=(action 'save') novalidate=true as |form|}}
+  {{form.element
+    label='Tag'
+    property='tag'
+    data-test-tag=true
+  }}
+  {{form.element
+    label='Prefix'
+    property='prefix'
+    data-test-prefix=true
+  }}
+  {{bs-button defaultText='Save' type='primary' buttonType='submit' data-test-submit-button=true}}
+{{/bs-form}}

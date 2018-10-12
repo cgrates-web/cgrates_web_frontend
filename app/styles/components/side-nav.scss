@@ -1,0 +1,36 @@
+.side-nav {
+  min-height: calc(100vh - #{$nav-link-height} - #{$nav-link-padding-y * 2});
+  overflow-x: hidden;
+  overflow-y: auto;
+  @include media-breakpoint-down(md) {
+    min-height: auto;
+    padding: 0 0 0 60px;
+  }
+  .navbar-nav {
+    @include media-breakpoint-between(sm, md) {
+      flex-direction: row;
+    }
+    li {
+      width: 100%;
+      @include media-breakpoint-between(sm, md) {
+        width: 50%;
+      }
+    }
+  }
+}
+.side-nav-collapse{
+  display: none;
+  position: absolute;
+  width: 50px;
+  text-align: center;
+  z-index: 10;
+  top: 8px;
+  left: 0;
+  @include media-breakpoint-down(md) {
+    display: inline-block;
+  }
+  .material-icons{
+    color: white;
+    font-size: 40px
+  }
+}

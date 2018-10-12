@@ -1,47 +1,22 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: TpRate.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRate = server.create('tp-rate', {tpid: this.tariffPlan.alias});
-    authenticateSession(this.App, {email: "user@example.com"});
+    await authenticateSession({email: "user@example.com"});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-rates');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rate unit (seconds)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rate increment (seconds)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rate (decimal)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Group interval start (seconds)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Connect fee (decimal)')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rate unit (seconds)')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rate increment (seconds)')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rate (decimal)')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Group interval start (seconds)')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Connect fee (decimal)')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
-
-  return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+  describe('fill form with correct data and submit', () =>
+    it('sends correct data to the backend', async function() {
       let counter = 0;
 
       server.patch('/tp-rates/:id', (schema, request) => {
@@ -57,18 +32,15 @@ describe("Acceptance: TpRate.Edit", function() {
         return { data: {id: this.tpRate.id, type: 'tp-rate'} };
       });
 
-      visit('/tariff-plans/1/tp-rates');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'edited');
-        fillIn(`#${find("label:contains('Rate unit (seconds)')").attr('for')}`, '60');
-        fillIn(`#${find("label:contains('Rate increment (seconds)')").attr('for')}`, '60');
-        fillIn(`#${find("label:contains('Rate (decimal)')").attr('for')}`, '0.01');
-        fillIn(`#${find("label:contains('Group interval start (seconds)')").attr('for')}`, '60');
-        fillIn(`#${find("label:contains('Connect fee (decimal)')").attr('for')}`, '0.01');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-rates/1/edit');
+      await fillIn('[data-test-tag] input', 'edited');
+      await fillIn('[data-test-second="rate-unit"] input', '60');
+      await fillIn('[data-test-second="rate-increment"] input', '60');
+      await fillIn('[data-test-rate] input', '0.01');
+      await fillIn('[data-test-second="group-interval-start"] input', '60');
+      await fillIn('[data-test-connect-fee] input', '0.01');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

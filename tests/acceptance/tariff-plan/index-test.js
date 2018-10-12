@@ -1,23 +1,25 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { beforeEach, describe, it } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { visit, click, find, currentURL } from '@ember/test-helpers';
 
 describe("Acceptance: TariffPlan.Index", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tp = server.create('tariff-plan', {name: 'New'});
-    authenticateSession(this.App, {email: "user@exmple.com"});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tpPlan = server.create('tariff-plan', {name: 'Test TpPlan'});
+    await authenticateSession({email: "user@exmple.com"});
+    await visit('tariff-plans');
+    await click('[data-test-select-tp-plan]');
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
+  it('has correct url', async function() {
+    expect(currentURL()).to.equal(`/tariff-plans/${this.tpPlan.id}`)
   });
-
-  return it('renders specic header', function() {
-    visit('tariff-plans');
-    click(".row .card:first-child .card-action a:contains('Select')");
-    return andThen(() => expect(find('section.page-header h1').text()).to.eq('Tariff plan: New'));
+  it('renders specic header', async function() {
+    expect(find('h1.page-title').textContent.trim()).to.eq('Tariff plan: Test TpPlan')
   });
 });

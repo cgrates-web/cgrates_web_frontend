@@ -1,4 +1,0 @@
-h2 New Timing
-.row
-  .col.m12.l6: .card-panel
-    partial 'tariff-plan/tp-timings/tp-timing/form'

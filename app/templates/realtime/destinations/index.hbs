@@ -1,0 +1,46 @@
+<main class="page-content">
+  <div class="container xl">
+    <div class="actions-subtitle">
+      <ul class="actions">
+        <li>
+          {{#link-to 'realtime.destinations.new'}}
+            <i class="material-icons circle btn btn-success" data-test-destinations-add>add</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class=" col-md-12">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <td>ID</td>
+              <td>Prefixes</td>
+              <td>Actions</td>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each sortedDestinations as |destination|}}
+              <tr>
+                <td>
+                  {{destination.id}}
+                </td>
+                <td>
+                  {{destination.prefixesString}}
+                </td>
+                <td class="actions">
+                  <a {{action 'remove' destination}}>
+                    <i class="material-icons circle btn btn-danger" data-test-destination-remove>remove</i>
+                  </a>
+                </td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+        {{page-numbers content=pagination action='toPage'}}
+      </div>
+    </div>
+  </div>
+</main>

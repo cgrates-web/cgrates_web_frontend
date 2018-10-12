@@ -1,29 +1,14 @@
 // Fix for Roboto font path
 $roboto-font-path: '../assets/';
 
-// Materialize styles
-@import 'components/color';
-
-// Custom color settings go here
-$primary-color: color("grey", "darken-3");
-
-@import 'components/variables';
-@import 'materialize';
-@import 'ember-cli-materialize';
-
-@import "ember-power-select/themes/material";
-$ember-power-select-active-trigger-border-bottom: 1px solid $ember-power-select-material-active-color;
-$ember-power-select-focus-box-shadow: 0 1px 0 0 $ember-power-select-material-active-color;
-$ember-power-select-dropdown-margin: 1px;
-$ember-power-select-line-height: 3;
+@import "ember-bootstrap/bootstrap";
+@import "ember-power-select/themes/bootstrap";
 @import "ember-power-select";
 
 @import "layouts/base";
-@import "layouts/index-page";
-
-@import "components/alerts";
-@import "components/pagination";
-@import "components/power-select";
-@import "components/filter-block";
+@import "components/buttons";
 @import "components/flash";
-@import "components/json-pretty";
+@import "components/filter-block";
+@import "components/power-select";
+@import "components/csv-uploader";
+@import "components/side-nav";

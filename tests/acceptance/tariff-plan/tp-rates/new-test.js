@@ -1,61 +1,67 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: TpRates.New", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('visit /tariff-plans/1/tp-rates/new', () =>
-    it('renders tp-rate form', function() {
-      visit('/tariff-plans/1/tp-rates/new');
-      return andThen(() => expect(find('form input').length).to.eq(6));
+    it('renders tp-rate form', async function() {
+      await visit('/tariff-plans/1/tp-rates/new');
+      expect(findAll('form input').length).to.eq(6);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-rate', function() {
-      visit('/tariff-plans/1/tp-rates');
-      click('.fixed-action-btn a');
-      click("ul#slide-out li a:contains('Rates') ");
-      return andThen(() => expect(find('table tbody tr').length).to.eq(0));
+    it('removes not saved tp-rate', async function() {
+      await visit('/tariff-plans/1/tp-rates/new');
+      await click('[data-test-rates-link]');
+      expect(findAll('table tbody tr').length).to.eq(0);
     })
   );
 
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-rates/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rate unit (seconds)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rate increment (seconds)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rate (decimal)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Group interval start (seconds)')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Connect fee (decimal)')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rate unit (seconds)')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rate increment (seconds)')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rate (decimal)')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Group interval start (seconds)')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Connect fee (decimal)')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
+  describe('submit empty form', function () {
+    beforeEach(async function () {
+      await visit('/tariff-plans/1/tp-rates/new');
+      await click('[data-test-submit-button]');
+    });
+    it('displays tag error', function () {
+      expect(find('[data-test-tag] input')).to.have.class('is-invalid');
+      expect(find('[data-test-tag] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays rate-unit error', function () {
+      expect(find('[data-test-second="rate-unit"] input')).to.have.class('is-invalid');
+      expect(find('[data-test-second="rate-unit"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays rate-increment error', function () {
+      expect(find('[data-test-second="rate-increment"] input')).to.have.class('is-invalid');
+      expect(find('[data-test-second="rate-increment"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays rate error', function () {
+      expect(find('[data-test-rate] input')).to.have.class('is-invalid');
+      expect(find('[data-test-rate] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays group-interval-start error', function () {
+      expect(find('[data-test-second="group-interval-start"] input')).to.have.class('is-invalid');
+      expect(find('[data-test-second="group-interval-start"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays connect-fee error', function () {
+      expect(find('[data-test-connect-fee] input')).to.have.class('is-invalid');
+      expect(find('[data-test-connect-fee] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
 
   return describe('fill form with correct data and submit', () =>
-    it('saves new tp-rate with correct data', function() {
+    it('saves new tp-rate with correct data', async function() {
       let counter = 0;
 
       server.post('/tp-rates/', function(schema, request) {
@@ -71,17 +77,15 @@ describe("Acceptance: TpRates.New", function() {
         return { data: {id: '1', type: 'tp-rate'} };
       });
 
-      visit('/tariff-plans/1/tp-rates/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'tagtest');
-        fillIn(`#${find("label:contains('Rate unit (seconds)')").attr('for')}`, '60');
-        fillIn(`#${find("label:contains('Rate increment (seconds)')").attr('for')}`, '60');
-        fillIn(`#${find("label:contains('Rate (decimal)')").attr('for')}`, '0.01');
-        fillIn(`#${find("label:contains('Group interval start (seconds)')").attr('for')}`, '60');
-        fillIn(`#${find("label:contains('Connect fee (decimal)')").attr('for')}`, '0.01');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-rates/new');
+      await fillIn('[data-test-tag] input', 'tagtest');
+      await fillIn('[data-test-second="rate-unit"] input', '60');
+      await fillIn('[data-test-second="rate-increment"] input', '60');
+      await fillIn('[data-test-rate] input', '0.01');
+      await fillIn('[data-test-second="group-interval-start"] input', '60');
+      await fillIn('[data-test-connect-fee] input', '0.01');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

@@ -1,20 +1,13 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it } from 'mocha';
+import { setupApplicationTest } from 'ember-mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
+import { visit, currentRouteName } from '@ember/test-helpers';
 
-describe("Acceptance: Authorize users", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    server.createList('destination', 2);
-  });
+describe('Acceptance: Authorize users', function() {
+  setupApplicationTest();
 
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  return it("redirects not auth user to login", function() {
-    visit("/");
-    return andThen(() => expect(currentPath()).to.equal("login"));
+  it('redirects not auth user to login', async function() {
+    await visit('/');
+    expect(currentRouteName()).to.equal('login')
   });
 });

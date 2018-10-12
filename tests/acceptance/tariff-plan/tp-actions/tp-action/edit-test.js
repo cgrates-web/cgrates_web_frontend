@@ -1,68 +1,23 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
-import registerPowerSelectHelpers from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-
-registerPowerSelectHelpers();
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, fillIn } from '@ember/test-helpers';
+import { selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe("Acceptance: TpAction.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    this.tpAction = server.create('tp-action', {tpid: this.tariffPlan.alias});
-    authenticateSession(this.App, {email: "user@example.com"});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    this.tpAction = server.create('tp-action', {id: '1', tpid: this.tariffPlan.alias});
+    await authenticateSession({email: "user@example.com"});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-actions');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Balance tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Units')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Expiry time')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Timing tags')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rating subject')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Categories')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Shared groups')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Balance weight')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Extra parameters')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Filter')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Weight')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Action')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance type')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Directions')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Units')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Expiry time')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Timing tags')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Destination tags')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rating subject')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Categories')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Shared groups')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance weight')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance blocker')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Balance disabled')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Extra parameters')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Filter')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Weight')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
-
-  return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+  describe('fill form with correct data and submit', () =>
+    it('sends correct data to the backend', async function() {
       let counter = 0;
 
       server.patch('/tp-actions/:id', (schema, request) => {
@@ -90,30 +45,27 @@ describe("Acceptance: TpAction.Edit", function() {
         return { data: {id: this.tpAction.id, type: 'tp-action'} };
       });
 
-      visit('/tariff-plans/1/tp-actions');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'edited');
-        selectChoose(`#${find("label:contains('Action')").attr('for')}`, '*log');
-        fillIn(`#${find("label:contains('Balance tag')").attr('for')}`, 'balancetest');
-        selectChoose(`#${find("label:contains('Balance type')").attr('for')}`, '*monetary');
-        selectChoose(`#${find("label:contains('Directions')").attr('for')}`, '*out');
-        fillIn(`#${find("label:contains('Units')").attr('for')}`, '120');
-        fillIn(`#${find("label:contains('Expiry time')").attr('for')}`, '*unlimited');
-        fillIn(`#${find("label:contains('Timing tags')").attr('for')}`, 'timingtest');
-        selectChoose(`#${find("label:contains('Destination tags')").attr('for')}`, '*any');
-        fillIn(`#${find("label:contains('Rating subject')").attr('for')}`, 'subjecttest');
-        fillIn(`#${find("label:contains('Categories')").attr('for')}`, 'categoriestest');
-        fillIn(`#${find("label:contains('Shared groups')").attr('for')}`, 'groupstest');
-        fillIn(`#${find("label:contains('Balance weight')").attr('for')}`, '20');
-        selectChoose(`#${find("label:contains('Balance blocker')").attr('for')}`, 'false');
-        selectChoose(`#${find("label:contains('Balance disabled')").attr('for')}`, 'false');
-        fillIn(`#${find("label:contains('Extra parameters')").attr('for')}`, 'parameterstest');
-        fillIn(`#${find("label:contains('Filter')").attr('for')}`, 'filtertest');
-        fillIn(`#${find("label:contains('Weight')").attr('for')}`, '10');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-actions/1/edit');
+      await fillIn('[data-test-tag] input', 'edited');
+      await selectChoose('[data-test-select="action"]', '*log');
+      await fillIn('[data-test-balance-tag] input', 'balancetest');
+      await selectChoose('[data-test-select="balance-type"]', '*monetary');
+      await selectChoose('[data-test-select="directions"]', '*out');
+      await fillIn('[data-test-units] input', '120');
+      await fillIn('[data-test-expiry-time] input', '*unlimited');
+      await fillIn('[data-test-timing-tags] input', 'timingtest');
+      await selectChoose('[data-test-tag="destination"]', '*any');
+      await fillIn('[data-test-rating-subject] input', 'subjecttest');
+      await fillIn('[data-test-categories] input', 'categoriestest');
+      await fillIn('[data-test-shared-groups] input', 'groupstest');
+      await fillIn('[data-test-balance-weight] input', '20');
+      await selectChoose('[data-test-select="balance-blocker"]', 'false');
+      await selectChoose('[data-test-select="balance-disabled"]', 'false');
+      await fillIn('[data-test-extra-parameters] input', 'parameterstest');
+      await fillIn('[data-test-filter] input', 'filtertest');
+      await fillIn('[data-test-weight] input', '10');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

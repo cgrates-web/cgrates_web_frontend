@@ -1,59 +1,65 @@
-import { describe, it, context, beforeEach, afterEach } from 'mocha';
+import { setupRenderingTest } from 'ember-mocha';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { describe, it, context, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import { setupComponentTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import { clickTrigger, typeInSearch } from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-import { startMirage } from 'cgrates-web-frontend/initializers/ember-cli-mirage';
-import wait from 'ember-test-helpers/wait';
+import { selectSearch } from 'ember-power-select/test-support/helpers';
 import { isEqual } from '@ember/utils';
-import $ from 'jquery';
+import { find, click, render, findAll } from '@ember/test-helpers';
+import EmberObject from '@ember/object';
 
 describe('Integration: InputTags', function() {
-  setupComponentTest('input-tags', { integration: true });
-
-  beforeEach(function() {
-    return this.server = startMirage();
-  });
-
-  afterEach(function() {
-    return this.server.shutdown();
-  });
+  let hooks = setupRenderingTest();
+  setupMirage(hooks);
 
   describe('basic rendering', function() {
-    context('do not allow *any value', () =>
-      it('renders select with options', function() {
-        this.set('value', 'test1');
-        this.set('errors', ['errortest']);
-        this.render(hbs("{{input-tags value=value label='Test' errors=errors}}"));
-        expect($('.input-field .ember-power-select-trigger')).to.have.length(1);
-        expect($('label').text().trim()).to.eq('Test');
-        expect($('.ember-power-select-selected-item').text().trim()).to.eq('test1');
-        expect($('.error-message').text().trim()).to.eq('errortest');
-        expect($('label').attr('for')).to.eq($('.ember-power-select-trigger').attr('id'));
-        expect($('.ember-power-select-trigger').attr('id')).to.eq(`${$('.input-field').attr('id')}-select`);
-        clickTrigger();
-        expect($('.ember-power-select-options')).to.have.length(1);
-        return expect($('.ember-power-select-option--search-message')).to.have.length(1);
-      })
-    );
+    context('do not allow *any value', function () {
+      beforeEach(async function () {
+        this.set('model', EmberObject.create({inputTag: 'test1'}));
+        await render(hbs`('
+          {{#bs-form model=model as |form|}}
+            {{input-tags
+              property='inputTag'
+              form=form
+              label='Test'
+              class='test-class'
+              dataTest='test'
+            }}
+          {{/bs-form}}
+        ')`);
+      });
+      it('displays selected item', function () {
+        expect(find('.ember-power-select-selected-item').textContent.trim()).to.eq('test1');
+      });
+      it('displays label', function () {
+        expect(find('label').textContent.trim()).to.eq('Test');
+      });
+      it('has correct class', function () {
+        expect(find('[data-test-tag="test"]')).to.have.class('test-class');
+      });
+    });
 
-    return context('allow *any value', () =>
-      it('renders *any option', function() {
-        this.set('value', 'test1');
-        this.set('errors', ['errortest']);
-        this.render(hbs("{{input-tags value=value label='Test' errors=errors allowAny=true}}"));
-        expect($('.input-field .ember-power-select-trigger')).to.have.length(1);
-        clickTrigger();
-        expect($('.ember-power-select-option--search-message')).to.have.length(0);
-        expect($('.ember-power-select-options .ember-power-select-option')).to.have.length(1);
-        return expect($('.ember-power-select-options .ember-power-select-option').text().trim()).to.eq('*any');
+    context('allow *any value', () =>
+      it('renders *any option', async function() {
+        this.set('model', EmberObject.create({inputTag: 'test1'}));
+        await render(hbs`('
+          {{#bs-form model=model as |form|}}
+            {{input-tags
+              property='inputTag'
+              form=form
+              allowAny=true
+            }}
+          {{/bs-form}}
+        ')`);
+        await click('.ember-power-select-trigger');
+        expect(find('.ember-power-select-option').textContent.trim()).to.eq('*any');
       })
     );
   });
 
   return describe('searching for a tag', function() {
     context('do not allow *any value', () =>
-      it('sends correct query to the server', function() {
+      it('sends correct query to the server', async function() {
         let allClear = false;
 
         this.server.get('/tp-rates/', function(schema, request) {
@@ -66,27 +72,43 @@ describe('Integration: InputTags', function() {
           return { data: [{id: '1', type: 'tp-rate'}] };
         });
 
-        this.set('value', null);
-        this.render(hbs("{{input-tags value=value label='Test' modelName='tp-rate' tpid='tptest'}}"));
-        clickTrigger();
-        typeInSearch('tagtest');
-        return wait().then(() => expect(allClear).to.eq(true));
+        this.set('model', EmberObject.create({}));
+        await render(hbs`('
+          {{#bs-form model=model as |form|}}
+            {{input-tags
+              property='inputTag'
+              form=form
+              modelName='tp-rate' 
+              tpid='tptest'
+            }}
+          {{/bs-form}}
+        ')`);
+        await selectSearch('.ember-power-select-trigger', 'tagtest');
+        expect(allClear).to.eq(true);
       })
     );
 
-    return context('allow *any value', () =>
-      it('displays *any along with results', function() {
+    context('allow *any value', () =>
+      it('displays *any along with results', async function() {
         this.server.get('/tp-rates/', () => ({ data: [{id: '1', type: 'tp-rate', attributes: {tag: 'test'}}] }));
-
-        this.set('value', null);
-        this.render(hbs("{{input-tags value=value label='Test' modelName='tp-rate' tpid='tptest' allowAny=true}}"));
-        clickTrigger();
-        typeInSearch('tagtest');
-        return wait().then(function() {
-          expect($('.ember-power-select-options .ember-power-select-option')).to.have.length(2);
-          expect($('.ember-power-select-options .ember-power-select-option:first-of-type').text().trim()).to.eq('test');
-          return expect($('.ember-power-select-options .ember-power-select-option:last-of-type').text().trim()).to.eq('*any');
-        });
+        this.set('model', EmberObject.create({}));
+        await render(hbs`('
+          {{#bs-form model=model as |form|}}
+            {{input-tags
+              property='inputTag'
+              form=form
+              allowAny=true
+              modelName='tp-rate' 
+              tpid='tptest'
+            }}
+          {{/bs-form}}
+        ')`);
+        await selectSearch('.ember-power-select-trigger', 'tagtest');
+        expect(findAll('.ember-power-select-options .ember-power-select-option').length).to.eq(2);
+        expect(find('.ember-power-select-options .ember-power-select-option:first-of-type')
+          .textContent.trim()).to.eq('test');
+        expect(find('.ember-power-select-options .ember-power-select-option:last-of-type')
+          .textContent.trim()).to.eq('*any');
       })
     );
   });

@@ -1,9 +1,9 @@
-export default function(/* server */) {
-
-  /*
-    Seed your development database using your factories.
-    This data will not be loaded in your tests.
-  */
-
-  // server.createList('post', 10);
+export default function(server) {
+  server.create('tariff-plan', { alias: 'tp_id' });
+  server.createList('raw-supplier-rate', 2);
+  server.createList('tp-action-plan', 2, { tpid: 'tp_id' });
+  server.createList('tp-supplier', 2);
+  server.createList('cdr', 2);
+  server.createList('destination', 2);
+  server.createList('account', 2);
 }

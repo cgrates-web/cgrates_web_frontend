@@ -1,0 +1,144 @@
+<main class="page-content">
+  <div class="container xl">
+    <div class="actions-subtitle">
+      <h2>TpLcrRules list</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'tariff-plan.tp-lcr-rules.new'}}
+            <i class="material-icons circle btn btn-success" data-test-tp-lcr-rule-add>add</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class=" col-md-9">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              {{sort-header label='ID'              key='id'             sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Direction'       key='direction'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Tenant'          key='tenant'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Category'        key='category'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Account'         key='account'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Subject'         key='subject'        sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Destination tag' key='destinationTag' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy' data-test-sort-destination-tag=true}}
+              {{sort-header label='RP category'     key='rpCategory'     sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Strategy'        key='strategy'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Created at'      key='createdAt'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              <td>Actions</td>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each model as |tpLcrRule|}}
+              <tr>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.id}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.direction}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.tenant}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.category}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.account}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.subject}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.destinationTag}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.rpCategory}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{tpLcrRule.strategy}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule' tpLcrRule}}{{moment-format tpLcrRule.createdAt}}{{/link-to}}
+                </td>
+                <td class="actions">
+                  {{#link-to 'tariff-plan.tp-lcr-rules.tp-lcr-rule.edit' tpLcrRule}}
+                    <i class="material-icons circle btn btn-primary" data-test-tp-lcr-rule-edit>edit</i>
+                  {{/link-to}}
+                  <a {{action 'remove' tpLcrRule}} class="ml-1">
+                    <i class="material-icons circle btn btn-danger"data-test-tp-lcr-rule-remove>remove</i>
+                  </a>
+                </td>
+              </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+        {{page-numbers content=pagination action='toPage'}}
+      </div>
+      <div class="col-md-3">
+        {{#filters-block search='search' as |filtersBlock|}}
+          {{filter-select
+            label='Direction'
+            key='direction'
+            value=direction
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            content=selectValues.direction
+            data-test-filter-direction=true
+          }}
+          {{filter-text
+            label='Tenant'
+            key='tenant'
+            value=tenant
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-tenant=true
+          }}
+          {{filter-text
+            label='Category'
+            key='category'
+            value=category
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-category=true
+          }}
+          {{filter-text
+            label='Account'
+            key='account'
+            value=account
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-account=true
+          }}
+          {{filter-text
+            label='Subject'
+            key='subject'
+            value=subject
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-subject=true
+          }}
+          {{filter-text
+            label='Destination tag'
+            key='destinationTag'
+            value=destinationTag
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-destination-tag=true
+          }}
+          {{filter-text
+            label='RP category'
+            key='rpCategory'
+            value=rpCategory
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-rp-category=true
+          }}
+          {{filter-select
+            label='Strategy'
+            key='strategy'
+            value=strategy
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            content=selectValues.strategy
+            data-test-filter-strategy=true
+          }}
+        {{/filters-block}}
+      </div>
+    </div>
+  </div>
+</main>

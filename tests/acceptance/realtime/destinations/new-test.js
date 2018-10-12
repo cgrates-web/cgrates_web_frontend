@@ -1,45 +1,50 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, find, findAll, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: NewDestination", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    authenticateSession(this.App, {email: "user@exmple.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    await authenticateSession({email: "user@exmple.com"});
   });
 
   describe('go away without save', () =>
-    it('removes not saved destination', function() {
-      visit('/realtime/destinations');
-      click('.fixed-action-btn a');
-      click("ul#slide-out li a:contains('Destinations')");
-      return andThen(() => expect(find('table tbody tr').length).to.eq(0));
-    })
-  );
-
-  describe('click to button on /destinations page', () =>
-    it('redirects to /destinations/new', function() {
-      visit("/realtime/destinations");
-      click('.fixed-action-btn a');
-      return andThen(() => expect(currentPath()).to.equal("realtime.destinations.new"));
+    it('removes not saved destination', async function() {
+      await visit('/realtime/destinations/new');
+      await click('[data-test-destinations-link]');
+      expect(findAll('table tbody tr').length).to.eq(0);
     })
   );
 
   describe('visit /realtime/destinations/new', () =>
-    it('renders destination form', function() {
-      visit('/realtime/destinations/new');
-      return andThen(() => expect(find('form input').length).to.eq(2));
+    it('renders destination form', async function() {
+      await visit('/realtime/destinations/new');
+      expect(findAll('form input').length).to.eq(2);
     })
   );
 
-  return describe('fill in and submit form', () =>
-    it('saves new destination', function() {
+  describe('submit empty form', function () {
+    beforeEach(async function () {
+      await visit('/realtime/destinations/new');
+      await click('[data-test-submit-button]');
+    });
+    it('displays id error', async function () {
+      expect(find('[data-test-id] input')).to.have.class('is-invalid');
+      expect(find('[data-test-id] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays prefixes error', async function () {
+      expect(find('[data-test-prefixes] input')).to.have.class('is-invalid');
+      expect(find('[data-test-prefixes] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
+
+  describe('fill in and submit form', () =>
+    it('saves new destination', async function() {
       let counter = 0;
 
       server.post('/destinations/', function(schema, request) {
@@ -50,11 +55,11 @@ describe("Acceptance: NewDestination", function() {
         return { data: {id: 'DST_RU', type: 'destinations'} };
       });
 
-      visit('/realtime/destinations/new');
-      fillIn('input#id', 'DST_RU');
-      fillIn('input#prefixes', '+7913, +7923');
-      click('button[type="submit"]');
-      return andThen(() => expect(counter).to.eq(1));
+      await visit('/realtime/destinations/new');
+      await fillIn('[data-test-id] input', 'DST_RU');
+      await fillIn('[data-test-prefixes] input', '+7913, +7923');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

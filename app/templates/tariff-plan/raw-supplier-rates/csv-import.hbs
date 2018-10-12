@@ -1,0 +1,13 @@
+<main class="page-content">
+  <div class="container">
+    <h2>Upload csv</h2>
+    {{#if model.isNew}}
+      {{#csv-uploader file=file}}{{/csv-uploader}}
+      <button {{action 'save'}} class="btn btn-primary">Upload</button>
+    {{else}}
+      <div class="warning">
+        <b>Import in progress</b>
+      </div>
+    {{/if}}
+  </div>
+</main>

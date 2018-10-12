@@ -1,29 +1,21 @@
 .ember-power-select-trigger {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 9px;
-  &.invalid {
-    border-bottom-color: $error-color;
-    box-shadow: 0 1px 0 0 $error-color;
+  height: calc(2.25rem + 2px);
+  padding: 0.325rem 0.75rem;
+  line-height: 1.5;
+}
+.is-invalid {
+  .ember-power-select-trigger {
+    border-color: $red;
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
   }
 }
-
-.ember-power-select-selected-item {
-  margin-left: 0;
-}
-
-.ember-power-select-placeholder {
-  margin-left: 0;
-  .ember-power-select-trigger--active & {
-    transform: none;
-    color: $ember-power-select-placeholder-color;
+.is-valid {
+  .ember-power-select-trigger {
+    border-color: $green;
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25)
+    }
   }
-}
-
-small.error-message {
-  font-size: 0.8rem;
-  position: absolute;
-  top: 50px;
-  top: calc(65px - 0.8rem);
-  left: 0.75rem;
 }

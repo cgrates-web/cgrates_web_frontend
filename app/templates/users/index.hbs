@@ -1,0 +1,57 @@
+<section class="page-header">
+  <h1 class="page-title container">
+    Users
+  </h1>
+</section>
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <ul class="actions">
+        <li>
+          {{#link-to 'users.new'}}
+            <i class="material-icons circle btn btn-success" data-test-user-add>add</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <td>ID</td>
+          <td>Email</td>
+          <td>Inserted at</td>
+          <td>Updated at</td>
+          <td>Actions</td>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each sortedUsers as |user|}}
+          <tr>
+            <td>
+              {{#link-to 'user.index' user}}{{user.id}}{{/link-to}}
+            </td>
+            <td>
+              {{#link-to 'user.index' user}}{{user.email}}{{/link-to}}
+            </td>
+            <td>
+              {{#link-to 'user.index' user}}{{moment-format user.insertedAt}}{{/link-to}}
+            </td>
+            <td>
+              {{#link-to 'user.index' user}}{{moment-format user.updatedAt}}{{/link-to}}
+            </td>
+            <td class="actions">
+              {{#link-to 'user.edit' user}}
+                <i class="material-icons circle btn btn-primary" data-test-user-edit>edit</i>
+              {{/link-to}}
+              <a {{action 'remove' user}}>
+                <i class="material-icons circle btn btn-danger" data-test-user-remove>remove</i>
+              </a>
+            </td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

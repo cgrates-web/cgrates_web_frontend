@@ -1,0 +1,16 @@
+.material-icons.circle {
+  font-size: 12px;
+  padding: 8px;
+  line-height: normal;
+  border-radius: 50%;
+}
+
+.fixed-action-btn {
+  position: fixed;
+  right: 23px;
+  bottom: 23px;
+  z-index: 998;
+  .material-icons.circle {
+    font-size: 30px;
+  }
+}

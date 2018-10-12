@@ -1,73 +1,83 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
-import registerPowerSelectHelpers from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-
-registerPowerSelectHelpers();
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
+import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe("Acceptance: TpRatingProfiles.New", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRatingPlan1 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan1'});
     this.tpRatingPlan2 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan2'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
-
-  afterEach(function () {
-    destroyApp(this.App);
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('visit /tariff-plans/1/tp-rating-profiles/new', () =>
-    it('renders tp-rating-profile form', function() {
-      visit('/tariff-plans/1/tp-rating-profiles/new');
-      return andThen(function() {
-        expect(find('form input').length).to.eq(7);
-        return expect(find('form .ember-power-select-trigger').length).to.eq(2);
-      });
+    it('renders tp-rating-profile form', async function() {
+      await visit('/tariff-plans/1/tp-rating-profiles/new');
+      expect(findAll('form input').length).to.eq(7);
+      expect(findAll('form .ember-power-select-trigger').length).to.eq(2);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-rating-profile', function() {
-      visit('/tariff-plans/1/tp-rating-profiles');
-      click('.fixed-action-btn a');
-      click("ul#slide-out li a:contains('RatingProfiles')");
-      return andThen(() => expect(find('table tbody tr').length).to.eq(0));
+    it('removes not saved tp-rating-profile', async function() {
+      await visit('/tariff-plans/1/tp-rating-profiles/new');
+      await click('[data-test-rating-profiles-link]');
+      expect(findAll('table tbody tr').length).to.eq(0);
     })
   );
 
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-rating-profiles/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Load ID')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Tenant')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Category')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Subject')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Fallback subjects')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Activation time')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('CDR stat queue IDs')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Load ID')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Direction')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Tenant')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Category')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Subject')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Fallback subjects')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Activation time')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('CDR stat queue IDs')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Rating plan tag')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
+  describe('submit empty form', function () {
+    beforeEach(async function () {
+      await visit('/tariff-plans/1/tp-rating-profiles/new');
+      await click('[data-test-submit-button]');
+    });
+    it('displays loadid error', function () {
+      expect(find('[data-test-loadid] input')).to.have.class('is-invalid');
+      expect(find('[data-test-loadid] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays direction error', function () {
+      expect(find('[data-test-select="direction"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-select="direction"] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays tenant error', function () {
+      expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
+      expect(find('[data-test-tenant] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays category error', function () {
+      expect(find('[data-test-category] input')).to.have.class('is-invalid');
+      expect(find('[data-test-category] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays subject error', function () {
+      expect(find('[data-test-subject] input')).to.have.class('is-invalid');
+      expect(find('[data-test-subject] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('does not displays fallback-subjects error', function () {
+      expect(find('[data-test-fallback-subjects] input')).not.to.have.class('is-invalid');
+      expect(find('[data-test-fallback-subjects] .invalid-feedback')).not.to.exist;
+    });
+    it('displays activation-time error', function () {
+      expect(find('[data-test-activation-time] input')).to.have.class('is-invalid');
+      expect(find('[data-test-activation-time] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('does not displays cdr-stat-queue-ids error', function () {
+      expect(find('[data-test-cdr-stat-queue-ids] input')).not.to.have.class('is-invalid');
+      expect(find('[data-test-cdr-stat-queue-ids] .invalid-feedback')).not.to.exist;
+    });
+    it('displays tp-rating-plan tag error', function () {
+      expect(find('[data-test-tag="tp-rating-plan"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-tag="tp-rating-plan"] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
 
-  return describe('fill form with correct data and submit', () =>
-    it('saves new tp-rating-profile with correct data', function() {
+  describe('fill form with correct data and submit', () =>
+    it('saves new tp-rating-profile with correct data', async function() {
       let counter = 0;
 
       server.post('/tp-rating-profiles/', function(schema, request) {
@@ -86,23 +96,19 @@ describe("Acceptance: TpRatingProfiles.New", function() {
         return { data: {id: '1', type: 'tp-rating-profile'} };
       });
 
-      visit('/tariff-plans/1/tp-rating-profiles/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Load ID')").attr('for')}`, 'loadtest');
-        selectChoose(`#${find("label:contains('Direction')").attr('for')}`, '*in');
-        fillIn(`#${find("label:contains('Tenant')").attr('for')}`, 'tenanttest');
-        fillIn(`#${find("label:contains('Category')").attr('for')}`, 'categorytest');
-        fillIn(`#${find("label:contains('Subject')").attr('for')}`, 'subject1');
-        fillIn(`#${find("label:contains('Fallback subjects')").attr('for')}`, 'subject2');
-        fillIn(`#${find("label:contains('Activation time')").attr('for')}`, 'activationtime');
-        fillIn(`#${find("label:contains('CDR stat queue IDs')").attr('for')}`, 'queuetest');
-        selectSearch(`#${find("label:contains('Rating plan tag')").attr('for')}`, 'ratingplan');
-        return andThen(function() {
-          selectChoose(`#${find("label:contains('Rating plan tag')").attr('for')}`, 'ratingplan1');
-          click('button[type="submit"]');
-          return andThen(() => expect(counter).to.eq(1));
-        });
-      });
+      await visit('/tariff-plans/1/tp-rating-profiles/new');
+      await fillIn('[data-test-loadid] input', 'loadtest');
+      await selectChoose('[data-test-select="direction"]', '*in');
+      await fillIn('[data-test-tenant] input', 'tenanttest');
+      await fillIn('[data-test-category] input', 'categorytest');
+      await fillIn('[data-test-subject] input', 'subject1');
+      await fillIn('[data-test-fallback-subjects] input', 'subject2');
+      await fillIn('[data-test-activation-time] input', 'activationtime');
+      await fillIn('[data-test-cdr-stat-queue-ids] input', 'queuetest');
+      await selectSearch('[data-test-tag="tp-rating-plan"]', 'ratingplan');
+      await selectChoose('[data-test-tag="tp-rating-plan"]', 'ratingplan1');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

@@ -1,0 +1,6 @@
+{{#bs-form model=model onSubmit=(action 'save') novalidate=true as |form|}}
+  {{form.element label='Name' property='name' data-test-name=true}}
+  {{form.element label='Alias' property='alias' data-test-alias=true}}
+  {{form.element label='Description' property='description' data-test-description=true}}
+  {{bs-button defaultText='Save' type='primary' buttonType='submit' data-test-submit-button=true}}
+{{/bs-form}}

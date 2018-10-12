@@ -1,6 +1,0 @@
-a{action 'toggleSort'} = label
-if currentColumn
-  if (eq sortOrder 'desc')
-    i.material-icons arrow_downward
-  else
-    i.material-icons arrow_upward

@@ -1,40 +1,39 @@
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { setupComponentTest } from 'ember-mocha';
+import { setupRenderingTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { isEqual } from '@ember/utils';
-import {  fillIn } from 'ember-native-dom-helpers';
-
+import { fillIn, find, render } from '@ember/test-helpers';
 
 describe('Integration: FilterSeconds', function() {
-  setupComponentTest('filter-seconds', { integration: true });
+  setupRenderingTest();
 
   describe('basic rendering', () =>
-    it('renders number input field', function() {
+    it('renders number input field', async function() {
       this.set('filterValue', null);
-      this.render(hbs("{{filter-seconds label='Test' key='test' value=filterValue}}"));
-      expect(this.$('input[type="number"]')).to.have.length(1);
-      return expect(this.$('label').text().trim()).to.eq('Test');
+      await render(hbs("{{filter-seconds label='Test' key='test' value=filterValue}}"));
+      expect(find('input')).to.exist;
+      expect(find('label').textContent).to.eq('Test');
     })
   );
 
   return describe('entering valid number', () =>
-    it('sends associated action', function() {
+    it('sends associated action', async function() {
       this.set('value', null);
       this.set('actionCounter', 0);
       this.set('pushValue', function(key, value) {
         this.set('actionCounter', this.get('actionCounter') + 1);
         expect(key).to.eq('test');
         if(isEqual(this.get('actionCounter'), 1)) {
-          return expect(value).to.eq(null);
+          expect(value).to.eq(null);
         } else {
-          return expect(value).to.eq('60s');
+          expect(value).to.eq('60s');
         }
       });
-      this.render(hbs("{{filter-seconds label='Test' key='test' value=value onValueChange=(action pushValue) step='0.01'}}"));
+      await render(hbs("{{filter-seconds label='Test' key='test' value=value onValueChange=(action pushValue) step='0.01'}}"));
       expect(this.get('actionCounter')).to.eq(1);
-      fillIn('input', '60');
-      return expect(this.get('actionCounter')).to.eq(2);
+      await fillIn('input', '60');
+      expect(this.get('actionCounter')).to.eq(2);
     })
   );
 });

@@ -1,21 +1,18 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { beforeEach, describe, it } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from '../helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import { currentRouteName, visit } from '@ember/test-helpers';
 
-describe("Acceptance: Index page", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    authenticateSession(this.App, {email: "user@exmple.com"});
+describe('Acceptance: Index page', function() {
+  setupApplicationTest();
+
+  beforeEach(async function() {
+    await authenticateSession({email: 'user@exmple.com'});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  return it("redirects to /realtime", function() {
-    visit("/");
-    return andThen(() => expect(currentPath()).to.equal("realtime.index"));
+  return it('redirects to /realtime', async function() {
+    await visit('/');
+    expect(currentRouteName()).to.equal('realtime.index')
   });
 });

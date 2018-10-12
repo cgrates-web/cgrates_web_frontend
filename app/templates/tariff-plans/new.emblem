@@ -1,6 +1,0 @@
-section.page-header.full-width
-  .container
-    h1.page-title Add a Tariff plan
-main.full-width
-  .container
-    partial 'tariff-plan/form'

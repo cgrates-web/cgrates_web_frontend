@@ -1,0 +1,61 @@
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>TpRatingProfile: {{model.id}}</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'tariff-plan.tp-rating-profiles.tp-rating-profile.edit' model}}
+            <i class="material-icons circle btn btn-primary" data-test-rating-profile-edit>edit</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Load ID</h5>
+        <p>{{model.loadid}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Direction</h5>
+        <p>{{model.direction}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tenant</h5>
+        <p>{{model.tenant}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Category</h5>
+        <p>{{model.category}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Subject</h5>
+        <p>{{model.subject}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Fallback subjects</h5>
+        <p>{{model.fallbackSubjects}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Activation time</h5>
+        <p>{{model.activationTime}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>CDR stat queue IDs</h5>
+        <p>{{model.cdrStatQueueIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Rating plan tag</h5>
+        <p>{{model.ratingPlanTag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{moment-format model.createdAt}}</p>
+      </div>
+    </div>
+  </div>
+</main>

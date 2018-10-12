@@ -1,47 +1,62 @@
-@media #{$large-and-up} {
-   main, footer, section.page-header{
-     padding-left: 240px;
-   }
+h2.subtitle {
+  margin-bottom: 1rem;
+  text-decoration: underline;
 }
 
-main, footer, section.page-header {
-  &.full-width {
-    padding-left: 0px;
+#main-menu {
+  @include media-breakpoint-down(md) {
+    padding-left: 60px;
   }
 }
 
-ul#slide-out.side-nav {
-  margin-top: 64px;
+.container.xl {
+  max-width: 1450px;
 }
 
-section.page-header {
-  height: 122px;
-  background-color: color("teal", "darken-1");
-  h1 {
-    color: white;
-    margin: 0 0 1.68rem 0;
-    padding-top: 2.1rem;
+.page-header {
+  padding: 1rem;
+  color: $white;
+  background-color: $cyan;
+  .page-title {
+    margin-bottom: 0;
   }
 }
 
+.page-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.actions-subtitle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.6rem;
+  h2 {
+    margin-bottom: 0;
+  }
+  ul.actions {
+    padding: 0 0 0 0.4rem;
+    margin-bottom: 0;
+    li {
+      display: inline-block;
+      margin-left: 0.8rem;
+      .material-icons {
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+// tables
 td a {
   color: inherit;
   &:hover {
     text-decoration: underline;
   }
 }
-
-.actions a {
-  margin-right: 10px;
-  &:last-child {
-    margin-right: inherit;
-  }
-}
-
 td.actions {
   white-space: nowrap;
 }
-
 td.sort-header {
   a {
     cursor: pointer;
@@ -50,7 +65,11 @@ td.sort-header {
     font-size: inherit;
   }
 }
-
-.input-field:last-of-type {
-  margin-bottom: 15px;
+//forms
+input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+}
+.is-required>label:after {
+  content: '*';
 }

@@ -1,0 +1,41 @@
+{{#bs-form model=model onSubmit=(action 'save') novalidate=true as |form|}}
+  <div class='form-row'>
+    {{form.element
+      label='Tag'
+      property='tag'
+      class='col-md-6'
+      data-test-tag=true
+    }}
+    {{form.element
+      label='Years'
+      property='years'
+      class='col-md-6'
+      data-test-years=true
+    }}
+    {{form.element
+      label='Months'
+      property='months'
+      class='col-md-6'
+      data-test-months=true
+    }}
+    {{form.element
+      label='Month Days'
+      property='monthDays'
+      class='col-md-6'
+      data-test-month-days=true
+    }}
+    {{form.element
+      label='Week Days'
+      property='weekDays'
+      class='col-md-6'
+      data-test-week-days=true
+    }}
+    {{form.element
+      label='Time'
+      property='time'
+      class='col-md-6'
+      data-test-time=true
+    }}
+  </div>
+  {{bs-button defaultText='Save' type='primary' buttonType='submit' data-test-submit-button=true}}
+{{/bs-form}}

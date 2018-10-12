@@ -1,59 +1,29 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
-import registerPowerSelectHelpers from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-
-registerPowerSelectHelpers();
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, fillIn } from '@ember/test-helpers';
+import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe("Acceptance: TpRatingProfile.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRatingPlan1 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan1'});
     this.tpRatingPlan2 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan2'});
     this.tpRatingProfile = server.create('tp-rating-profile', {
+      id: '1',
       tpid: this.tariffPlan.alias,
       rating_plan_tag: this.tpRatingPlan1.tag
     });
-    authenticateSession(this.App, {email: "user@example.com"});
+    await authenticateSession({email: "user@example.com"});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-rating-profiles');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Load ID')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Tenant')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Category')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Subject')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Fallback subjects')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Activation time')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('CDR stat queue IDs')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Load ID')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Direction')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Tenant')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Category')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Subject')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Fallback subjects')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Activation time')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('CDR stat queue IDs')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Rating plan tag')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
-
-  return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+  describe('fill form with correct data and submit', () =>
+    it('sends correct data to the backend', async function() {
       let counter = 0;
 
       server.patch('/tp-rating-profiles/:id', (schema, request) => {
@@ -72,24 +42,19 @@ describe("Acceptance: TpRatingProfile.Edit", function() {
         return { data: {id: this.tpRatingProfile.id, type: 'tp-rating-profile'} };
       });
 
-      visit('/tariff-plans/1/tp-rating-profiles');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Load ID')").attr('for')}`, 'loadtest');
-        selectChoose(`#${find("label:contains('Direction')").attr('for')}`, '*out');
-        fillIn(`#${find("label:contains('Tenant')").attr('for')}`, 'tenanttest');
-        fillIn(`#${find("label:contains('Category')").attr('for')}`, 'categorytest');
-        fillIn(`#${find("label:contains('Subject')").attr('for')}`, 'subject1');
-        fillIn(`#${find("label:contains('Fallback subjects')").attr('for')}`, 'subject2');
-        fillIn(`#${find("label:contains('Activation time')").attr('for')}`, 'activationtime');
-        fillIn(`#${find("label:contains('CDR stat queue IDs')").attr('for')}`, 'queuetest');
-        selectSearch(`#${find("label:contains('Rating plan tag')").attr('for')}`, 'ratingplan');
-        return andThen(function() {
-          selectChoose(`#${find("label:contains('Rating plan tag')").attr('for')}`, 'ratingplan2');
-          click('button[type="submit"]');
-          return andThen(() => expect(counter).to.eq(1));
-        });
-      });
+      await visit('/tariff-plans/1/tp-rating-profiles/1/edit');
+      await fillIn('[data-test-loadid] input', 'loadtest');
+      await selectChoose('[data-test-select="direction"]', '*out');
+      await fillIn('[data-test-tenant] input', 'tenanttest');
+      await fillIn('[data-test-category] input', 'categorytest');
+      await fillIn('[data-test-subject] input', 'subject1');
+      await fillIn('[data-test-fallback-subjects] input', 'subject2');
+      await fillIn('[data-test-activation-time] input', 'activationtime');
+      await fillIn('[data-test-cdr-stat-queue-ids] input', 'queuetest');
+      await selectSearch('[data-test-tag="tp-rating-plan"]', 'ratingplan');
+      await selectChoose('[data-test-tag="tp-rating-plan"]', 'ratingplan2');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

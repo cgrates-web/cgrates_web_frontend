@@ -10,11 +10,20 @@ export default Controller.extend({
 
   sortedAccounts: computed.sort('model', 'accountsSorting'),
 
+
+  pagination: computed('page', 'totalPages', function () {
+    return {
+      page: this.get('page'),
+      totalPages: this.get('totalPages'),
+    }
+  }),
+
   totalPages: computed('page', function() {
     return this.get('page') + 1;
   }),
 
   actions: {
-    remove(account) { return account.destroyRecord(); }
+    remove(account) { return account.destroyRecord(); },
+    toPage(page) { this.set('page', page); }
   }
 });

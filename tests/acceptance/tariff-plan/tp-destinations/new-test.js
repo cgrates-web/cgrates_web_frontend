@@ -1,53 +1,51 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: TpDestinations.New", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {ia: '1', name: 'Test', alias: 'tptest'});
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('visit /tariff-plans/1/tp-destinations/new', () =>
-    it('renders tp-destination form', function() {
-      visit('/tariff-plans/1/tp-destinations/new');
-      return andThen(() => expect(find('form input').length).to.eq(2));
+    it('renders tp-destination form', async function() {
+      await visit('/tariff-plans/1/tp-destinations/new');
+      expect(findAll('form input').length).to.eq(2);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-destination', function() {
-      visit('/tariff-plans/1/tp-destinations');
-      click('.fixed-action-btn a');
-      click("ul#slide-out li a:contains('Destinations')");
-      return andThen(() => expect(find('table tbody tr').length).to.eq(0));
+    it('removes not saved tp-destination', async  function() {
+      await visit('/tariff-plans/1/tp-destinations/new');
+      await click('[data-test-destinations-link]');
+      expect(findAll('table tbody tr').length).to.eq(0);
     })
   );
 
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-destinations/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Prefix')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Prefix')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
+  describe('submit empty form', function () {
+    beforeEach(async function () {
+      await visit('/tariff-plans/1/tp-destinations/new');
+      await click('[data-test-submit-button]');
+    });
+    it('displays tag error', async function () {
+      expect(find('[data-test-tag] input')).to.have.class('is-invalid');
+      expect(find('[data-test-tag] .invalid-feedback')).to.have.class('d-block');
+    });
+    it('displays prefix error', async function () {
+      expect(find('[data-test-prefix] input')).to.have.class('is-invalid');
+      expect(find('[data-test-prefix] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
 
-  return describe('fill form with correct data and submit', () =>
-    it('saves new tp-destination with correct data', function() {
+  describe('fill form with correct data and submit', () =>
+    it('saves new tp-destination with correct data', async function() {
       let counter = 0;
 
       server.post('/tp-destinations/', function(schema, request) {
@@ -59,13 +57,11 @@ describe("Acceptance: TpDestinations.New", function() {
         return { data: {id: '1', type: 'tp-destination'} };
       });
 
-      visit('/tariff-plans/1/tp-destinations/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'tagtest');
-        fillIn(`#${find("label:contains('Prefix')").attr('for')}`, '+44');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-destinations/new');
+      await fillIn('[data-test-tag] input', 'tagtest');
+      await fillIn('[data-test-prefix] input', '+44');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

@@ -14,9 +14,11 @@ export default function() {
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
   this.get('/destinations');
+  this.post('/destinations');
   this.del('/destinations/:id');
 
   this.get('/accounts');
+  this.get('/accounts/:id');
   this.del('/accounts/:id');
 
   this.get('tariff-plans');
@@ -116,6 +118,7 @@ export default function() {
   this.get('/tp-action-plans', function(db, request) {
     return db.tpActionPlans.where({tpid: request.queryParams['tpid']});
   });
+
   this.get('/tp-action-plans/:id');
   this.del('/tp-action-plans/:id');
 
@@ -131,8 +134,8 @@ export default function() {
   this.get('/tp-filters/:id');
   this.del('/tp-filters/:id');
 
-  this.resource('tp-suppliers')
-  this.resource('raw-supplier-rates')
+  this.resource('tp-suppliers');
+  this.resource('raw-supplier-rates');
 
-  this.post('/raw-supplier-resolve-jobs')
+  this.post('/raw-supplier-resolve-jobs');
 }

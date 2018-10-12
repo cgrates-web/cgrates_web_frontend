@@ -1,6 +1,0 @@
-section.page-header.full-width
-  .container
-    h1.page-title User: #{model.email}
-main.full-width
-  .container
-    outlet

@@ -1,35 +1,32 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, click, currentRouteName } from '@ember/test-helpers';
 
 describe("Acceptance: TpDestination.Index", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    this.tpDestination = server.create('tp-destination', {tpid: this.tariffPlan.alias, tag: 'tagtest'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    this.tpDestination = server.create('tp-destination', {id: '1', tpid: this.tariffPlan.alias, tag: 'tagtest'});
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('basic rendering', () =>
-    it('renders specific header', function() {
-      visit('/tariff-plans/1/tp-destinations');
-      click("table tbody tr:first-child td a:contains('tagtest')");
-      return andThen(() => expect(find('main h2').text()).to.eq('TpDestination: tagtest'));
+    it('renders specific header', async function() {
+      await visit('/tariff-plans/1/tp-destinations/1');
+      expect(find('main h2').textContent).to.eq('TpDestination: tagtest');
     })
   );
 
-  return describe('click edit button', () =>
-    it('redirects to tp-destination edit page', function() {
-      visit('/tariff-plans/1/tp-destinations');
-      click("table tbody tr:first-child td a:contains('tagtest')");
-      click('.fixed-action-btn a');
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.tariff-plan.tp-destinations.tp-destination.edit'));
+  describe('click edit button', () =>
+    it('redirects to tp-destination edit page', async function() {
+      await visit('/tariff-plans/1/tp-destinations/1');
+      await click('[data-test-edit]');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-destinations.tp-destination.edit');
     })
   );
 });

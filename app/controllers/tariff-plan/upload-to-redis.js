@@ -1,22 +1,14 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { equal } from '@ember/object/computed';
 import { isBlank } from '@ember/utils';
 
 export default Controller.extend({
-  ajax:     service(),
+  ajax:           service(),
+  flashMessages:  service(),
 
   flushDB:  false,
   dryRun:   false,
   validate: false,
-
-  uploadIsSuccessful: equal('uploadStatus', 'success'),
-  uploadIsFailed:     equal('uploadStatus', 'error'),
-
-  refreshUploadStatus() {
-    this.set('uploadStatus', null);
-    return this.set('uploadErrors', null);
-  },
 
   actions: {
     upload() {
@@ -29,12 +21,11 @@ export default Controller.extend({
 
       return this.get('ajax').post('/api/load-tariff-plan', {data: {data: {attributes: attrs}}}).then( res => {
         if (isBlank(res.error)) {
-          return this.set('uploadStatus', 'success');
+          return this.get('flashMessages').success('Tariff plan has been uploaded to CGrates');
         } else {
-          this.set('uploadStatus', 'error');
-          return this.set('uploadError', res.error);
+          return this.get('flashMessages').danger(`Error! ${res.error}`);
         }
-      }).catch( () => this.set('uploadStatus', 'error'));
+      }).catch( () => this.get('flashMessages').danger('Something went wrong'));
     }
   }
 });

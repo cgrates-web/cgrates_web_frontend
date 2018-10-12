@@ -1,7 +1,11 @@
 .filter-block {
-  .actions {
-    .action {
-      margin-bottom: 0.5em;
+  .form-group {
+    margin-bottom: 0.4rem;
+    label {
+      margin-bottom: 0.2rem;
     }
+  }
+  .f-actions {
+    margin-top: 1rem;
   }
 }

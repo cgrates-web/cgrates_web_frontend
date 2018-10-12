@@ -1,8 +1,0 @@
-form{action 'save' on='submit'}
-  md-input   value=model.tag          label='Tag'                   errors=model.errors.tag          required=true validate=true
-  input-tags value=model.destratesTag label='Destination rates tag' errors=model.errors.destratesTag modelName='tp-destination-rate' tpid=model.tpid
-  input-tags value=model.timingTag    label='Timing tag'            errors=model.errors.timingTag    modelName='tp-timing'           tpid=model.tpid allowAny=true
-  md-input   value=model.weight       label='Weight (decimal)'      errors=model.errors.weight       required=true validate=true type='number' step='0.1' min='0'
-
-  button.waves-effect.waves-light.btn type='submit'
-    | Save

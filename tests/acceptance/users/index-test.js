@@ -1,60 +1,63 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, find, findAll, click, currentRouteName } from '@ember/test-helpers';
 
 describe("Acceptance: Users.Index", function() {
-  beforeEach(function() {
-    this.App = startApp();
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
     this.users = server.createList('user', 2);
-    authenticateSession(this.App, {email: "user@example.com"});
+    await authenticateSession({email: "user@example.com"});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
+  describe('visit /users', function () {
+    beforeEach(async function () {
+      await visit('/users');
+    });
+    it("renders table with 2 users", async function () {
+      expect(findAll('table tbody tr').length).to.eq(2);
+    });
+    it("renders table with users sorted by id", function () {
+      expect(find('table tbody tr:first-child td:first-child').textContent.trim()).to.eq('1');
+    });
+    it("renders correct page header", async function () {
+      expect(find('.page-header h1').textContent.trim()).to.eq('Users');
+    });
   });
-
-  describe('visit /users', () =>
-    it("renders table with users sorted by id", function() {
-      visit("/users");
-      return andThen(function() {
-        expect(find('section.page-header h1').text()).to.eq('Users');
-        expect(find('table tbody tr').length).to.eq(2);
-        return expect(find('table tbody tr:first-child td:first-child').text()).to.eq('1');
-      });
-    })
-  );
 
   describe('select user', () =>
-    it('reditects to user page', function() {
-      visit('/users');
-      click('table tbody tr:first-child td:first-child a');
-      return andThen(() => expect(currentPath()).to.equal("users.user.index"));
+    it('reditects to user page', async function() {
+      await visit('/users');
+      await click('table tbody tr:first-child td:first-child a');
+      expect(currentRouteName()).to.equal('user.index');
     })
   );
 
   describe('click edit button', () =>
-    it('reditects to edit user page', function() {
-      visit('/users');
-      click('table tbody tr:first-child a.edit');
-      return andThen(() => expect(currentPath()).to.equal('users.user.edit'));
+    it('reditects to edit user page', async function() {
+      await visit('/users');
+      await click('[data-test-user-edit]');
+      expect(currentRouteName()).to.equal('user.edit');
     })
   );
 
   describe('click remove button', () =>
-    it('removes user', function() {
-      visit("/users");
-      click('table tbody tr:first-child a.remove');
-      return andThen(() => expect(find('table tbody tr').length).to.eq(1));
+    it('removes user', async function() {
+      await visit('/users');
+      await click('[data-test-user-remove]');
+      expect(findAll('table tbody tr').length).to.eq(1);
     })
   );
 
   return describe('click add button', () =>
-    it('redirects to new user page', function() {
-      visit('/users');
-      click('.fixed-action-btn a');
-      return andThen(() => expect(currentPath()).to.equal('users.new'));
+    it('redirects to new user page', async function() {
+      await visit('/users');
+      await click('[data-test-user-add]');
+      expect(currentRouteName()).to.equal('users.new');
     })
   );
 });

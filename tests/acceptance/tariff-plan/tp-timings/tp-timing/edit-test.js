@@ -1,35 +1,22 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: TpTiming.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    this.tpTiming = server.create('tp-timing', {tpid: this.tariffPlan.alias});
-    authenticateSession(this.App, {email: "user@example.com"});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    this.tpTiming = server.create('tp-timing', {id: '1', tpid: this.tariffPlan.alias});
+    await authenticateSession({email: "user@example.com"});
   });
 
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-timings');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(() => expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1));
-      });
-    })
-  );
-
-  return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+  describe('fill form with correct data and submit', () =>
+    it('sends correct data to the backend', async function() {
       let counter = 0;
 
       server.patch('/tp-timings/1/', function(schema, request) {
@@ -45,18 +32,15 @@ describe("Acceptance: TpTiming.Edit", function() {
         return { data: {id: '1', type: 'tp-timing'} };
       });
 
-      visit('/tariff-plans/1/tp-timings');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'tagtest');
-        fillIn(`#${find("label:contains('Years')").attr('for')}`, '2017');
-        fillIn(`#${find("label:contains('Months')").attr('for')}`, 'june');
-        fillIn(`#${find("label:contains('Month Days')").attr('for')}`, '30');
-        fillIn(`#${find("label:contains('Week Days')").attr('for')}`, '14');
-        fillIn(`#${find("label:contains('Time')").attr('for')}`, '14');
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/tariff-plans/1/tp-timings/1/edit');
+      await fillIn('[data-test-tag] input', 'tagtest');
+      await fillIn('[data-test-years] input', '2017');
+      await fillIn('[data-test-months] input', 'june');
+      await fillIn('[data-test-month-days] input', '30');
+      await fillIn('[data-test-week-days] input', '14');
+      await fillIn('[data-test-time] input', '14');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

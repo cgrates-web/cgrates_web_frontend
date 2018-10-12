@@ -1,6 +1,11 @@
 import DS from 'ember-data';
+import { validator, buildValidations } from 'ember-cp-validations';
 
-export default DS.Model.extend({
+const Validations = buildValidations({
+  account:      validator('presence', true),
+  balanceType:  validator('presence', true),
+});
+export default DS.Model.extend(Validations, {
   account:        DS.attr('string'),
   balanceType:    DS.attr('string'),
   directions:     DS.attr('string'),

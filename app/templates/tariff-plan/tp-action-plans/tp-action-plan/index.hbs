@@ -1,0 +1,41 @@
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>TpActionPlan: {{model.tag}}</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'tariff-plan.tp-action-plans.tp-action-plan.edit' model data-test-edit=true}}
+            <i class="material-icons circle btn btn-primary">edit</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tag</h5>
+        <p>{{model.tag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Actions tag</h5>
+        <p>{{model.actionsTag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Timing tag</h5>
+        <p>{{model.timingTag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Weight</h5>
+        <p>{{model.weight}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{moment-format model.createdAt}}</p>
+      </div>
+    </div>
+  </div>
+</main>

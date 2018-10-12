@@ -1,8 +1,8 @@
 import { Factory, faker } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  allowNegative()  { false },
-  disabled()       { false },
+  allowNegative:  false,
+  disabled:       false,
 
   balanceMap() {
     return {

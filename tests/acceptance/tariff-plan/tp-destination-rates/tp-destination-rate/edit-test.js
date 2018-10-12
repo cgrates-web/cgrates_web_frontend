@@ -1,56 +1,32 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
-import registerPowerSelectHelpers from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-
-registerPowerSelectHelpers();
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, fillIn } from '@ember/test-helpers';
+import { selectChoose, selectSearch } from 'ember-power-select/test-support/helpers';
 
 describe("Acceptance: TpDestinationRate.Edit", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRate1 = server.create('tp-rate', {tpid: 'tptest', tag: 'ratetest1'});
     this.tpRate2 = server.create('tp-rate', {tpid: 'tptest', tag: 'ratetest2'});
     this.tpDestination1 = server.create('tp-destination', {tpid: 'tptest', tag: 'destinationtest1'});
     this.tpDestination2 = server.create('tp-destination', {tpid: 'tptest', tag: 'destinationtest2'});
     this.tpDestinationRate = server.create('tp-destination-rate', {
+      id: '1',
       tpid: this.tariffPlan.alias,
       rates_tag: this.tpRate1.tag,
       destinations_tag: this.tpDestination1.tag
     });
-    authenticateSession(this.App, {email: "user@example.com"});
+    await authenticateSession({email: "user@example.com"});
   });
-
-  afterEach(function () {
-    destroyApp(this.App);
-  });
-
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/tariff-plans/1/tp-destination-rates');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Rounding decimals')").attr('for')}`, '');
-        fillIn(`#${find("label:contains('Max cost (decimal)')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('Tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rates tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Destinations tag')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rounding decimals')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Max cost (decimal)')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Rounding method')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Max cost strategy')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
 
   return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', function() {
+    it('sends correct data to the backend', async function() {
       let counter = 0;
 
       server.patch('/tp-destination-rates/:id', (schema, request) => {
@@ -67,25 +43,18 @@ describe("Acceptance: TpDestinationRate.Edit", function() {
         return { data: {id: this.tpDestinationRate.id, type: 'tp-destination-rate'} };
       });
 
-      visit('/tariff-plans/1/tp-destination-rates');
-      click('table tbody tr:first-child a.edit');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'edited');
-        selectSearch(`#${find("label:contains('Rates tag')").attr('for')}`, 'ratetest');
-        return andThen(function() {
-          selectChoose(`#${find("label:contains('Rates tag')").attr('for')}`, 'ratetest2');
-          selectSearch(`#${find("label:contains('Destinations tag')").attr('for')}`, 'destinationtest');
-          return andThen(function() {
-            selectChoose(`#${find("label:contains('Destinations tag')").attr('for')}`, 'destinationtest2');
-            fillIn(`#${find("label:contains('Rounding decimals')").attr('for')}`, '1');
-            fillIn(`#${find("label:contains('Max cost (decimal)')").attr('for')}`, '100.0');
-            selectChoose(`#${find("label:contains('Rounding method')").attr('for')}`, '*middle');
-            selectChoose(`#${find("label:contains('Max cost strategy')").attr('for')}`, '*disconnect');
-            click('button[type="submit"]');
-            return andThen(() => expect(counter).to.eq(1));
-          });
-        });
-      });
+      await visit('/tariff-plans/1/tp-destination-rates/1/edit');
+      await fillIn('[data-test-tag] input', 'edited');
+      await selectSearch('[data-test-tag="rates"]', 'ratetest');
+      await selectChoose('[data-test-tag="rates"]', 'ratetest2');
+      await selectSearch('[data-test-tag="destinations"]', 'destinationtest');
+      await selectChoose('[data-test-tag="destinations"]', 'destinationtest2');
+      await fillIn('[data-test-rounding-decimals] input', '1');
+      await fillIn('[data-test-max-cost] input', '100.0');
+      await selectChoose('[data-test-select="rounding-method"]', '*middle');
+      await selectChoose('[data-test-select="max-cost-strategy"]', '*disconnect');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

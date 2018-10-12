@@ -4,13 +4,13 @@ export default Controller.extend({
   flashMessages: service(),
   actions: {
     save() {
-      const file = document.getElementById('csv_import').files[0];
+      const file = this.get('file');
       this.model.set('csv', file);
       this.model.save().then(() => {
-        this.get('flashMessages').success('Import from CSV is starting')
-        this.transitionToRoute('tariff-plan.raw-supplier-rates.index')
+        this.get('flashMessages').success('Import from CSV is starting');
+        this.transitionToRoute('tariff-plan.raw-supplier-rates.index');
       }).catch(() => {
-        this.get('flashMessages').alert('Somethings went wrong')
+        this.get('flashMessages').danger('Somethings went wrong')
       })
     }
   }

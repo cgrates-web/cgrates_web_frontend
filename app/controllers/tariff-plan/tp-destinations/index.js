@@ -6,5 +6,4 @@ export default Controller.extend(QueryControllerMixin, {
 
   tag:    null,
   prefix: null
-}
-);
+});

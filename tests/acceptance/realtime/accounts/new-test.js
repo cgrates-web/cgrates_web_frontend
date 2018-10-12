@@ -1,52 +1,44 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, find, findAll, fillIn } from '@ember/test-helpers';
 
 describe("Acceptance: Accounts.New", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    authenticateSession(this.App, {email: "user@eaxmple.com"});
-  });
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
 
-  afterEach(function () {
-    destroyApp(this.App);
+  beforeEach(async function() {
+    await authenticateSession({email: "user@eaxmple.com"});
   });
 
   describe('visit /realtime/accounts/new', () =>
-    it('renders account form', function() {
-      visit('/realtime/accounts/new');
-      return andThen(() => expect(find('form input').length).to.eq(3));
+    it('renders account form', async function() {
+      await visit('/realtime/accounts/new');
+      expect(findAll('form input').length).to.eq(3);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved account', function() {
-      visit('/realtime/accounts');
-      click('.fixed-action-btn a');
-      click("ul#slide-out li a:contains('Accounts')");
-      return andThen(() => expect(find('table tbody tr').length).to.eq(0));
+    it('removes not saved account', async function() {
+      await visit('/realtime/accounts/new');
+      await click('[data-test-accounts-link]');
+      expect(findAll('table tbody tr').length).to.eq(0);
     })
   );
 
-  describe('fill form with incorrect data and submit', () =>
-    it('does not submit data', function() {
-      visit('/realtime/accounts/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('ID')").attr('for')}`, '');
-        click('button[type="submit"]');
-        return andThen(function() {
-          expect(find(`#${find("label:contains('ID')").attr('for')}`).length).to.eq(1);
-          expect(find(`#${find("label:contains('Allow negative')").attr('for')}`).length).to.eq(1);
-          return expect(find(`#${find("label:contains('Disabled')").attr('for')}`).length).to.eq(1);
-        });
-      });
-    })
-  );
+  describe('submit empty form', function () {
+    it('displays id error', async function () {
+      await visit('/realtime/accounts/new');
+      await click('[data-test-submit-button]');
+      expect(find('[data-test-id] input')).to.have.class('is-invalid');
+      expect(find('[data-test-id] .invalid-feedback')).to.have.class('d-block');
+    });
+  });
 
-  return describe('fill form with correct data and submit', () =>
-    it('saves new account with correct data', function() {
+  describe('fill form with correct data and submit', () =>
+    it('saves new account with correct data', async function() {
       let counter = 0;
 
       server.post('/accounts/', function(schema, request) {
@@ -58,14 +50,12 @@ describe("Acceptance: Accounts.New", function() {
         return { data: {id: 'test', type: 'account'} };
       });
 
-      visit('/realtime/accounts/new');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('ID')").attr('for')}`, 'test');
-        click(`#${find("label:contains('Allow negative')").attr('for')}`);
-        click(`#${find("label:contains('Disabled')").attr('for')}`);
-        click('button[type="submit"]');
-        return andThen(() => expect(counter).to.eq(1));
-      });
+      await visit('/realtime/accounts/new');
+      await fillIn('[data-test-id] input', 'test');
+      await click('[data-test-disabled] input');
+      await click('[data-test-allow-negative] input');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
     })
   );
 });

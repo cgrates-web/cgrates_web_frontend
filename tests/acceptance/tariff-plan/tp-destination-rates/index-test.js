@@ -1,70 +1,65 @@
-import { describe, it, beforeEach, afterEach } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
-import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
+import { selectChoose } from 'ember-power-select/test-support/helpers';
 import { isBlank } from '@ember/utils';
-import registerPowerSelectHelpers from 'cgrates-web-frontend/tests/helpers/ember-power-select';
-
-registerPowerSelectHelpers();
 
 describe("Acceptance: TpDestinationRates.Index", function() {
-  beforeEach(function() {
-    this.App = startApp();
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpDestinationRates = server.createList('tp-destination-rate', 2, {tpid: this.tariffPlan.alias});
     this.other = server.createList('tp-destination-rate', 2, {tpid: 'other'});
-    authenticateSession(this.App, {email: "user@example.com"});
-  });
-
-  afterEach(function () {
-    destroyApp(this.App);
+    await authenticateSession({email: "user@example.com"});
   });
 
   describe('visit /tariff-plans/1/tp-destination-rates', () =>
-    it("renders table with tp-destination-rates", function() {
-      visit('/tariff-plans/1/tp-destination-rates');
-      return andThen(function() {
-        expect(find('main h2').text()).to.eq('TpDestinationRates list');
-        return expect(find('table tbody tr').length).to.eq(2);
-      });
+    it("renders table with tp-destination-rates", async function() {
+      await visit('/tariff-plans/1/tp-destination-rates');
+      expect(find('main h2').textContent).to.eq('TpDestinationRates list');
+      expect(findAll('table tbody tr').length).to.eq(2);
     })
   );
 
   describe('select tp-destination-rate', () =>
-    it('reditects to tp-destination-rate page', function() {
-      visit('/tariff-plans/1/tp-destination-rates');
-      click('table tbody tr:first-child td:first-child a');
-      return andThen(() => expect(currentPath()).to.equal("tariff-plans.tariff-plan.tp-destination-rates.tp-destination-rate.index"));
+    it('reditects to tp-destination-rate page', async function() {
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await click('table tbody tr:first-child td:first-child a');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.tp-destination-rate.index');
     })
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-destination-rate page', function() {
-      visit('/tariff-plans/1/tp-destination-rates');
-      click('table tbody tr:first-child a.edit');
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.tariff-plan.tp-destination-rates.tp-destination-rate.edit'));
+    it('reditects to edit tp-destination-rate page', async function() {
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await click('[data-test-tp-destination-rate-edit]');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.tp-destination-rate.edit');
     })
   );
 
   describe('click remove button', () =>
-    it('removes tp-destination-rate', function() {
-      visit('/tariff-plans/1/tp-destination-rates');
-      click('table tbody tr:first-child a.remove');
-      return andThen(() => expect(find('table tbody tr').length).to.eq(1));
+    it('removes tp-destination-rate', async function() {
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await click('[data-test-tp-destination-rate-remove]');
+      expect(findAll('table tbody tr').length).to.eq(1);
     })
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-destination-rate page', function() {
-      visit('/tariff-plans/1/tp-destination-rates');
-      click('.fixed-action-btn a');
-      return andThen(() => expect(currentPath()).to.equal('tariff-plans.tariff-plan.tp-destination-rates.new'));
+    it('redirects to new tp-destination-rate page', async function() {
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await click('[data-test-tp-destination-rate-add]');
+      expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.new');
     })
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', function() {
+    it('makes a correct filter query', async function() {
       let counter = 0;
 
       server.get('/tp-destination-rates/', function(schema, request) {
@@ -99,23 +94,21 @@ describe("Acceptance: TpDestinationRates.Index", function() {
         return { data: [{id: '1', type: 'tp-destination-rate'}] };
       });
 
-      visit('/tariff-plans/1/tp-destination-rates');
-      return andThen(function() {
-        fillIn(`#${find("label:contains('Tag')").attr('for')}`, 'tagtest');
-        fillIn(`#${find("label:contains('Rates tag')").attr('for')}`, 'ratetest');
-        fillIn(`#${find("label:contains('Destinations tag')").attr('for')}`, 'destinationtest');
-        fillIn(`#${find("label:contains('Rounding decimals')").attr('for')}`, '1');
-        fillIn(`#${find("label:contains('Max cost (decimal)')").attr('for')}`, '100.0');
-        selectChoose(`#${find("label:contains('Rounding method')").attr('for')}`, '*up');
-        selectChoose(`#${find("label:contains('Max cost strategy')").attr('for')}`, '*free');
-        click('button.search-button');
-        return andThen(() => expect(counter).to.eq(2));
-      });
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await fillIn('[data-test-filter-tag] input', 'tagtest');
+      await fillIn('[data-test-filter-rates-tag] input', 'ratetest');
+      await fillIn('[data-test-filter-destinations-tag] input', 'destinationtest');
+      await fillIn('[data-test-filter-rounding-decimals] input', '1');
+      await fillIn('[data-test-filter-max-cost] input', '100.0');
+      await selectChoose('[data-test-filter-rounding-method]', '*up');
+      await selectChoose('[data-test-filter-max-cost-strategy]', '*free');
+      await click('[data-test-filter-search-btn]');
+      expect(counter).to.eq(2);
     })
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', function() {
+    it('makes a correct sort query', async function() {
       let counter = 0;
 
       server.get('/tp-destination-rates/', function(schema, request) {
@@ -134,15 +127,15 @@ describe("Acceptance: TpDestinationRates.Index", function() {
         return { data: [{id: '1', type: 'tp-destination-rate'}] };
       });
 
-      visit('/tariff-plans/1/tp-destination-rates');
-      click(".sort-header a:contains('Tag')");
-      click(".sort-header a:contains('Tag')");
-      return andThen(() => expect(counter).to.eq(3));
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await click('[data-test-sort-tag] a');
+      await click('[data-test-sort-tag] a');
+      expect(counter).to.eq(3);
     })
   );
 
-  return describe('click pagination link', () =>
-    it('makes a correct pagination query', function() {
+  describe('click pagination link', () =>
+    it('makes a correct pagination query', async function() {
       let counter = 0;
 
       server.get('/tp-destination-rates/', function(schema, request) {
@@ -161,9 +154,9 @@ describe("Acceptance: TpDestinationRates.Index", function() {
         return { data: [{id: '1', type: 'tp-destination-rate'}], meta: {total_pages: 2} };
       });
 
-      visit('/tariff-plans/1/tp-destination-rates');
-      click("ul.pagination li a:contains('2')");
-      return andThen(() => expect(counter).to.eq(2));
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await click('[data-test-pagination-forward]');
+      expect(counter).to.eq(2);
     })
   );
 });

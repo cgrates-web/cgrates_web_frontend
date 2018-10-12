@@ -1,0 +1,33 @@
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>TpDestination: {{model.tag}}</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to 'tariff-plan.tp-destinations.tp-destination.edit'}}
+            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tag</h5>
+        <p>{{model.tag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Prefix</h5>
+        <p>{{model.prefix}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{moment-format model.createdAt}}</p>
+      </div>
+    </div>
+  </div>
+</main>
