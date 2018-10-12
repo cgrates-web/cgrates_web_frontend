@@ -45,6 +45,15 @@ export default Route.extend(QueryRouteMixin, {
     weight: {
       refreshModel: true
     },
+    sortColumn: {
+      refreshModel: true
+    },
+    sortOrder: {
+      refreshModel: true
+    },
+    sortingParameters: {
+      refreshModel: true
+    },
     page: {
       refreshModel: true
     },
@@ -53,9 +62,11 @@ export default Route.extend(QueryRouteMixin, {
     }
   },
 
-  filterParams: Object.freeze(['tenant', 'customId', 'filterIds', 'sorting', 'activationInterval', 'supplierId', 'supplierFilterIds',
-                               'supplierAccountIds', 'supplierRatingplanIds', 'supplierResourceIds', 'supplierStatIds', 'supplierWeight',
-                               'blocker', 'weight', 'sortColumn', 'sortOrder', 'page', 'pageSize']),
+  filterParams: Object.freeze([
+    'tenant', 'customId', 'filterIds', 'sorting', 'activationInterval', 'supplierId', 'supplierFilterIds',
+    'supplierAccountIds', 'supplierRatingplanIds', 'supplierResourceIds', 'supplierStatIds', 'supplierWeight',
+    'blocker', 'weight', 'sortingParameters'
+  ]),
   modelName: 'tp-supplier'
 }
 );
