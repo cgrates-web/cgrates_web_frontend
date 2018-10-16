@@ -4,7 +4,7 @@
   </h1>
 </section>
 <main class="page-content">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class=" col-md-9">
         <div class="table-responsive">
@@ -12,7 +12,7 @@
             <thead>
             <tr>
               {{sort-header label='ID'             key='id'          sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='CGRateS ID'     key='cgrid'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='CGRateS ID'     key='cgrid'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy' data-test-sort-cgrid=true}}
               {{sort-header label='Run ID'         key='runId'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Origin Host'    key='originHost'  sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Source'         key='source'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
@@ -135,14 +135,6 @@
             onValueChange=(action 'pushValue' target=filtersBlock)
             content=selectValues.typeOfRecord
             data-test-filter-tor=true
-          }}
-          {{filter-select
-            label='Direction'
-            key='direction'
-            value=direction
-            onValueChange=(action 'pushValue' target=filtersBlock)
-            content=selectValues.direction
-            data-test-filter-direction=true
           }}
           {{filter-text
             label='Tenant'

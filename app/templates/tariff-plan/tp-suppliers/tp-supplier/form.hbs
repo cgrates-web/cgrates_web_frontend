@@ -7,7 +7,7 @@
       data-test-tenant=true
     }}
     {{form.element
-      label='ID'
+      label='Custom ID'
       property='customId'
       class='col-md-6'
       data-test-custom-id=true
@@ -19,12 +19,6 @@
       data-test-filter-ids=true
     }}
     {{form.element
-      label='Filter field name'
-      property='filterFieldName'
-      class='col-md-6'
-      data-test-filter-ield-name=true
-    }}
-    {{form.element
       label='Sorting'
       property='sorting'
       class='col-md-6'
@@ -34,11 +28,11 @@
       label='Activation interval'
       property='activationInterval'
       class='col-md-6'
-      data-test-activation-nterval=true
+      data-test-activation-interval=true
     }}
     {{form.element
-      label='Sorting params'
-      property='sortingParams'
+      label='Sorting parameters'
+      property='sortingParameters'
       class='col-md-6'
       data-test-sorting-params=true
     }}
@@ -55,7 +49,7 @@
       data-test-supplier-filter-ids=true
     }}
     {{form.element
-      label='upplier Account IDs'
+      label='Supplier Account IDs'
       property='supplierAccountIds'
       class='col-md-6'
       data-test-supplier-account-ids=true
@@ -89,6 +83,13 @@
       property='weight'
       class='col-md-6'
       data-test-weight=true
+    }}
+    {{form.element
+      label='Supplier blocker'
+      property='supplierBlocker'
+      class='col-md-3 ml-3 mb-2'
+      controlType='checkbox'
+      data-test-supplier-blocker=true
     }}
   </div>
   {{bs-button defaultText='Save' type='primary' buttonType='submit' data-test-submit-button=true}}

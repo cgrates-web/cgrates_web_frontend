@@ -21,9 +21,6 @@ export default Route.extend(QueryRouteMixin, {
     tor: {
       refreshModel: true
     },
-    direction: {
-      refreshModel: true
-    },
     tenant: {
       refreshModel: true
     },
@@ -50,11 +47,12 @@ export default Route.extend(QueryRouteMixin, {
     }
   },
 
-  filterParams: ['cgrid', 'runId', 'originHost', 'source', 'originId', 'tor',
-                 'direction', 'tenant', 'category', 'account', 'destination'],
+  filterParams: [
+    'cgrid', 'runId', 'originHost', 'source', 'originId', 'tor',
+     'tenant', 'category', 'account', 'destination'
+  ],
 
   modelName: 'cdr',
 
   notInTariffPlan: true
-}
-);
+});
