@@ -5,8 +5,10 @@ import { inject as service } from '@ember/service';
 export default Controller.extend(QueryControllerMixin, {
   selectValues: service(),
 
-  queryParams: ['cgrid', 'runId', 'originHost', 'source', 'originId', 'tor', 'direction', 'tenant',
-                'category', 'account', 'destination', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
+  queryParams: [
+    'cgrid', 'runId', 'originHost', 'source', 'originId', 'tor', 'tenant',
+    'category', 'account', 'destination', 'sortColumn', 'sortOrder', 'page', 'pageSize'
+  ],
 
   cgrid:       null,
   runId:       null,
@@ -14,7 +16,6 @@ export default Controller.extend(QueryControllerMixin, {
   source:      null,
   originId:    null,
   tor:         null,
-  direction:   null,
   tenant:      null,
   category:    null,
   account:     null,

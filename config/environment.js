@@ -24,7 +24,8 @@ module.exports = function(environment) {
     },
 
     moment: {
-      outputFormat: 'DD/MM/YYYY HH:mm:ss'
+      outputFormat: 'DD/MM/YYYY HH:mm:ss',
+      allowEmpty: true
     },
 
     emblemOptions: {
@@ -47,6 +48,9 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     // ENV.API_HOST = "http://cgrates-web.staging.yufuphone.com:4000";
+    // ENV['ember-cli-mirage'] = { enabled: false };
+
+    // ENV.API_HOST = "http://localhost:4000";
     // ENV['ember-cli-mirage'] = { enabled: false };
 
     ENV.API_HOST = 'http://localhost:4200';

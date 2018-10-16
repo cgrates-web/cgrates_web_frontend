@@ -5,7 +5,7 @@
       <ul class="actions">
         <li>
           {{#link-to 'tariff-plan.tp-suppliers.new'}}
-            <i class="material-icons circle btn btn-success" data-test-tp-rate-add>add</i>
+            <i class="material-icons circle btn btn-success" data-test-tp-supplier-add>add</i>
           {{/link-to}}
         </li>
       </ul>
@@ -16,9 +16,9 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              {{sort-header label='PK'          key='id'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='ID'          key='customId'   sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Tenant'      key='tenant'     sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='ID'          key='id'         sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Custom ID'   key='customId'   sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Tenant'      key='tenant'     sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'data-test-sort-tenant=true}}
               {{sort-header label='Filter IDs'  key='filterIds'  sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Sorting'     key='sorting'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Supplier ID' key='supplierId' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
@@ -56,10 +56,10 @@
                 </td>
                 <td class="actions">
                   {{#link-to 'tariff-plan.tp-suppliers.tp-supplier.edit' tpSupplier}}
-                    <i class="material-icons circle btn btn-primary" data-test-tp-rate-edit>edit</i>
+                    <i class="material-icons circle btn btn-primary" data-test-tp-supplier-edit>edit</i>
                   {{/link-to}}
                   <a {{action 'remove' tpSupplier}} class="ml-1">
-                    <i class="material-icons circle btn btn-danger" data-test-tp-rate-remove>remove</i>
+                    <i class="material-icons circle btn btn-danger" data-test-tp-supplier-remove>remove</i>
                   </a>
                 </td>
               </tr>
@@ -72,18 +72,11 @@
       <div class="col-md-3">
         {{#filters-block search='search' as |filtersBlock|}}
           {{filter-text
-            label='ID'
+            label='Custom ID'
             key='customId'
             value=customId
             onValueChange=(action 'pushValue' target=filtersBlock)
             data-test-filter-custom-id=true
-          }}
-          {{filter-text
-            label='Tenant'
-            key='tenant'
-            value=rateUnit
-            onValueChange=(action 'pushValue' target=filtersBlock)
-            data-test-filter-tenant=true
           }}
           {{filter-text
             label='Filter IDs'
@@ -112,6 +105,69 @@
             value=weight
             onValueChange=(action 'pushValue' target=filtersBlock)
             data-test-filter-weight=true
+          }}
+          {{filter-text
+            label='Supplier weight'
+            key='supplierWeight'
+            value=supplierWeight
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-supplier-weight=true
+          }}
+          {{filter-text
+            label='Activation interval'
+            key='activationInterval'
+            value=activationInterval
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-activation-interval=true
+          }}
+          {{filter-text
+            label='Activation interval'
+            key='activationInterval'
+            value=activationInterval
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-activation-interval=true
+          }}
+          {{filter-text
+            label='Sorting parameters'
+            key='sortingParameters'
+            value=sortingParameters
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-sorting-parameters=true
+          }}
+          {{filter-text
+            label='Supplier filter ids'
+            key='supplierFilterIds'
+            value=supplierFilterIds
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-supplier-filter-ids=true
+          }}
+          {{filter-text
+            label='Supplier account ids'
+            key='supplierAccountIds'
+            value=supplierAccountIds
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-supplier-account-ids=true
+          }}
+          {{filter-text
+            label='Supplier rating plan ids'
+            key='supplierRatingplanIds'
+            value=supplierRatingplanIds
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-supplier-ratingplan-ids=true
+          }}
+          {{filter-text
+            label='Supplier resource ids'
+            key='supplierResourceIds'
+            value=supplierResourceIds
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-supplier-resource-ids=true
+          }}
+          {{filter-text
+            label='Supplier stat ids'
+            key='supplierStatIds'
+            value=supplierStatIds
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-supplier-stat-ids=true
           }}
         {{/filters-block}}
       </div>

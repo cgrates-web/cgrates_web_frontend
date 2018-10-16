@@ -1,73 +1,63 @@
-// TODO: rewrite test in YUFU-1828
-// import { describe, it, beforeEach, afterEach } from 'mocha';
-// import { expect } from 'chai';
-// import startApp from 'cgrates-web-frontend/tests/helpers/start-app';
-// import destroyApp from 'cgrates-web-frontend/tests/helpers/destroy-app';
-// import { authenticateSession } from 'cgrates-web-frontend/tests/helpers/ember-simple-auth';
-//
-// describe("Acceptance: TpSupplier.Edit", function() {
-//   beforeEach(function() {
-//     this.App = startApp();
-//     this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-//     this.tpSupplier = server.create('tp-supplier', {tpid: this.tariffPlan.alias});
-//     authenticateSession(this.App, {email: "user@example.com"});
-//   });
-//
-//   afterEach(function () {
-//     destroyApp(this.App);
-//   });
-//
-//   describe('fill form with incorrect data and submit', () =>
-//     it('does not submit data', function() {
-//       let counter = 0;
-//       server.post('/tp-suppliers/', function() {
-//         counter = counter + 1;
-//         return {};
-//       });
-//       visit('/tariff-plans/1/tp-suppliers');
-//       click('table tbody tr:first-child a.edit');
-//       return andThen(function() {
-//         fillIn(`#${find("label:contains('Tenant')").attr('for')}`, '');
-//         fillIn(`#${find("label:contains('ID')").attr('for')}`, '');
-//         click('button[type="submit"]');
-//         return andThen(() => expect(counter).to.eq(0));
-//       });
-//     })
-//   );
-//
-//   return describe('fill form with correct data and submit', () =>
-//     it('sends correct data to the backend', function() {
-//       visit('/tariff-plans/1/tp-suppliers');
-//       click('table tbody tr:first-child a.edit');
-//
-//       return andThen(() => {
-//         fillIn(`#${find("label:contains('Tenant')").attr('for')}`, 'Test');
-//         fillIn(`#${find("label:contains('ID')").attr('for')}`, 'Test');
-//         fillIn(`#${find("label:contains('Filter IDs')").attr('for')}`, '1,2');
-//         fillIn(`#${find("label:contains('Sorting')").attr('for')}`, 'ASC');
-//         fillIn(`#${find("label:contains('Activation interval')").attr('for')}`, 'Test');
-//         fillIn(`#${find("label:contains('Supplier ID')").attr('for')}`, 'Hansa');
-//         fillIn(`#${find("label:contains('Supplier Filter IDs')").attr('for')}`, '1');
-//         fillIn(`#${find("label:contains('Supplier Account IDs')").attr('for')}`, '1');
-//         fillIn(`#${find("label:contains('Supplier Ratingplan IDs')").attr('for')}`, '1');
-//         fillIn(`#${find("label:contains('Supplier Resource IDs')").attr('for')}`, '1');
-//         fillIn(`#${find("label:contains('Supplier Stat IDs')").attr('for')}`, '1');
-//         fillIn(`#${find("label:contains('Supplier weight')").attr('for')}`, 1);
-//         fillIn(`#${find("label:contains('Weight')").attr('for')}`, 100);
-//         click('button[type="submit"]');
-//         return andThen(() => {
-//           this.tpSupplier.reload();
-//           expect(this.tpSupplier.tenant).to.eq('Test');
-//           expect(this.tpSupplier.customId).to.eq('Test');
-//           expect(this.tpSupplier.filterIds).to.eq('1,2');
-//           expect(this.tpSupplier.activationInterval).to.eq('Test');
-//           expect(this.tpSupplier.supplierId).to.eq('Hansa');
-//           expect(this.tpSupplier.supplierFilterIds).to.eq('1');
-//           expect(this.tpSupplier.supplierAccountIds).to.eq('1');
-//           expect(this.tpSupplier.supplierRatingplanIds).to.eq('1');
-//           return expect(this.tpSupplier.supplierResourceIds).to.eq('1');
-//         });
-//       });
-//     })
-//   );
-// });
+import { describe, it, beforeEach } from 'mocha';
+import { expect } from 'chai';
+import { setupApplicationTest } from 'ember-mocha';
+import { authenticateSession } from 'ember-simple-auth/test-support';
+import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { visit, click, fillIn } from '@ember/test-helpers';
+
+describe("Acceptance: TpSupplier.Edit", function() {
+  let hooks = setupApplicationTest();
+  setupMirage(hooks);
+
+  beforeEach(async function() {
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
+    this.tpSupplier = server.create('tp-supplier', {id: '1', tpid: this.tariffPlan.alias});
+    await authenticateSession({email: "user@example.com"});
+  });
+
+  describe('fill form with correct data and submit', () =>
+    it('saves new tp-supplier with correct data', async function() {
+      let counter = 0;
+
+      server.patch('/tp-suppliers/:id', function(schema, request) {
+        counter = counter + 1;
+        const params = JSON.parse(request.requestBody);
+        expect(params.data.attributes['tenant']).to.eq('tenant');
+        expect(params.data.attributes['custom-id']).to.eq('custom-id');
+        expect(params.data.attributes['filter-ids']).to.eq('1,2');
+        expect(params.data.attributes['sorting']).to.eq('ASC');
+        expect(params.data.attributes['activation-interval']).to.eq('Test');
+        expect(params.data.attributes['sorting-parameters']).to.eq('sort');
+        expect(params.data.attributes['supplier-id']).to.eq('Hansa');
+        expect(params.data.attributes['supplier-filter-ids']).to.eq('1');
+        expect(params.data.attributes['supplier-account-ids']).to.eq('2');
+        expect(params.data.attributes['supplier-ratingplan-ids']).to.eq('3');
+        expect(params.data.attributes['supplier-resource-ids']).to.eq('4');
+        expect(params.data.attributes['supplier-stat-ids']).to.eq('5');
+        expect(params.data.attributes['supplier-weight']).to.eq(1);
+        expect(params.data.attributes['weight']).to.eq(100);
+        expect(params.data.attributes['supplier-blocker']).to.eq(true);
+
+        return { data: {id: '1' , type: 'tp-supplier'} };
+      });
+      await visit('/tariff-plans/1/tp-suppliers/1/edit');
+      await fillIn('[data-test-tenant] input', 'tenant');
+      await fillIn('[data-test-custom-id] input', 'custom-id');
+      await fillIn('[data-test-filter-ids] input', '1,2');
+      await fillIn('[data-test-sorting] input', 'ASC');
+      await fillIn('[data-test-activation-interval] input', 'Test');
+      await fillIn('[data-test-sorting-params] input', 'sort');
+      await fillIn('[data-test-supplier-id] input', 'Hansa');
+      await fillIn('[data-test-supplier-filter-ids] input', '1');
+      await fillIn('[data-test-supplier-account-ids] input', '2');
+      await fillIn('[data-test-supplier-ratingplan-ids] input', '3');
+      await fillIn('[data-test-supplier-resource-ids] input', '4');
+      await fillIn('[data-test-supplier-stat-ids] input', '5');
+      await fillIn('[data-test-supplier-weight] input', 1);
+      await fillIn('[data-test-weight] input', 100);
+      await click('[data-test-supplier-blocker] input');
+      await click('[data-test-submit-button]');
+      expect(counter).to.eq(1);
+    })
+  );
+});
