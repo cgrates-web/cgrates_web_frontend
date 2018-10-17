@@ -8,8 +8,10 @@ export default Component.extend({
   _onInit: on('didReceiveAttrs', function() {
     if (isPresent(this.get('value'))) {
       this.set('valueWrapper', new Date(this.get('value')));
-      return this.sendAction('onValueChange', this.get('key'), this.get('valueWrapper'));
+    } else {
+      this.set('valueWrapper', null);
     }
+    this.sendAction('onValueChange', this.get('key'), this.get('valueWrapper'));
   }),
 
   valueChanged: observer('valueWrapper', function () {
@@ -22,7 +24,7 @@ export default Component.extend({
     }
 
     if (this.get('value') !== formattedDate) {
-      this.onValueChange(this.get('key'), formattedDate);
+      this.sendAction('onValueChange', this.get('key'), formattedDate);
     }
-  })
+  }),
 });
