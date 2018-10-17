@@ -138,4 +138,8 @@ export default function() {
   this.resource('raw-supplier-rates');
 
   this.post('/raw-supplier-resolve-jobs');
+
+  this.get('/raw-supplier-rates/:id/export-to-csv', function () {
+    return { file: null };
+  });
 }

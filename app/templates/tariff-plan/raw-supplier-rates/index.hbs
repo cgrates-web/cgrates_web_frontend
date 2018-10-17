@@ -4,7 +4,12 @@
       <h2>Raw Suppliers rates</h2>
       <ul class="actions ml-auto">
         <li>
-          <a href={{csvExportUrl}} target="_blank">
+          {{#link-to 'tariff-plan.raw-supplier-rates.new'}}
+            <i class="material-icons circle btn btn-success" data-test-supplier-rate-add>add</i>
+          {{/link-to}}
+        </li>
+        <li>
+          <a {{action 'exportToCsv'}} data-test-download>
             <i class="material-icons circle btn btn-primary">cloud_download</i>
           </a>
         </li>
@@ -51,14 +56,29 @@
             <tbody>
             {{#each model as |rate|}}
               <tr data-test-rate>
-                <td>{{rate.id}}</td>
-                <td>{{rate.prefix}}</td>
-                <td>{{rate.supplierName}}</td>
-                <td>{{rate.rate}}</td>
-                <td>{{rate.description}}</td>
-                <td>{{moment-format rate.insertedAt}}</td>
+                <td>
+                  {{#link-to 'tariff-plan.raw-supplier-rates.raw-supplier-rate' rate}}{{rate.id}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.raw-supplier-rates.raw-supplier-rate' rate}}{{rate.prefix}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.raw-supplier-rates.raw-supplier-rate' rate}}{{rate.supplierName}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.raw-supplier-rates.raw-supplier-rate' rate}}{{rate.rate}}{{/link-to}}
+                </td>
+                <td>
+                {{#link-to 'tariff-plan.raw-supplier-rates.raw-supplier-rate' rate}}{{rate.description}}{{/link-to}}
+                </td>
+                <td>
+                  {{#link-to 'tariff-plan.raw-supplier-rates.raw-supplier-rate' rate}}{{moment-format rate.insertedAt}}{{/link-to}}
+                </td>
                 <td class="actions">
-                  <a {{action 'remove' rate}} data-test-delete-rate>
+                  {{#link-to 'tariff-plan.raw-supplier-rates.raw-supplier-rate.edit' rate}}
+                    <i class="material-icons circle btn btn-primary" data-test-supplier-rate-edit>edit</i>
+                  {{/link-to}}
+                  <a {{action 'remove' rate}} data-test-supplier-rate-remove>
                     <i class="material-icons circle btn btn-danger">remove</i>
                   </a>
                 </td>
@@ -71,11 +91,43 @@
       </div>
       <div class="col-md-3">
         {{#filters-block search='search' as |filtersBlock|}}
-          {{#filter-text   label='Prefix'   key='prefix'        value=prefix        onValueChange=(action 'pushValue' target=filtersBlock)}}{{/filter-text}}
-          {{#filter-text   label='Supplier' key='supplierName'  value=supplierName  onValueChange=(action 'pushValue' target=filtersBlock)}}{{/filter-text}}
-          {{#filter-number label='rate'     key='rate'          value=rate          onValueChange=(action 'pushValue' target=filtersBlock) step='0.0001' min='0'}}{{/filter-number}}
-          {{#filter-date   label='from'     key='insertedAtGt'  value=insertedAtGt  onValueChange=(action 'pushValue' target=filtersBlock)}}{{/filter-date}}
-          {{#filter-date   label='to'       key='insertedAtLt'  value=insertedAtLt  onValueChange=(action 'pushValue' target=filtersBlock)}}{{/filter-date}}
+          {{filter-text
+            label='Prefix'
+            key='prefix'
+            value=prefix
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-prefix=true
+          }}
+          {{filter-text
+            label='Supplier'
+            key='supplierName'
+            value=supplierName
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-supplier=true
+          }}
+          {{filter-number
+            label='rate'
+            key='rate'
+            value=rate
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            step='0.0001'
+            min='0'
+            data-test-filter-rate=true
+          }}
+          {{filter-date
+            label='from'
+            key='insertedAtGt'
+            value=insertedAtGt
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-inserted-at-gt=true
+          }}
+          {{filter-date
+            label='to'
+            key='insertedAtLt'
+            value=insertedAtLt
+            onValueChange=(action 'pushValue' target=filtersBlock)
+            data-test-filter-inserted-at-lt=true
+          }}
         {{/filters-block}}
       </div>
     </div>

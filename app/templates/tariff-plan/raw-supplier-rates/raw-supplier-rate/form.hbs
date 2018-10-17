@@ -1,0 +1,32 @@
+{{#bs-form model=model onSubmit=(action 'save') novalidate=true as |form|}}
+  <div class='form-row'>
+    {{form.element
+      controlType='number'
+      label='Rate (decimal)'
+      property='rate'
+      class='col-md-6'
+      step='0.0001'
+      min='0'
+      data-test-rate=true
+    }}
+    {{form.element
+      label='Supplier name'
+      property='supplierName'
+      class='col-md-6'
+      data-test-supplier-name=true
+    }}
+    {{form.element
+      label='Prefix'
+      property='prefix'
+      class='col-md-6'
+      data-test-prefix=true
+    }}
+    {{form.element
+      label='Description'
+      property='description'
+      class='col-md-6'
+      data-test-description=true
+    }}
+  </div>
+  {{bs-button defaultText='Save' type='primary' buttonType='submit' data-test-submit-button=true}}
+{{/bs-form}}

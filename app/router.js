@@ -25,7 +25,11 @@ Router.map(function() {
     this.route('new');
     return this.route('tariff-plan', {resetNamespace: true, path: ':tariff_plan_id'}, function() {
       this.route('raw-supplier-rates', function() {
-        return this.route('csv-import');
+        this.route('new');
+        this.route('csv-import');
+        return this.route('raw-supplier-rate', {path: ':raw-supplier_rate_id'}, function() {
+          return this.route('edit');
+        });
       });
       this.route('tp-smart-rates', function() {
         this.route('new');

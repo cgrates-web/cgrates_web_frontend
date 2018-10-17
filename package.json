@@ -32,6 +32,7 @@
     "ember-cli-coffeescript": "^1.16.1",
     "ember-cli-dependency-checker": "^2.0.0",
     "ember-cli-eslint": "^4.2.1",
+    "ember-cli-file-saver": "^1.2.4",
     "ember-cli-flash": "^1.6.3",
     "ember-cli-form-data": "^1.1.0",
     "ember-cli-htmlbars": "^2.0.1",
