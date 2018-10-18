@@ -1,4 +1,4 @@
-import { describe, it, beforeEach } from 'mocha';
+import { describe, it, beforeEach, afterEach } from 'mocha';
 import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
@@ -57,4 +57,37 @@ describe("Acceptance: TariffPlans", function() {
       expect(currentURL()).to.equal('/tariff-plans/new')
     })
   );
+
+  describe('click to remove button', function () {
+    const standardConfirmDialog = window.confirm;
+    let expectCorrectRequest;
+    beforeEach(async function () {
+      window.confirm = function () {
+        return true;
+      };
+
+      this.tpPlan = server.create('tariff-plan', {id: '1'});
+      expectCorrectRequest = () => expect(true).to.be.false;
+      server.delete('/tariff-plans/:id', (schema, request) => {
+        expectCorrectRequest = () => {
+          expect(request.params.id).to.eq(this.tpPlan.id);
+        };
+        return '';
+      });
+      await visit('/tariff-plans');
+      await click('[data-test-tarif-plan-card] [data-test-tp-remove]');
+    });
+    afterEach(function () {
+      window.confirm = standardConfirmDialog;
+    });
+    it('makes correct query', function () {
+      expectCorrectRequest();
+    });
+    it('remove tariff plan', function () {
+      expect(findAll('[data-test-tarif-plan-card]').length).to.eq(0);
+    });
+    it('shows success flash messages', function () {
+      expect(find('.flash-message.alert-success')).to.exist;
+    });
+  });
 });

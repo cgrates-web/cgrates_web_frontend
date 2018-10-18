@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       {{#each model as |tp|}}
-        <div class="col-md-3 mb-4" data-test-tarif-plan-card>
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-test-tarif-plan-card>
           <div class="card bg-light h-100">
             <div class="card-header">{{tp.name}}</div>
             <div class="card-body d-flex flex-column">
@@ -17,6 +17,7 @@
               <div class="btn-group mt-auto mr-auto ml-auto">
                 {{#link-to 'tariff-plan' tp class='btn btn-primary m-1' data-test-select-tp-plan=true}}Select{{/link-to}}
                 {{#link-to 'tariff-plan.edit' tp class='btn btn-primary m-1' data-test-edit-tp-plan=true}}Edit{{/link-to}}
+                <button {{action 'remove' tp}} class="btn btn-danger m-1" data-test-tp-remove>Delete</button>
               </div>
             </div>
           </div>
