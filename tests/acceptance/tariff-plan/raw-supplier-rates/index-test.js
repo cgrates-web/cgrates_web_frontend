@@ -3,7 +3,9 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, findAll, find, currentURL } from '@ember/test-helpers';
+import { visit, click, findAll, find, currentURL, fillIn } from '@ember/test-helpers';
+import $ from 'jquery'
+import moment from 'moment';
 
 describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
   let hooks = setupApplicationTest();
@@ -21,6 +23,39 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
     });
     it('renders table with rates', function () {
       expect(findAll('[data-test-rate]').length).to.eq(3);
+    });
+  });
+
+  describe('filter and click download', function () {
+    let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+    beforeEach(async function() {
+      server.logging = true;
+      const date = new Date(2018);
+      server.get('/raw-supplier-rates/export-to-csv', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          expect(request.queryParams['tpid']).to.eq('1');
+          expect(request.queryParams['filter[prefix]']).to.eq('1');
+          expect(request.queryParams['filter[supplier_name]']).to.eq('test');
+          expect(request.queryParams['filter[rate]']).to.eq('12');
+          expect(request.queryParams['filter[inserted_at_gt]']).to.eq(moment(date).utc().format());
+          expect(request.queryParams['filter[inserted_at_lt]']).to.eq(moment(date).utc().format());
+
+        };
+        return { raw_supplier_rates: { id: '0' } };
+      });
+      await visit('/tariff-plans/1/raw-supplier-rates');
+      await fillIn('[data-test-filter-prefix] input', '1');
+      await fillIn('[data-test-filter-supplier] input', 'test');
+      await fillIn('[data-test-filter-rate] input', 12);
+      await $('[data-test-filter-inserted-at-gt] input').datepicker('setDate', date);
+      await $('[data-test-filter-inserted-at-lt] input').datepicker('setDate', date);
+
+      await click('[data-test-filter-search-btn]');
+      await click('[data-test-download]');
+    });
+
+    it('sends request to the server with filters', function () {
+      expectRequestToBeCorrect();
     });
   });
 
@@ -50,7 +85,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
   describe('delete rate', function() {
     beforeEach(async function() {
       await visit('/tariff-plans/1/raw-supplier-rates');
-      await click('table tr:first-child [data-test-delete-rate]');
+      await click('table tr:first-child [data-test-supplier-rate-remove]');
     });
     it('removes rate from table', function () {
       expect(findAll('[data-test-rate]').length).to.eq(2);
