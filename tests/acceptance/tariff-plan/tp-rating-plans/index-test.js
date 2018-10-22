@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
+import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
 
 describe("Acceptance: TpRatingPlans.Index", function() {
@@ -52,10 +52,24 @@ describe("Acceptance: TpRatingPlans.Index", function() {
   describe('click add button', () =>
     it('redirects to new tp-rating-plan page', async function() {
       await visit('/tariff-plans/1/tp-rating-plans');
-      await click('[data-test-tp-rating-plan-add]');
+      await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-rating-plans.new');
     })
   );
+
+  const setFilters = async () => {
+    await fillIn('[data-test-filter-tag] input', 'tagtest');
+    await fillIn('[data-test-filter-destrates-tag] input', 'destratetest');
+    await fillIn('[data-test-filter-timing-tag] input', 'timingtest');
+    await fillIn('[data-test-filter-weight] input', '12.1');
+  };
+  const expectFiltersQueryParams = (request) => {
+    expect(request.queryParams['tpid']).to.eq('tptest');
+    expect(request.queryParams['filter[tag]']).to.eq('tagtest');
+    expect(request.queryParams['filter[destrates_tag]']).to.eq('destratetest');
+    expect(request.queryParams['filter[timing_tag]']).to.eq('timingtest');
+    expect(request.queryParams['filter[weight]']).to.eq('12.1');
+  };
 
   describe('set filters and click search button', () =>
     it('makes a correct filter query', async function() {
@@ -76,23 +90,86 @@ describe("Acceptance: TpRatingPlans.Index", function() {
             break;
 
           default:
-            expect(filterTag).to.eq('tagtest');
-            expect(filterDestratesTag).to.eq('destratetest');
-            expect(filterTimingTag).to.eq('timingtest');
-            expect(filterWeight).to.eq('12.1');
+            expectFiltersQueryParams(request);
         }
         return { data: [{id: '1', type: 'tp-rating-plan'}] };
       });
 
       await visit('/tariff-plans/1/tp-rating-plans');
-      await fillIn('[data-test-filter-tag] input', 'tagtest');
-      await fillIn('[data-test-filter-destrates-tag] input', 'destratetest');
-      await fillIn('[data-test-filter-timing-tag] input', 'timingtest');
-      await fillIn('[data-test-filter-weight] input', '12.1');
+      await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
     })
   );
+
+  describe('filter and click download csv', function () {
+    it('sends request to the server with filters', async function () {
+      let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+      server.get('/tp-rating-plans/export-to-csv/', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          expectFiltersQueryParams(request);
+        };
+        return { data: [{id: '1', type: 'tp-rating-plan'}] };
+      });
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await setFilters();
+      await click('[data-test-filter-search-btn]');
+      await click('[data-test-download]');
+      expectRequestToBeCorrect();
+    });
+  });
+
+  describe('click to upload csv link', function () {
+    it('redirects to upload csv page', async function() {
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await click('[data-test-upload]');
+      expect(currentURL()).to.eq('/tariff-plans/1/tp-rating-plans/csv-import');
+    });
+  });
+
+  describe('click refresh button', function () {
+    it('makes a correct query', async function() {
+      let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+      server.get('/tp-rating-plans/', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          expectFiltersQueryParams(request);
+        };
+        return { data: [{id: '1', type: 'tp-rating-plan'}] };
+      });
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await setFilters();
+      await click('[data-test-filter-search-btn]');
+      await click('[data-test-refresh]');
+      expectRequestToBeCorrect();
+    });
+  });
+
+  describe('filter and delete all', function () {
+    let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+    beforeEach(async function() {
+      server.post('/tp-rating-plans/delete-all', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          const params = JSON.parse(request.requestBody);
+          expect(params.tpid).to.eq('tptest');
+          expect(params.filter.tag).to.eq('tagtest');
+          expect(params.filter.destrates_tag).to.eq('destratetest');
+          expect(params.filter.timing_tag).to.eq('timingtest');
+          expect(params.filter.weight).to.eq('12.1');
+        };
+        return { tp_rating_plan: { id: '0' } };
+      });
+      await visit('/tariff-plans/1/tp-rating-plans');
+      await setFilters();
+      await click('[data-test-filter-search-btn]');
+      await click('[data-test-delete-all]');
+    });
+    it('sends request to the server with filters', function () {
+      expectRequestToBeCorrect();
+    });
+    it('shows success flash message', function () {
+      expect(find('.flash-message.alert-success')).to.exist;
+    });
+  });
 
   describe('click column header', () =>
     it('makes a correct sort query', async function() {

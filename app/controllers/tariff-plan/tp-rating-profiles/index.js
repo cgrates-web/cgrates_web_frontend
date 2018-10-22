@@ -16,6 +16,10 @@ export default Controller.extend(QueryControllerMixin, {
   fallbackSubjects: null,
   activationTime:   null,
   cdrStatQueueIds:  null,
-  ratingPlanTag:    null
-}
-);
+  ratingPlanTag:    null,
+
+  permittedFilters: Object.freeze([
+    'loadid', 'direction', 'tenant', 'category', 'subject', 'fallbackSubjects', 'activationTime',
+    'cdrStatQueueIds', 'ratingPlanTag'
+  ]),
+});

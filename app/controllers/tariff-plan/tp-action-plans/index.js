@@ -7,6 +7,9 @@ export default Controller.extend(QueryControllerMixin, {
   tag:        null,
   actionsTag: null,
   timingTag:  null,
-  weight:     null
-}
-);
+  weight:     null,
+
+  permittedFilters: Object.freeze([
+    'tag', 'actionsTag', 'timingTag', 'weight'
+  ]),
+});

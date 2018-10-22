@@ -15,6 +15,9 @@ export default Controller.extend(QueryControllerMixin, {
   subject:        null,
   destinationTag: null,
   rpCategory:     null,
-  strategy:       null
-}
-);
+  strategy:       null,
+
+  permittedFilters: Object.freeze([
+    'direction', 'tenant', 'category', 'account', 'subject', 'destinationTag', 'rpCategory', 'strategy'
+  ]),
+});

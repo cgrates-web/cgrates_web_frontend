@@ -10,6 +10,9 @@ export default Controller.extend(QueryControllerMixin, {
   rateIncrement:      null,
   rate:               null,
   groupIntervalStart: null,
-  connectFee:         null
-}
-);
+  connectFee:         null,
+
+  permittedFilters: Object.freeze([
+    'tag', 'rateUnit', 'rateIncrement', 'rate', 'groupIntervalStart', 'connectFee'
+  ]),
+});

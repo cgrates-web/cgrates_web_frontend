@@ -12,6 +12,7 @@ export default Component.extend({
   actions: {
     change(event) {
       this.set('value', isPresent(event.target.value) ? `${ event.target.value}s` : null);
-    }
+    },
+    input() {},
   }
 });

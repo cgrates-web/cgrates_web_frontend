@@ -4,9 +4,13 @@
       <h2>TpDestinationRates list</h2>
       <ul class="actions">
         <li>
-          {{#link-to 'tariff-plan.tp-destination-rates.new'}}
-            <i class="material-icons circle btn btn-success" data-test-tp-destination-rate-add>add</i>
-          {{/link-to}}
+          {{tp-index-buttons
+            model=model
+            tariffPlanId=tariffPlanId
+            permittedFilters=permittedFilters
+            refresh='refresh'
+            controller=this
+          }}
         </li>
       </ul>
     </div>

@@ -1,7 +1,7 @@
 import { Factory, faker } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  tpid()   { 'tptest' },
-  tag()    { faker.lorem.word() },
-  prefix() { faker.random.number(100) }
+  tpid:    'tptest',
+  tag()    { return faker.lorem.word(); },
+  prefix() { return faker.random.number(100); }
 });

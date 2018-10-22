@@ -12,6 +12,9 @@ export default Controller.extend(QueryControllerMixin, {
   id:                 null,
   filterType:         null,
   filterFieldName:    null,
-  activationInterval: null
-}
-);
+  activationInterval: null,
+
+  permittedFilters: Object.freeze([
+    'tenant', 'id', 'filterType', 'filterFieldName', 'activationInterval'
+  ]),
+});

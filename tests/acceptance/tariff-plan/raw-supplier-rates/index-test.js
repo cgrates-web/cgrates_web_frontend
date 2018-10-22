@@ -26,7 +26,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
     });
   });
 
-  describe('filter and click download', function () {
+  describe('filter and click download csv', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
     beforeEach(async function() {
       server.logging = true;
@@ -108,7 +108,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
         return { raw_supplier_rates: { id: '0' } };
       });
       await visit('/tariff-plans/1/raw-supplier-rates?prefix=1');
-      await click('[data-test-delete-all]')
+      await click('[data-test-delete-all]');
     });
 
     it('sends request to the server with filters', function () {
