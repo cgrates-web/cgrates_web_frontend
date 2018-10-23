@@ -26,6 +26,16 @@ describe("Acceptance: TpFilters.Index", function() {
     })
   );
 
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/tp-filters', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/tp-filters');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
+
   describe('select tp-filter', () =>
     it('reditects to tp-filter page', async function() {
       await visit('/tariff-plans/1/tp-filters');

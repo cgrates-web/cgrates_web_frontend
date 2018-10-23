@@ -26,6 +26,16 @@ describe("Acceptance: TpLcrRules.Index", function() {
     })
   );
 
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/tp-lcr-rules', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/tp-lcr-rules');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
+
   describe('select tp-lcr-rule', () =>
     it('reditects to tp-lcr-rule page', async function() {
       await visit('/tariff-plans/1/tp-lcr-rules');

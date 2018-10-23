@@ -24,6 +24,16 @@ describe("Acceptance: TpSuppliers.Index", function() {
     })
   });
 
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/tp-suppliers', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/tp-suppliers');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
+
   describe('select tp-supplier', () =>
     it('reditects to tp-supplier page', async function() {
       await visit('/tariff-plans/1/tp-suppliers');

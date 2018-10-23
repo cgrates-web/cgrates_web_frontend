@@ -26,6 +26,16 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
     });
   });
 
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/raw-supplier-rates', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/raw-supplier-rates');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
+
   describe('filter and click download', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
     beforeEach(async function() {

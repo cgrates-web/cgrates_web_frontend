@@ -4,7 +4,7 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { isBlank } from '@ember/utils';
-import { visit, click, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
+import { visit, click, findAll, currentRouteName, fillIn, find } from '@ember/test-helpers';
 
 describe("Acceptance: TpActionPlans.Index", function() {
   let hooks = setupApplicationTest();
@@ -23,6 +23,16 @@ describe("Acceptance: TpActionPlans.Index", function() {
       expect(findAll('table tbody tr').length).to.eq(2);
     })
   );
+
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/tp-action-plans', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/tp-action-plans');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
 
   describe('select tp-action-plan', () =>
     it('reditects to tp-action-plan page', async function() {
