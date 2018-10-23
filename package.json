@@ -63,7 +63,7 @@
     "ember-radio-button": "1.0.7",
     "ember-resolver": "^4.0.0",
     "ember-simple-auth": "^1.7.0",
-    "ember-simple-auth-token": "^3.0.0",
+    "ember-simple-auth-token": "^4.0.4",
     "ember-source": "^3.4.0",
     "ember-test-selectors": "^0.3.8",
     "ember-truth-helpers": "2.1.0",

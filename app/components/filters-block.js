@@ -14,14 +14,14 @@ export default Component.extend({
     },
 
     search() {
-      return this.sendAction('search', this.get('activeFilters'));
+      return this.search(this.get('activeFilters'));
     },
 
     reset() {
       for (let key in this.get('activeFilters')) {
         this.get('activeFilters')[key] = null;
       }
-      return this.sendAction('search', this.get('activeFilters'));
+      return this.search(this.get('activeFilters'));
     }
   }
 });

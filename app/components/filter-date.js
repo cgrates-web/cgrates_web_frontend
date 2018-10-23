@@ -11,7 +11,7 @@ export default Component.extend({
     } else {
       this.set('valueWrapper', null);
     }
-    this.sendAction('onValueChange', this.get('key'), this.get('valueWrapper'));
+    this.onValueChange(this.get('key'), this.get('valueWrapper'));
   }),
 
   valueChanged: observer('valueWrapper', function () {
@@ -24,7 +24,7 @@ export default Component.extend({
     }
 
     if (this.get('value') !== formattedDate) {
-      this.sendAction('onValueChange', this.get('key'), formattedDate);
+      this.onValueChange(this.get('key'), formattedDate);
     }
   }),
 });

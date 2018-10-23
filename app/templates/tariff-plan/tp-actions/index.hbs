@@ -110,7 +110,7 @@
         {{page-numbers content=pagination action='toPage'}}
       </div>
       <div class="col-md-3">
-        {{#filters-block search='search' as |filtersBlock|}}
+        {{#filters-block search=(action 'search') as |filtersBlock|}}
           {{filter-text
             label='Tag'
             key='tag'
