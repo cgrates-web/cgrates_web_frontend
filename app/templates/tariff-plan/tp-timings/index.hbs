@@ -3,11 +3,13 @@
     <div class="actions-subtitle">
       <h2>Timings list</h2>
       <ul class="actions">
-        <li>
-          {{#link-to 'tariff-plan.tp-timings.new'}}
-            <i class="material-icons circle btn btn-success" data-test-tp-timing-add>add</i>
-          {{/link-to}}
-        </li>
+        {{tp-index-buttons
+          model=model
+          tariffPlanId=tariffPlanId
+          permittedFilters=permittedFilters
+          refresh='refresh'
+          controller=this
+        }}
       </ul>
     </div>
     <div class="row">

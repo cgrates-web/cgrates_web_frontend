@@ -39,66 +39,77 @@ Router.map(function() {
       this.route('edit');
       this.route('tp-destinations', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-destination', {path: ':tp_destination_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-rates', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-rate', {path: ':tp_rate_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-destination-rates', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-destination-rate', {path: ':tp_destination_rate_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-timings', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-timing', {path: ':tp_timing_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-rating-plans', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-rating-plan', {path: ':tp_rating_plan_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-rating-profiles', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-rating-profile', {path: ':tp_rating_profile_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-actions', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-action', {path: ':tp_action_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-action-plans', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-action-plan', {path: ':tp_action_plan_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-lcr-rules', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-lcr-rule', {path: ':tp_lcr_rule_id'}, function() {
           return this.route('edit');
         });
       });
       this.route('tp-filters', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-filter', {path: ':tp_filter_id'}, function() {
           return this.route('edit');
         });
       });
       return this.route('tp-suppliers', function() {
         this.route('new');
+        this.route('csv-import');
         return this.route('tp-supplier', {path: ':tp_supplier_id'}, function() {
           return this.route('edit');
         });

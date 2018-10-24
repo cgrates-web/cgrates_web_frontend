@@ -21,10 +21,4 @@ export default Route.extend(QueryRouteMixin, {
   _getTtpid() {
     return this.modelFor('tariff-plan').get('id');
   },
-
-  actions: {
-    refresh() {
-      this.refresh();
-    }
-  }
 });

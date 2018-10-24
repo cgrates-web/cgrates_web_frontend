@@ -25,6 +25,11 @@ export default Controller.extend(QueryControllerMixin, {
   sortingParameters:       null,
   supplierWeight:          null,
   blocker:                 null,
-  weight:                  null
-}
-);
+  weight:                  null,
+
+  permittedFilters: Object.freeze([
+    'tenant', 'customId', 'filterIds', 'sorting', 'activationInterval', 'supplierId', 'supplierFilterIds',
+    'supplierAccountIds', 'supplierRatingplanIds', 'supplierResourceIds', 'supplierStatIds', 'supplierWeight',
+    'blocker', 'weight', 'sortingParameters'
+  ]),
+});

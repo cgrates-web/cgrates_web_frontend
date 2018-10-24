@@ -14,6 +14,10 @@ export default Controller.extend(QueryControllerMixin, {
   ratesTag:         null,
   maxCostStrategy:  null,
   maxCost:          null,
-  destinationsTag:  null
-}
-);
+  destinationsTag:  null,
+
+  permittedFilters: Object.freeze([
+    'tag', 'roundingMethod', 'roundingDecimals', 'ratesTag', 'maxCostStrategy',
+    'maxCost', 'destinationsTag'
+  ]),
+});
