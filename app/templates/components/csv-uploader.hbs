@@ -1,10 +1,19 @@
-{{#file-upload
-  name="csv"
-  accept=".csv"
-  multiple=false
-  onfileadd=(action "attachFile")}}
-  <a class="btn btn-outline-secondary">Select CSV from disk</a>
-{{/file-upload}}
-{{#if file.name}}
-  <span class="file-name">{{file.name}}</span>
-{{/if}}
+<h2>Upload csv</h2>
+  {{#if exampleUrl}}
+    <a href={{exampleUrl}} target="_blank" class="csv-example" data-test-example-url>Example</a>
+  {{/if}}
+  <div class="uploader">
+    {{#file-upload
+      name="csv"
+      accept=".csv"
+      multiple=false
+      onfileadd=(action 'attachFile')
+      data-test-file-uploader=true
+    }}
+      <a class="btn btn-outline-secondary">Select CSV from disk</a>
+    {{/file-upload}}
+    {{#if file.name}}
+      <span class="file-name">{{file.name}}</span>
+    {{/if}}
+  </div>
+  <button {{action 'save'}} class="btn btn-primary" data-test-upload-button>Upload</button>

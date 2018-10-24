@@ -11,7 +11,7 @@ describe('Acceptance: TpRate.Edit', function () {
 
   beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpRate = server.create('tp-rate', {tpid: this.tariffPlan.alias});
+    this.tpRate = server.create('tp-rate', {id: '1', tpid: this.tariffPlan.alias});
     await authenticateSession({email: 'user@example.com'});
   });
 

@@ -12,6 +12,7 @@ export default function () {
   this.namespace = '/api';    // make this `/api`, for example, if your API is namespaced
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
+
   this.get('/destinations');
   this.post('/destinations');
   this.del('/destinations/:id');
@@ -22,6 +23,7 @@ export default function () {
 
   this.get('tariff-plans');
   this.get('tariff-plans/:id');
+  this.delete('/tariff-plans/:id');
 
   this.get('/users');
   this.get('/users/:id');

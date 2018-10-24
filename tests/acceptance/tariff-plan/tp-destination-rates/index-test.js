@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
+import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 import { isBlank } from '@ember/utils';
 
@@ -53,10 +53,30 @@ describe('Acceptance: TpDestinationRates.Index', function () {
   describe('click add button', () =>
     it('redirects to new tp-destination-rate page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
-      await click('[data-test-tp-destination-rate-add]');
+      await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.new');
     })
   );
+
+  const setFilters = async () => {
+    await fillIn('[data-test-filter-tag] input', 'tagtest');
+    await fillIn('[data-test-filter-rates-tag] input', 'ratetest');
+    await fillIn('[data-test-filter-destinations-tag] input', 'destinationtest');
+    await fillIn('[data-test-filter-rounding-decimals] input', '1');
+    await fillIn('[data-test-filter-max-cost] input', '100.0');
+    await selectChoose('[data-test-filter-rounding-method]', '*up');
+    await selectChoose('[data-test-filter-max-cost-strategy]', '*free');
+  };
+  const expectFiltersQueryParams = (request) => {
+    expect(request.queryParams['tpid']).to.eq('tptest');
+    expect(request.queryParams['filter[tag]']).to.eq('tagtest');
+    expect(request.queryParams['filter[rates_tag]']).to.eq('ratetest');
+    expect(request.queryParams['filter[destinations_tag]']).to.eq('destinationtest');
+    expect(request.queryParams['filter[rounding_decimals]']).to.eq('1');
+    expect(request.queryParams['filter[max_cost]']).to.eq('100.0');
+    expect(request.queryParams['filter[rounding_method]']).to.eq('*up');
+    expect(request.queryParams['filter[max_cost_strategy]']).to.eq('*free');
+  };
 
   describe('set filters and click search button', () =>
     it('makes a correct filter query', async function () {
@@ -83,29 +103,89 @@ describe('Acceptance: TpDestinationRates.Index', function () {
             break;
 
           default:
-            expect(filterTag).to.eq('tagtest');
-            expect(filterRatesTag).to.eq('ratetest');
-            expect(filterDestinationsTag).to.eq('destinationtest');
-            expect(filterRoundingDecimals).to.eq('1');
-            expect(filterMaxCost).to.eq('100.0');
-            expect(filterRoundingMethod).to.eq('*up');
-            expect(filterMaxCostStrategy).to.eq('*free');
+            expectFiltersQueryParams(request);
         }
         return { data: [{id: '1', type: 'tp-destination-rate'}] };
       });
 
       await visit('/tariff-plans/1/tp-destination-rates');
-      await fillIn('[data-test-filter-tag] input', 'tagtest');
-      await fillIn('[data-test-filter-rates-tag] input', 'ratetest');
-      await fillIn('[data-test-filter-destinations-tag] input', 'destinationtest');
-      await fillIn('[data-test-filter-rounding-decimals] input', '1');
-      await fillIn('[data-test-filter-max-cost] input', '100.0');
-      await selectChoose('[data-test-filter-rounding-method]', '*up');
-      await selectChoose('[data-test-filter-max-cost-strategy]', '*free');
+      await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
     })
   );
+
+  describe('filter and click download csv', function () {
+    it('sends request to the server with filters', async function () {
+      let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+      server.get('/tp-destination-rates/export-to-csv/', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          expectFiltersQueryParams(request);
+        };
+        return { data: [{id: '1', type: 'tp-destination-rate'}] };
+      });
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await setFilters();
+      await click('[data-test-filter-search-btn]');
+      await click('[data-test-download]');
+      expectRequestToBeCorrect();
+    });
+  });
+
+  describe('click to upload csv link', function () {
+    it('redirects to upload csv page', async function() {
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await click('[data-test-upload]');
+      expect(currentURL()).to.eq('/tariff-plans/1/tp-destination-rates/csv-import');
+    });
+  });
+
+  describe('click refresh button', function () {
+    it('makes a correct query', async function() {
+      let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+      server.get('/tp-destination-rates/', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          expectFiltersQueryParams(request);
+        };
+        return { data: [{id: '1', type: 'tp-destination-rate'}] };
+      });
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await setFilters();
+      await click('[data-test-filter-search-btn]');
+      await click('[data-test-refresh]');
+      expectRequestToBeCorrect();
+    });
+  });
+
+  describe('filter and delete all', function () {
+    let expectRequestToBeCorrect = () => expect(false).to.eq(true);
+    beforeEach(async function() {
+      server.post('/tp-destination-rates/delete-all', function (_schema, request) {
+        expectRequestToBeCorrect = () => {
+          const params = JSON.parse(request.requestBody);
+          expect(params.tpid).to.eq('tptest');
+          expect(params.filter.tag).to.eq('tagtest');
+          expect(params.filter.rates_tag).to.eq('ratetest');
+          expect(params.filter.destinations_tag).to.eq('destinationtest');
+          expect(params.filter.rounding_decimals).to.eq('1');
+          expect(params.filter.max_cost).to.eq('100.0');
+          expect(params.filter.rounding_method).to.eq('*up');
+          expect(params.filter.max_cost_strategy).to.eq('*free');
+        };
+        return { tp_destination_rate: { id: '0' } };
+      });
+      await visit('/tariff-plans/1/tp-destination-rates');
+      await setFilters();
+      await click('[data-test-filter-search-btn]');
+      await click('[data-test-delete-all]');
+    });
+    it('sends request to the server with filters', function () {
+      expectRequestToBeCorrect();
+    });
+    it('shows success flash message', function () {
+      expect(find('.flash-message.alert-success')).to.exist;
+    });
+  });
 
   describe('click column header', () =>
     it('makes a correct sort query', async function () {

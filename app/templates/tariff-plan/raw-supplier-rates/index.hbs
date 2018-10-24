@@ -2,35 +2,17 @@
   <div class="container xl">
     <div class="actions-subtitle">
       <h2>Raw Suppliers rates</h2>
-      <ul class="actions ml-auto">
-        <li>
-          {{#link-to 'tariff-plan.raw-supplier-rates.new'}}
-            <i class="material-icons circle btn btn-success" data-test-supplier-rate-add>add</i>
-          {{/link-to}}
-        </li>
-        <li>
-          <a {{action 'exportToCsv'}} data-test-download>
-            <i class="material-icons circle btn btn-primary">cloud_download</i>
-          </a>
-        </li>
-        <li>
-          {{#link-to 'tariff-plan.raw-supplier-rates.csv-import' data-test-upload=true}}
-            <i class="material-icons circle btn btn-success">cloud_upload</i>
-          {{/link-to}}
-        </li>
-        <li>
-          <a {{action 'refresh'}}>
-            <i class="material-icons circle btn btn-info">refresh</i>
-          </a>
-        </li>
+      <ul class="actions">
+        {{tp-index-buttons
+          model=model
+          tariffPlanId=tariffPlanId
+          permittedFilters=permittedFilters
+          refresh='refresh'
+          controller=this
+        }}
         <li>
           <a {{action 'resolve'}} data-test-resolve>
             <i class="material-icons circle btn btn-secondary">healing</i>
-          </a>
-        </li>
-        <li>
-          <a {{action 'deleteAll'}} data-test-delete-all>
-            <i class="material-icons circle btn btn-danger">cancel</i>
           </a>
         </li>
       </ul>

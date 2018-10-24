@@ -24,6 +24,11 @@ export default Controller.extend(QueryControllerMixin, {
   balanceWeight:   null,
   balanceBlocker:  null,
   balanceDisabled: null,
-  weight:          null
-}
-);
+  weight:          null,
+
+  permittedFilters: Object.freeze([
+    'tag', 'action', 'balanceTag', 'balanceType', 'directions', 'units', 'expiryTime', 'timingTags',
+    'destinationTags', 'ratingSubject', 'categories', 'sharedGroups', 'balanceWeight', 'balanceBlocker',
+    'balanceDisabled', 'weight'
+  ])
+});
