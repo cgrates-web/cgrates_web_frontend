@@ -27,9 +27,9 @@ export default Factory.extend({
           'blocker': false
         }
       ]
-    }
+    };
   },
 
-  unitCounters()   { null  },
-  actionTriggers() { null  }
+  unitCounters()   { null;  },
+  actionTriggers() { null;  }
 });

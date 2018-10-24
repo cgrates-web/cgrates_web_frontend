@@ -6,5 +6,5 @@
   data-test-second=dataTest
   as |el|
 }}
-  {{el.control value=valueNumber change=(action 'change') type='number' step='1' min='0'}}
+  {{el.control value=valueNumber change=(action 'change') input=(action 'input') type='number' step='1' min='0'}}
 {{/form.element}}

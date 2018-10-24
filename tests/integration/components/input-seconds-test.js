@@ -5,7 +5,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { find, fillIn, render } from '@ember/test-helpers';
 import EmberObject from '@ember/object';
 
-describe('Integration: InputSeconds', function() {
+describe('Integration: InputSeconds', function () {
   setupRenderingTest();
 
   describe('basic rendering', function () {
@@ -54,9 +54,9 @@ describe('Integration: InputSeconds', function() {
   });
 
   describe('entering a number', () =>
-    it('appends suffix', async function() {
+    it('appends suffix', async function () {
       this.set('value', null);
-      this.set('model', EmberObject.create( {test: null} ));
+      this.set('model', EmberObject.create({test: null}));
       await render(hbs`('
         {{#bs-form model=model as |form|}}
           {{input-seconds

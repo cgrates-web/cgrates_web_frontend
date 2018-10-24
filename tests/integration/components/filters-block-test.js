@@ -11,12 +11,12 @@ const testFilter = {
   value: ''
 };
 
-describe('Integration: FiltersBlock', function() {
+describe('Integration: FiltersBlock', function () {
   setupRenderingTest();
 
   describe('basic rendering', () =>
-    it('renders a form', async function() {
-      await render(hbs("{{filters-block}}"));
+    it('renders a form', async function () {
+      await render(hbs('{{filters-block}}'));
       expect(find('h5').textContent).to.eq('Filters');
       expect(find('form')).to.exist;
       expect(find('button')).to.exist;
@@ -24,10 +24,10 @@ describe('Integration: FiltersBlock', function() {
   );
 
   describe('setting filter values and clicking search button', () =>
-    it('sends action with correct arguments', async function() {
+    it('sends action with correct arguments', async function () {
       this.set('filterValue', '');
       this.set('actionTriggered', false);
-      this.set('search', function(filters) {
+      this.set('search', function (filters) {
         this.set('actionTriggered', true);
         return expect(filters).to.deep.equal({'test': 'valuetest'});
       });
@@ -43,13 +43,13 @@ describe('Integration: FiltersBlock', function() {
   );
 
   return describe('setting filter values and clicking reset button', () =>
-    it('sends action and passes null values', async function() {
+    it('sends action and passes null values', async function () {
       this.set('filter', testFilter);
       this.set('actionTriggered', false);
-      this.set('search', function(filters) {
+      this.set('search', function (filters) {
         this.set('actionTriggered', true);
         expect(filters).to.deep.equal({'test': null});
-    });
+      });
       await render(hbs`(
         {{#filters-block search=(action search) as |block|}} 
         {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=block)}} 

@@ -6,21 +6,21 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 import { selectChoose, selectSearch } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpDestinationRates.New", function() {
+describe('Acceptance: TpDestinationRates.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRate1 = server.create('tp-rate', {tpid: 'tptest', tag: 'ratetest1'});
     this.tpRate2 = server.create('tp-rate', {tpid: 'tptest', tag: 'ratetest2'});
     this.tpDestination1 = server.create('tp-destination', {tpid: 'tptest', tag: 'destinationtest1'});
     this.tpDestination2 = server.create('tp-destination', {tpid: 'tptest', tag: 'destinationtest2'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-destination-rates/new', () =>
-    it('renders tp-destination-rate form', async function() {
+    it('renders tp-destination-rate form', async function () {
       await visit('/tariff-plans/1/tp-destination-rates/new');
       expect(findAll('form input').length).to.eq(3);
       expect(findAll('form .ember-power-select-trigger').length).to.eq(4);
@@ -28,7 +28,7 @@ describe("Acceptance: TpDestinationRates.New", function() {
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-destination-rate', async function() {
+    it('removes not saved tp-destination-rate', async function () {
       await visit('/tariff-plans/1/tp-destination-rates/new');
       await click('[data-test-destination-rates-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -75,10 +75,10 @@ describe("Acceptance: TpDestinationRates.New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-destination-rate with correct data', async function() {
+    it('saves new tp-destination-rate with correct data', async function () {
       let counter = 0;
 
-      server.post('/tp-destination-rates/', function(schema, request) {
+      server.post('/tp-destination-rates/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');

@@ -6,11 +6,11 @@ import { isEqual } from '@ember/utils';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 import { find, click, render } from '@ember/test-helpers';
 
-describe('Integration: FilterSelect', function() {
+describe('Integration: FilterSelect', function () {
   setupRenderingTest();
 
   describe('basic rendering', () =>
-    it('renders select with options',async function() {
+    it('renders select with options', async function () {
       this.set('value', 'test1');
       this.set('content', ['test1', 'test2']);
       await render(hbs("{{filter-select label='Test' key='test' value=value content=content}}"));
@@ -23,14 +23,14 @@ describe('Integration: FilterSelect', function() {
   );
 
   return describe('selecting an item', () =>
-    it('sends associated action', async function() {
+    it('sends associated action', async function () {
       this.set('value', null);
       this.set('content', ['test1', 'test2']);
       this.set('actionCounter', 0);
-      this.set('pushValue', function(key, value) {
+      this.set('pushValue', function (key, value) {
         this.set('actionCounter', this.get('actionCounter') + 1);
         expect(key).to.eq('test');
-        if(isEqual(this.get('actionCounter'), 1)) {
+        if (isEqual(this.get('actionCounter'), 1)) {
           expect(value).to.eq(null);
         } else {
           expect(value).to.eq('test1');

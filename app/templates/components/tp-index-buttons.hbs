@@ -1,0 +1,25 @@
+<li>
+  {{#link-to newRouteName data-test-add=true}}
+    <i class="material-icons circle btn btn-success">add</i>
+  {{/link-to}}
+</li>
+<li>
+  {{#link-to csvImportRouteName data-test-upload=true}}
+    <i class="material-icons circle btn btn-success">cloud_upload</i>
+  {{/link-to}}
+</li>
+<li>
+  <a {{action (perform exportToCsv)}} data-test-download>
+    <i class="material-icons circle btn btn-primary">cloud_download</i>
+  </a>
+</li>
+<li>
+  <a {{action 'refresh'}} data-test-refresh>
+    <i class="material-icons circle btn btn-info">refresh</i>
+  </a>
+</li>
+<li>
+  <a {{action (perform deleteAll)}} data-test-delete-all>
+    <i class="material-icons circle btn btn-danger" data-test-delete-all>cancel</i>
+  </a>
+</li>

@@ -6,7 +6,7 @@ export default Controller.extend(QueryControllerMixin, {
   selectValues: service(),
 
   queryParams: ['tag', 'roundingMethod', 'roundingDecimals', 'ratesTag', 'maxCostStrategy',
-                'maxCost', 'destinationsTag', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
+    'maxCost', 'destinationsTag', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
 
   tag:              null,
   roundingMethod:   null,
@@ -14,6 +14,10 @@ export default Controller.extend(QueryControllerMixin, {
   ratesTag:         null,
   maxCostStrategy:  null,
   maxCost:          null,
-  destinationsTag:  null
-}
-);
+  destinationsTag:  null,
+
+  permittedFilters: Object.freeze([
+    'tag', 'roundingMethod', 'roundingDecimals', 'ratesTag', 'maxCostStrategy',
+    'maxCost', 'destinationsTag'
+  ]),
+});

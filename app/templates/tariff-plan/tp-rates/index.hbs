@@ -3,11 +3,13 @@
     <div class="actions-subtitle">
       <h2>TpRates list</h2>
       <ul class="actions">
-        <li>
-          {{#link-to 'tariff-plan.tp-rates.new'}}
-            <i class="material-icons circle btn btn-success" data-test-tp-rate-add>add</i>
-          {{/link-to}}
-        </li>
+        {{tp-index-buttons
+          model=model
+          tariffPlanId=tariffPlanId
+          permittedFilters=permittedFilters
+          refresh='refresh'
+          controller=this
+        }}
       </ul>
     </div>
     {{partial 'partials/total-records'}}
@@ -68,10 +70,10 @@
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action='toPage'}}
+        {{page-numbers content=pagination action='toPage' showFL=true numPagesToShow=4  showFL=true numPagesToShow=4}}
       </div>
       <div class="col-md-3">
-        {{#filters-block search='search' as |filtersBlock|}}
+        {{#filters-block search=(action 'search') as |filtersBlock|}}
           {{filter-text
             label='Tag'
             key='tag'

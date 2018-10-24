@@ -6,21 +6,21 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpFilter.Edit", function() {
+describe('Acceptance: TpFilter.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpFilter = server.create('tp-filter', {id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', async function() {
+    it('sends correct data to the backend', async function () {
       let counter = 0;
 
-      server.patch('/tp-filters/:id', function(schema, request) {
+      server.patch('/tp-filters/:id', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');
