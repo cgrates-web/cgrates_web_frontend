@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import config from 'cgrates-web-frontend/config/environment';
 import { inject as service } from '@ember/service';
-import { isPresent } from '@ember/utils'
+import { isPresent } from '@ember/utils';
 
 export default Component.extend({
   classNames: ['csv-uploader'],
@@ -32,7 +32,7 @@ export default Component.extend({
           this.get('router').transitionTo(`tariff-plan.${this.get('parentModelName')}s.index`);
       }).catch(() => {
         this.get('flashMessages').danger('Somethings went wrong');
-      })
+      });
     }
   }
 });

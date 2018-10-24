@@ -136,7 +136,7 @@ describe('Acceptance: TpLcrRules.Index', function () {
   });
 
   describe('click to upload csv link', function () {
-    it('redirects to upload csv page', async function() {
+    it('redirects to upload csv page', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-upload]');
       expect(currentURL()).to.eq('/tariff-plans/1/tp-lcr-rules/csv-import');
@@ -144,7 +144,7 @@ describe('Acceptance: TpLcrRules.Index', function () {
   });
 
   describe('click refresh button', function () {
-    it('makes a correct query', async function() {
+    it('makes a correct query', async function () {
       let expectRequestToBeCorrect = () => expect(false).to.eq(true);
       server.get('/tp-lcr-rules/', function (_schema, request) {
         expectRequestToBeCorrect = () => {
@@ -162,7 +162,7 @@ describe('Acceptance: TpLcrRules.Index', function () {
 
   describe('filter and delete all', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-    beforeEach(async function() {
+    beforeEach(async function () {
       server.post('/tp-lcr-rules/delete-all', function (_schema, request) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);

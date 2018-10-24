@@ -7,7 +7,7 @@ import config from 'cgrates-web-frontend/config/environment';
 import File from 'ember-file-upload/file';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
-describe('Integration: Csv-uploader', function() {
+describe('Integration: Csv-uploader', function () {
   let hooks = setupRenderingTest();
   setupMirage(hooks);
 
@@ -24,8 +24,8 @@ describe('Integration: Csv-uploader', function() {
     return triggerEvent(selector, 'change');
   }
 
-  describe('render', function() {
-    it('render example link', async function() {
+  describe('render', function () {
+    it('render example link', async function () {
       this.set('parentModelName', 'test-model-name');
       await render(hbs`('
         {{csv-uploader
@@ -34,10 +34,10 @@ describe('Integration: Csv-uploader', function() {
       ')`);
       expect(find('[data-test-example-url]')
         .getAttribute('href')).to.eq(`${config.API_HOST}/csv-example/test-model-name.csv`);
-    })
+    });
   });
 
-  describe('select file', function() {
+  describe('select file', function () {
     beforeEach(async function () {
       const file = File.fromDataURL(urlTxt);
       this.store = this.owner.lookup('service:store');
@@ -52,15 +52,15 @@ describe('Integration: Csv-uploader', function() {
       ')`);
       await uploadFile('[data-test-file-uploader] input', file.blob, 'test.csv');
     });
-    it('displays file name', async function() {
+    it('displays file name', async function () {
       expect(find('.file-name').textContent).to.eq('test.csv');
     });
-    it('set file', async function() {
+    it('set file', async function () {
       expect(this.get('file')).to.exist;
     });
 
-    context('click upload file', function() {
-      it('makes correct query', async function() {
+    context('click upload file', function () {
+      it('makes correct query', async function () {
         let expectRequestToBeCorrect = () => expect(false).to.be.true;
         server.namespace = '/api';
         server.post('/base-import-jobs', (schema, request) => {
@@ -72,7 +72,7 @@ describe('Integration: Csv-uploader', function() {
         });
         await click('[data-test-upload-button]');
         expectRequestToBeCorrect();
-      })
+      });
     });
   });
 });

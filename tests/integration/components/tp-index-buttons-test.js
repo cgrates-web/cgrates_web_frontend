@@ -6,12 +6,12 @@ import { click, render } from '@ember/test-helpers';
 import EmberObject from '@ember/object';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
-describe('Integration: Tp index buttons', function() {
+describe('Integration: Tp index buttons', function () {
   let hooks = setupRenderingTest();
   setupMirage(hooks);
 
-  describe('click on download csv button', function() {
-    it('makes correct query', async function() {
+  describe('click on download csv button', function () {
+    it('makes correct query', async function () {
       this.tariffPlan = server.create('tariff-plan', {id: '1', alias: 'tptest'});
       let expectRequestToBeCorrect = () => expect(false).to.be.true;
       server.namespace = '/api';
@@ -38,11 +38,11 @@ describe('Integration: Tp index buttons', function() {
       ')`);
       await click('[data-test-download]');
       expectRequestToBeCorrect();
-    })
+    });
   });
 
-  describe('click on delete all button', function() {
-    it('makes correct query', async function() {
+  describe('click on delete all button', function () {
+    it('makes correct query', async function () {
       this.tariffPlan = server.create('tariff-plan', {id: '1', alias: 'tptest'});
       let expectRequestToBeCorrect = () => expect(false).to.be.true;
       server.namespace = '/api';
@@ -70,11 +70,11 @@ describe('Integration: Tp index buttons', function() {
       ')`);
       await click('[data-test-delete-all]');
       expectRequestToBeCorrect();
-    })
+    });
   });
 
-  describe('click on refresh button', function() {
-    it('call refresh action', async function() {
+  describe('click on refresh button', function () {
+    it('call refresh action', async function () {
       let refreshIsCalled = false;
       this.set('refresh', function () { refreshIsCalled = true; });
       await render(hbs`('
@@ -84,6 +84,6 @@ describe('Integration: Tp index buttons', function() {
       ')`);
       await click('[data-test-refresh]');
       expect(refreshIsCalled).to.be.true;
-    })
+    });
   });
 });

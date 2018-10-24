@@ -140,7 +140,7 @@ describe('Acceptance: TpRatingProfiles.Index', function () {
   });
 
   describe('click to upload csv link', function () {
-    it('redirects to upload csv page', async function() {
+    it('redirects to upload csv page', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles');
       await click('[data-test-upload]');
       expect(currentURL()).to.eq('/tariff-plans/1/tp-rating-profiles/csv-import');
@@ -148,7 +148,7 @@ describe('Acceptance: TpRatingProfiles.Index', function () {
   });
 
   describe('click refresh button', function () {
-    it('makes a correct query', async function() {
+    it('makes a correct query', async function () {
       let expectRequestToBeCorrect = () => expect(false).to.eq(true);
       server.get('/tp-rating-profiles', function (_schema, request) {
         expectRequestToBeCorrect = () => {
@@ -166,7 +166,7 @@ describe('Acceptance: TpRatingProfiles.Index', function () {
 
   describe('filter and delete all', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-    beforeEach(async function() {
+    beforeEach(async function () {
       server.post('/tp-rating-profiles/delete-all', function (_schema, request) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);

@@ -16,10 +16,10 @@ export default Controller.extend(QueryControllerMixin, {
   actions: {
     resolve() {
       this.store
-          .createRecord('raw-supplier-resolve-job', {tpid: this.get('tariffPlan.id')})
-          .save()
-          .then(()  => { this.get('flashMessages').success('Resolve job is starting') })
-          .catch(() => { this.get('flashMessages').danger('Somethings went wrong') });
+        .createRecord('raw-supplier-resolve-job', {tpid: this.get('tariffPlan.id')})
+        .save()
+        .then(()  => { this.get('flashMessages').success('Resolve job is starting'); })
+        .catch(() => { this.get('flashMessages').danger('Somethings went wrong'); });
     }
   },
 });

@@ -111,7 +111,7 @@ describe('Acceptance: TpDestinations.Index', function () {
   });
 
   describe('click to upload csv link', function () {
-    it('redirects to upload csv page', async function() {
+    it('redirects to upload csv page', async function () {
       await visit('/tariff-plans/1/tp-destinations');
       await click('[data-test-upload]');
       expect(currentURL()).to.eq('/tariff-plans/1/tp-destinations/csv-import');
@@ -119,7 +119,7 @@ describe('Acceptance: TpDestinations.Index', function () {
   });
 
   describe('click refresh button', function () {
-    it('makes a correct query', async function() {
+    it('makes a correct query', async function () {
       let expectRequestToBeCorrect = () => expect(false).to.eq(true);
       server.get('/tp-destinations/', function (_schema, request) {
         expectRequestToBeCorrect = () => {
@@ -137,7 +137,7 @@ describe('Acceptance: TpDestinations.Index', function () {
 
   describe('filter and delete all', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-    beforeEach(async function() {
+    beforeEach(async function () {
       server.post('/tp-destinations/delete-all', function (_schema, request) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);

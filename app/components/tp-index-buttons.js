@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 import normalizeFilters from 'cgrates-web-frontend/utils/normalize-filters';
 import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 import { task } from 'ember-concurrency';
-import { isBlank } from '@ember/utils'
+import { isBlank } from '@ember/utils';
 
 export default Component.extend(FileSaverMixin, {
   flashMessages:        service(),
@@ -18,11 +18,11 @@ export default Component.extend(FileSaverMixin, {
       this.set('permittedFilters', []);
   },
 
-  csvImportRouteName: computed('model.modelName',function () {
+  csvImportRouteName: computed('model.modelName', function () {
     return `tariff-plan.${this.get('model.modelName')}s.csv-import`;
   }),
 
-  newRouteName: computed('model',function () {
+  newRouteName: computed('model', function () {
     return `tariff-plan.${this.get('model.modelName')}s.new`;
   }),
 
