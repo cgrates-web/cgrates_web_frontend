@@ -1,9 +1,6 @@
 import Controller from '@ember/controller';
+import TpNewEditControllerMixin from 'cgrates-web-frontend/mixins/tp-new-edit-controller-mixin';
 
-export default Controller.extend({
-  actions: {
-    save() {
-      return this.model.save().then(() => this.transitionToRoute('tariff-plan.tp-action-plans'));
-    }
-  }
+export default Controller.extend(TpNewEditControllerMixin, {
+  afterSaveRoute: 'tariff-plan.tp-action-plans',
 });
