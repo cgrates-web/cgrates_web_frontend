@@ -4,7 +4,7 @@ import QueryControllerMixin from 'cgrates-web-frontend/mixins/query-controller-m
 
 export default Controller.extend(QueryControllerMixin, {
   queryParams: ['tenant', 'id', 'filterType', 'filterFieldName', 'activationInterval', 'sortColumn',
-                'sortOrder', 'page', 'pageSize'],
+    'sortOrder', 'page', 'pageSize'],
 
   selectValues: service(),
 
@@ -12,6 +12,9 @@ export default Controller.extend(QueryControllerMixin, {
   id:                 null,
   filterType:         null,
   filterFieldName:    null,
-  activationInterval: null
-}
-);
+  activationInterval: null,
+
+  permittedFilters: Object.freeze([
+    'tenant', 'id', 'filterType', 'filterFieldName', 'activationInterval'
+  ]),
+});

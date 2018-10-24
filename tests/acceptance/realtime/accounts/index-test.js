@@ -5,14 +5,14 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, find, findAll, currentRouteName } from '@ember/test-helpers';
 
-describe("Acceptance: Accounts.Index", function() {
+describe('Acceptance: Accounts.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     server.create('account', { id: '2' });
     server.create('account', { id: '1' });
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /realtime/accounts', function () {
@@ -27,11 +27,11 @@ describe("Acceptance: Accounts.Index", function() {
     it('renders page header', async function () {
       await visit('/realtime/accounts');
       expect(find('.page-header h1').textContent.trim()).to.eq('Accounts');
-    })
+    });
   });
 
   describe('select account', () =>
-    it('reditects to account page', async function() {
+    it('reditects to account page', async function () {
       await visit('/realtime/accounts');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('realtime.accounts.account.index');
@@ -39,7 +39,7 @@ describe("Acceptance: Accounts.Index", function() {
   );
 
   describe('click remove button', () =>
-    it('removes account', async function() {
+    it('removes account', async function () {
       await visit('/realtime/accounts');
       await click('[data-test-account-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
@@ -47,7 +47,7 @@ describe("Acceptance: Accounts.Index", function() {
   );
 
   describe('click add button', () =>
-    it('redirects to new account page', async function() {
+    it('redirects to new account page', async function () {
       await visit('/realtime/accounts');
       await click('[data-test-account-add]');
       expect(currentRouteName()).to.equal('realtime.accounts.new');
@@ -55,10 +55,10 @@ describe("Acceptance: Accounts.Index", function() {
   );
 
   return describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/accounts/', function(schema, request) {
+      server.get('/accounts/', function (schema, request) {
         counter = counter + 1;
         const page = request.queryParams['page'];
         const perPage = request.queryParams['per_page'];

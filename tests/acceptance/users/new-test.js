@@ -5,23 +5,23 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, click, findAll, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance: Users.New", function() {
+describe('Acceptance: Users.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
-    await authenticateSession({email: "user@example.com"});
+  beforeEach(async function () {
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /users/new', () =>
-    it('renders user form', async function() {
+    it('renders user form', async function () {
       await visit('/users/new');
       expect(findAll('form input').length).to.eq(2);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved user', async function() {
+    it('removes not saved user', async function () {
       await visit('/users/new');
       await click('[data-test-users-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -46,10 +46,10 @@ describe("Acceptance: Users.New", function() {
   });
 
   return describe('fill form with correct data and submit', () =>
-    it('saves new user with correct data', async function() {
+    it('saves new user with correct data', async function () {
       let counter = 0;
 
-      server.post('/users/', function(schema, request) {
+      server.post('/users/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes.email).to.eq('test@example.com');

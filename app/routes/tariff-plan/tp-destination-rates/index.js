@@ -39,7 +39,7 @@ export default Route.extend(QueryRouteMixin, {
   },
 
   filterParams: ['tag', 'roundingMethod', 'roundingDecimals', 'ratesTag',
-                 'maxCostStrategy', 'maxCost', 'destinationsTag'],
+    'maxCostStrategy', 'maxCost', 'destinationsTag'],
 
   modelName: 'tp-destination-rate'
 }

@@ -1,15 +1,6 @@
 import Route from '@ember/routing/route';
+import ImportJobRouteMixin from 'cgrates-web-frontend/mixins/import-job-route-mixin';
 
-export default Route.extend({
-  model() { 
-    return this.store.createRecord('raw-supplier-rate-import-job', {
-      tpid: this.modelFor('tariff-plan').get('id')
-    });
-  },
-
-  actions: {
-    willTransition() {
-      if (this.currentModel.get('isNew')) { this.urrentModel.destroyRecord(); }
-    }
-  }
+export default Route.extend(ImportJobRouteMixin, {
+  parentModelName: 'raw-supplier-rate'
 });

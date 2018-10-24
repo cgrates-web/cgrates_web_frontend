@@ -56,6 +56,15 @@ export default Mixin.create({
 
   setupController(controller, {records, meta}) {
     this._super(controller, records);
+    if (!this.get('notInTariffPlan')) {
+      controller.set('tariffPlanId', this._getTtpid());
+    }
     return controller.set('meta', meta);
+  },
+
+  actions: {
+    refresh() {
+      this.refresh();
+    }
   }
 });

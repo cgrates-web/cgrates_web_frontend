@@ -4,21 +4,21 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, findAll, find, currentURL, fillIn } from '@ember/test-helpers';
-import $ from 'jquery'
+import $ from 'jquery';
 import moment from 'moment';
 
-describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
+describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     server.createList('raw-supplier-rate', 3);
     server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
     await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/:id/raw-supplier-rates', function () {
-    beforeEach(async function() {
+    beforeEach(async function () {
       await visit('/tariff-plans/1/raw-supplier-rates');
     });
     it('renders table with rates', function () {
@@ -26,9 +26,9 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
     });
   });
 
-  describe('filter and click download', function () {
+  describe('filter and click download csv', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-    beforeEach(async function() {
+    beforeEach(async function () {
       server.logging = true;
       const date = new Date(2018);
       server.get('/raw-supplier-rates/export-to-csv', function (_schema, request) {
@@ -39,7 +39,6 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
           expect(request.queryParams['filter[rate]']).to.eq('12');
           expect(request.queryParams['filter[inserted_at_gt]']).to.eq(moment(date).utc().format());
           expect(request.queryParams['filter[inserted_at_lt]']).to.eq(moment(date).utc().format());
-
         };
         return { raw_supplier_rates: { id: '0' } };
       });
@@ -60,15 +59,15 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
   });
 
   describe('click to upload csv link', function () {
-    it('redirects to upload csv page', async function() {
+    it('redirects to upload csv page', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates');
       await click('[data-test-upload]');
       expect(currentURL()).to.eq('/tariff-plans/1/raw-supplier-rates/csv-import');
-    })
+    });
   });
 
   describe('click to resolve', function () {
-    beforeEach(async function() {
+    beforeEach(async function () {
       await visit('/tariff-plans/1/raw-supplier-rates');
       await click('[data-test-resolve]');
     });
@@ -82,8 +81,8 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
     });
   });
 
-  describe('delete rate', function() {
-    beforeEach(async function() {
+  describe('delete rate', function () {
+    beforeEach(async function () {
       await visit('/tariff-plans/1/raw-supplier-rates');
       await click('table tr:first-child [data-test-supplier-rate-remove]');
     });
@@ -97,7 +96,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
 
   describe('filter and delete all', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-    beforeEach(async function() {
+    beforeEach(async function () {
       server.post('/raw-supplier-rates/delete-all', function (_schema, request) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);
@@ -108,7 +107,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
         return { raw_supplier_rates: { id: '0' } };
       });
       await visit('/tariff-plans/1/raw-supplier-rates?prefix=1');
-      await click('[data-test-delete-all]')
+      await click('[data-test-delete-all]');
     });
 
     it('sends request to the server with filters', function () {
@@ -118,5 +117,5 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function() {
     it('shows flash messages', function () {
       expect(find('.flash-message.alert-success')).to.exist;
     });
-  })
+  });
 });

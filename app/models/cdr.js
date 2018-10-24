@@ -27,11 +27,11 @@ export default DS.Model.extend({
   updatedAt:       DS.attr('date'),
   deletedAt:       DS.attr('date'),
 
-  extraFieldsObj: computed('extraFields', function() {
+  extraFieldsObj: computed('extraFields', function () {
     if (this.get('extraFields')) { return JSON.parse(this.get('extraFields')); }
   }),
 
-  costDetailsObj: computed('costDetails', function() {
+  costDetailsObj: computed('costDetails', function () {
     if (this.get('costDetails')) { return JSON.parse(this.get('costDetails')); }
   }),
 });

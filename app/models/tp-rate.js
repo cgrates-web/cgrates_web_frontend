@@ -9,9 +9,9 @@ const Validations = buildValidations({
       max: 64
     }),
   ],
-  rateUnit:           [ validator('presence', true), validator('ds-error') ],
-  rateIncrement:      [ validator('presence', true), validator('ds-error') ],
-  groupIntervalStart: [ validator('presence', true), validator('ds-error') ],
+  rateUnit:           [validator('presence', true), validator('ds-error')],
+  rateIncrement:      [validator('presence', true), validator('ds-error')],
+  groupIntervalStart: [validator('presence', true), validator('ds-error')],
   rate:                 validator('presence', true),
   connectFee:           validator('presence', true),
 });

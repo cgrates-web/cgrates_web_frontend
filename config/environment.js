@@ -1,7 +1,7 @@
 /* eslint-env node */
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     modulePrefix: 'cgrates-web-frontend',
     environment,
@@ -50,11 +50,11 @@ module.exports = function(environment) {
     // ENV.API_HOST = "http://cgrates-web.staging.yufuphone.com:4000";
     // ENV['ember-cli-mirage'] = { enabled: false };
 
-    // ENV.API_HOST = "http://localhost:4000";
-    // ENV['ember-cli-mirage'] = { enabled: false };
+    ENV.API_HOST = 'http://localhost:4000';
+    ENV['ember-cli-mirage'] = { enabled: false };
 
-    ENV.API_HOST = 'http://localhost:4200';
-    ENV['ember-cli-mirage'] = { enabled: true };
+    // ENV.API_HOST = 'http://localhost:4200';
+    // ENV['ember-cli-mirage'] = { enabled: true };
   }
 
   if (environment === 'test') {
@@ -67,7 +67,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
-    ENV.API_HOST = "http://localhost:7357";
+    ENV.API_HOST = 'http://localhost:7357';
 
     ENV.APP.rootElement = '#ember-testing';
   }

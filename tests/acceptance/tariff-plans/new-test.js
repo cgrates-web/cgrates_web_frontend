@@ -5,16 +5,16 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, fillIn, click } from '@ember/test-helpers';
 
-describe('Acceptance: TariffPlans.New', function() {
+describe('Acceptance: TariffPlans.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     await authenticateSession({email: 'user@exmple.com'});
   });
 
   describe('go away without save', () =>
-    it('removes not saved destination', async function() {
+    it('removes not saved destination', async function () {
       await visit('/tariff-plans');
       await click('[data-test-add-tp-plan]');
       await click('[data-test-tariff-paln-link]');
@@ -23,10 +23,10 @@ describe('Acceptance: TariffPlans.New', function() {
   );
 
   describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', async function() {
+    it('sends correct data to the backend', async function () {
       let counter = 0;
 
-      server.post('/tariff-plans/', function(schema, request) {
+      server.post('/tariff-plans/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes.name).to.eq('New tariff name');
@@ -51,7 +51,7 @@ describe('Acceptance: TariffPlans.New', function() {
     });
     it('does not send request', async function () {
       let expectRequest = false;
-      server.post('/tariff-plans/', function() {
+      server.post('/tariff-plans/', function () {
         expectRequest = true;
       });
       expect(expectRequest).to.be.false;

@@ -1,6 +1,3 @@
-import ApplicationAdapter from './application';
-import FormDataAdapterMixin from 'ember-cli-form-data/mixins/form-data-adapter';
+import ImportJobAdapter from './import-job';
 
-export default ApplicationAdapter.extend(FormDataAdapterMixin,{
-  namespace: 'uploaders'
-});
+export default ImportJobAdapter.extend({});
