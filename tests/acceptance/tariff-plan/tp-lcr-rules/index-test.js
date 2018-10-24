@@ -7,19 +7,19 @@ import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/te
 import { isBlank } from '@ember/utils';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpLcrRules.Index", function() {
+describe('Acceptance: TpLcrRules.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpLcrRules = server.createList('tp-lcr-rule', 2, {tpid: this.tariffPlan.alias});
     this.other = server.createList('tp-lcr-rule', 2, {tpid: 'other'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-lcr-rules', () =>
-    it("renders table with tp-lcr-rules", async  function() {
+    it('renders table with tp-lcr-rules', async  function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       expect(find('main h2').textContent).to.eq('TpLcrRules list');
       expect(findAll('table tbody tr').length).to.eq(2);
@@ -27,7 +27,7 @@ describe("Acceptance: TpLcrRules.Index", function() {
   );
 
   describe('select tp-lcr-rule', () =>
-    it('reditects to tp-lcr-rule page', async function() {
+    it('reditects to tp-lcr-rule page', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('tariff-plan.tp-lcr-rules.tp-lcr-rule.index');
@@ -35,7 +35,7 @@ describe("Acceptance: TpLcrRules.Index", function() {
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-lcr-rule page', async function() {
+    it('reditects to edit tp-lcr-rule page', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-tp-lcr-rule-edit]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-lcr-rules.tp-lcr-rule.edit');
@@ -43,7 +43,7 @@ describe("Acceptance: TpLcrRules.Index", function() {
   );
 
   describe('click remove button', () =>
-    it('removes tp-lcr-rule', async function() {
+    it('removes tp-lcr-rule', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-tp-lcr-rule-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
@@ -51,7 +51,7 @@ describe("Acceptance: TpLcrRules.Index", function() {
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-lcr-rule page', async function() {
+    it('redirects to new tp-lcr-rule page', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-tp-lcr-rule-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-lcr-rules.new');
@@ -59,10 +59,10 @@ describe("Acceptance: TpLcrRules.Index", function() {
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', async function() {
+    it('makes a correct filter query', async function () {
       let counter = 0;
 
-      server.get('/tp-lcr-rules/', function(schema, request) {
+      server.get('/tp-lcr-rules/', function (schema, request) {
         counter = counter + 1;
         const filterDirection = request.queryParams['filter[direction]'];
         const filterTenant = request.queryParams['filter[tenant]'];
@@ -111,10 +111,10 @@ describe("Acceptance: TpLcrRules.Index", function() {
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', async function() {
+    it('makes a correct sort query', async function () {
       let counter = 0;
 
-      server.get('/tp-lcr-rules/', function(schema, request) {
+      server.get('/tp-lcr-rules/', function (schema, request) {
         counter = counter + 1;
         const sort = request.queryParams['sort'];
         switch (counter) {
@@ -138,10 +138,10 @@ describe("Acceptance: TpLcrRules.Index", function() {
   );
 
   describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/tp-lcr-rules/', function(schema, request) {
+      server.get('/tp-lcr-rules/', function (schema, request) {
         counter = counter + 1;
         const pagePage = request.queryParams['page[page]'];
         const pagePageSize = request.queryParams['page[page-size]'];

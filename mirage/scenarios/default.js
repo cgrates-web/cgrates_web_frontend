@@ -1,4 +1,4 @@
-export default function(server) {
+export default function (server) {
   server.create('tariff-plan', { alias: 'tp_id' });
   server.createList('raw-supplier-rate', 2);
   server.createList('tp-action-plan', 2, { tpid: 'tp_id' });

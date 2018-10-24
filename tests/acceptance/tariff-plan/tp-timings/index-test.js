@@ -6,19 +6,19 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
 
-describe("Acceptance: TpTimings.Index", function() {
+describe('Acceptance: TpTimings.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpTiming = server.createList('tp-timing', 2, {tpid: this.tariffPlan.alias});
     this.other = server.createList('tp-destination', 2, {tpid: 'other'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-timings', () =>
-    it("renders table with tp-timings", async function() {
+    it('renders table with tp-timings', async function () {
       await visit('/tariff-plans/1/tp-timings');
       expect(find('main h2').textContent).to.eq('Timings list');
       expect(findAll('table tbody tr').length).to.eq(2);
@@ -26,7 +26,7 @@ describe("Acceptance: TpTimings.Index", function() {
   );
 
   describe('select tp-timings', () =>
-    it('reditects to tp-timings page', async function() {
+    it('reditects to tp-timings page', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('tariff-plan.tp-timings.tp-timing.index');
@@ -34,7 +34,7 @@ describe("Acceptance: TpTimings.Index", function() {
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-timing page', async function() {
+    it('reditects to edit tp-timing page', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-tp-timing-edit]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-timings.tp-timing.edit');
@@ -42,7 +42,7 @@ describe("Acceptance: TpTimings.Index", function() {
   );
 
   describe('click remove button', () =>
-    it('removes tp-timing', async function() {
+    it('removes tp-timing', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-tp-timing-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
@@ -50,7 +50,7 @@ describe("Acceptance: TpTimings.Index", function() {
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-timings page', async function() {
+    it('redirects to new tp-timings page', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-tp-timing-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-timings.new');
@@ -58,10 +58,10 @@ describe("Acceptance: TpTimings.Index", function() {
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', async function() {
+    it('makes a correct filter query', async function () {
       let counter = 0;
 
-      server.get('/tp-timings/', function(schema, request) {
+      server.get('/tp-timings/', function (schema, request) {
         counter = counter + 1;
         const filterTag = request.queryParams['filter[tag]'];
         switch (counter) {
@@ -82,10 +82,10 @@ describe("Acceptance: TpTimings.Index", function() {
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', async function() {
+    it('makes a correct sort query', async function () {
       let counter = 0;
 
-      server.get('/tp-timings/', function(schema, request) {
+      server.get('/tp-timings/', function (schema, request) {
         counter = counter + 1;
         const sort = request.queryParams['sort'];
         switch (counter) {
@@ -109,10 +109,10 @@ describe("Acceptance: TpTimings.Index", function() {
   );
 
   return describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/tp-timings/', function(schema, request) {
+      server.get('/tp-timings/', function (schema, request) {
         counter = counter + 1;
         const pagePage = request.queryParams['page[page]'];
         const pagePageSize = request.queryParams['page[page-size]'];

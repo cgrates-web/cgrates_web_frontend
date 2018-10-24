@@ -8,11 +8,11 @@ import { isEqual } from '@ember/utils';
 import { find, click, render, findAll } from '@ember/test-helpers';
 import EmberObject from '@ember/object';
 
-describe('Integration: InputTags', function() {
+describe('Integration: InputTags', function () {
   let hooks = setupRenderingTest();
   setupMirage(hooks);
 
-  describe('basic rendering', function() {
+  describe('basic rendering', function () {
     context('do not allow *any value', function () {
       beforeEach(async function () {
         this.set('model', EmberObject.create({inputTag: 'test1'}));
@@ -40,7 +40,7 @@ describe('Integration: InputTags', function() {
     });
 
     context('allow *any value', () =>
-      it('renders *any option', async function() {
+      it('renders *any option', async function () {
         this.set('model', EmberObject.create({inputTag: 'test1'}));
         await render(hbs`('
           {{#bs-form model=model as |form|}}
@@ -57,16 +57,16 @@ describe('Integration: InputTags', function() {
     );
   });
 
-  return describe('searching for a tag', function() {
+  return describe('searching for a tag', function () {
     context('do not allow *any value', () =>
-      it('sends correct query to the server', async function() {
+      it('sends correct query to the server', async function () {
         let allClear = false;
 
-        this.server.get('/tp-rates/', function(schema, request) {
+        this.server.get('/tp-rates/', function (schema, request) {
           const tpid = request.queryParams['tpid'];
           const filter = request.queryParams['filter[tag]'];
           const sort = request.queryParams['sort'];
-          if(isEqual(tpid, 'tptest') && isEqual(filter, 'tagtest') && isEqual(sort, 'tag')) {
+          if (isEqual(tpid, 'tptest') && isEqual(filter, 'tagtest') && isEqual(sort, 'tag')) {
             allClear = true;
           }
           return { data: [{id: '1', type: 'tp-rate'}] };
@@ -89,7 +89,7 @@ describe('Integration: InputTags', function() {
     );
 
     context('allow *any value', () =>
-      it('displays *any along with results', async function() {
+      it('displays *any along with results', async function () {
         this.server.get('/tp-rates/', () => ({ data: [{id: '1', type: 'tp-rate', attributes: {tag: 'test'}}] }));
         this.set('model', EmberObject.create({}));
         await render(hbs`('

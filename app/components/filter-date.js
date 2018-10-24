@@ -1,11 +1,11 @@
 import Component from '@ember/component';
-import { observer } from '@ember/object'
+import { observer } from '@ember/object';
 import { on } from '@ember/object/evented';
-import { isBlank, isPresent } from '@ember/utils'
+import { isBlank, isPresent } from '@ember/utils';
 import moment from 'moment';
 
 export default Component.extend({
-  _onInit: on('didReceiveAttrs', function() {
+  _onInit: on('didReceiveAttrs', function () {
     if (isPresent(this.get('value'))) {
       this.set('valueWrapper', new Date(this.get('value')));
     } else {

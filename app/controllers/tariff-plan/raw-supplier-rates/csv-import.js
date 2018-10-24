@@ -10,8 +10,8 @@ export default Controller.extend({
         this.get('flashMessages').success('Import from CSV is starting');
         this.transitionToRoute('tariff-plan.raw-supplier-rates.index');
       }).catch(() => {
-        this.get('flashMessages').danger('Somethings went wrong')
-      })
+        this.get('flashMessages').danger('Somethings went wrong');
+      });
     }
   }
-})
+});

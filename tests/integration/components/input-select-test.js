@@ -6,7 +6,7 @@ import { find, click, render } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 import EmberObject from '@ember/object';
 
-describe('Integration: InputSelect', function() {
+describe('Integration: InputSelect', function () {
   setupRenderingTest();
 
   describe('basic rendering', function () {
@@ -36,7 +36,6 @@ describe('Integration: InputSelect', function() {
     });
     it('displays label', function () {
       expect(find('label').textContent.trim()).to.eq('Test');
-
     });
     it('has correct class', function () {
       expect(find('[data-test-select="test"]')).to.have.class('test-class');
@@ -44,7 +43,7 @@ describe('Integration: InputSelect', function() {
   });
 
   return describe('selecting an item', () =>
-    it('changes value', async function() {
+    it('changes value', async function () {
       this.set('content', ['test1', 'test2']);
       this.set('model', EmberObject.create({inputSelect: 'test1'}));
       await render(hbs`('

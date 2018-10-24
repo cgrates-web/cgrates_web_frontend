@@ -12,10 +12,10 @@ export default Mixin.create({
     return {
       page: this.get('page'),
       totalPages: this.get('totalPages'),
-    }
+    };
   }),
 
-  totalPages: computed('meta.total_pages', function() {
+  totalPages: computed('meta.total_pages', function () {
     return this.get('meta.total_pages') || 1;
   }),
 

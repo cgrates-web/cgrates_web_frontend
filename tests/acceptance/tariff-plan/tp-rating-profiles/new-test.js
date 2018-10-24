@@ -6,19 +6,19 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpRatingProfiles.New", function() {
+describe('Acceptance: TpRatingProfiles.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRatingPlan1 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan1'});
     this.tpRatingPlan2 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan2'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-rating-profiles/new', () =>
-    it('renders tp-rating-profile form', async function() {
+    it('renders tp-rating-profile form', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles/new');
       expect(findAll('form input').length).to.eq(7);
       expect(findAll('form .ember-power-select-trigger').length).to.eq(2);
@@ -26,7 +26,7 @@ describe("Acceptance: TpRatingProfiles.New", function() {
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-rating-profile', async function() {
+    it('removes not saved tp-rating-profile', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles/new');
       await click('[data-test-rating-profiles-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -77,10 +77,10 @@ describe("Acceptance: TpRatingProfiles.New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-rating-profile with correct data', async function() {
+    it('saves new tp-rating-profile with correct data', async function () {
       let counter = 0;
 
-      server.post('/tp-rating-profiles/', function(schema, request) {
+      server.post('/tp-rating-profiles/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');

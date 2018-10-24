@@ -45,7 +45,7 @@ export default Route.extend(QueryRouteMixin, {
   },
 
   filterParams: ['loadid', 'direction', 'tenant', 'category', 'subject', 'fallbackSubjects',
-                 'activationTime', 'cdrStatQueueIds', 'ratingPlanTag'],
+    'activationTime', 'cdrStatQueueIds', 'ratingPlanTag'],
 
   modelName: 'tp-rating-profile'
 }

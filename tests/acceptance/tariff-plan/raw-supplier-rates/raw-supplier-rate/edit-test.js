@@ -5,21 +5,21 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance | Tariff Plan | Raw Supplier Rates | Edit", function() {
+describe('Acceptance | Tariff Plan | Raw Supplier Rates | Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     server.create('raw-supplier-rate', { id: '1'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', async function() {
+    it('sends correct data to the backend', async function () {
       let counter = 0;
 
-      server.patch('/raw-supplier-rates/:id', function(schema, request) {
+      server.patch('/raw-supplier-rates/:id', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['rate']).to.eq(0.01);

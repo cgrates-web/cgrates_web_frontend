@@ -7,19 +7,19 @@ import { isBlank } from '@ember/utils';
 import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpActions.Index", function() {
+describe('Acceptance: TpActions.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpActions = server.createList('tp-action', 2, {tpid: this.tariffPlan.alias});
     this.other = server.createList('tp-action', 2, {tpid: 'other'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-actions', () =>
-    it("renders table with tp-actions", async function() {
+    it('renders table with tp-actions', async function () {
       await visit('/tariff-plans/1/tp-actions');
       expect(find('main h2').textContent).to.eq('TpActions list');
       expect(findAll('table tbody tr').length).to.eq(2);
@@ -27,7 +27,7 @@ describe("Acceptance: TpActions.Index", function() {
   );
 
   describe('select tp-action', () =>
-    it('reditects to tp-action page', async function() {
+    it('reditects to tp-action page', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('tariff-plan.tp-actions.tp-action.index');
@@ -35,15 +35,15 @@ describe("Acceptance: TpActions.Index", function() {
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-action page', async function() {
+    it('reditects to edit tp-action page', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-tp-action-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-actions.tp-action.edit')
+      expect(currentRouteName()).to.equal('tariff-plan.tp-actions.tp-action.edit');
     })
   );
 
   describe('click remove button', () =>
-    it('removes tp-action', async function() {
+    it('removes tp-action', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-tp-action-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
@@ -51,17 +51,17 @@ describe("Acceptance: TpActions.Index", function() {
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-action page', async function() {
+    it('redirects to new tp-action page', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-tp-action-add]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-actions.new')
+      expect(currentRouteName()).to.equal('tariff-plan.tp-actions.new');
     })
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', async function() {
+    it('makes a correct filter query', async function () {
       let counter = 0;
-      server.get('/tp-actions/', function(schema, request) {
+      server.get('/tp-actions/', function (schema, request) {
         counter = counter + 1;
         const filterTag = request.queryParams['filter[tag]'];
         const filterAction = request.queryParams['filter[action]'];
@@ -142,10 +142,10 @@ describe("Acceptance: TpActions.Index", function() {
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', async function() {
+    it('makes a correct sort query', async function () {
       let counter = 0;
 
-      server.get('/tp-actions/', function(schema, request) {
+      server.get('/tp-actions/', function (schema, request) {
         counter = counter + 1;
         const sort = request.queryParams['sort'];
         switch (counter) {
@@ -169,10 +169,10 @@ describe("Acceptance: TpActions.Index", function() {
   );
 
   describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/tp-actions/', function(schema, request) {
+      server.get('/tp-actions/', function (schema, request) {
         counter = counter + 1;
         const pagePage = request.queryParams['page[page]'];
         const pagePageSize = request.queryParams['page[page-size]'];
@@ -190,7 +190,7 @@ describe("Acceptance: TpActions.Index", function() {
 
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-pagination-forward]');
-      expect(counter).to.eq(2)
+      expect(counter).to.eq(2);
     })
   );
 });

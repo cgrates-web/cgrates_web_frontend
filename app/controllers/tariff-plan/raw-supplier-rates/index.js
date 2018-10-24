@@ -29,16 +29,16 @@ export default Controller.extend(QueryControllerMixin, FileSaverMixin, {
           filter: filter
         }
       }).then((content) => {
-          this.saveFileAs('export.csv', content, 'application/csv');
-        })
+        this.saveFileAs('export.csv', content, 'application/csv');
+      })
         .catch(() => this.get('flashMessages').danger('Somethings went wrong'));
     },
     resolve() {
       this.store
-          .createRecord('raw-supplier-resolve-job', {tpid: this.get('tariffPlan.id')})
-          .save()
-          .then(()  => { this.get('flashMessages').success('Resolve job is starting') })
-          .catch(() => { this.get('flashMessages').danger('Somethings went wrong') });
+        .createRecord('raw-supplier-resolve-job', {tpid: this.get('tariffPlan.id')})
+        .save()
+        .then(()  => { this.get('flashMessages').success('Resolve job is starting'); })
+        .catch(() => { this.get('flashMessages').danger('Somethings went wrong'); });
     },
 
     deleteAll() {
@@ -50,8 +50,8 @@ export default Controller.extend(QueryControllerMixin, FileSaverMixin, {
           tpid: this.get('tariffPlan.id'),
           filter: filter
         }
-      }).then(()  => { this.get('flashMessages').success('Records have been deleted') })
-        .catch(() => { this.get('flashMessages').danger('Somethings went wrong') });
+      }).then(()  => { this.get('flashMessages').success('Records have been deleted'); })
+        .catch(() => { this.get('flashMessages').danger('Somethings went wrong'); });
     }
   }
 });

@@ -6,7 +6,7 @@ export default Component.extend({
   classNames: ['sort-header'],
   tagName: 'td',
 
-  currentColumn: computed('key', 'sortColumn', function() {
+  currentColumn: computed('key', 'sortColumn', function () {
     return isEqual(this.get('key'), this.get('sortColumn'));
   }),
 

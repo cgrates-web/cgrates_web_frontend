@@ -6,24 +6,24 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpFilter.New", function() {
+describe('Acceptance: TpFilter.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-filters/new', () =>
-    it('renders tp-filter form', async function() {
+    it('renders tp-filter form', async function () {
       await visit('/tariff-plans/1/tp-filters/new');
       expect(findAll('form input').length).to.eq(5);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-filter', async function() {
+    it('removes not saved tp-filter', async function () {
       await visit('/tariff-plans/1/tp-filters/new');
       await click('[ data-test-filters-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -80,10 +80,10 @@ describe("Acceptance: TpFilter.New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-filter with correct data', async function() {
+    it('saves new tp-filter with correct data', async function () {
       let counter = 0;
 
-      server.post('/tp-filters/', function(schema, request) {
+      server.post('/tp-filters/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');

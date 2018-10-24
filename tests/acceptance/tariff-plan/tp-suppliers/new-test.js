@@ -5,24 +5,24 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance: TpSuppliers.New", function() {
+describe('Acceptance: TpSuppliers.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-suppliers/new', () =>
-    it('renders tp-supplier form', async function() {
+    it('renders tp-supplier form', async function () {
       await visit('/tariff-plans/1/tp-suppliers/new');
       expect(findAll('form input').length).to.eq(15);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-supplier', async function() {
+    it('removes not saved tp-supplier', async function () {
       await visit('/tariff-plans/1/tp-suppliers/new');
       await click('[data-test-tp-suppliers-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -93,10 +93,10 @@ describe("Acceptance: TpSuppliers.New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-supplier with correct data', async function() {
+    it('saves new tp-supplier with correct data', async function () {
       let counter = 0;
 
-      server.post('/tp-suppliers/', function(schema, request) {
+      server.post('/tp-suppliers/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tenant']).to.eq('tenant');

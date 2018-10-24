@@ -15,7 +15,7 @@ export default Route.extend(QueryRouteMixin, {
   },
 
   filterParams: Object.freeze(['rate', 'prefix', 'supplierName',
-                               'insertedAtGt', 'insertedAtLt']),
+    'insertedAtGt', 'insertedAtLt']),
   modelName: 'raw-supplier-rate',
 
   _getTtpid() {

@@ -6,26 +6,26 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { isBlank } from '@ember/utils';
 import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance: TpSuppliers.Index", function() {
+describe('Acceptance: TpSuppliers.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     server.createList('tp-supplier', 2, {tpid: this.tariffPlan.alias});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-suppliers', function () {
-    it("renders table with tp-suppliers", async function () {
+    it('renders table with tp-suppliers', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       expect(find('main h2').textContent).to.eq('Suppliers list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
+    });
   });
 
   describe('select tp-supplier', () =>
-    it('reditects to tp-supplier page', async function() {
+    it('reditects to tp-supplier page', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('tariff-plan.tp-suppliers.tp-supplier.index');
@@ -33,7 +33,7 @@ describe("Acceptance: TpSuppliers.Index", function() {
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-supplier page', async function() {
+    it('reditects to edit tp-supplier page', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-tp-supplier-edit]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-suppliers.tp-supplier.edit');
@@ -41,7 +41,7 @@ describe("Acceptance: TpSuppliers.Index", function() {
   );
 
   describe('click remove button', () =>
-    it('removes tp-supplier', async function() {
+    it('removes tp-supplier', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-tp-supplier-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
@@ -49,7 +49,7 @@ describe("Acceptance: TpSuppliers.Index", function() {
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-supplier page', async function() {
+    it('redirects to new tp-supplier page', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-tp-supplier-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-suppliers.new');
@@ -57,10 +57,10 @@ describe("Acceptance: TpSuppliers.Index", function() {
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', async function() {
+    it('makes a correct filter query', async function () {
       let counter = 0;
 
-      server.get('/tp-suppliers/', function(schema, request) {
+      server.get('/tp-suppliers/', function (schema, request) {
         counter = counter + 1;
         const filterCustomId = request.queryParams['filter[custom_id]'];
         const filterFilterIds = request.queryParams['filter[filter_ids]'];
@@ -129,10 +129,10 @@ describe("Acceptance: TpSuppliers.Index", function() {
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', async function() {
+    it('makes a correct sort query', async function () {
       let counter = 0;
 
-      server.get('/tp-suppliers/', function(schema, request) {
+      server.get('/tp-suppliers/', function (schema, request) {
         counter = counter + 1;
         const sort = request.queryParams['sort'];
         switch (counter) {
@@ -156,10 +156,10 @@ describe("Acceptance: TpSuppliers.Index", function() {
   );
 
   describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/tp-suppliers/', function(schema, request) {
+      server.get('/tp-suppliers/', function (schema, request) {
         counter = counter + 1;
         const pagePage = request.queryParams['page[page]'];
         const pagePageSize = request.queryParams['page[page-size]'];

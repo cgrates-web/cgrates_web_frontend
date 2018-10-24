@@ -7,19 +7,19 @@ import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/te
 import { isBlank } from '@ember/utils';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpRatingProfiles.Index", function() {
+describe('Acceptance: TpRatingProfiles.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRatingProfiles = server.createList('tp-rating-profile', 2, {tpid: this.tariffPlan.alias});
     this.other = server.createList('tp-rating-profile', 2, {tpid: 'other'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-rating-profiles', () =>
-    it("renders table with tp-rating-profiles", async function() {
+    it('renders table with tp-rating-profiles', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles');
       expect(find('main h2').textContent).to.eq('TpRatingProfiles list');
       expect(findAll('table tbody tr').length).to.eq(2);
@@ -27,7 +27,7 @@ describe("Acceptance: TpRatingProfiles.Index", function() {
   );
 
   describe('select tp-rating-profile', () =>
-    it('reditects to tp-rating-profile page', async function() {
+    it('reditects to tp-rating-profile page', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('tariff-plan.tp-rating-profiles.tp-rating-profile.index');
@@ -35,7 +35,7 @@ describe("Acceptance: TpRatingProfiles.Index", function() {
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-rating-profile page', async function() {
+    it('reditects to edit tp-rating-profile page', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles');
       await click('[data-test-rating-profile-edit]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-rating-profiles.tp-rating-profile.edit');
@@ -43,7 +43,7 @@ describe("Acceptance: TpRatingProfiles.Index", function() {
   );
 
   describe('click remove button', () =>
-    it('removes tp-rating-profile', async function() {
+    it('removes tp-rating-profile', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles');
       await click('[data-test-rating-profile-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
@@ -51,7 +51,7 @@ describe("Acceptance: TpRatingProfiles.Index", function() {
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-rating-profile page', async function() {
+    it('redirects to new tp-rating-profile page', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles');
       await click('[data-test-rating-profile-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-rating-profiles.new');
@@ -59,10 +59,10 @@ describe("Acceptance: TpRatingProfiles.Index", function() {
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', async function() {
+    it('makes a correct filter query', async function () {
       let counter = 0;
 
-      server.get('/tp-rating-profiles/', function(schema, request) {
+      server.get('/tp-rating-profiles/', function (schema, request) {
         counter = counter + 1;
         const filterLoadid = request.queryParams['filter[loadid]'];
         const filterDirection = request.queryParams['filter[direction]'];
@@ -115,10 +115,10 @@ describe("Acceptance: TpRatingProfiles.Index", function() {
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', async function() {
+    it('makes a correct sort query', async function () {
       let counter = 0;
 
-      server.get('/tp-rating-profiles/', function(schema, request) {
+      server.get('/tp-rating-profiles/', function (schema, request) {
         counter = counter + 1;
         const sort = request.queryParams['sort'];
         switch (counter) {
@@ -142,10 +142,10 @@ describe("Acceptance: TpRatingProfiles.Index", function() {
   );
 
   return describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/tp-rating-profiles/', function(schema, request) {
+      server.get('/tp-rating-profiles/', function (schema, request) {
         counter = counter + 1;
         const pagePage = request.queryParams['page[page]'];
         const pagePageSize = request.queryParams['page[page-size]'];

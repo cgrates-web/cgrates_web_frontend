@@ -6,8 +6,8 @@ export default Controller.extend(QueryControllerMixin, {
   selectValues: service(),
 
   queryParams: ['tag', 'action', 'balanceTag', 'balanceType', 'directions', 'units', 'expiryTime', 'timingTags',
-                'destinationTags', 'ratingSubject', 'categories', 'sharedGroups', 'balanceWeight', 'balanceBlocker',
-                'balanceDisabled', 'weight', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
+    'destinationTags', 'ratingSubject', 'categories', 'sharedGroups', 'balanceWeight', 'balanceBlocker',
+    'balanceDisabled', 'weight', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
 
   tag:             null,
   action:          null,
