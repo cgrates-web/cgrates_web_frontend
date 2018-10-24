@@ -1,4 +1,4 @@
-export default function(server) {
+export default function (server) {
   server.createList('cdr', 2);
   server.createList('destination', 2);
   server.createList('account', 2);

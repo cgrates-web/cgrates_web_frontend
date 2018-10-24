@@ -7,25 +7,25 @@ import { isBlank } from '@ember/utils';
 import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: Cdrs.Index", function() {
+describe('Acceptance: Cdrs.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.cdrs = server.createList('cdr', 2);
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /cdrs', () =>
-    it("renders table with CDRs", async function() {
-      await visit("/cdrs");
+    it('renders table with CDRs', async function () {
+      await visit('/cdrs');
       expect(find('.page-header h1').textContent.trim()).to.eq('CDRs');
       expect(findAll('table tbody tr').length).to.eq(2);
     })
   );
 
   describe('select CDR', () =>
-    it('reditects to CDR page', async  function() {
+    it('reditects to CDR page', async  function () {
       await visit('/cdrs');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('cdrs.cdr');
@@ -33,10 +33,10 @@ describe("Acceptance: Cdrs.Index", function() {
   );
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', async function() {
+    it('makes a correct filter query', async function () {
       let counter = 0;
 
-      server.get('/cdrs/', function(schema, request) {
+      server.get('/cdrs/', function (schema, request) {
         counter = counter + 1;
         const filterCgrid = request.queryParams['filter[cgrid]'];
         const filterRunId = request.queryParams['filter[run_id]'];
@@ -95,10 +95,10 @@ describe("Acceptance: Cdrs.Index", function() {
   );
 
   describe('click column header', () =>
-    it('makes a correct sort query', async function() {
+    it('makes a correct sort query', async function () {
       let counter = 0;
 
-      server.get('/cdrs/', function(schema, request) {
+      server.get('/cdrs/', function (schema, request) {
         counter = counter + 1;
         const sort = request.queryParams['sort'];
         switch (counter) {
@@ -122,10 +122,10 @@ describe("Acceptance: Cdrs.Index", function() {
   );
 
   return describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/cdrs/', function(schema, request) {
+      server.get('/cdrs/', function (schema, request) {
         counter = counter + 1;
         const pagePage = request.queryParams['page[page]'];
         const pagePageSize = request.queryParams['page[page-size]'];

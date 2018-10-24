@@ -7,19 +7,19 @@ import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } fro
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 import { isBlank } from '@ember/utils';
 
-describe("Acceptance: TpDestinationRates.Index", function() {
+describe('Acceptance: TpDestinationRates.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpDestinationRates = server.createList('tp-destination-rate', 2, {tpid: this.tariffPlan.alias});
     this.other = server.createList('tp-destination-rate', 2, {tpid: 'other'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-destination-rates', () =>
-    it("renders table with tp-destination-rates", async function() {
+    it('renders table with tp-destination-rates', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       expect(find('main h2').textContent).to.eq('TpDestinationRates list');
       expect(findAll('table tbody tr').length).to.eq(2);
@@ -27,7 +27,7 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   );
 
   describe('select tp-destination-rate', () =>
-    it('reditects to tp-destination-rate page', async function() {
+    it('reditects to tp-destination-rate page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.tp-destination-rate.index');
@@ -35,7 +35,7 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   );
 
   describe('click edit button', () =>
-    it('reditects to edit tp-destination-rate page', async function() {
+    it('reditects to edit tp-destination-rate page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-tp-destination-rate-edit]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.tp-destination-rate.edit');
@@ -43,7 +43,7 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   );
 
   describe('click remove button', () =>
-    it('removes tp-destination-rate', async function() {
+    it('removes tp-destination-rate', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-tp-destination-rate-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
@@ -51,7 +51,7 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   );
 
   describe('click add button', () =>
-    it('redirects to new tp-destination-rate page', async function() {
+    it('redirects to new tp-destination-rate page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.new');
@@ -79,10 +79,10 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   };
 
   describe('set filters and click search button', () =>
-    it('makes a correct filter query', async function() {
+    it('makes a correct filter query', async function () {
       let counter = 0;
 
-      server.get('/tp-destination-rates/', function(schema, request) {
+      server.get('/tp-destination-rates/', function (schema, request) {
         counter = counter + 1;
         const filterTag = request.queryParams['filter[tag]'];
         const filterRatesTag = request.queryParams['filter[rates_tag]'];
@@ -133,7 +133,7 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   });
 
   describe('click to upload csv link', function () {
-    it('redirects to upload csv page', async function() {
+    it('redirects to upload csv page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-upload]');
       expect(currentURL()).to.eq('/tariff-plans/1/tp-destination-rates/csv-import');
@@ -141,7 +141,7 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   });
 
   describe('click refresh button', function () {
-    it('makes a correct query', async function() {
+    it('makes a correct query', async function () {
       let expectRequestToBeCorrect = () => expect(false).to.eq(true);
       server.get('/tp-destination-rates/', function (_schema, request) {
         expectRequestToBeCorrect = () => {
@@ -159,7 +159,7 @@ describe("Acceptance: TpDestinationRates.Index", function() {
 
   describe('filter and delete all', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-    beforeEach(async function() {
+    beforeEach(async function () {
       server.post('/tp-destination-rates/delete-all', function (_schema, request) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);
@@ -188,10 +188,10 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   });
 
   describe('click column header', () =>
-    it('makes a correct sort query', async function() {
+    it('makes a correct sort query', async function () {
       let counter = 0;
 
-      server.get('/tp-destination-rates/', function(schema, request) {
+      server.get('/tp-destination-rates/', function (schema, request) {
         counter = counter + 1;
         const sort = request.queryParams['sort'];
         switch (counter) {
@@ -215,10 +215,10 @@ describe("Acceptance: TpDestinationRates.Index", function() {
   );
 
   describe('click pagination link', () =>
-    it('makes a correct pagination query', async function() {
+    it('makes a correct pagination query', async function () {
       let counter = 0;
 
-      server.get('/tp-destination-rates/', function(schema, request) {
+      server.get('/tp-destination-rates/', function (schema, request) {
         counter = counter + 1;
         const pagePage = request.queryParams['page[page]'];
         const pagePageSize = request.queryParams['page[page-size]'];

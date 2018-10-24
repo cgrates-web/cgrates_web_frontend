@@ -5,24 +5,24 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance | Tariff Plan | Raw Supplier Rates | New", function() {
+describe('Acceptance | Tariff Plan | Raw Supplier Rates | New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/raw-supplier-rates/new', () =>
-    it('renders raw-supplier-rate form', async function() {
+    it('renders raw-supplier-rate form', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates/new');
       expect(findAll('form input').length).to.eq(4);
     })
   );
 
   describe('go away without save', () =>
-    it('removes not saved raw-supplier-rate', async function() {
+    it('removes not saved raw-supplier-rate', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates/new');
       await click('[data-test-supplier-rates-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -53,10 +53,10 @@ describe("Acceptance | Tariff Plan | Raw Supplier Rates | New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new raw-supplier-rate with correct data', async function() {
+    it('saves new raw-supplier-rate with correct data', async function () {
       let counter = 0;
 
-      server.post('/raw-supplier-rates/', function(schema, request) {
+      server.post('/raw-supplier-rates/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['rate']).to.eq(0.01);

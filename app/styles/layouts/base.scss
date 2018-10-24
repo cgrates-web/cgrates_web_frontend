@@ -31,16 +31,30 @@ h2.subtitle {
   display: flex;
   align-items: center;
   margin-bottom: 0.6rem;
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
   h2 {
     margin-bottom: 0;
+    @include media-breakpoint-down(md) {
+      margin-bottom: 1rem;
+    }
   }
   ul.actions {
     padding: 0 0 0 0.4rem;
     margin-bottom: 0;
     margin-left: auto;
+    @include media-breakpoint-down(md) {
+      margin-left: 0!important;
+      padding: 0;
+      display: flex;
+    }
     li {
       display: inline-block;
       margin-left: 0.8rem;
+      @include media-breakpoint-down(md) {
+        margin-bottom: 1rem;
+      }
       .material-icons {
         font-size: 25px;
       }

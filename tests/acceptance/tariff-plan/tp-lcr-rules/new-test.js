@@ -4,21 +4,21 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
-import { selectChoose,selectSearch } from 'ember-power-select/test-support/helpers';
+import { selectChoose, selectSearch } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpLcrRules.New", function() {
+describe('Acceptance: TpLcrRules.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpDestination1 = server.create('tp-destination', {tpid: this.tariffPlan.alias, tag: 'DST_1001'});
     this.tpDestination2 = server.create('tp-destination', {tpid: this.tariffPlan.alias, tag: 'DST_1002'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-lcr-rules/new', () =>
-    it('renders tp-lcr-rule form', async function() {
+    it('renders tp-lcr-rule form', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules/new');
       expect(findAll('form input').length).to.eq(8);
       expect(findAll('form .ember-power-select-trigger').length).to.eq(3);
@@ -26,7 +26,7 @@ describe("Acceptance: TpLcrRules.New", function() {
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-lcr-rule', async function() {
+    it('removes not saved tp-lcr-rule', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules/new');
       await click('[data-test-lcr-rules-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -85,10 +85,10 @@ describe("Acceptance: TpLcrRules.New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-lcr-rule with correct data', async function() {
+    it('saves new tp-lcr-rule with correct data', async function () {
       let counter = 0;
 
-      server.post('/tp-lcr-rules/', function(schema, request) {
+      server.post('/tp-lcr-rules/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');

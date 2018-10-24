@@ -6,19 +6,19 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, find, findAll, fillIn } from '@ember/test-helpers';
 import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpActionPlans.New", function() {
+describe('Acceptance: TpActionPlans.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpAction1 = server.create('tp-action', {tpid: this.tariffPlan.alias, tag: 'actiontest1'});
     this.tpAction2 = server.create('tp-action', {tpid: this.tariffPlan.alias, tag: 'actiontest2'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-action-plans/new', () =>
-    it('renders tp-action-plan form', async function() {
+    it('renders tp-action-plan form', async function () {
       await visit('/tariff-plans/1/tp-action-plans/new');
       expect(findAll('form input').length).to.eq(3);
       expect(findAll('form .ember-power-select-trigger').length).to.eq(1);
@@ -26,7 +26,7 @@ describe("Acceptance: TpActionPlans.New", function() {
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-action-plan', async function() {
+    it('removes not saved tp-action-plan', async function () {
       await visit('/tariff-plans/1/tp-action-plans/new');
       await click('[data-test-action-palns-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -60,10 +60,10 @@ describe("Acceptance: TpActionPlans.New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-action-plan with correct data', async function() {
+    it('saves new tp-action-plan with correct data', async function () {
       let counter = 0;
 
-      server.post('/tp-action-plans/', function(schema, request) {
+      server.post('/tp-action-plans/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');
@@ -81,7 +81,7 @@ describe("Acceptance: TpActionPlans.New", function() {
       await fillIn('[data-test-timing-tag] input', '*asap');
       await fillIn('[data-test-weight] input', '10');
       await click('[data-test-submit-button]');
-      expect(counter).to.eq(1)
+      expect(counter).to.eq(1);
     })
   );
 });

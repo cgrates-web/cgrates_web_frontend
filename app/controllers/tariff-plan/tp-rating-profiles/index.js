@@ -6,7 +6,7 @@ export default Controller.extend(QueryControllerMixin, {
   selectValues: service(),
 
   queryParams: ['loadid', 'direction', 'tenant', 'category', 'subject', 'fallbackSubjects', 'activationTime',
-                'cdrStatQueueIds', 'ratingPlanTag', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
+    'cdrStatQueueIds', 'ratingPlanTag', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
 
   loadid:           null,
   direction:        null,

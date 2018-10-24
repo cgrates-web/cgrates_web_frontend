@@ -5,16 +5,16 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, find, findAll, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance: NewDestination", function() {
+describe('Acceptance: NewDestination', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
-    await authenticateSession({email: "user@exmple.com"});
+  beforeEach(async function () {
+    await authenticateSession({email: 'user@exmple.com'});
   });
 
   describe('go away without save', () =>
-    it('removes not saved destination', async function() {
+    it('removes not saved destination', async function () {
       await visit('/realtime/destinations/new');
       await click('[data-test-destinations-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -22,7 +22,7 @@ describe("Acceptance: NewDestination", function() {
   );
 
   describe('visit /realtime/destinations/new', () =>
-    it('renders destination form', async function() {
+    it('renders destination form', async function () {
       await visit('/realtime/destinations/new');
       expect(findAll('form input').length).to.eq(2);
     })
@@ -44,10 +44,10 @@ describe("Acceptance: NewDestination", function() {
   });
 
   describe('fill in and submit form', () =>
-    it('saves new destination', async function() {
+    it('saves new destination', async function () {
       let counter = 0;
 
-      server.post('/destinations/', function(schema, request) {
+      server.post('/destinations/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.id).to.eq('DST_RU');

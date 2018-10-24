@@ -6,7 +6,7 @@ export default Controller.extend(QueryControllerMixin, {
   selectValues: service(),
 
   queryParams: ['direction', 'tenant', 'category', 'account', 'subject', 'destinationTag', 'rpCategory', 'strategy',
-                'sortColumn', 'sortOrder', 'page', 'pageSize'],
+    'sortColumn', 'sortOrder', 'page', 'pageSize'],
 
   direction:      null,
   tenant:         null,

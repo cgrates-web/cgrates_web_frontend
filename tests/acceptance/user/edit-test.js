@@ -5,17 +5,17 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, click, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance: User.Edit", function() {
+describe('Acceptance: User.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.user = server.create('user', { id: '1', });
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('fill form with incorrect data and submit', () =>
-    it('sets invalid class for inputs', async function() {
+    it('sets invalid class for inputs', async function () {
       await visit('/users/1/edit');
       await fillIn('[data-test-email] input', '');
       await click('[data-test-submit-button]');
@@ -25,7 +25,7 @@ describe("Acceptance: User.Edit", function() {
   );
 
   return describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', async function() {
+    it('sends correct data to the backend', async function () {
       let counter = 0;
 
       server.patch('/users/:id', (schema, request) => {

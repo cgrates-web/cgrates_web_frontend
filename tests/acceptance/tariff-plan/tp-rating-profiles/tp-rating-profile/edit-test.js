@@ -6,11 +6,11 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
 import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpRatingProfile.Edit", function() {
+describe('Acceptance: TpRatingProfile.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpRatingPlan1 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan1'});
     this.tpRatingPlan2 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan2'});
@@ -19,11 +19,11 @@ describe("Acceptance: TpRatingProfile.Edit", function() {
       tpid: this.tariffPlan.alias,
       rating_plan_tag: this.tpRatingPlan1.tag
     });
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', async function() {
+    it('sends correct data to the backend', async function () {
       let counter = 0;
 
       server.patch('/tp-rating-profiles/:id', (schema, request) => {

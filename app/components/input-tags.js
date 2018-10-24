@@ -10,7 +10,7 @@ export default Component.extend(SelectComponentMixin, {
 
   allowAny: false,
 
-  anyIfAllowed: computed('allowAny', function() {
+  anyIfAllowed: computed('allowAny', function () {
     if (this.get('allowAny')) { return ['*any']; } else { return null; }
   }),
 
@@ -22,7 +22,7 @@ export default Component.extend(SelectComponentMixin, {
       const result = items.mapBy('tag').uniq();
       if (this.get('allowAny')) { result.push('*any'); }
       return result;
-  });
+    });
   })
 }
 );

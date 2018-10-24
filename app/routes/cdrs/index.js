@@ -49,7 +49,7 @@ export default Route.extend(QueryRouteMixin, {
 
   filterParams: [
     'cgrid', 'runId', 'originHost', 'source', 'originId', 'tor',
-     'tenant', 'category', 'account', 'destination'
+    'tenant', 'category', 'account', 'destination'
   ],
 
   modelName: 'cdr',

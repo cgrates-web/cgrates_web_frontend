@@ -5,16 +5,16 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, fillIn, click } from '@ember/test-helpers';
 
-describe('Acceptance: TariffPlan.Edit', function() {
+describe('Acceptance: TariffPlan.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tp = server.create('tariff-plan');
-    await authenticateSession({email: "user@exmple.com"});
+    await authenticateSession({email: 'user@exmple.com'});
   });
 
   describe('fill form with correct data and submit', () =>
-    it('sends correct data to the backend', async function() {
+    it('sends correct data to the backend', async function () {
       let counter = 0;
       server.patch('/tariff-plans/:id', (schema, request) => {
         counter = counter + 1;
@@ -39,7 +39,7 @@ describe('Acceptance: TariffPlan.Edit', function() {
     context('request', function () {
       it('does not send request', async function () {
         let expectRequest = false;
-        server.patch('/tariff-plans/:id', function() {
+        server.patch('/tariff-plans/:id', function () {
           expectRequest = true;
         });
         await visit('/tariff-plans');
