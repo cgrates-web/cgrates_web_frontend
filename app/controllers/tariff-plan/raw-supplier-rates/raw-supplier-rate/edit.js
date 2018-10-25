@@ -3,4 +3,4 @@ import TpNewEditControllerMixin from 'cgrates-web-frontend/mixins/tp-new-edit-co
 
 export default Controller.extend(TpNewEditControllerMixin, {
   afterSaveRoute: 'tariff-plan.raw-supplier-rates',
-})
+});

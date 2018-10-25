@@ -10,8 +10,8 @@ export default Mixin.create({
       yield this.model.save();
       this.transitionToRoute(this.get('afterSaveRoute'));
       this.get('flashMessages').success(`${this.get('model._internalModel.modelName')} has been saved`);
-    } catch(err) {
-      this.get('flashMessages').danger('Something went wrong')
+    } catch (err) {
+      this.get('flashMessages').danger('Something went wrong');
     }
   }),
 });

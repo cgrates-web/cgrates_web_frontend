@@ -80,9 +80,9 @@
   {{#bs-button
     type='primary'
     buttonType='submit'
-    disabled=form.isSubmitting
+    disabled=save.isRunning
     data-test-submit-button=true
   }}
-    {{loading-button-text text='Save' isLoading=form.isSubmitting}}
+    {{loading-button-text text='Save' isLoading=save.isRunning}}
   {{/bs-button}}
 {{/bs-form}}
