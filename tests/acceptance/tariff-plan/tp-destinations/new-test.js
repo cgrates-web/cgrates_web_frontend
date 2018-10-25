@@ -10,7 +10,7 @@ describe('Acceptance: TpDestinations.New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {ia: '1', name: 'Test', alias: 'tptest'});
+    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     await authenticateSession({email: 'user@example.com'});
   });
 

@@ -8,4 +8,5 @@ export default function (server) {
   server.createList('tp-action-plan', 2, { tpid: 'tp_id' });
   server.createList('tp-supplier', 2);
   server.createList('tp-rate', 2,  { tpid: 'tp_id' });
+  server.createList('tp-attribute', 2,  { tpid: 'tp_id' });
 }
