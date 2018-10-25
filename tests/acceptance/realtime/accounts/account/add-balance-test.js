@@ -5,17 +5,17 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, find, findAll, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance: Account.AddBalance", function() {
+describe('Acceptance: Account.AddBalance', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.account = server.create('account', {id: 'test'});
-    await authenticateSession({email: "user@eaxmple.com"});
+    await authenticateSession({email: 'user@eaxmple.com'});
   });
 
   describe('visit /realtime/accounts/:id/add-balance', () =>
-    it('renders add balance form', async function() {
+    it('renders add balance form', async function () {
       await visit('/realtime/accounts/test/add-balance');
       expect(findAll('form input').length).to.eq(15);
     })
@@ -33,10 +33,10 @@ describe("Acceptance: Account.AddBalance", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('submits correct data', async function() {
+    it('submits correct data', async function () {
       let counter = 0;
 
-      server.post('/add-balance/', function(schema, request) {
+      server.post('/add-balance/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['account']).to.eq('test');
@@ -75,7 +75,7 @@ describe("Acceptance: Account.AddBalance", function() {
       await click('[data-test-blocker] input');
       await click('[data-test-disabled] input');
       await click('[data-test-submit-button]');
-      expect(counter).to.eq(1)
+      expect(counter).to.eq(1);
     })
   );
 });

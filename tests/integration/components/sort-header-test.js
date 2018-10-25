@@ -4,12 +4,12 @@ import { setupRenderingTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { click, render, find } from '@ember/test-helpers';
 
-describe('Integration: SortHeader', function() {
+describe('Integration: SortHeader', function () {
   setupRenderingTest();
 
-  describe('rendering', function() {
+  describe('rendering', function () {
     describe('not a current column', () =>
-      it('renders column name and no arrow', async function() {
+      it('renders column name and no arrow', async function () {
         await render(hbs("{{sort-header label='Labeltest' key='keytest' sortColumn='other' sortOrder='asc'}}"));
         expect(find('a').textContent.trim()).to.eq('Labeltest');
         expect(find('i.material-icons')).not.to.exist;
@@ -17,7 +17,7 @@ describe('Integration: SortHeader', function() {
     );
 
     describe('current column, ascending sorting', () =>
-      it('renders column name and an upward arrow', async function() {
+      it('renders column name and an upward arrow', async function () {
         await render(hbs("{{sort-header label='Labeltest' key='keytest' sortColumn='keytest' sortOrder='asc'}}"));
         expect(find('a').textContent.trim()).to.eq('Labeltest');
         expect(find('i.material-icons').textContent.trim()).to.eq('arrow_upward');
@@ -25,7 +25,7 @@ describe('Integration: SortHeader', function() {
     );
 
     describe('current column, descending sorting', () =>
-      it('renders column name and a downward arrow', async function() {
+      it('renders column name and a downward arrow', async function () {
         await render(hbs("{{sort-header label='Labeltest' key='keytest' sortColumn='keytest' sortOrder='desc'}}"));
         expect(find('a').textContent.trim()).to.eq('Labeltest');
         expect(find('i.material-icons').textContent.trim()).to.eq('arrow_downward');
@@ -33,11 +33,11 @@ describe('Integration: SortHeader', function() {
     );
   });
 
-  describe('clicking', function() {
+  describe('clicking', function () {
     describe('not a current column', () =>
-      it('sets column as current with ascending sorting',async function() {
+      it('sets column as current with ascending sorting', async function () {
         this.set('actionTriggered', false);
-        this.set('sortBy', function(column, direction) {
+        this.set('sortBy', function (column, direction) {
           this.set('actionTriggered', true);
           expect(column).to.equal('testkey');
           expect(direction).to.equal('asc');
@@ -49,9 +49,9 @@ describe('Integration: SortHeader', function() {
     );
 
     describe('current column, ascending sorting', () =>
-      it('leaves column as current and sets descending sorting', async function() {
+      it('leaves column as current and sets descending sorting', async function () {
         this.set('actionTriggered', false);
-        this.set('sortBy', function(column, direction) {
+        this.set('sortBy', function (column, direction) {
           this.set('actionTriggered', true);
           expect(column).to.equal('testkey');
           expect(direction).to.equal('desc');
@@ -63,9 +63,9 @@ describe('Integration: SortHeader', function() {
     );
 
     describe('current column, descending sorting', () =>
-      it('leaves column as current and sets ascending sorting', async function() {
+      it('leaves column as current and sets ascending sorting', async function () {
         this.set('actionTriggered', false);
-        this.set('sortBy', function(column, direction) {
+        this.set('sortBy', function (column, direction) {
           this.set('actionTriggered', true);
           expect(column).to.equal('testkey');
           expect(direction).to.equal('asc');

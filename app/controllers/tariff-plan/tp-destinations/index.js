@@ -5,5 +5,7 @@ export default Controller.extend(QueryControllerMixin, {
   queryParams: ['tag', 'prefix', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
 
   tag:    null,
-  prefix: null
+  prefix: null,
+
+  permittedFilters: Object.freeze(['tag', 'prefix']),
 });

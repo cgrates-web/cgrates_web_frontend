@@ -7,12 +7,12 @@ import { visit, find } from '@ember/test-helpers';
 import moment from 'moment';
 import config from '../../../config/environment';
 
-describe("Acceptance: Cdr.Index", function() {
+describe('Acceptance: Cdr.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
-    await authenticateSession({email: "user@example.com"});
+  beforeEach(async function () {
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('basic rendering', function () {

@@ -6,17 +6,17 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe("Acceptance: TpActions.New", function() {
+describe('Acceptance: TpActions.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('visit /tariff-plans/1/tp-actions/new', () =>
-    it('renders tp-action form', async function() {
+    it('renders tp-action form', async function () {
       await visit('/tariff-plans/1/tp-actions/new');
       expect(findAll('form input').length).to.eq(12);
       expect(findAll('form .ember-power-select-trigger').length).to.eq(6);
@@ -24,7 +24,7 @@ describe("Acceptance: TpActions.New", function() {
   );
 
   describe('go away without save', () =>
-    it('removes not saved tp-action', async function() {
+    it('removes not saved tp-action', async function () {
       await visit('/tariff-plans/1/tp-actions/new');
       await click('[data-test-actions-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
@@ -112,10 +112,10 @@ describe("Acceptance: TpActions.New", function() {
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-action with correct data', async function() {
+    it('saves new tp-action with correct data', async function () {
       let counter = 0;
 
-      server.post('/tp-actions/', function(schema, request) {
+      server.post('/tp-actions/', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');

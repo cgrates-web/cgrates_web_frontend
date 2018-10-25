@@ -5,21 +5,21 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
 
-describe("Acceptance: TpSupplier.Edit", function() {
+describe('Acceptance: TpSupplier.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
-  beforeEach(async function() {
+  beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
     this.tpSupplier = server.create('tp-supplier', {id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: "user@example.com"});
+    await authenticateSession({email: 'user@example.com'});
   });
 
   describe('fill form with correct data and submit', () =>
-    it('saves new tp-supplier with correct data', async function() {
+    it('saves new tp-supplier with correct data', async function () {
       let counter = 0;
 
-      server.patch('/tp-suppliers/:id', function(schema, request) {
+      server.patch('/tp-suppliers/:id', function (schema, request) {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tenant']).to.eq('tenant');
@@ -38,7 +38,7 @@ describe("Acceptance: TpSupplier.Edit", function() {
         expect(params.data.attributes['weight']).to.eq(100);
         expect(params.data.attributes['supplier-blocker']).to.eq(true);
 
-        return { data: {id: '1' , type: 'tp-supplier'} };
+        return { data: {id: '1', type: 'tp-supplier'} };
       });
       await visit('/tariff-plans/1/tp-suppliers/1/edit');
       await fillIn('[data-test-tenant] input', 'tenant');

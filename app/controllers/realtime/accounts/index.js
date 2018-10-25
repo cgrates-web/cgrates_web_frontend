@@ -15,10 +15,10 @@ export default Controller.extend({
     return {
       page: this.get('page'),
       totalPages: this.get('totalPages'),
-    }
+    };
   }),
 
-  totalPages: computed('page', function() {
+  totalPages: computed('page', function () {
     return this.get('page') + 1;
   }),
 

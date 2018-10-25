@@ -12,8 +12,8 @@ const Validations = buildValidations({
   destinationsTag:          validator('presence', true),
   roundingDecimals:         validator('presence', true),
   maxCost:                  validator('presence', true),
-  maxCostStrategy:        [ validator('presence', true), validator('ds-error') ],
-  roundingMethod:         [ validator('presence', true), validator('ds-error') ],
+  maxCostStrategy:        [validator('presence', true), validator('ds-error')],
+  roundingMethod:         [validator('presence', true), validator('ds-error')],
 });
 export default DS.Model.extend(Validations, {
   tpid:             DS.attr('string'),

@@ -1,4 +1,4 @@
-export default function() {
+export default function () {
   this.passthrough('/write-coverage');
 
   this.post('/sessions', () => {
@@ -32,10 +32,10 @@ export default function() {
   this.get('/cdrs');
   this.get('/cdrs/:id');
 
-  this.get('/tp-destinations', function(db, request) {
+  this.get('/tp-destinations', function (db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpDestinations.where({tpid: request.queryParams['tpid']});
-    if(tag) {
+    if (tag) {
       records = records.filter((record) => {
         return record.tag.includes(tag);
       });
@@ -45,10 +45,10 @@ export default function() {
   this.get('/tp-destinations/:id');
   this.del('/tp-destinations/:id');
 
-  this.get('/tp-rates', function(db, request) {
+  this.get('/tp-rates', function (db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpRates.where({tpid: request.queryParams['tpid']});
-    if(tag) {
+    if (tag) {
       records = records.filter((record) => {
         return record.tag.includes(tag);
       });
@@ -58,10 +58,10 @@ export default function() {
   this.get('/tp-rates/:id');
   this.del('/tp-rates/:id');
 
-  this.get('/tp-destination-rates', function(db, request) {
+  this.get('/tp-destination-rates', function (db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpDestinationRates.where({tpid: request.queryParams['tpid']});
-    if(tag) {
+    if (tag) {
       records = records.filter((record) => {
         return record.tag.includes(tag);
       });
@@ -71,10 +71,10 @@ export default function() {
   this.get('/tp-destination-rates/:id');
   this.del('/tp-destination-rates/:id');
 
-  this.get('/tp-timings', function(db, request) {
+  this.get('/tp-timings', function (db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpTimings.where({tpid: request.queryParams['tpid']});
-    if(tag) {
+    if (tag) {
       records = records.filter((record) => {
         return record.tag.includes(tag);
       });
@@ -84,10 +84,10 @@ export default function() {
   this.get('/tp-timings/:id');
   this.del('/tp-timings/:id');
 
-  this.get('/tp-rating-plans', function(db, request) {
+  this.get('/tp-rating-plans', function (db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpRatingPlans.where({tpid: request.queryParams['tpid']});
-    if(tag) {
+    if (tag) {
       records = records.filter((record) => {
         return record.tag.includes(tag);
       });
@@ -97,16 +97,16 @@ export default function() {
   this.get('/tp-rating-plans/:id');
   this.del('/tp-rating-plans/:id');
 
-  this.get('/tp-rating-profiles', function(db, request) {
+  this.get('/tp-rating-profiles', function (db, request) {
     return db.tpRatingProfiles.where({tpid: request.queryParams['tpid']});
   });
   this.get('/tp-rating-profiles/:id');
   this.del('/tp-rating-profiles/:id');
 
-  this.get('/tp-actions', function(db, request) {
+  this.get('/tp-actions', function (db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpActions.where({tpid: request.queryParams['tpid']});
-    if(tag) {
+    if (tag) {
       records = records.filter((record) => {
         return record.tag.includes(tag);
       });
@@ -116,20 +116,20 @@ export default function() {
   this.get('/tp-actions/:id');
   this.del('/tp-actions/:id');
 
-  this.get('/tp-action-plans', function(db, request) {
+  this.get('/tp-action-plans', function (db, request) {
     return db.tpActionPlans.where({tpid: request.queryParams['tpid']});
   });
 
   this.get('/tp-action-plans/:id');
   this.del('/tp-action-plans/:id');
 
-  this.get('/tp-lcr-rules', function(db, request) {
+  this.get('/tp-lcr-rules', function (db, request) {
     return db.tpLcrRules.where({tpid: request.queryParams['tpid']});
   });
   this.get('/tp-lcr-rules/:id');
   this.del('/tp-lcr-rules/:id');
 
-  this.get('/tp-filters', function(db, request) {
+  this.get('/tp-filters', function (db, request) {
     return db.tpFilters.where({tpid: request.queryParams['tpid']});
   });
   this.get('/tp-filters/:id');

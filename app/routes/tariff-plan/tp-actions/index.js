@@ -66,8 +66,8 @@ export default Route.extend(QueryRouteMixin, {
   },
 
   filterParams: ['tag', 'action', 'balanceTag', 'balanceType', 'directions', 'units', 'expiryTime',
-                 'timingTags', 'destinationTags', 'ratingSubject', 'categories', 'sharedGroups',
-                 'balanceWeight', 'balanceBlocker', 'balanceDisabled', 'weight'],
+    'timingTags', 'destinationTags', 'ratingSubject', 'categories', 'sharedGroups',
+    'balanceWeight', 'balanceBlocker', 'balanceDisabled', 'weight'],
 
   modelName: 'tp-action'
 }
