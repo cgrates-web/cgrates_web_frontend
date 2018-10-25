@@ -72,10 +72,10 @@
         {{#filters-block search=(action 'search') as |filtersBlock|}}
           {{#filter-text
             label='ID'
-            key='id'
-            value=id
+            key='customId'
+            value=customId
             onValueChange=(action 'pushValue' target=filtersBlock)
-            data-test-filter-id=true
+            data-test-filter-customid=true
           }}{{/filter-text}}
 
           {{#filter-text

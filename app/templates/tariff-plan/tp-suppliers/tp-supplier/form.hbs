@@ -12,11 +12,16 @@
       class='col-md-6'
       data-test-custom-id=true
     }}
-    {{form.element
+    {{input-select-search-to-string
       label='Filter IDs'
+      value=model.filterIds
+      searchModel='tp-filter'
+      searchField='customId'
+      tpid=model.tpid
       property='filterIds'
+      form=form
       class='col-md-6'
-      data-test-filter-ids=true
+      dataTest='filter-ids'
     }}
     {{form.element
       label='Sorting'

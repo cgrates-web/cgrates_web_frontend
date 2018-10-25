@@ -4,6 +4,7 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
+import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpSuppliers.New', function () {
   let hooks = setupApplicationTest();
@@ -11,6 +12,8 @@ describe('Acceptance: TpSuppliers.New', function () {
 
   beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
+    server.create('tp-filter', { tpid: this.tariffPlan.alias, customId: 'test_id1' });
+    server.create('tp-filter', { tpid: this.tariffPlan.alias, customId: 'test_id2' });
     await authenticateSession({email: 'user@example.com'});
   });
 
@@ -43,8 +46,8 @@ describe('Acceptance: TpSuppliers.New', function () {
       expect(find('[data-test-custom-id] .invalid-feedback')).to.have.class('d-block');
     });
     it('does not displays filter-ids error', function () {
-      expect(find('[data-test-filter-ids] input')).to.have.class('is-valid');
-      expect(find('[data-test-filter-ids] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-select-search-to-str="filter-ids"] div')).to.have.class('is-valid');
+      expect(find('[data-test-select-search-to-str="filter-ids"] .invalid-feedback')).not.to.exist;
     });
     it('does not displays sorting error', function () {
       expect(find('[data-test-sorting] input')).to.have.class('is-valid');
@@ -101,7 +104,7 @@ describe('Acceptance: TpSuppliers.New', function () {
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tenant']).to.eq('tenant');
         expect(params.data.attributes['custom-id']).to.eq('custom-id');
-        expect(params.data.attributes['filter-ids']).to.eq('1,2');
+        expect(params.data.attributes['filter-ids']).to.eq('test_id1,test_id2');
         expect(params.data.attributes['sorting']).to.eq('ASC');
         expect(params.data.attributes['activation-interval']).to.eq('Test');
         expect(params.data.attributes['sorting-parameters']).to.eq('sort');
@@ -120,7 +123,10 @@ describe('Acceptance: TpSuppliers.New', function () {
       await visit('/tariff-plans/1/tp-suppliers/new');
       await fillIn('[data-test-tenant] input', 'tenant');
       await fillIn('[data-test-custom-id] input', 'custom-id');
-      await fillIn('[data-test-filter-ids] input', '1,2');
+      await selectSearch('[data-test-select-search-to-str="filter-ids"]', 'test_id1');
+      await selectChoose('[data-test-select-search-to-str="filter-ids"]', 'test_id1');
+      await selectSearch('[data-test-select-search-to-str="filter-ids"]', 'test_id2');
+      await selectChoose('[data-test-select-search-to-str="filter-ids"]', 'test_id2');
       await fillIn('[data-test-sorting] input', 'ASC');
       await fillIn('[data-test-activation-interval] input', 'Test');
       await fillIn('[data-test-sorting-params] input', 'sort');
