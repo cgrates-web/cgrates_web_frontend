@@ -23,6 +23,16 @@ describe('Acceptance: TpActionPlans.Index', function () {
     })
   );
 
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/tp-action-plans', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/tp-action-plans');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
+
   describe('select tp-action-plan', () =>
     it('reditects to tp-action-plan page', async function () {
       await visit('/tariff-plans/1/tp-action-plans');

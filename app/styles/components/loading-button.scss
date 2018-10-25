@@ -1,0 +1,13 @@
+.loading-button {
+  display: flex;
+  position: relative;
+  .spinner {
+    position: absolute;
+    width: 100%;
+  }
+  &.loading {
+    .text {
+      opacity: 0;
+    }
+  }
+}

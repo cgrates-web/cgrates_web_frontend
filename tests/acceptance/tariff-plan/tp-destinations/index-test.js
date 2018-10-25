@@ -25,6 +25,16 @@ describe('Acceptance: TpDestinations.Index', function () {
     })
   );
 
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/tp-destinations', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/tp-destinations');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
+
   describe('select tp-destination', () =>
     it('reditects to tp-destination page', async function () {
       await visit('/tariff-plans/1/tp-destinations');

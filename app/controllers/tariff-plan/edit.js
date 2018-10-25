@@ -1,12 +1,6 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
+import TpNewEditControllerMixin from 'cgrates-web-frontend/mixins/tp-new-edit-controller-mixin';
 
-export default Controller.extend({
-  router: service(),
-
-  actions: {
-    save() {
-      return this.model.save().then(() => this.get('router').transitionTo('tariff-plans'));
-    }
-  }
+export default Controller.extend(TpNewEditControllerMixin, {
+  afterSaveRoute: 'tariff-plans',
 });

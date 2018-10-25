@@ -25,6 +25,16 @@ describe('Acceptance: TpRates.Index', function () {
     })
   );
 
+  describe('server responsed with meta: total_records', function () {
+    it('displays total records', async function () {
+      server.get('/tp-rates', function () {
+        return { data: [], meta: { total_records: 55 } };
+      });
+      await visit('/tariff-plans/1/tp-rates');
+      expect(find('.tp-total-records').textContent.trim()).to.eq('Total: 55');
+    });
+  });
+
   describe('select tp-rate', () =>
     it('reditects to tp-rate page', async function () {
       await visit('/tariff-plans/1/tp-rates');
