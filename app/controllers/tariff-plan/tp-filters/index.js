@@ -3,7 +3,7 @@ import { inject as service } from '@ember/service';
 import QueryControllerMixin from 'cgrates-web-frontend/mixins/query-controller-mixin';
 
 export default Controller.extend(QueryControllerMixin, {
-  queryParams: ['tenant', 'id', 'filterType', 'filterFieldName', 'activationInterval', 'sortColumn',
+  queryParams: ['tenant', 'customId', 'filterType', 'filterFieldName', 'activationInterval', 'sortColumn',
     'sortOrder', 'page', 'pageSize'],
 
   selectValues: service(),
@@ -15,6 +15,6 @@ export default Controller.extend(QueryControllerMixin, {
   activationInterval: null,
 
   permittedFilters: Object.freeze([
-    'tenant', 'id', 'filterType', 'filterFieldName', 'activationInterval'
+    'tenant', 'customId', 'filterType', 'filterFieldName', 'activationInterval'
   ]),
 });

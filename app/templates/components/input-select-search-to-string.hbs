@@ -1,0 +1,22 @@
+{{#form.element
+  controlType='power-select-multiple'
+  property=property
+  label=label
+  searchEnabled=true
+  placeholder=placeholder
+  showValidationOn='change'
+  class=class
+  data-test-select-search-to-str=dataTest
+  as |el|
+}}
+  {{#el.control
+    class=(if (eq el.validation 'error') 'is-invalid' (if (eq el.validation 'success') 'is-valid'))
+    search=(perform searchTask)
+    searchField=searchField
+    value=valueWrapper
+    onChange=(action 'onChange')
+    as |item|
+  }}
+    {{item.customId}}
+  {{/el.control}}
+{{/form.element}}
