@@ -11,17 +11,13 @@ export default Component.extend({
 
   strToObjectsArray(str) {
     if (isPresent(str)) {
-      return str.split(',').map((item) => {
-        return { [this.searchField]: item };
-      });
+      return str.split(',').map(item => ({ [this.searchField]: item }));
     }
     return [];
   },
 
   arrayObjectsToStr(arr) {
-    return arr.map((item) => {
-      return item[this.searchField];
-    }).join(',');
+    return arr.map(item => item[this.searchField]).join(',');
   },
 
   removeRepeatElements(arr) {
