@@ -18,11 +18,16 @@
       class='col-md-6'
       data-test-contexts=true
     }}
-    {{form.element
-      label='Filter ids'
+    {{input-select-search-to-string
+      label='Filter IDs'
+      value=model.filterIds
+      searchModel='tp-filter'
+      searchField='customId'
+      tpid=model.tpid
       property='filterIds'
+      form=form
       class='col-md-6'
-      data-test-filter-ids=true
+      dataTest='filter-ids'
     }}
     {{form.element
       label='Activation interval'
@@ -31,7 +36,7 @@
       data-test-activation-interval=true
     }}
     {{form.element
-      label='fieldName'
+      label='Field name'
       property='fieldName'
       class='col-md-6'
       data-test-field-name=true

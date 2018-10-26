@@ -12,7 +12,7 @@
         }}
       </ul>
     </div>
-    {{partial 'partials/total-records'}}
+    {{total-records totalRecords=meta.total_records}}
     <div class="row">
       <div class=" col-md-9">
         <div class="table-responsive">
@@ -23,7 +23,7 @@
               {{sort-header label='Tenant' key='tenant' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy' data-test-sort-tenant=true}}
               {{sort-header label='Custom ID' key='customId' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Contexts' key='contexts' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Filter Ids' key='filterIds' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
+              {{sort-header label='Filter IDs' key='filterIds' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Activation interval' key='activationInterval' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Field name' key='fieldName' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
               {{sort-header label='Initial' key='initial' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}

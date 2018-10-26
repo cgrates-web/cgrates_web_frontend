@@ -119,7 +119,7 @@ describe('Acceptance: TpAttributes.Index', function () {
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-destination'}] };
+        return { data: [{id: '1', type: 'tp-attribute'}] };
       });
 
       await visit('/tariff-plans/1/tp-attributes');
@@ -136,7 +136,7 @@ describe('Acceptance: TpAttributes.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-destination'}] };
+        return { data: [{id: '1', type: 'tp-attribute'}] };
       });
       await visit('/tariff-plans/1/tp-attributes');
       await setFilters();

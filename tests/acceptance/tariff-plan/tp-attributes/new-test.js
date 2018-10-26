@@ -4,6 +4,7 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
+import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpAttributes.New', function () {
   let hooks = setupApplicationTest();
@@ -11,6 +12,8 @@ describe('Acceptance: TpAttributes.New', function () {
 
   beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
+    server.create('tp-filter', { tpid: this.tariffPlan.alias, customId: 'test_id1' });
+    server.create('tp-filter', { tpid: this.tariffPlan.alias, customId: 'test_id2' });
     await authenticateSession({email: 'user@example.com'});
   });
 
@@ -46,9 +49,9 @@ describe('Acceptance: TpAttributes.New', function () {
       expect(find('[data-test-contexts] input')).to.have.class('is-invalid');
       expect(find('[data-test-contexts] .invalid-feedback')).to.have.class('d-block');
     });
-    it('displays filter-ids error', async function () {
-      expect(find('[data-test-filter-ids] input')).to.have.class('is-invalid');
-      expect(find('[data-test-filter-ids] .invalid-feedback')).to.have.class('d-block');
+    it('displays filter-ids error', function () {
+      expect(find('[data-test-select-search-to-str="filter-ids"] div')).to.have.class('is-invalid');
+      expect(find('[data-test-select-search-to-str="filter-ids"] .invalid-feedback')).to.exist;
     });
     it('displays activation-interval error', async function () {
       expect(find('[data-test-activation-interval] input')).to.have.class('is-invalid');
@@ -82,7 +85,7 @@ describe('Acceptance: TpAttributes.New', function () {
           expect(params.data.attributes['tenant']).to.eq('tenant');
           expect(params.data.attributes['custom-id']).to.eq('custom_id');
           expect(params.data.attributes['contexts']).to.eq('contexts');
-          expect(params.data.attributes['filter-ids']).to.eq('filter_ids');
+          expect(params.data.attributes['filter-ids']).to.eq('test_id1,test_id2');
           expect(params.data.attributes['activation-interval']).to.eq('activation_interval');
           expect(params.data.attributes['field-name']).to.eq('field_name');
           expect(params.data.attributes['initial']).to.eq('initial');
@@ -98,7 +101,10 @@ describe('Acceptance: TpAttributes.New', function () {
       await fillIn('[data-test-tenant] input', 'tenant');
       await fillIn('[data-test-customid] input', 'custom_id');
       await fillIn('[data-test-contexts] input', 'contexts');
-      await fillIn('[data-test-filter-ids] input', 'filter_ids');
+      await selectSearch('[data-test-select-search-to-str="filter-ids"]', 'test_id1');
+      await selectChoose('[data-test-select-search-to-str="filter-ids"]', 'test_id1');
+      await selectSearch('[data-test-select-search-to-str="filter-ids"]', 'test_id2');
+      await selectChoose('[data-test-select-search-to-str="filter-ids"]', 'test_id2');
       await fillIn('[data-test-activation-interval] input', 'activation_interval');
       await fillIn('[data-test-field-name] input', 'field_name');
       await fillIn('[data-test-initial] input', 'initial');
