@@ -11,4 +11,7 @@ export default function (server) {
   server.createList('tp-threshold', 2, { tpid: 'tp_id' });
   server.createList('tp-filter', 2, { tpid: 'tp_id' });
   server.createList('tp-resource', 2, { tpid: 'tp_id' });
+  server.createList('tp-rate', 2,  { tpid: 'tp_id' });
+  server.createList('tp-filter', 2,  { tpid: 'tp_id' });
+  server.createList('tp-attribute', 2,  { tpid: 'tp_id' });
 }
