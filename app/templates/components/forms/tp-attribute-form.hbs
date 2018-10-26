@@ -1,0 +1,90 @@
+{{#bs-form model=model onSubmit=(perform save) novalidate=true as |form|}}
+  <div class='form-row'>
+    {{form.element
+      label='Tenant'
+      property='tenant'
+      class='col-md-6'
+      data-test-tenant=true
+    }}
+    {{form.element
+      label='Custom ID'
+      property='customId'
+      class='col-md-6'
+      data-test-customid=true
+    }}
+    {{form.element
+      label='Contexts'
+      property='contexts'
+      class='col-md-6'
+      data-test-contexts=true
+    }}
+    {{input-select-search-to-string
+      label='Filter IDs'
+      value=model.filterIds
+      searchModel='tp-filter'
+      searchField='customId'
+      tpid=model.tpid
+      property='filterIds'
+      form=form
+      class='col-md-6'
+      dataTest='filter-ids'
+    }}
+    {{form.element
+      label='Activation interval'
+      property='activationInterval'
+      class='col-md-6'
+      data-test-activation-interval=true
+    }}
+    {{form.element
+      label='Field name'
+      property='fieldName'
+      class='col-md-6'
+      data-test-field-name=true
+    }}
+    {{form.element
+      label='Initial'
+      property='initial'
+      class='col-md-6'
+      data-test-initial=true
+    }}
+    {{form.element
+      label='Substitute'
+      property='substitute'
+      class='col-md-6'
+      data-test-substitute=true
+    }}
+    {{form.element
+      label='Weight'
+      property='weight'
+      controlType='number'
+      step='0.1'
+      min='0'
+      class='col-md-6'
+      data-test-weight=true
+    }}
+    <div class="col-12 mb-2">
+      {{form.element
+        label='Append'
+        property='append'
+        class='form-check-inline'
+        controlType='checkbox'
+        data-test-append=true
+      }}
+      {{form.element
+        label='Blocker'
+        property='blocker'
+        class='form-check-inline'
+        controlType='checkbox'
+        data-test-blocker=true
+      }}
+    </div>
+  </div>
+  {{#bs-button
+    type='primary'
+    buttonType='submit'
+    disabled=save.isRunning
+    data-test-submit-button=true
+  }}
+    {{loading-button-text text='Save' isLoading=save.isRunning}}
+  {{/bs-button}}
+{{/bs-form}}
