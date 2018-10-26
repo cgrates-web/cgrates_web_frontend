@@ -107,10 +107,17 @@ Router.map(function () {
           return this.route('edit');
         });
       });
-      return this.route('tp-suppliers', function () {
+      this.route('tp-suppliers', function () {
         this.route('new');
         this.route('csv-import');
         return this.route('tp-supplier', {path: ':tp_supplier_id'}, function () {
+          return this.route('edit');
+        });
+      });
+      return this.route('tp-resources', function () {
+        this.route('new');
+        this.route('csv-import');
+        return this.route('tp-resource', {path: ':tp_resource_id'}, function () {
           return this.route('edit');
         });
       });

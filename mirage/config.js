@@ -138,6 +138,14 @@ export default function () {
   this.resource('tp-suppliers');
   this.resource('raw-supplier-rates');
 
+  this.get('/tp-resources', function (db, request) {
+    return db.tpResources.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-resources/:id');
+  this.post('/tp-resources');
+  this.patch('/tp-resources/:id');
+  this.del('/tp-resources/:id');
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
