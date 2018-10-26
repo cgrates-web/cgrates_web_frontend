@@ -114,7 +114,14 @@ Router.map(function () {
           return this.route('edit');
         });
       });
-      this.route('tp-attributes', function () {
+      this.route('tp-resources', function () {
+        this.route('new');
+        this.route('csv-import');
+        return this.route('tp-resource', {path: ':tp_resource_id'}, function () {
+          return this.route('edit');
+        });
+      });
+      return this.route('tp-attributes', function () {
         this.route('new');
         this.route('csv-import');
         return this.route('tp-attribute', {path: ':tp_attribute_id'}, function () {
