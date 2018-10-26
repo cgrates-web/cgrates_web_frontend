@@ -21,12 +21,8 @@ export default Component.extend({
   },
 
   removeRepeatElements(arr) {
-    return arr.reduce((prev, item) => {
-      if (prev.map(x => x[this.searchField]).indexOf(item[this.searchField]) === -1) {
-        prev.push(item);
-      }
-      return prev;
-    }, []);
+    const onlyUniq = arr => (value, index) => arr.indexOf(value[this.searchField]) === index;
+    return arr.filter(onlyUniq(arr.map(item => item[this.searchField])));
   },
 
   didReceiveAttrs() {
