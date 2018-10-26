@@ -71,14 +71,14 @@ describe('Acceptance: TpFilters.Index', function () {
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-tenant] input', 'tagtest');
-    await fillIn('[data-test-filter-id] input', '60');
+    await fillIn('[data-test-filter-customid] input', '60');
     await fillIn('[data-test-filter-field-name] input', 'filter_name');
     await fillIn('[data-test-filter-activation-interval] input', '0.01');
     await selectChoose('[data-test-filter-fitertype]', '*string');
   };
   const expectFiltersQueryParams = (request) => {
     expect(request.queryParams['tpid']).to.eq('tptest');
-    expect(request.queryParams['filter[id]']).to.eq('60');
+    expect(request.queryParams['filter[custom_id]']).to.eq('60');
     expect(request.queryParams['filter[filter_type]']).to.eq('*string');
     expect(request.queryParams['filter[filter_field_name]']).to.eq('filter_name');
     expect(request.queryParams['filter[activation_interval]']).to.eq('0.01');
@@ -90,7 +90,7 @@ describe('Acceptance: TpFilters.Index', function () {
       server.get('/tp-filters/', function (schema, request) {
         counter = counter + 1;
         const tenant = request.queryParams['filter[tenant]'];
-        const id = request.queryParams['filter[id]'];
+        const id = request.queryParams['filter[custom_id]'];
         const filterType = request.queryParams['filter[filter_type]'];
         const filterFieldName = request.queryParams['filter[filter_field_name]'];
         const activationInterval = request.queryParams['filter[activation_interval]'];
@@ -122,7 +122,7 @@ describe('Acceptance: TpFilters.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'ttp-filter'}] };
+        return { data: [{id: '1', type: 'tp-filter'}] };
       });
       await visit('/tariff-plans/1/tp-filters');
       await setFilters();
@@ -164,7 +164,7 @@ describe('Acceptance: TpFilters.Index', function () {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);
           expect(params.tpid).to.eq('tptest');
-          expect(params.filter.id).to.eq('60');
+          expect(params.filter.custom_id).to.eq('60');
           expect(params.filter.filter_type).to.eq('*string');
           expect(params.filter.filter_field_name).to.eq('filter_name');
           expect(params.filter.activation_interval).to.eq('0.01');

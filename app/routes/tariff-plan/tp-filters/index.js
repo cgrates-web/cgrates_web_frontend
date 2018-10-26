@@ -6,7 +6,7 @@ export default Route.extend(QueryRouteMixin, {
     tenant: {
       refreshModel: true
     },
-    id: {
+    customId: {
       refreshModel: true
     },
     filterType: {
@@ -32,7 +32,7 @@ export default Route.extend(QueryRouteMixin, {
     }
   },
 
-  filterParams: ['tenant', 'id', 'filterType', 'filterFieldName', 'activationInterval'],
+  filterParams: ['tenant', 'customId', 'filterType', 'filterFieldName', 'activationInterval'],
 
   modelName: 'tp-filter'
 }
