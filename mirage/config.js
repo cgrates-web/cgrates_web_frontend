@@ -146,6 +146,14 @@ export default function () {
   this.patch('/tp-resources/:id');
   this.del('/tp-resources/:id');
 
+  this.get('/tp-thresholds', function (db, request) {
+    return db.tpThresholds.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-thresholds/:id');
+  this.post('/tp-thresholds');
+  this.patch('/tp-thresholds/:id');
+  this.del('/tp-thresholds/:id');
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {

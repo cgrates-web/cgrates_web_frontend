@@ -12,17 +12,27 @@
       class='col-md-6'
       data-test-customid=true
     }}
-    {{form.element
-      label='Filter ids'
+    {{input-select-search-to-string
+      label='Filter IDs'
+      value=model.filterIds
+      searchModel='tp-filter'
+      searchField='customId'
+      tpid=model.tpid
       property='filterIds'
+      form=form
       class='col-md-6'
-      data-test-filter-ids=true
+      dataTest='filter-ids'
     }}
-    {{form.element
+    {{input-select-search-to-string
       label='Threshold ids'
+      value=model.thresholdIds
+      searchModel='tp-threshold'
+      searchField='customId'
+      tpid=model.tpid
       property='thresholdIds'
+      form=form
       class='col-md-6'
-      data-test-threshold-ids=true
+      dataTest='threshold-ids'
     }}
     {{form.element
       label='Activation interval'
