@@ -2,7 +2,7 @@ import { describe, it, context } from 'mocha';
 import { expect } from 'chai';
 import { setupRenderingTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 describe('Integration: Total records', function () {
   setupRenderingTest();
@@ -16,9 +16,9 @@ describe('Integration: Total records', function () {
       });
     });
     context('when total records is not exist', function () {
-      it('does not displays total records', async function () {
+      it('does not displays total records count', async function () {
         await render(hbs('{{total-records}}'));
-        expect(find('.tp-total-records')).not.to.exist;
+        expect(this.element.textContent.trim()).to.eq('Total:');
       });
     });
   });
