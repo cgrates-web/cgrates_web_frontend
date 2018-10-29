@@ -121,6 +121,13 @@ Router.map(function () {
           return this.route('edit');
         });
       });
+      this.route('tp-thresholds', function () {
+        this.route('new');
+        this.route('csv-import');
+        return this.route('tp-threshold', {path: ':tp_threshold_id'}, function () {
+          return this.route('edit');
+        });
+      });
       return this.route('tp-attributes', function () {
         this.route('new');
         this.route('csv-import');

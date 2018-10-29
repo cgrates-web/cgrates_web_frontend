@@ -45,6 +45,7 @@ export default Component.extend({
       const arr = this.removeRepeatElements(values);
       this.set('valueWrapper', arr);
       this.set('value', this.arrayObjectsToStr(arr));
+      this.set('showOwnValidation', true);
     }
   },
 });
