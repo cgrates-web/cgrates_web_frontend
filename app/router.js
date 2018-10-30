@@ -114,6 +114,13 @@ Router.map(function () {
           return this.route('edit');
         });
       });
+      this.route('tp-aliases', function () {
+        this.route('new');
+        this.route('csv-import');
+        return this.route('tp-alias', {path: ':tp_alias_id'}, function () {
+          return this.route('edit');
+        });
+      });
       this.route('tp-resources', function () {
         this.route('new');
         this.route('csv-import');

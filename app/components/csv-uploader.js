@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 import config from 'cgrates-web-frontend/config/environment';
 import { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
+import { pluralize } from 'ember-inflector';
 
 export default Component.extend({
   classNames: ['csv-uploader'],
@@ -29,7 +30,7 @@ export default Component.extend({
       this.model.save().then(() => {
         this.get('flashMessages').success('Import from CSV is starting');
         if (this.get('redirectAfterSave'))
-          this.get('router').transitionTo(`tariff-plan.${this.get('parentModelName')}s.index`);
+          this.get('router').transitionTo(`tariff-plan.${pluralize(this.get('parentModelName'))}.index`);
       }).catch(() => {
         this.get('flashMessages').danger('Somethings went wrong');
       });

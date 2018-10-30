@@ -162,6 +162,14 @@ export default function () {
   this.patch('/tp-attributes/:id');
   this.del('/tp-attributes/:id');
 
+  this.get('/tp-aliases', function (db, request) {
+    return db.tpAliases.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-aliases/:id');
+  this.post('/tp-aliases');
+  this.patch('/tp-aliases/:id');
+  this.del('/tp-aliases/:id');
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
