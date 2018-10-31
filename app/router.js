@@ -100,6 +100,13 @@ Router.map(function () {
           this.route('edit');
         });
       });
+      this.route('tp-chargers', function () {
+        this.route('new');
+        this.route('csv-import');
+        this.route('tp-charger', {path: ':tp_charger_id'}, function () {
+          return this.route('edit');
+        });
+      });
       this.route('tp-filters', function () {
         this.route('new');
         this.route('csv-import');
