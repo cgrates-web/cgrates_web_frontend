@@ -170,6 +170,14 @@ export default function () {
   this.patch('/tp-chargers/:id');
   this.del('/tp-chargers/:id');
 
+  this.get('/tp-aliases', function (db, request) {
+    return db.tpAliases.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-aliases/:id');
+  this.post('/tp-aliases');
+  this.patch('/tp-aliases/:id');
+  this.del('/tp-aliases/:id');
+
   this.get('/tp-shared-groups', function (db, request) {
     return db.tpSharedGroups.where({tpid: request.queryParams['tpid']});
   });
