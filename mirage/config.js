@@ -167,4 +167,22 @@ export default function () {
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
     return { file: null };
   });
+
+  this.get('/realtime/cgrates_lcrs', function () {
+    return {
+      'profile_id': 'SPL_LCR_EU',
+      'sorting': '*least_cost',
+      'sorted_suppliers': [
+        {
+          'supplier_id': 'megacom',
+          'suppliers_parameters': '',
+          'sorting_data': {
+            'cost': 0.03,
+            'rating_plan_id': 'RP_megacom',
+            'weight': 0
+          }
+        }
+      ]
+    };
+  });
 }

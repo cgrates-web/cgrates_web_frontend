@@ -83,14 +83,6 @@ td.sort-header {
     font-size: inherit;
   }
 }
-//forms
-input[type="checkbox"] {
-  width: 1rem;
-  height: 1rem;
-}
-.is-required>label:after {
-  content: '*';
-}
 
 //loading spinner
 .spinner {
