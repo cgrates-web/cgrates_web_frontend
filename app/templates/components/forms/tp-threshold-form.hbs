@@ -1,0 +1,101 @@
+{{#bs-form model=model onSubmit=(perform save) novalidate=true as |form|}}
+  <div class='form-row'>
+    {{form.element
+      label='Tenant'
+      property='tenant'
+      class='col-md-6'
+      data-test-tenant=true
+    }}
+    {{form.element
+      label='Custom ID'
+      property='customId'
+      class='col-md-6'
+      data-test-customid=true
+    }}
+    {{input-select-search-to-string
+      label='Filter IDs'
+      value=model.filterIds
+      searchModel='tp-filter'
+      searchField='customId'
+      tpid=model.tpid
+      property='filterIds'
+      form=form
+      class='col-md-6'
+      dataTest='filter-ids'
+    }}
+    {{input-select-search-to-string
+      label='Action IDs'
+      value=model.actionIds
+      searchModel='tp-action'
+      searchField='tag'
+      tpid=model.tpid
+      property='actionIds'
+      form=form
+      class='col-md-6'
+      dataTest='action-ids'
+    }}
+    {{form.element
+      label='Activation interval'
+      property='activationInterval'
+      class='col-md-6'
+      data-test-activation-interval=true
+    }}
+    {{form.element
+      controlType='number'
+      label='Max hits'
+      property='maxHits'
+      min='0'
+      class='col-md-6'
+      data-test-max-hits=true
+    }}
+    {{form.element
+      controlType='number'
+      label='Min hits'
+      property='minHits'
+      min='0'
+      class='col-md-6'
+      data-test-min-hits=true
+    }}
+    {{form.element
+      controlType='number'
+      label='Min sleep'
+      property='minSleep'
+      min='0'
+      class='col-md-6'
+      data-test-min-sleep=true
+    }}
+    {{form.element
+      label='Weight'
+      property='weight'
+      controlType='number'
+      step='0.1'
+      min='0'
+      class='col-md-6'
+      data-test-weight=true
+    }}
+    <div class="col-12 mb-2">
+      {{form.element
+        label='Blocker'
+        property='blocker'
+        class='form-check-inline'
+        controlType='checkbox'
+        data-test-blocker=true
+      }}
+      {{form.element
+        label='Async'
+        property='async'
+        class='form-check-inline'
+        controlType='checkbox'
+        data-test-async=true
+      }}
+    </div>
+  </div>
+  {{#bs-button
+    type='primary'
+    buttonType='submit'
+    disabled=save.isRunning
+    data-test-submit-button=true
+  }}
+    {{loading-button-text text='Save' isLoading=save.isRunning}}
+  {{/bs-button}}
+{{/bs-form}}
