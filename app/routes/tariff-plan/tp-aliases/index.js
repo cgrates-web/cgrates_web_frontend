@@ -20,8 +20,8 @@ export default Route.extend(QueryRouteMixin, {
     pageSize:             { refreshModel: true }
   },
 
-  filterParams: ['tenant', 'direction', 'account', 'destinationId', 'category', 'subject', 'context',
-    'targetParam', 'original', 'alias', 'weight'],
+  filterParams: Object.freeze(['tenant', 'direction', 'account', 'destinationId', 'category', 'subject', 'context',
+    'targetParam', 'original', 'alias', 'weight']),
 
   modelName: 'tp-alias',
 });
