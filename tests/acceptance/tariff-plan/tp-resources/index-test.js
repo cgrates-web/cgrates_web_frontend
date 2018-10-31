@@ -11,8 +11,8 @@ describe('Acceptance: TpResources.Index', function () {
   setupMirage(hooks);
   beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
-    this.tpDestinations = server.createList('tp-resource', 2, { tpid: this.tariffPlan.alias });
-    this.other = server.createList('tp-resource', 2, {tpid: 'other'});
+    server.createList('tp-resource', 2, { tpid: this.tariffPlan.alias });
+    server.createList('tp-resource', 2, {tpid: 'other'});
     await authenticateSession({email: 'user@example.com'});
   });
   describe('visit /tariff-plans/1/tp-resources', () =>
