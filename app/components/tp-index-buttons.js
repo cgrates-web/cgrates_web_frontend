@@ -5,6 +5,7 @@ import normalizeFilters from 'cgrates-web-frontend/utils/normalize-filters';
 import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 import { task } from 'ember-concurrency';
 import { isBlank } from '@ember/utils';
+import { pluralize } from 'ember-inflector';
 
 export default Component.extend(FileSaverMixin, {
   flashMessages:        service(),
@@ -19,11 +20,11 @@ export default Component.extend(FileSaverMixin, {
   },
 
   csvImportRouteName: computed('model.modelName', function () {
-    return `tariff-plan.${this.get('model.modelName')}s.csv-import`;
+    return `tariff-plan.${pluralize(this.get('model.modelName'))}.csv-import`;
   }),
 
   newRouteName: computed('model', function () {
-    return `tariff-plan.${this.get('model.modelName')}s.new`;
+    return `tariff-plan.${pluralize(this.get('model.modelName'))}.new`;
   }),
 
   tagName: '',
@@ -31,7 +32,7 @@ export default Component.extend(FileSaverMixin, {
   exportToCsv: task(function * () {
     try {
       const filter = normalizeFilters(this.get('controller'), this.get('permittedFilters'));
-      const response = yield this.get('ajax').request(`/api/${this.get('model.modelName')}s/export-to-csv`, {
+      const response = yield this.get('ajax').request(`/api/${pluralize(this.get('model.modelName'))}/export-to-csv`, {
         dataType: 'blob',
         data: {
           tpid: this.get('tariffPlanId'),
@@ -47,7 +48,7 @@ export default Component.extend(FileSaverMixin, {
   deleteAll: task(function * () {
     try {
       const filter = normalizeFilters(this.get('controller'), this.get('permittedFilters'));
-      yield this.get('ajax').request(`/api/${this.get('model.modelName')}s/delete-all`, {
+      yield this.get('ajax').request(`/api/${pluralize(this.get('model.modelName'))}/delete-all`, {
         method: 'POST',
         data: {
           tpid: this.get('tariffPlanId'),
