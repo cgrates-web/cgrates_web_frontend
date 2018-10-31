@@ -149,6 +149,13 @@ Router.map(function () {
           this.route('edit');
         });
       });
+      this.route('tp-action-triggers', function () {
+        this.route('new');
+        this.route('csv-import');
+        this.route('tp-action-trigger', {path: ':tp_action_triggers_id'}, function () {
+          this.route('edit');
+        });
+      });
     });
   });
   this.route('users', function () {
