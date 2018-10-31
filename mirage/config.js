@@ -162,6 +162,14 @@ export default function () {
   this.patch('/tp-attributes/:id');
   this.del('/tp-attributes/:id');
 
+  this.get('/tp-chargers', function (db, request) {
+    return db.tpChargers.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-chargers/:id');
+  this.post('/tp-chargers');
+  this.patch('/tp-chargers/:id');
+  this.del('/tp-chargers/:id');
+
   this.get('/tp-aliases', function (db, request) {
     return db.tpAliases.where({tpid: request.queryParams['tpid']});
   });
