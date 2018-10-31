@@ -170,6 +170,14 @@ export default function () {
   this.patch('/tp-chargers/:id');
   this.del('/tp-chargers/:id');
 
+  this.get('/tp-shared-groups', function (db, request) {
+    return db.tpSharedGroups.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-shared-groups/:id');
+  this.post('/tp-shared-groups');
+  this.patch('/tp-shared-groups/:id');
+  this.del('/tp-shared-groups/:id');
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
