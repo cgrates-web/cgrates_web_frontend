@@ -1,10 +1,10 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpResource: {{model.customId}}</h2>
+      <h2>TpThreshold: {{model.customId}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to 'tariff-plan.tp-resources.tp-resource.edit'}}
+          {{#link-to 'tariff-plan.tp-thresholds.tp-threshold.edit'}}
             <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
           {{/link-to}}
         </li>
@@ -29,36 +29,36 @@
         <p>{{model.filterIds}}</p>
       </div>
       <div class="col-12 col-md-3">
+        <h5>Action IDs</h5>
+        <p>{{model.actionIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
         <h5>Activation interval</h5>
         <p>{{model.activationInterval}}</p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Usage ttl</h5>
-        <p>{{model.usageTtl}}</p>
+        <h5>Max hits</h5>
+        <p>{{model.maxHits}}</p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Limit</h5>
-        <p>{{model.limit}}</p>
+        <h5>Min hits</h5>
+        <p>{{model.minHits}}</p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Allocation message</h5>
-        <p>{{model.allocationMessage}}</p>
+        <h5>Min sleep</h5>
+        <p>{{model.minSleep}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Blocker</h5>
         <p>{{model.blocker}}</p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Stored</h5>
-        <p>{{model.stored}}</p>
+        <h5>Async</h5>
+        <p>{{model.async}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Weight</h5>
         <p>{{model.weight}}</p>
-      </div>
-      <div class="col-12 col-md-3">
-        <h5>Threshold ids</h5>
-        <p>{{model.thresholdIds}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Created at</h5>

@@ -26,9 +26,27 @@ const Validations = buildValidations({
       max: 64
     }),
   ],
-  maxHits: validator('presence', true),
-  minHits: validator('presence', true),
-  minSleep: validator('presence', true),
+  maxHits: [
+    validator('presence', true),
+    validator('number', {
+      allowString: true,
+      gte: 0
+    }),
+  ],
+  minHits: [
+    validator('presence', true),
+    validator('number', {
+      allowString: true,
+      gte: 0
+    }),
+  ],
+  minSleep: [
+    validator('presence', true),
+    validator('number', {
+      allowString: true,
+      gte: 0
+    }),
+  ],
   actionIds: [
     validator('presence', true),
     validator('length', {

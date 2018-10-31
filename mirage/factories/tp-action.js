@@ -1,8 +1,8 @@
 import { Factory, faker } from 'ember-cli-mirage';
 
 export default Factory.extend({
-  tpid()             { return 'tptest'; },
-  tag()              { return faker.lorem.word(); },
+  tpid()             { return faker.lorem.word(); },
+  tag()              { return `tag-${faker.random.number(100)}`; },
   action:            '*log',
   balance_tag()      { return faker.lorem.word(); },
   balance_type:      '*monetary',
