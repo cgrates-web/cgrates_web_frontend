@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="card-header">
+    <h5>CgRates LCR</h5>
+  </div>
+  <div class="card-body">
+    {{#bs-form model=this onSubmit=(perform getSuppliers) novalidate=true as |form|}}
+      {{form.element
+        label='Category'
+        property='category'
+        data-test-category=true
+      }}
+      {{form.element
+        label='Subject'
+        property='subject'
+        data-test-subject=true
+      }}
+      {{form.element
+        label='Destination'
+        property='destination'
+        data-test-destination=true
+      }}
+      {{form.element
+        label='Duration'
+        property='duration'
+        controlType='number'
+        data-test-duration=true
+      }}
+      {{#bs-button
+        type='primary'
+        buttonType='submit'
+        disabled=getSuppliers.isRunning
+        data-test-lcr-submit-button=true
+      }}
+        {{loading-button-text text='Get suppliers' isLoading=getSuppliers.isRunning}}
+      {{/bs-button}}
+    {{/bs-form}}
+
+    {{#if response}}
+      <div class="table-responsive mt-2" data-test-lcrs-table>
+        <table class="table table-striped table-sm">
+          <thead>
+          <tr>
+            <td>Profile ID</td>
+            <td>Sorting</td>
+            <td>Supplier ID</td>
+            <td>Cost</td>
+            <td>Rating plan ID</td>
+            <td>Weight</td>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each response.sorted_suppliers as |supplier|}}
+            <tr>
+              <td>{{response.profile_id}}</td>
+              <td>{{response.sorting}}</td>
+              <td>{{supplier.supplier_id}}</td>
+              <td>{{supplier.sorting_data.cost}}</td>
+              <td>{{supplier.sorting_data.rating_plan_id}}</td>
+              <td>{{supplier.sorting_data.weight}}</td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{/if}}
+  </div>
+</div>

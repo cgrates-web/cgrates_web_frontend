@@ -39,7 +39,6 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function () {
   describe('filter and click download csv', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
     beforeEach(async function () {
-      server.logging = true;
       const date = new Date(2018);
       server.get('/raw-supplier-rates/export-to-csv', function (_schema, request) {
         expectRequestToBeCorrect = () => {
