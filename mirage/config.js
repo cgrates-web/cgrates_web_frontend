@@ -168,7 +168,7 @@ export default function () {
     return { file: null };
   });
 
-  this.get('/realtime/cgrates_lcrs', function () {
+  this.get('/realtime/cgrates-lcrs', function () {
     return {
       'profile_id': 'SPL_LCR_EU',
       'sorting': '*least_cost',

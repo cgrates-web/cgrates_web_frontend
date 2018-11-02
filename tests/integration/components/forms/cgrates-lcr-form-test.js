@@ -43,7 +43,7 @@ describe('Integration: Cgrates lcr form', function () {
     let expectCorrectRequest;
     beforeEach(async function () {
       expectCorrectRequest = function () { expect(false).to.be.true; };
-      server.get('/realtime/cgrates_lcrs', function (schema, request) {
+      server.get('/realtime/cgrates-lcrs', function (schema, request) {
         expectCorrectRequest = function () {
           expect(request.queryParams.category).to.eq('category');
           expect(request.queryParams.subject).to.eq('subject');
