@@ -1,9 +1,3 @@
 import Route from '@ember/routing/route';
-
-export default Route.extend({
-  model() { return this.modelFor('tariff-plan.tp-destination-rates.tp-destination-rate'); },
-
-  actions: {
-    willTransition() { if (this.currentModel.get('hasDirtyAttributes')) { return this.currentModel.rollbackAttributes(); } }
-  }
-});
+import EditRouteMixin from 'cgrates-web-frontend/mixins/edit-route-mixin';
+export default Route.extend(EditRouteMixin, {});

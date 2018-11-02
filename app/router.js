@@ -149,6 +149,13 @@ Router.map(function () {
           this.route('edit');
         });
       });
+      this.route('tp-shared-groups', function () {
+        this.route('new');
+        this.route('csv-import');
+        this.route('tp-shared-group', {path: ':tp_shared_group_id'}, function () {
+          this.route('edit');
+        });
+      });
     });
   });
   this.route('users', function () {

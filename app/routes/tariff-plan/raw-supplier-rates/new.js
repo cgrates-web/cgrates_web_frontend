@@ -1,11 +1,8 @@
 import Route from '@ember/routing/route';
-
-export default Route.extend({
+import NewRouteMixin from 'cgrates-web-frontend/mixins/new-route-mixin';
+export default Route.extend(NewRouteMixin, {
   model() {
-    return this.store.createRecord('raw-supplier-rate', {tariffPlan: this.modelFor('tariff-plan')});
+    return this.store.createRecord('raw-supplier-rate', { tpid: this.modelFor('tariff-plan').get('alias') });
   },
-
-  actions: {
-    willTransition() { if (this.currentModel.get('isNew')) { return this.currentModel.destroyRecord(); } }
-  }
 });
+
