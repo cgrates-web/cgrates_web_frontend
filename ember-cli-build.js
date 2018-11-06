@@ -1,9 +1,9 @@
-/*jshint node:true*/
+/* jshint node:true*/
 /* global require, module */
 let EmberApp = require('ember-cli/lib/broccoli/ember-app');
 let nodeSass = require('node-sass'); // loads the version in your package.json
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
     'ember-bootstrap': {
@@ -11,9 +11,12 @@ module.exports = function(defaults) {
       blacklist: ['bs-popover', 'bs-accordion'],
       'bootstrapVersion': 4,
       'importBootstrapFont': false
+    },
+
+    'ember-cli-template-lint': {
+      testGenerator: 'mocha'
     }
   });
-
 
 
   // Use `app.import` to add additional libraries to the generated
