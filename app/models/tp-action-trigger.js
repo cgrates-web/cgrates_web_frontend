@@ -10,6 +10,7 @@ const Validations = buildValidations({
   ],
   uniqueId: [
     validator('presence', true),
+    validator('ds-error'),
     validator('length', {
       max: 64
     }),
@@ -104,7 +105,7 @@ export default DS.Model.extend(Validations, {
   uniqueId:                   DS.attr('string'),
   thresholdType:              DS.attr('string'),
   thresholdValue:             DS.attr('number'),
-  recurrent:                  DS.attr('boolean'),
+  recurrent:                  DS.attr('boolean', { defaultValue: false }),
   minSleep:                   DS.attr('string'),
   expiryTime:                 DS.attr('string'),
   activationTime:             DS.attr('string'),
@@ -118,8 +119,8 @@ export default DS.Model.extend(Validations, {
   balanceExpiryTime:          DS.attr('string'),
   balanceTimingTags:          DS.attr('string'),
   balanceWeight:              DS.attr('string'),
-  balanceBlocker:             DS.attr('string'),
-  balanceDisabled:            DS.attr('string'),
+  balanceBlocker:             DS.attr('boolean', { defaultValue: false }),
+  balanceDisabled:            DS.attr('boolean', { defaultValue: false }),
   minQueuedItems:             DS.attr('number'),
   actionsTag:                 DS.attr('string'),
   weight:                     DS.attr('number'),

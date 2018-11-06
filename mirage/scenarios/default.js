@@ -15,4 +15,8 @@ export default function (server) {
   server.createList('tp-charger', 2, { tpid: 'tp_id' });
   server.createList('tp-filter', 2,  { tpid: 'tp_id' });
   server.createList('tp-attribute', 2,  { tpid: 'tp_id' });
+  server.createList('tp-action-trigger', 2,  { tpid: 'tp_id' });
+  server.createList('tp-destination-rate', 2,  { tpid: 'tp_id' });
+  server.createList('tp-destination', 2,  { tpid: 'tp_id' });
+  server.createList('tp-timing', 2,  { tpid: 'tp_id' });
 }

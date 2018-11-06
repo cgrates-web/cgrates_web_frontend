@@ -178,6 +178,14 @@ export default function () {
   this.patch('/tp-aliases/:id');
   this.del('/tp-aliases/:id');
 
+  this.get('/tp-action-triggers', function (db, request) {
+    return db.tpActionTriggers.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-action-triggers/:id');
+  this.post('/tp-action-triggers');
+  this.patch('/tp-action-triggers/:id');
+  this.del('/tp-action-triggers/:id');
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
