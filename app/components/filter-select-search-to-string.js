@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
-import { isPresent } from '@ember/utils';
+import strToArray from 'cgrates-web-frontend/utils/str-to-array';
 
 export default Component.extend({
   store:        service(),
@@ -9,13 +9,9 @@ export default Component.extend({
   placeholder: '...',
   multiple:     false,
 
-  strToArray(str) {
-    return isPresent(str) ? str.split(',') : [];
-  },
-
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('valueWrapper', this.strToArray(this.value));
+    this.set('valueWrapper', strToArray(this.value));
     this.onValueChange(this.get('key'), this.value);
   },
 
@@ -32,10 +28,8 @@ export default Component.extend({
   actions: {
     onChange(value) {
       this.set('valueWrapper', value);
-      if (this.multiple)
-        this.onValueChange(this.get('key'), value.join(','));
-      else
-        this.onValueChange(this.get('key'), value);
+      const newValue = this.multiple ? value.join(',') : value;
+      this.onValueChange(this.get('key'), newValue);
     }
   },
 });

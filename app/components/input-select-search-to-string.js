@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
-import { isPresent, isBlank } from '@ember/utils';
+import { isBlank } from '@ember/utils';
 import { pluralize } from 'ember-inflector';
+import strToArray from 'cgrates-web-frontend/utils/str-to-array';
 
 export default Component.extend({
   tagName:      '',
@@ -11,10 +12,6 @@ export default Component.extend({
   phName:      'id',
   multiple:     false,
   allowClear:   false,
-
-  strToArray(str) {
-    return isPresent(str) ? str.split(',') : [];
-  },
 
   init() {
     this._super(...arguments);
@@ -31,7 +28,7 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('valueWrapper', this.strToArray(this.value));
+    this.set('valueWrapper', strToArray(this.value));
   },
 
   searchTask: task(function * (term) {
@@ -49,10 +46,10 @@ export default Component.extend({
   actions: {
     onChange(value) {
       this.set('valueWrapper', value);
-      if (this.multiple)
-        this.set('value', value.join(','));
-      else
-        this.set('value', value);
+
+      const newValue = this.multiple ? value.join(',') : value;
+      this.set('value', newValue);
+
       this.set('showOwnValidation', true);
     }
   },
