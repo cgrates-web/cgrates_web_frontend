@@ -178,6 +178,14 @@ export default function () {
   this.patch('/tp-aliases/:id');
   this.del('/tp-aliases/:id');
 
+  this.get('/tp-shared-groups', function (db, request) {
+    return db.tpSharedGroups.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-shared-groups/:id');
+  this.post('/tp-shared-groups');
+  this.patch('/tp-shared-groups/:id');
+  this.del('/tp-shared-groups/:id');
+
   this.get('/tp-action-triggers', function (db, request) {
     return db.tpActionTriggers.where({tpid: request.queryParams['tpid']});
   });
@@ -190,5 +198,23 @@ export default function () {
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
     return { file: null };
+  });
+
+  this.get('/realtime/cgrates-lcrs', function () {
+    return {
+      'profile_id': 'SPL_LCR_EU',
+      'sorting': '*least_cost',
+      'sorted_suppliers': [
+        {
+          'supplier_id': 'megacom',
+          'suppliers_parameters': '',
+          'sorting_data': {
+            'cost': 0.03,
+            'rating_plan_id': 'RP_megacom',
+            'weight': 0
+          }
+        }
+      ]
+    };
   });
 }
