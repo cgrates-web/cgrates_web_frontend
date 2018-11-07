@@ -194,6 +194,15 @@ export default function () {
   this.patch('/tp-action-triggers/:id');
   this.del('/tp-action-triggers/:id');
 
+  this.get('/tp-account-actions', function (db, request) {
+    return db.tpAccountActions.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-account-actions/:id');
+  this.post('/tp-account-actions');
+  this.patch('/tp-account-actions/:id');
+  this.del('/tp-account-actions/:id');
+
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
