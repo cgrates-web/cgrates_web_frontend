@@ -8,20 +8,25 @@
 <main class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 ">
-      {{#bs-form model=this onSubmit=(action 'signIn') novalidate=true as |form|}}
+      {{#bs-form model=this onSubmit=(action "signIn") novalidate=true as |form|}}
         {{form.element
-          label='Email'
-          property='email'
-          controlType='email'
+          label="Email"
+          property="email"
+          controlType="email"
           data-test-identification=true
         }}
         {{form.element
-          label='Password'
-          property='password'
-          controlType='password'
+          label="Password"
+          property="password"
+          controlType="password"
           data-test-password=true
         }}
-        {{bs-button defaultText='Log in' type='primary' buttonType='submit' data-test-submit-button=true}}
+        {{bs-button
+          defaultText="Log in"
+          type="primary"
+          buttonType="submit"
+          data-test-submit-button=true
+        }}
       {{/bs-form}}
     </div>
   </div>

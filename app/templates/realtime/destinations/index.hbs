@@ -3,7 +3,7 @@
     <div class="actions-subtitle">
       <ul class="actions">
         <li>
-          {{#link-to 'realtime.destinations.new'}}
+          {{#link-to "realtime.destinations.new"}}
             <i class="material-icons circle btn btn-success" data-test-destinations-add>add</i>
           {{/link-to}}
         </li>
@@ -14,32 +14,32 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <tr>
-              <td>ID</td>
-              <td>Prefixes</td>
-              <td>Actions</td>
-            </tr>
+              <tr>
+                <td>ID</td>
+                <td>Prefixes</td>
+                <td>Actions</td>
+              </tr>
             </thead>
             <tbody>
-            {{#each sortedDestinations as |destination|}}
-              <tr>
-                <td>
-                  {{destination.id}}
-                </td>
-                <td>
-                  {{destination.prefixesString}}
-                </td>
-                <td class="actions">
-                  <a {{action 'remove' destination}}>
-                    <i class="material-icons circle btn btn-danger" data-test-destination-remove>remove</i>
-                  </a>
-                </td>
-              </tr>
-            {{/each}}
+              {{#each sortedDestinations as |destination|}}
+                <tr>
+                  <td>
+                    {{destination.id}}
+                  </td>
+                  <td>
+                    {{destination.prefixesString}}
+                  </td>
+                  <td class="actions">
+                    <a {{action "remove" destination}} role="button">
+                      <i class="material-icons circle btn btn-danger" data-test-destination-remove>remove</i>
+                    </a>
+                  </td>
+                </tr>
+              {{/each}}
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action='toPage' showFL=true numPagesToShow=4  showFL=true numPagesToShow=4}}
+        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
       </div>
     </div>
   </div>

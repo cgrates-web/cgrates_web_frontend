@@ -1,7 +1,6 @@
 /* jshint node:true*/
 /* global require, module */
 let EmberApp = require('ember-cli/lib/broccoli/ember-app');
-let nodeSass = require('node-sass'); // loads the version in your package.json
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {

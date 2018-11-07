@@ -1,24 +1,22 @@
 {{#form.element
-  controlType='power-select-multiple'
+  controlType="power-select-multiple"
   property=property
   label=label
   searchEnabled=true
   placeholder=placeholder
-  showValidationOn='change'
+  showValidationOn="change"
   class=class
   change=null
   showOwnValidation=showOwnValidation
   data-test-select-search-to-str=dataTest
-  as |el|
-}}
+as |el|}}
   {{#el.control
     class=(bs-element-validation el.validation)
     search=(perform searchTask)
     searchField=searchField
     value=valueWrapper
-    onChange=(action 'onChange')
-    as |item|
-  }}
+    onChange=(action "onChange")
+  as |item|}}
     {{get item searchField}}
   {{/el.control}}
 {{/form.element}}

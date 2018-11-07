@@ -8,20 +8,25 @@
     <div class="row justify-content-center">
       <div class="col-md-4">
         <h2>Add</h2>
-        {{#bs-form model=model onSubmit=(action 'save') novalidate=true as |form|}}
+        {{#bs-form model=model onSubmit=(action "save") novalidate=true as |form|}}
           {{form.element
-            label='Email'
-            property='email'
-            controlType='email'
+            label="Email"
+            property="email"
+            controlType="email"
             data-test-email=true
           }}
           {{form.element
-            label='Password'
-            property='password'
-            controlType='password'
+            label="Password"
+            property="password"
+            controlType="password"
             data-test-password=true
           }}
-          {{bs-button defaultText='Save' type='primary' buttonType='submit' data-test-submit-button=true}}
+          {{bs-button
+            defaultText="Save"
+            type="primary"
+            buttonType="submit"
+            data-test-submit-button=true
+          }}
         {{/bs-form}}
       </div>
     </div>

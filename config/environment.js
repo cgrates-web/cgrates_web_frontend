@@ -28,13 +28,6 @@ module.exports = function (environment) {
       allowEmpty: true
     },
 
-    emblemOptions: {
-      blueprints: false
-    },
-
-    coffeeOptions: {
-      blueprints: false
-    },
     flashMessageDefaults: {
       extendedTimeout: 2000
     }

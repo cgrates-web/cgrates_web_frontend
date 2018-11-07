@@ -4,7 +4,11 @@
       <h2>TpActionPlan: {{model.tag}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to 'tariff-plan.tp-action-plans.tp-action-plan.edit' model data-test-edit=true}}
+          {{#link-to
+            "tariff-plan.tp-action-plans.tp-action-plan.edit"
+            model
+            data-test-edit=true
+          }}
             <i class="material-icons circle btn btn-primary">edit</i>
           {{/link-to}}
         </li>

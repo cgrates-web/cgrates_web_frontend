@@ -2,14 +2,13 @@
   <label>{{label}}</label>
   {{#power-select
     triggerId=id
-    placeholder='...'
+    placeholder="..."
     searchEnabled=false
     allowClear=true
     options=content
     selected=valueWrapper
     onchange=(action (mut valueWrapper))
-  as |item|
-  }}
+  as |item|}}
     {{item}}
   {{/power-select}}
 </div>
