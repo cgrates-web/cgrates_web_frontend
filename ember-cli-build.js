@@ -1,20 +1,25 @@
-/*jshint node:true*/
+/* jshint node:true*/
 /* global require, module */
 let EmberApp = require('ember-cli/lib/broccoli/ember-app');
 let nodeSass = require('node-sass'); // loads the version in your package.json
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
+  let serviceWorkerIsEnabled = true;
+  if (EmberApp.env() !== 'production' && !process.env.ENABLE_SW) {
+    serviceWorkerIsEnabled = false;
+  }
   let app = new EmberApp(defaults, {
+    'ember-service-worker': {
+      enabled: serviceWorkerIsEnabled
+    },
     // Add options here
     'ember-bootstrap': {
       importBootstrapCSS: false,
       blacklist: ['bs-popover', 'bs-accordion'],
       'bootstrapVersion': 4,
       'importBootstrapFont': false
-    }
+    },
   });
-
-
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

@@ -10,5 +10,7 @@
   data-test-select=dataTest
   as |el|
 }}
-  {{el.control class=(if (eq el.validation 'error') 'is-invalid' (if (eq el.validation 'success') 'is-valid'))}}
+  {{el.control
+    class=(bs-element-validation el.validation)
+  }}
 {{/form.element}}

@@ -1,5 +1,5 @@
 {{#form.element
-  controlType='power-select-multiple'
+  controlType=controlType
   property=property
   label=label
   searchEnabled=true
@@ -12,13 +12,14 @@
   as |el|
 }}
   {{#el.control
+    allowClear=allowClear
+    tagName='div'
     class=(bs-element-validation el.validation)
     search=(perform searchTask)
-    searchField=searchField
     value=valueWrapper
     onChange=(action 'onChange')
     as |item|
   }}
-    {{get item searchField}}
+    {{item}}
   {{/el.control}}
 {{/form.element}}
