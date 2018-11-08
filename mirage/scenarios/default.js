@@ -20,4 +20,5 @@ export default function (server) {
   server.createList('tp-destination-rate', 2,  { tpid: 'tp_id' });
   server.createList('tp-destination', 2,  { tpid: 'tp_id' });
   server.createList('tp-timing', 2,  { tpid: 'tp_id' });
+  server.createList('tp-derived-charger', 2,  { tpid: 'tp_id' });
 }
