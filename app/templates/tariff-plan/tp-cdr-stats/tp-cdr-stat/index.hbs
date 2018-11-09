@@ -1,0 +1,125 @@
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>TpCdrStat: {{model.tag}}</h2>
+      <ul class="actions">
+        <li>
+          {{#link-to "tariff-plan.tp-cdr-stats.tp-cdr-stat.edit" model}}
+            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
+          {{/link-to}}
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{model.id}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tag</h5>
+        <p>{{model.tag}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Queue length</h5>
+        <p>{{model.queueLength}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Time window</h5>
+        <p>{{model.timeWindow}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Save interval</h5>
+        <p>{{model.saveInterval}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Metrics</h5>
+        <p>{{model.metrics}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Setup interval</h5>
+        <p>{{model.setupInterval}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tors</h5>
+        <p>{{model.tors}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Cdr hosts</h5>
+        <p>{{model.cdrHosts}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Cdr sources</h5>
+        <p>{{model.cdrSources}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Req types</h5>
+        <p>{{model.reqTypes}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Directions</h5>
+        <p>{{model.directions}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tenants</h5>
+        <p>{{model.tenants}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Categories</h5>
+        <p>{{model.categories}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Accounts</h5>
+        <p>{{model.accounts}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Subjects</h5>
+        <p>{{model.subjects}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Destination IDs</h5>
+        <p>{{model.destinationIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Pdd interval</h5>
+        <p>{{model.pddInterval}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Usage interval</h5>
+        <p>{{model.usageInterval}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Suppliers</h5>
+        <p>{{model.suppliers}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Disconnect causes</h5>
+        <p>{{model.disconnectCauses}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Mediation run IDs</h5>
+        <p>{{model.mediationRunids}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Rated accounts</h5>
+        <p>{{model.ratedAccounts}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Rated subjects</h5>
+        <p>{{model.ratedSubjects}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Cost interval</h5>
+        <p>{{model.costInterval}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Action triggers</h5>
+        <p>{{model.actionTriggers}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{moment-format model.createdAt}}</p>
+      </div>
+    </div>
+  </div>
+</main>

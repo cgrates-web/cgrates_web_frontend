@@ -194,6 +194,14 @@ export default function () {
   this.patch('/tp-action-triggers/:id');
   this.del('/tp-action-triggers/:id');
 
+  this.get('/tp-cdr-stats', function (db, request) {
+    return db.tpCdrStats.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-cdr-stats/:id');
+  this.post('/tp-cdr-stats');
+  this.patch('/tp-cdr-stats/:id');
+  this.del('/tp-cdr-stats/:id');
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {

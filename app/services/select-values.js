@@ -28,4 +28,6 @@ export default Service.extend({
   ],
 
   balanceTag:      ['MONETARY', 'SMS', 'INTERNET', 'INTERNET_TIME', 'MINUTES'],
+
+  metrics:         ['ACC', 'ACD', 'ASR', 'PDD', 'TCC', 'TCD'],
 });
