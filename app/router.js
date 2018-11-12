@@ -163,6 +163,20 @@ Router.map(function () {
           this.route('edit');
         });
       });
+      this.route('tp-account-actions', function () {
+        this.route('new');
+        this.route('csv-import');
+        this.route('tp-account-action', {path: ':tp_account_action_id'}, function () {
+          this.route('edit');
+        });
+      });
+      this.route('tp-derived-chargers', function () {
+        this.route('new');
+        this.route('csv-import');
+        this.route('tp-derived-charger', {path: ':tp_derived_charger_id'}, function () {
+          this.route('edit');
+        });
+      });
       this.route('tp-cdr-stats', function () {
         this.route('new');
         this.route('csv-import');

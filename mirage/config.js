@@ -194,6 +194,23 @@ export default function () {
   this.patch('/tp-action-triggers/:id');
   this.del('/tp-action-triggers/:id');
 
+  this.get('/tp-account-actions', function (db, request) {
+    return db.tpAccountActions.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-account-actions/:id');
+  this.post('/tp-account-actions');
+  this.patch('/tp-account-actions/:id');
+  this.del('/tp-account-actions/:id');
+
+
+  this.get('/tp-derived-chargers', function (db, request) {
+    return db.tpDerivedChargers.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-derived-chargers/:id');
+  this.post('/tp-derived-chargers');
+  this.patch('/tp-derived-chargers/:id');
+  this.del('/tp-derived-chargers/:id');
+
   this.get('/tp-cdr-stats', function (db, request) {
     return db.tpCdrStats.where({tpid: request.queryParams['tpid']});
   });
