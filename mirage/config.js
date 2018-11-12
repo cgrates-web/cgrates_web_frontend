@@ -203,6 +203,14 @@ export default function () {
   this.del('/tp-account-actions/:id');
 
 
+  this.get('/tp-derived-chargers', function (db, request) {
+    return db.tpDerivedChargers.where({tpid: request.queryParams['tpid']});
+  });
+  this.get('/tp-derived-chargers/:id');
+  this.post('/tp-derived-chargers');
+  this.patch('/tp-derived-chargers/:id');
+  this.del('/tp-derived-chargers/:id');
+
   this.post('/raw-supplier-resolve-jobs');
 
   this.get('/raw-supplier-rates/:id/export-to-csv', function () {
