@@ -1,50 +1,55 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { task, timeout } from 'ember-concurrency';
-import { isPresent } from '@ember/utils';
+import { task } from 'ember-concurrency';
+import { isBlank } from '@ember/utils';
+import { pluralize } from 'ember-inflector';
+import strToArray from 'cgrates-web-frontend/utils/str-to-array';
 
 export default Component.extend({
   tagName:      '',
   store:        service(),
   searchField: 'customId',
-  placeholder: 'Select ids...',
+  phName:      'id',
+  multiple:     false,
+  allowClear:   false,
 
-  strToObjectsArray(str) {
-    if (isPresent(str)) {
-      return str.split(',').map(item => ({ [this.searchField]: item }));
+  init() {
+    this._super(...arguments);
+    if (this.multiple) {
+      if (isBlank(this.placeholder))
+        this.set('placeholder', `Select ${pluralize(this.phName)}...`);
+      this.set('controlType', 'power-select-multiple');
+    } else {
+      if (isBlank(this.placeholder))
+        this.set('placeholder', `Select ${this.phName}...`);
+      this.set('controlType', 'power-select');
     }
-    return [];
-  },
-
-  arrayObjectsToStr(arr) {
-    return arr.map(item => item[this.searchField]).join(',');
-  },
-
-  removeRepeatElements(arr) {
-    const onlyUniq = arr => (value, index) => arr.indexOf(value[this.searchField]) === index;
-    return arr.filter(onlyUniq(arr.map(item => item[this.searchField])));
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this.set('valueWrapper', this.strToObjectsArray(this.value));
+    this.set('valueWrapper', strToArray(this.value));
   },
 
   searchTask: task(function * (term) {
-    yield timeout(300);
-    return this.get('store').query(this.searchModel, {
+    const response = yield this.get('store').query(this.searchModel, {
       tpid: this.tpid,
       filter: {
         [this.searchField.underscore()]: term,
       }
     });
+    let result = response.mapBy(this.searchField);
+    result.push('*any');
+    return result;
   }).restartable(),
 
   actions: {
-    onChange(values) {
-      const arr = this.removeRepeatElements(values);
-      this.set('valueWrapper', arr);
-      this.set('value', this.arrayObjectsToStr(arr));
+    onChange(value) {
+      this.set('valueWrapper', value);
+
+      const newValue = this.multiple ? value.join(',') : value;
+      this.set('value', newValue);
+
       this.set('showOwnValidation', true);
     }
   },

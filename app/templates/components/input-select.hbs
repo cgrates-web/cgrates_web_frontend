@@ -4,12 +4,13 @@
   label=label
   searchEnabled=false
   options=content
-  placeholder="Select item..."
-  showValidationOn="change"
+  placeholder='Select item...'
+  showValidationOn='change'
   class=class
   data-test-select=dataTest
-as |el|}}
+  as |el|
+}}
   {{el.control
-    class=(if (eq el.validation "error") "is-invalid" (if (eq el.validation "success") "is-valid"))
+    class=(bs-element-validation el.validation)
   }}
 {{/form.element}}

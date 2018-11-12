@@ -3,7 +3,14 @@
 let EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
+  let serviceWorkerIsEnabled = true;
+  if (EmberApp.env() !== 'production' && !process.env.ENABLE_SW) {
+    serviceWorkerIsEnabled = false;
+  }
   let app = new EmberApp(defaults, {
+    'ember-service-worker': {
+      enabled: serviceWorkerIsEnabled
+    },
     // Add options here
     'ember-bootstrap': {
       importBootstrapCSS: false,
