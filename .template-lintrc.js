@@ -7,7 +7,6 @@ module.exports = {
     'block-indentation': true,
     'deprecated-render-helper': true,
     'img-alt-attributes': true,
-    'linebreak-style': true,
     'link-rel-noopener': true,
     'no-attrs-in-components': true,
     'no-debugger': true,

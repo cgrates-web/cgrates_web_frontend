@@ -9,34 +9,34 @@
     {{form.element
       label="Queue length"
       property="queueLength"
-      controlType='number'
+      controlType="number"
       min="0"
       class="col-md-3"
       data-test-queue-length=true
     }}
     {{input-select
-      property='metrics'
+      property="metrics"
       form=form
-      label='Metrics'
+      label="Metrics"
       content=selectValues.metrics
-      class='col-md-3'
-      dataTest='metrics'
+      class="col-md-3"
+      dataTest="metrics"
     }}
     {{input-interval
       value=model.timeWindow
       form=form
-      label='Time window'
-      property='timeWindow'
-      class='col-md-3'
-      dataTest='time-window'
+      label="Time window"
+      property="timeWindow"
+      class="col-md-3"
+      dataTest="time-window"
     }}
     {{input-interval
       value=model.saveInterval
       form=form
-      label='Save interval'
-      property='saveInterval'
-      class='col-md-3'
-      dataTest='save-interval'
+      label="Save interval"
+      property="saveInterval"
+      class="col-md-3"
+      dataTest="save-interval"
     }}
     {{form.element
       label="Setup interval"

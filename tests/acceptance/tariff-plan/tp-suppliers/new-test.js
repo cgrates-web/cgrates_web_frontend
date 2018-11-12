@@ -17,13 +17,6 @@ describe('Acceptance: TpSuppliers.New', function () {
     await authenticateSession({email: 'user@example.com'});
   });
 
-  describe('visit /tariff-plans/1/tp-suppliers/new', () =>
-    it('renders tp-supplier form', async function () {
-      await visit('/tariff-plans/1/tp-suppliers/new');
-      expect(findAll('form input').length).to.eq(15);
-    })
-  );
-
   describe('go away without save', () =>
     it('removes not saved tp-supplier', async function () {
       await visit('/tariff-plans/1/tp-suppliers/new');
