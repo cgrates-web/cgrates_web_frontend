@@ -177,6 +177,13 @@ Router.map(function () {
           this.route('edit');
         });
       });
+      this.route('tp-cdr-stats', function () {
+        this.route('new');
+        this.route('csv-import');
+        this.route('tp-cdr-stat', {path: ':tp_cdr_stat_id'}, function () {
+          this.route('edit');
+        });
+      });
     });
   });
   this.route('users', function () {
