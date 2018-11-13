@@ -4,7 +4,13 @@
   property=property
   class=class
   data-test-second=dataTest
-  as |el|
-}}
-  {{el.control value=valueNumber change=(action 'change') input=(action 'input') type='number' step='1' min='0'}}
+as |el|}}
+  {{el.control
+    value=valueNumber
+    change=(action "change")
+    input=(action "input")
+    type="number"
+    step="1"
+    min="0"
+  }}
 {{/form.element}}

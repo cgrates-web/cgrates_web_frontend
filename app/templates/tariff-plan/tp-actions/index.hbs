@@ -7,7 +7,7 @@
           model=model
           tariffPlanId=tariffPlanId
           permittedFilters=permittedFilters
-          refresh='refresh'
+          refresh="refresh"
           controller=this
         }}
       </ul>
@@ -18,237 +18,346 @@
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
-            <tr>
-              {{sort-header label='ID'               key='id'              sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Tag'              key='tag'             sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy' data-test-sort-tag=true}}
-              {{sort-header label='Action'           key='action'          sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Balance tag'      key='balanceTag'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Balance type'     key='balanceType'     sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Directions'       key='directions'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Units'            key='units'           sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Expiry time'      key='expiryTime'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Timing tags'      key='timingTags'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Destination tags' key='destinationTags' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Rating subject'   key='ratingSubject'   sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Categories'       key='categories'      sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Shared groups'    key='sharedGroups'    sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Balance weight'   key='balanceWeight'   sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Balance blocker'  key='balanceBlocker'  sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Balance disabled' key='balanceDisabled' sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Weight'           key='weight'          sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              {{sort-header label='Created at'       key='createdAt'       sortColumn=sortColumn sortOrder=sortOrder sortAction='sortBy'}}
-              <td>Actions</td>
-            </tr>
+              <tr>
+                {{sort-header
+                  label="ID"
+                  key="id"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Tag"
+                  key="tag"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                  data-test-sort-tag=true
+                }}
+                {{sort-header
+                  label="Action"
+                  key="action"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Balance tag"
+                  key="balanceTag"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Balance type"
+                  key="balanceType"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Directions"
+                  key="directions"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Units"
+                  key="units"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Expiry time"
+                  key="expiryTime"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Timing tags"
+                  key="timingTags"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Destination tags"
+                  key="destinationTags"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Rating subject"
+                  key="ratingSubject"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Categories"
+                  key="categories"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Shared groups"
+                  key="sharedGroups"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Balance weight"
+                  key="balanceWeight"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Balance blocker"
+                  key="balanceBlocker"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Balance disabled"
+                  key="balanceDisabled"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Weight"
+                  key="weight"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                {{sort-header
+                  label="Created at"
+                  key="createdAt"
+                  sortColumn=sortColumn
+                  sortOrder=sortOrder
+                  sortAction="sortBy"
+                }}
+                <td>Actions</td>
+              </tr>
             </thead>
             <tbody>
-            {{#each model as |tpAction|}}
-              <tr>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.id}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.tag}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.action}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.balanceTag}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.balanceType}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.directions}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.units}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.expiryTime}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.timingTags}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.destinationTags}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.ratingSubject}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.categories}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.sharedGroups}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.balanceWeight}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.balanceBlocker}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.balanceDisabled}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{tpAction.weight}}{{/link-to}}
-                </td>
-                <td>
-                  {{#link-to 'tariff-plan.tp-actions.tp-action' tpAction}}{{ moment-format tpAction.createdAt}}{{/link-to}}
-                </td>
-                <td class="actions">
-                  {{#link-to 'tariff-plan.tp-actions.tp-action.edit' tpAction}}
-                    <i class="material-icons circle btn btn-primary" data-test-tp-action-edit>edit</i>
-                  {{/link-to}}
-                  <a {{action 'remove' tpAction}} class="ml-1">
-                    <i class="material-icons circle btn btn-danger" data-test-tp-action-remove>remove</i>
-                  </a>
-                </td>
-              </tr>
-            {{/each}}
+              {{#each model as |tpAction|}}
+                <tr>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.id}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.tag}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.action}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.balanceTag}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.balanceType}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.directions}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.units}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.expiryTime}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.timingTags}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.destinationTags}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.ratingSubject}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.categories}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.sharedGroups}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.balanceWeight}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.balanceBlocker}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.balanceDisabled}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{tpAction.weight}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{#link-to "tariff-plan.tp-actions.tp-action" tpAction}}{{ moment-format tpAction.createdAt}}{{/link-to}}
+                  </td>
+                  <td class="actions">
+                    {{#link-to "tariff-plan.tp-actions.tp-action.edit" tpAction}}
+                      <i class="material-icons circle btn btn-primary" data-test-tp-action-edit>edit</i>
+                    {{/link-to}}
+                    <a {{action "remove" tpAction}} class="ml-1" role="button">
+                      <i class="material-icons circle btn btn-danger" data-test-tp-action-remove>remove</i>
+                    </a>
+                  </td>
+                </tr>
+              {{/each}}
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action='toPage' showFL=true numPagesToShow=4  showFL=true numPagesToShow=4}}
+        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
       </div>
       <div class="col-md-3">
-        {{#filters-block search=(action 'search') as |filtersBlock|}}
+        {{#filters-block search=(action "search") as |filtersBlock|}}
           {{filter-text
-            label='Tag'
-            key='tag'
+            label="Tag"
+            key="tag"
             value=tag
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-tag=true
           }}
 
           {{filter-select
-            label='Action'
-            key='action'
+            label="Action"
+            key="action"
             value=action
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             content=selectValues.action
             data-test-filter-action=true
           }}
 
           {{filter-text
-            label='Balance tag'
-            key='balanceTag'
+            label="Balance tag"
+            key="balanceTag"
             value=balanceTag
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-balance-tag=true
           }}
 
           {{filter-select
-            label='Balance type'
-            key='balanceType'
+            label="Balance type"
+            key="balanceType"
             value=balanceType
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             content=selectValues.balanceType
             data-test-filter-balance-type=true
           }}
 
           {{filter-select
-            label='Directions'
-            key='directions'
+            label="Directions"
+            key="directions"
             value=directions
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             content=selectValues.direction
             data-test-filter-directions=true
           }}
 
           {{filter-number
-            label='Units'
-            key='units'
+            label="Units"
+            key="units"
             value=units
-            onValueChange=(action 'pushValue' target=filtersBlock)
-            min='0'
+            onValueChange=(action "pushValue" target=filtersBlock)
+            min="0"
             data-test-filter-units=true
           }}
 
           {{filter-text
-            label='Expiry time'
-            key='expiryTime'
+            label="Expiry time"
+            key="expiryTime"
             value=expiryTime
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-expiry-time=true
           }}
 
           {{filter-text
-            label='Timing tags'
-            key='timingTags'
+            label="Timing tags"
+            key="timingTags"
             value=timingTags
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-timing-tags=true
           }}
 
           {{filter-text
-            label='Destination tags'
-            key='destinationTags'
+            label="Destination tags"
+            key="destinationTags"
             value=destinationTags
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-destination-tags=true
           }}
 
           {{filter-text
-            label='Rating subject'
-            key='ratingSubject'
+            label="Rating subject"
+            key="ratingSubject"
             value=ratingSubject
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-rating-subject=true
           }}
 
           {{filter-text
-            label='Categories'
-            key='categories'
+            label="Categories"
+            key="categories"
             value=categories
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-categories=true
           }}
 
           {{filter-text
-            label='Shared groups'
-            key='sharedGroups'
+            label="Shared groups"
+            key="sharedGroups"
             value=sharedGroups
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             data-test-filter-shared-groups=true
           }}
 
           {{filter-number
-            label='Balance weight'
-            key='balanceWeight'
+            label="Balance weight"
+            key="balanceWeight"
             value=balanceWeight
-            onValueChange=(action 'pushValue' target=filtersBlock)
-            step='0.1'
-            min='0'
+            onValueChange=(action "pushValue" target=filtersBlock)
+            step="0.1"
+            min="0"
             data-test-filter-balance-weight=true
           }}
 
           {{filter-select
-            label='Balance blocker'
-            key='balanceBlocker'
+            label="Balance blocker"
+            key="balanceBlocker"
             value=balanceBlocker
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             content=selectValues.boolean
             data-test-filter-balance-blocker=true
           }}
 
           {{filter-select
-            label='Balance disabled'
-            key='balanceDisabled'
+            label="Balance disabled"
+            key="balanceDisabled"
             value=balanceDisabled
-            onValueChange=(action 'pushValue' target=filtersBlock)
+            onValueChange=(action "pushValue" target=filtersBlock)
             content=selectValues.boolean
             data-test-filter-balance-disabled=true
           }}
 
           {{filter-number
-            label='Weight'
-            key='weight'
+            label="Weight"
+            key="weight"
             value=weight
-            onValueChange=(action 'pushValue' target=filtersBlock)
-            step='0.1'
-            min='0'
+            onValueChange=(action "pushValue" target=filtersBlock)
+            step="0.1"
+            min="0"
             data-test-filter-weight=true
           }}
         {{/filters-block}}

@@ -2,11 +2,11 @@
   <h5>Filters</h5>
 </div>
 <div class="card-body">
-  <form {{action 'search' on='submit'}}>
+  <form {{action "search" on="submit"}}>
     {{yield this}}
     <div class="f-actions">
       <button type="submit" class="btn btn-primary" data-test-filter-search-btn>Search</button>
-      <button type="submit" class="btn btn-dark" {{action 'reset'}} data-test-filter-reset-btn>Reset</button>
+      <button type="submit" class="btn btn-dark" {{action "reset"}} data-test-filter-reset-btn>Reset</button>
     </div>
   </form>
 </div>

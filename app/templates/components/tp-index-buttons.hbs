@@ -9,17 +9,17 @@
   {{/link-to}}
 </li>
 <li>
-  <a {{action (perform exportToCsv)}} data-test-download>
+  <a {{action (perform exportToCsv)}} role="button" data-test-download>
     <i class="material-icons circle btn btn-primary">cloud_download</i>
   </a>
 </li>
 <li>
-  <a {{action 'refresh'}} data-test-refresh>
+  <a {{action "refresh"}} role="button" data-test-refresh>
     <i class="material-icons circle btn btn-info">refresh</i>
   </a>
 </li>
 <li>
-  <a {{action (perform deleteAll)}} data-test-delete-all>
+  <a {{action (perform deleteAll)}} role="button" data-test-delete-all>
     <i class="material-icons circle btn btn-danger" data-test-delete-all>cancel</i>
   </a>
 </li>

@@ -15,8 +15,22 @@
                 {{tp.description}}
               </div>
               <div class="btn-group mt-auto mr-auto ml-auto">
-                {{#link-to 'tariff-plan' tp class='btn btn-primary m-1' data-test-select-tp-plan=true}}Select{{/link-to}}
-                {{#link-to 'tariff-plan.edit' tp class='btn btn-primary m-1' data-test-edit-tp-plan=true}}Edit{{/link-to}}
+                {{#link-to
+                  "tariff-plan"
+                  tp
+                  class="btn btn-primary m-1"
+                  data-test-select-tp-plan=true
+                }}
+                  Select
+                {{/link-to}}
+                {{#link-to
+                  "tariff-plan.edit"
+                  tp
+                  class="btn btn-primary m-1"
+                  data-test-edit-tp-plan=true
+                }}
+                  Edit
+                {{/link-to}}
                 <button {{action (perform remove) tp}} class="btn btn-danger m-1" data-test-tp-remove>Delete</button>
               </div>
             </div>
@@ -26,7 +40,7 @@
     </div>
   </div>
   <div  class="fixed-action-btn">
-    {{#link-to 'tariff-plans.new'}}
+    {{#link-to "tariff-plans.new"}}
       <i class="material-icons circle btn-success" data-test-add-tp-plan>add</i>
     {{/link-to}}
   </div>

@@ -1,7 +1,6 @@
 /* jshint node:true*/
 /* global require, module */
 let EmberApp = require('ember-cli/lib/broccoli/ember-app');
-let nodeSass = require('node-sass'); // loads the version in your package.json
 
 module.exports = function (defaults) {
   let serviceWorkerIsEnabled = true;
@@ -19,7 +18,12 @@ module.exports = function (defaults) {
       'bootstrapVersion': 4,
       'importBootstrapFont': false
     },
+
+    'ember-cli-template-lint': {
+      testGenerator: 'mocha'
+    }
   });
+
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

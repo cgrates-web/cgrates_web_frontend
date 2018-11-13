@@ -1,19 +1,38 @@
 {{#if session.isAuthenticated}}
   <header>
-    {{#bs-navbar type=type
-                 class='navbar-dark bg-dark navbar-expand-sm'
-                 id='main-menu' onCollapse=(action (mut collapsed) true)
-                 onExpand=(action (mut collapsed) false) as |navbar|}}
+    {{#bs-navbar
+      type=type
+      class="navbar-dark bg-dark navbar-expand-sm"
+      id="main-menu"
+      onCollapse=(action (mut collapsed) true)
+      onExpand=(action (mut collapsed) false)
+    as |navbar|}}
       <div class="navbar-header">
         {{#link-to "realtime" class="navbar-brand"}}CGRates WEB{{/link-to}}
       </div>
       {{navbar.toggle}}
       {{#navbar.content}}
-        {{#navbar.nav class='ml-auto' as |nav|}}
-          {{#nav.item}}{{#nav.link-to "realtime"}}Realtime{{/nav.link-to}}{{/nav.item}}
-          {{#nav.item}}{{#nav.link-to "tariff-plans" data-test-tariff-paln-link=true}}Tariff Plans{{/nav.link-to}}{{/nav.item}}
-          {{#nav.item}}{{#nav.link-to "users" data-test-users-link=true}}Users{{/nav.link-to}}{{/nav.item}}
-          {{#nav.item}}{{#nav.link-to "cdrs"}}CDRs{{/nav.link-to}}{{/nav.item}}
+        {{#navbar.nav class="ml-auto" as |nav|}}
+          {{#nav.item}}
+            {{#nav.link-to "realtime"}}
+              Realtime
+            {{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to "tariff-plans" data-test-tariff-paln-link=true}}
+              Tariff Plans
+            {{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to "users" data-test-users-link=true}}
+              Users
+            {{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to "cdrs"}}
+              CDRs
+            {{/nav.link-to}}
+          {{/nav.item}}
         {{/navbar.nav}}
       {{/navbar.content}}
     {{/bs-navbar}}
