@@ -9,23 +9,31 @@ describe('Acceptance: TpResource.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    const tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    server.create('tp-resource', {id: '1', tpid: tariffPlan.alias, customId: 'tagtest'});
-    await authenticateSession({email: 'user@example.com'});
+    const tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('tp-resource', {
+      id: '1',
+      tpid: tariffPlan.alias,
+      customId: 'tagtest',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-resources/1');
       expect(find('main h2').textContent).to.eq('TpResource: tagtest');
-    })
-  );
+    }));
 
   return describe('click edit button', () =>
     it('redirects to tp-resource edit page', async function () {
       await visit('/tariff-plans/1/tp-resources/1');
       await click('[data-test-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-resources.tp-resource.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-resources.tp-resource.edit'
+      );
+    }));
 });

@@ -3,7 +3,15 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 import { isBlank } from '@ember/utils';
 
@@ -12,10 +20,16 @@ describe('Acceptance: TpDestinationRates.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpDestinationRates = server.createList('tp-destination-rate', 2, {tpid: this.tariffPlan.alias});
-    this.other = server.createList('tp-destination-rate', 2, {tpid: 'other'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpDestinationRates = server.createList('tp-destination-rate', 2, {
+      tpid: this.tariffPlan.alias,
+    });
+    this.other = server.createList('tp-destination-rate', 2, { tpid: 'other' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-destination-rates', () =>
@@ -23,8 +37,7 @@ describe('Acceptance: TpDestinationRates.Index', function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       expect(find('main h2').textContent).to.eq('TpDestinationRates list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server responsed with meta: total_records', function () {
     it('displays total records', async function () {
@@ -40,38 +53,43 @@ describe('Acceptance: TpDestinationRates.Index', function () {
     it('reditects to tp-destination-rate page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.tp-destination-rate.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-destination-rates.tp-destination-rate.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-destination-rate page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-tp-destination-rate-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.tp-destination-rate.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-destination-rates.tp-destination-rate.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-destination-rate', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-tp-destination-rate-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-destination-rate page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-add]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-destination-rates.new');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-destination-rates.new'
+      );
+    }));
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-tag] input', 'tagtest');
     await fillIn('[data-test-filter-rates-tag] input', 'ratetest');
-    await fillIn('[data-test-filter-destinations-tag] input', 'destinationtest');
+    await fillIn(
+      '[data-test-filter-destinations-tag] input',
+      'destinationtest'
+    );
     await fillIn('[data-test-filter-rounding-decimals] input', '1');
     await fillIn('[data-test-filter-max-cost] input', '100.0');
     await selectChoose('[data-test-filter-rounding-method]', '*up');
@@ -81,7 +99,9 @@ describe('Acceptance: TpDestinationRates.Index', function () {
     expect(request.queryParams['tpid']).to.eq('tptest');
     expect(request.queryParams['filter[tag]']).to.eq('tagtest');
     expect(request.queryParams['filter[rates_tag]']).to.eq('ratetest');
-    expect(request.queryParams['filter[destinations_tag]']).to.eq('destinationtest');
+    expect(request.queryParams['filter[destinations_tag]']).to.eq(
+      'destinationtest'
+    );
     expect(request.queryParams['filter[rounding_decimals]']).to.eq('1');
     expect(request.queryParams['filter[max_cost]']).to.eq('100.0');
     expect(request.queryParams['filter[rounding_method]']).to.eq('*up');
@@ -96,11 +116,15 @@ describe('Acceptance: TpDestinationRates.Index', function () {
         counter = counter + 1;
         const filterTag = request.queryParams['filter[tag]'];
         const filterRatesTag = request.queryParams['filter[rates_tag]'];
-        const filterDestinationsTag = request.queryParams['filter[destinations_tag]'];
-        const filterRoundingDecimals = request.queryParams['filter[rounding_decimals]'];
+        const filterDestinationsTag =
+          request.queryParams['filter[destinations_tag]'];
+        const filterRoundingDecimals =
+          request.queryParams['filter[rounding_decimals]'];
         const filterMaxCost = request.queryParams['filter[max_cost]'];
-        const filterRoundingMethod = request.queryParams['filter[rounding_method]'];
-        const filterMaxCostStrategy = request.queryParams['filter[max_cost_strategy]'];
+        const filterRoundingMethod =
+          request.queryParams['filter[rounding_method]'];
+        const filterMaxCostStrategy =
+          request.queryParams['filter[max_cost_strategy]'];
         switch (counter) {
           case 1:
             expect(isBlank(filterTag)).to.eq(true);
@@ -115,24 +139,26 @@ describe('Acceptance: TpDestinationRates.Index', function () {
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-destination-rate'}] };
+        return { data: [{ id: '1', type: 'tp-destination-rate' }] };
       });
 
       await visit('/tariff-plans/1/tp-destination-rates');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('filter and click download csv', function () {
     it('sends request to the server with filters', async function () {
       let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-      server.get('/tp-destination-rates/export-to-csv/', function (_schema, request) {
+      server.get('/tp-destination-rates/export-to-csv/', function (
+        _schema,
+        request
+      ) {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-destination-rate'}] };
+        return { data: [{ id: '1', type: 'tp-destination-rate' }] };
       });
       await visit('/tariff-plans/1/tp-destination-rates');
       await setFilters();
@@ -146,7 +172,9 @@ describe('Acceptance: TpDestinationRates.Index', function () {
     it('redirects to upload csv page', async function () {
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-upload]');
-      expect(currentURL()).to.eq('/tariff-plans/1/tp-destination-rates/csv-import');
+      expect(currentURL()).to.eq(
+        '/tariff-plans/1/tp-destination-rates/csv-import'
+      );
     });
   });
 
@@ -157,7 +185,7 @@ describe('Acceptance: TpDestinationRates.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-destination-rate'}] };
+        return { data: [{ id: '1', type: 'tp-destination-rate' }] };
       });
       await visit('/tariff-plans/1/tp-destination-rates');
       await setFilters();
@@ -170,7 +198,10 @@ describe('Acceptance: TpDestinationRates.Index', function () {
   describe('filter and delete all', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
     beforeEach(async function () {
-      server.post('/tp-destination-rates/delete-all', function (_schema, request) {
+      server.post('/tp-destination-rates/delete-all', function (
+        _schema,
+        request
+      ) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);
           expect(params.tpid).to.eq('tptest');
@@ -214,15 +245,14 @@ describe('Acceptance: TpDestinationRates.Index', function () {
           default:
             expect(sort).to.eq('-tag');
         }
-        return { data: [{id: '1', type: 'tp-destination-rate'}] };
+        return { data: [{ id: '1', type: 'tp-destination-rate' }] };
       });
 
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-sort-tag] a');
       await click('[data-test-sort-tag] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -241,12 +271,14 @@ describe('Acceptance: TpDestinationRates.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-destination-rate'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-destination-rate' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-destination-rates');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

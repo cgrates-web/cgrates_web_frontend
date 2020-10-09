@@ -4,45 +4,53 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     direction: {
-      refreshModel: true
+      refreshModel: true,
     },
     tenant: {
-      refreshModel: true
+      refreshModel: true,
     },
     category: {
-      refreshModel: true
+      refreshModel: true,
     },
     account: {
-      refreshModel: true
+      refreshModel: true,
     },
     subject: {
-      refreshModel: true
+      refreshModel: true,
     },
     destinationTag: {
-      refreshModel: true
+      refreshModel: true,
     },
     rpCategory: {
-      refreshModel: true
+      refreshModel: true,
     },
     strategy: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
-  filterParams: ['direction', 'tenant', 'category', 'account', 'subject', 'destinationTag', 'rpCategory', 'strategy'],
+  filterParams: [
+    'direction',
+    'tenant',
+    'category',
+    'account',
+    'subject',
+    'destinationTag',
+    'rpCategory',
+    'strategy',
+  ],
 
-  modelName: 'tp-lcr-rule'
-}
-);
+  modelName: 'tp-lcr-rule',
+});

@@ -1,38 +1,38 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 import { validator, buildValidations } from 'ember-cp-validations';
 const Validations = buildValidations({
   tag: [
     validator('presence', true),
     validator('ds-error'),
     validator('length', {
-      max: 64
+      max: 64,
     }),
   ],
   destratesTag: [
     validator('presence', true),
     validator('length', {
-      max: 64
+      max: 64,
     }),
   ],
   timingTag: [
     validator('presence', true),
     validator('length', {
-      max: 64
+      max: 64,
     }),
   ],
   weight: [
     validator('presence', true),
     validator('number', {
       allowString: true,
-      gte: 0
+      gte: 0,
     }),
   ],
 });
-export default DS.Model.extend(Validations, {
-  tpid:         DS.attr('string'),
-  tag:          DS.attr('string'),
-  destratesTag: DS.attr('string'),
-  timingTag:    DS.attr('string'),
-  weight:       DS.attr('number'),
-  createdAt:    DS.attr('date')
+export default Model.extend(Validations, {
+  tpid: attr('string'),
+  tag: attr('string'),
+  destratesTag: attr('string'),
+  timingTag: attr('string'),
+  weight: attr('number'),
+  createdAt: attr('date'),
 });

@@ -7,12 +7,12 @@ export default Component.extend({
   currentIntervalUnit: 's',
   intervalUnits: Object.freeze(['s', 'm', 'h']),
 
-  valueNumber: computed('value', function () {
-    if (isPresent(this.get('value'))) {
-      const lastItem = this.get('value').substr(-1);
+  valueNumber: computed('intervalUnits', 'value', function () {
+    if (isPresent(this.value)) {
+      const lastItem = this.value.substr(-1);
       if (this.intervalUnits.indexOf(lastItem) !== -1) {
         this.set('currentIntervalUnit', lastItem);
-        return this.get('value').replace(new RegExp(`${lastItem}$`, 'g'), '');
+        return this.value.replace(new RegExp(`${lastItem}$`, 'g'), '');
       }
     }
     return null;
@@ -25,7 +25,12 @@ export default Component.extend({
     },
     change() {},
     input(event) {
-      this.set('value', isPresent(event.target.value) ? `${ event.target.value}${this.currentIntervalUnit}` : null);
+      this.set(
+        'value',
+        isPresent(event.target.value)
+          ? `${event.target.value}${this.currentIntervalUnit}`
+          : null
+      );
     },
-  }
+  },
 });

@@ -3,7 +3,15 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
 
 describe('Acceptance: TpRates.Index', function () {
@@ -11,10 +19,16 @@ describe('Acceptance: TpRates.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpRates = server.createList('tp-rate', 2, {tpid: this.tariffPlan.alias});
-    this.other = server.createList('tp-rate', 2, {tpid: 'other'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpRates = server.createList('tp-rate', 2, {
+      tpid: this.tariffPlan.alias,
+    });
+    this.other = server.createList('tp-rate', 2, { tpid: 'other' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-rates', () =>
@@ -22,8 +36,7 @@ describe('Acceptance: TpRates.Index', function () {
       await visit('/tariff-plans/1/tp-rates');
       expect(find('main h2').textContent).to.eq('TpRates list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server responsed with meta: total_records', function () {
     it('displays total records', async function () {
@@ -38,34 +51,30 @@ describe('Acceptance: TpRates.Index', function () {
   describe('select tp-rate', () =>
     it('reditects to tp-rate page', async function () {
       await visit('/tariff-plans/1/tp-rates');
-      await  click('table tbody tr:first-child td:first-child a');
+      await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('tariff-plan.tp-rates.tp-rate.index');
-    })
-  );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-rate page', async function () {
       await visit('/tariff-plans/1/tp-rates');
       await click('[data-test-tp-rate-edit]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-rates.tp-rate.edit');
-    })
-  );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-rate', async function () {
       await visit('/tariff-plans/1/tp-rates');
       await click('[data-test-tp-rate-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-rate page', async function () {
       await visit('/tariff-plans/1/tp-rates');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-rates.new');
-    })
-  );
+    }));
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-tag] input', 'tagtest');
@@ -93,9 +102,11 @@ describe('Acceptance: TpRates.Index', function () {
         counter = counter + 1;
         const filterTag = request.queryParams['filter[tag]'];
         const filterRateUnit = request.queryParams['filter[rate_unit]'];
-        const filterRateIncrement = request.queryParams['filter[rate_increment]'];
+        const filterRateIncrement =
+          request.queryParams['filter[rate_increment]'];
         const filterRate = request.queryParams['filter[rate]'];
-        const filterGroupIntervalStart = request.queryParams['filter[group_interval_start]'];
+        const filterGroupIntervalStart =
+          request.queryParams['filter[group_interval_start]'];
         const filterConnectFee = request.queryParams['filter[connect_fee]'];
         switch (counter) {
           case 1:
@@ -109,15 +120,14 @@ describe('Acceptance: TpRates.Index', function () {
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-rate'}] };
+        return { data: [{ id: '1', type: 'tp-rate' }] };
       });
 
       await visit('/tariff-plans/1/tp-rates');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('filter and click download csv', function () {
     it('sends request to the server with filters', async function () {
@@ -126,7 +136,7 @@ describe('Acceptance: TpRates.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-rate'}] };
+        return { data: [{ id: '1', type: 'tp-rate' }] };
       });
       await visit('/tariff-plans/1/tp-rates');
       await setFilters();
@@ -151,7 +161,7 @@ describe('Acceptance: TpRates.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-rate'}] };
+        return { data: [{ id: '1', type: 'tp-rate' }] };
       });
       await visit('/tariff-plans/1/tp-rates');
       await setFilters();
@@ -207,15 +217,14 @@ describe('Acceptance: TpRates.Index', function () {
           default:
             expect(sort).to.eq('-tag');
         }
-        return { data: [{id: '1', type: 'tp-rate'}] };
+        return { data: [{ id: '1', type: 'tp-rate' }] };
       });
 
       await visit('/tariff-plans/1/tp-rates');
       await click('[data-test-sort-tag] a');
       await click('[data-test-sort-tag] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   return describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -234,12 +243,14 @@ describe('Acceptance: TpRates.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-rate'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-rate' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-rates');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

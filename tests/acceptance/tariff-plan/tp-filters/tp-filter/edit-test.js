@@ -11,9 +11,16 @@ describe('Acceptance: TpFilter.Edit', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpFilter = server.create('tp-filter', {id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpFilter = server.create('tp-filter', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -30,7 +37,7 @@ describe('Acceptance: TpFilter.Edit', function () {
         expect(params.data.attributes['filter-field-name']).to.eq('Test');
         expect(params.data.attributes['filter-field-values']).to.eq('Test');
         expect(params.data.attributes['activation-interval']).to.eq('Test');
-        return { data: {id: '1', type: 'tp-filter'} };
+        return { data: { id: '1', type: 'tp-filter' } };
       });
 
       await visit('/tariff-plans/1/tp-filters/1/edit');
@@ -42,6 +49,5 @@ describe('Acceptance: TpFilter.Edit', function () {
       await fillIn('[data-test-activation-interval] input', 'Test');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

@@ -5,14 +5,26 @@ import QueryControllerMixin from 'cgrates-web-frontend/mixins/query-controller-m
 export default Controller.extend(QueryControllerMixin, {
   selectValues: service(),
 
-  queryParams: ['tag', 'account', 'strategy', 'ratingSubject',
-    'sortColumn', 'sortOrder', 'page', 'pageSize'
+  queryParams: [
+    'tag',
+    'account',
+    'strategy',
+    'ratingSubject',
+    'sortColumn',
+    'sortOrder',
+    'page',
+    'pageSize',
   ],
 
-  tag:            null,
-  account:        null,
-  strategy:       null,
-  ratingSubject:  null,
+  tag: null,
+  account: null,
+  strategy: null,
+  ratingSubject: null,
 
-  permittedFilters: Object.freeze(['tag', 'account', 'strategy', 'ratingSubject']),
+  permittedFilters: Object.freeze([
+    'tag',
+    'account',
+    'strategy',
+    'ratingSubject',
+  ]),
 });

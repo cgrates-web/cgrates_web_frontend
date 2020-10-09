@@ -7,22 +7,22 @@ export default Component.extend({
   tagName: 'td',
 
   currentColumn: computed('key', 'sortColumn', function () {
-    return isEqual(this.get('key'), this.get('sortColumn'));
+    return isEqual(this.key, this.sortColumn);
   }),
 
   actions: {
     toggleSort() {
-      if (this.get('currentColumn')) {
+      if (this.currentColumn) {
         let newSortOrder;
-        if (isEqual(this.get('sortOrder'), 'desc')) {
+        if (isEqual(this.sortOrder, 'desc')) {
           newSortOrder = 'asc';
         } else {
           newSortOrder = 'desc';
         }
-        return this.sendAction('sortAction', this.get('sortColumn'), newSortOrder);
+        return this.sendAction('sortAction', this.sortColumn, newSortOrder);
       } else {
-        return this.sendAction('sortAction', this.get('key'), 'asc');
+        return this.sendAction('sortAction', this.key, 'asc');
       }
-    }
-  }
+    },
+  },
 });

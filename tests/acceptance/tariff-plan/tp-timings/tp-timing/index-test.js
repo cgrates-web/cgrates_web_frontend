@@ -10,23 +10,31 @@ describe('Acceptance: TpTiming.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpTiming = server.create('tp-timing', {id: '1', tpid: this.tariffPlan.alias, tag: 'new-timing'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpTiming = server.create('tp-timing', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+      tag: 'new-timing',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-timings/1');
       expect(find('main h2').textContent).to.eq('Timing: new-timing');
-    })
-  );
+    }));
 
   describe('click edit button', () =>
     it('redirects to tp-timing edit page', async function () {
       await visit('/tariff-plans/1/tp-timings/1');
       await click('[data-test-tp-timing]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-timings.tp-timing.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-timings.tp-timing.edit'
+      );
+    }));
 });

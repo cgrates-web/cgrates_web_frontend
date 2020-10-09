@@ -10,7 +10,7 @@ describe('Acceptance: TariffPlan.Edit', function () {
   setupMirage(hooks);
   beforeEach(async function () {
     this.tp = server.create('tariff-plan');
-    await authenticateSession({email: 'user@exmple.com'});
+    await authenticateSession({ email: 'user@exmple.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -22,7 +22,7 @@ describe('Acceptance: TariffPlan.Edit', function () {
         expect(params.data.attributes.name).to.eq('New Tariff');
         expect(params.data.attributes.alias).to.eq('new_tariff');
         expect(params.data.attributes.description).to.eq('description');
-        return { data: {id: this.tp.id, type: 'tariff-plans'} };
+        return { data: { id: this.tp.id, type: 'tariff-plans' } };
       });
 
       await visit('/tariff-plans');
@@ -32,8 +32,7 @@ describe('Acceptance: TariffPlan.Edit', function () {
       await fillIn('[data-test-description] input', 'description');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 
   describe('fill form with incorrect data and submit', function () {
     context('request', function () {
@@ -63,15 +62,23 @@ describe('Acceptance: TariffPlan.Edit', function () {
 
       it('displays name error', async function () {
         expect(find('[data-test-name] input')).to.have.class('is-invalid');
-        expect(find('[data-test-name] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-name] .invalid-feedback')).to.have.class(
+          'd-block'
+        );
       });
       it('displays alias error', async function () {
         expect(find('[data-test-alias] input')).to.have.class('is-invalid');
-        expect(find('[data-test-alias] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-alias] .invalid-feedback')).to.have.class(
+          'd-block'
+        );
       });
       it('displays description error', async function () {
-        expect(find('[data-test-description] input')).to.have.class('is-invalid');
-        expect(find('[data-test-description] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-description] input')).to.have.class(
+          'is-invalid'
+        );
+        expect(find('[data-test-description] .invalid-feedback')).to.have.class(
+          'd-block'
+        );
       });
     });
   });

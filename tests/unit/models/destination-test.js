@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { setupModelTest } from 'ember-mocha';
 
 describe('Destination', function () {
-  setupModelTest('destination', () => ({needs: []}));
+  setupModelTest('destination', () => ({ needs: [] }));
 
   return describe('#prefixesString', function () {
     describe('get', () =>
@@ -14,8 +14,7 @@ describe('Destination', function () {
           model.set('prefixes', ['+7', '+44']);
           return expect(model.get('prefixesString')).to.equal('+7, +44');
         });
-      })
-    );
+      }));
 
     return describe('set', () =>
       it('sets prefixes array', function () {
@@ -26,7 +25,6 @@ describe('Destination', function () {
           expect(model.get('prefixes')).to.include('+44');
           return expect(model.get('prefixes')).to.include('+7');
         });
-      })
-    );
+      }));
   });
 });

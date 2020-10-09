@@ -4,33 +4,32 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     tag: {
-      refreshModel: true
+      refreshModel: true,
     },
     destratesTag: {
-      refreshModel: true
+      refreshModel: true,
     },
     timingTag: {
-      refreshModel: true
+      refreshModel: true,
     },
     weight: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
   filterParams: ['tag', 'destratesTag', 'timingTag', 'weight'],
 
-  modelName: 'tp-rating-plan'
-}
-);
+  modelName: 'tp-rating-plan',
+});

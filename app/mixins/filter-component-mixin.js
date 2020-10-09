@@ -1,20 +1,24 @@
 import Mixin from '@ember/object/mixin';
 import { observer } from '@ember/object';
 import { isBlank } from '@ember/utils';
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
 
 export default Mixin.create({
-  onValueChange() { return null; },
+  onValueChange() {
+    return null;
+  },
 
-  _onInit: Ember.on('didReceiveAttrs', function () {
-    this.set('valueWrapper', this.get('value'));
-    return this.onValueChange(this.get('key'), this.get('valueWrapper'));
+  _onInit: on('didReceiveAttrs', function () {
+    this.set('valueWrapper', this.value);
+    return this.onValueChange(this.key, this.valueWrapper);
   }),
 
   valueChanged: observer('valueWrapper', function () {
-    if (isBlank(this.get('valueWrapper'))) { this.set('valueWrapper', null); }
-    if (this.get('value') !== this.get('valueWrapper')) {
-      return this.onValueChange(this.get('key'), this.get('valueWrapper'));
+    if (isBlank(this.valueWrapper)) {
+      this.set('valueWrapper', null);
     }
-  })
+    if (this.value !== this.valueWrapper) {
+      return this.onValueChange(this.key, this.valueWrapper);
+    }
+  }),
 });

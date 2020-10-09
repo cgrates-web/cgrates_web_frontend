@@ -10,23 +10,27 @@ describe('Acceptance: RawSupplierRate.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    server.create('raw-supplier-rate', { id: '1'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('raw-supplier-rate', { id: '1' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates/1');
       expect(find('main h2').textContent).to.eq('Raw supplier rate: 1');
-    })
-  );
+    }));
 
   describe('click edit button', () =>
     it('redirects to tp-rate edit page', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates/1');
       await click('[data-test-supplier-rate-edit]');
-      expect(currentRouteName()).to.eq('tariff-plan.raw-supplier-rates.raw-supplier-rate.edit');
-    })
-  );
+      expect(currentRouteName()).to.eq(
+        'tariff-plan.raw-supplier-rates.raw-supplier-rate.edit'
+      );
+    }));
 });

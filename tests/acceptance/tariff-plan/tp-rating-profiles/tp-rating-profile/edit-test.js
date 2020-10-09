@@ -4,22 +4,35 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
-import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
+import {
+  selectSearch,
+  selectChoose,
+} from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpRatingProfile.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpRatingPlan1 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan1'});
-    this.tpRatingPlan2 = server.create('tp-rating-plan', {tpid: 'tptest', tag: 'ratingplan2'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpRatingPlan1 = server.create('tp-rating-plan', {
+      tpid: 'tptest',
+      tag: 'ratingplan1',
+    });
+    this.tpRatingPlan2 = server.create('tp-rating-plan', {
+      tpid: 'tptest',
+      tag: 'ratingplan2',
+    });
     this.tpRatingProfile = server.create('tp-rating-profile', {
       id: '1',
       tpid: this.tariffPlan.alias,
-      rating_plan_tag: this.tpRatingPlan1.tag
+      rating_plan_tag: this.tpRatingPlan1.tag,
     });
-    await authenticateSession({email: 'user@example.com'});
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -36,10 +49,14 @@ describe('Acceptance: TpRatingProfile.Edit', function () {
         expect(params.data.attributes['category']).to.eq('categorytest');
         expect(params.data.attributes['subject']).to.eq('subject1');
         expect(params.data.attributes['fallback-subjects']).to.eq('subject2');
-        expect(params.data.attributes['activation-time']).to.eq('activationtime');
+        expect(params.data.attributes['activation-time']).to.eq(
+          'activationtime'
+        );
         expect(params.data.attributes['cdr-stat-queue-ids']).to.eq('queuetest');
         expect(params.data.attributes['rating-plan-tag']).to.eq('ratingplan2');
-        return { data: {id: this.tpRatingProfile.id, type: 'tp-rating-profile'} };
+        return {
+          data: { id: this.tpRatingProfile.id, type: 'tp-rating-profile' },
+        };
       });
 
       await visit('/tariff-plans/1/tp-rating-profiles/1/edit');
@@ -55,6 +72,5 @@ describe('Acceptance: TpRatingProfile.Edit', function () {
       await selectChoose('[data-test-tag="tp-rating-plan"]', 'ratingplan2');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

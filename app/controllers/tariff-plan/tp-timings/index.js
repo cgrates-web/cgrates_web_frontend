@@ -4,9 +4,7 @@ import QueryControllerMixin from 'cgrates-web-frontend/mixins/query-controller-m
 export default Controller.extend(QueryControllerMixin, {
   queryParams: ['tag', 'sortColumn', 'sortOrder', 'page', 'pageSize'],
 
-  tag:    null,
+  tag: null,
 
-  permittedFilters: Object.freeze([
-    'tag'
-  ]),
+  permittedFilters: Object.freeze(['tag']),
 });

@@ -14,8 +14,8 @@ module.exports = function (environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
@@ -25,12 +25,12 @@ module.exports = function (environment) {
 
     moment: {
       outputFormat: 'DD/MM/YYYY HH:mm:ss',
-      allowEmpty: true
+      allowEmpty: true,
     },
 
     flashMessageDefaults: {
-      extendedTimeout: 2000
-    }
+      extendedTimeout: 2000,
+    },
   };
 
   if (environment === 'development') {
@@ -66,7 +66,6 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-
   }
 
   ENV['ember-simple-auth-token'] = {
@@ -77,7 +76,10 @@ module.exports = function (environment) {
     refreshTokenPropertyName: 'token',
     authorizationPrefix: 'Bearer ',
     authorizationHeaderName: 'Authorization',
-    headers: {'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json'},
+    headers: {
+      Accept: 'application/vnd.api+json',
+      'Content-Type': 'application/vnd.api+json',
+    },
   };
 
   return ENV;

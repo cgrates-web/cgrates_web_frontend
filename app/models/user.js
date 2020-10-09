@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 import { not } from '@ember/object/computed';
 import { validator, buildValidations } from 'ember-cp-validations';
 
@@ -11,12 +11,12 @@ const Validations = buildValidations({
   ],
   password: validator('presence', {
     presence: true,
-    disabled: not('model.isNew')
+    disabled: not('model.isNew'),
   }),
 });
-export default DS.Model.extend(Validations, {
-  email:      DS.attr('string'),
-  password:   DS.attr('string'),
-  insertedAt: DS.attr('date'),
-  updatedAt:  DS.attr('date')
+export default Model.extend(Validations, {
+  email: attr('string'),
+  password: attr('string'),
+  insertedAt: attr('date'),
+  updatedAt: attr('date'),
 });

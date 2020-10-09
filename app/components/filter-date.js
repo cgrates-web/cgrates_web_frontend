@@ -6,25 +6,25 @@ import moment from 'moment';
 
 export default Component.extend({
   _onInit: on('didReceiveAttrs', function () {
-    if (isPresent(this.get('value'))) {
-      this.set('valueWrapper', new Date(this.get('value')));
+    if (isPresent(this.value)) {
+      this.set('valueWrapper', new Date(this.value));
     } else {
       this.set('valueWrapper', null);
     }
-    this.onValueChange(this.get('key'), this.get('valueWrapper'));
+    this.onValueChange(this.key, this.valueWrapper);
   }),
 
   valueChanged: observer('valueWrapper', function () {
     let formattedDate;
-    if (isBlank(this.get('valueWrapper'))) {
+    if (isBlank(this.valueWrapper)) {
       this.set('valueWrapper', null);
       formattedDate = null;
     } else {
-      formattedDate = moment(this.get('valueWrapper')).utc().format();
+      formattedDate = moment(this.valueWrapper).utc().format();
     }
 
-    if (this.get('value') !== formattedDate) {
-      this.onValueChange(this.get('key'), formattedDate);
+    if (this.value !== formattedDate) {
+      this.onValueChange(this.key, formattedDate);
     }
   }),
 });

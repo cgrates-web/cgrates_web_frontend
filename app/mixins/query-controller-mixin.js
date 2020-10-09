@@ -3,15 +3,15 @@ import { computed } from '@ember/object';
 
 export default Mixin.create({
   sortColumn: 'id',
-  sortOrder:  'asc',
+  sortOrder: 'asc',
 
-  page:     1,
+  page: 1,
   pageSize: 10,
 
   pagination: computed('page', 'totalPages', function () {
     return {
-      page: this.get('page'),
-      totalPages: this.get('totalPages'),
+      page: this.page,
+      totalPages: this.totalPages,
     };
   }),
 
@@ -22,7 +22,7 @@ export default Mixin.create({
   actions: {
     search(query) {
       query['page'] = 1;
-      return this.transitionToRoute({queryParams: query});
+      return this.transitionToRoute({ queryParams: query });
     },
 
     toPage(page) {
@@ -34,6 +34,8 @@ export default Mixin.create({
       return this.set('sortOrder', sortOrder);
     },
 
-    remove(record) { return record.destroyRecord(); }
-  }
+    remove(record) {
+      return record.destroyRecord();
+    },
+  },
 });

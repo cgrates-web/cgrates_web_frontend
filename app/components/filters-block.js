@@ -10,18 +10,18 @@ export default Component.extend({
 
   actions: {
     pushValue(key, value) {
-      return this.get('activeFilters')[key] = value;
+      return (this.activeFilters[key] = value);
     },
 
     search() {
-      return this.search(this.get('activeFilters'));
+      return this.search(this.activeFilters);
     },
 
     reset() {
-      for (let key in this.get('activeFilters')) {
-        this.get('activeFilters')[key] = null;
+      for (let key in this.activeFilters) {
+        this.activeFilters[key] = null;
       }
-      return this.search(this.get('activeFilters'));
-    }
-  }
+      return this.search(this.activeFilters);
+    },
+  },
 });

@@ -15,7 +15,7 @@ describe('Integration: InputTags', function () {
   describe('basic rendering', function () {
     context('do not allow *any value', function () {
       beforeEach(async function () {
-        this.set('model', EmberObject.create({inputTag: 'test1'}));
+        this.set('model', EmberObject.create({ inputTag: 'test1' }));
         await render(hbs`('
           {{#bs-form model=model as |form|}}
             {{input-tags
@@ -29,7 +29,9 @@ describe('Integration: InputTags', function () {
         ')`);
       });
       it('displays selected item', function () {
-        expect(find('.ember-power-select-selected-item').textContent.trim()).to.eq('test1');
+        expect(
+          find('.ember-power-select-selected-item').textContent.trim()
+        ).to.eq('test1');
       });
       it('displays label', function () {
         expect(find('label').textContent.trim()).to.eq('Test');
@@ -41,7 +43,7 @@ describe('Integration: InputTags', function () {
 
     context('allow *any value', () =>
       it('renders *any option', async function () {
-        this.set('model', EmberObject.create({inputTag: 'test1'}));
+        this.set('model', EmberObject.create({ inputTag: 'test1' }));
         await render(hbs`('
           {{#bs-form model=model as |form|}}
             {{input-tags
@@ -52,7 +54,9 @@ describe('Integration: InputTags', function () {
           {{/bs-form}}
         ')`);
         await click('.ember-power-select-trigger');
-        expect(find('.ember-power-select-option').textContent.trim()).to.eq('*any');
+        expect(find('.ember-power-select-option').textContent.trim()).to.eq(
+          '*any'
+        );
       })
     );
   });
@@ -66,10 +70,14 @@ describe('Integration: InputTags', function () {
           const tpid = request.queryParams['tpid'];
           const filter = request.queryParams['filter[tag]'];
           const sort = request.queryParams['sort'];
-          if (isEqual(tpid, 'tptest') && isEqual(filter, 'tagtest') && isEqual(sort, 'tag')) {
+          if (
+            isEqual(tpid, 'tptest') &&
+            isEqual(filter, 'tagtest') &&
+            isEqual(sort, 'tag')
+          ) {
             allClear = true;
           }
-          return { data: [{id: '1', type: 'tp-rate'}] };
+          return { data: [{ id: '1', type: 'tp-rate' }] };
         });
 
         this.set('model', EmberObject.create({}));
@@ -90,7 +98,9 @@ describe('Integration: InputTags', function () {
 
     context('allow *any value', () =>
       it('displays *any along with results', async function () {
-        this.server.get('/tp-rates/', () => ({ data: [{id: '1', type: 'tp-rate', attributes: {tag: 'test'}}] }));
+        this.server.get('/tp-rates/', () => ({
+          data: [{ id: '1', type: 'tp-rate', attributes: { tag: 'test' } }],
+        }));
         this.set('model', EmberObject.create({}));
         await render(hbs`('
           {{#bs-form model=model as |form|}}
@@ -104,11 +114,20 @@ describe('Integration: InputTags', function () {
           {{/bs-form}}
         ')`);
         await selectSearch('.ember-power-select-trigger', 'tagtest');
-        expect(findAll('.ember-power-select-options .ember-power-select-option').length).to.eq(2);
-        expect(find('.ember-power-select-options .ember-power-select-option:first-of-type')
-          .textContent.trim()).to.eq('test');
-        expect(find('.ember-power-select-options .ember-power-select-option:last-of-type')
-          .textContent.trim()).to.eq('*any');
+        expect(
+          findAll('.ember-power-select-options .ember-power-select-option')
+            .length
+        ).to.eq(2);
+        expect(
+          find(
+            '.ember-power-select-options .ember-power-select-option:first-of-type'
+          ).textContent.trim()
+        ).to.eq('test');
+        expect(
+          find(
+            '.ember-power-select-options .ember-power-select-option:last-of-type'
+          ).textContent.trim()
+        ).to.eq('*any');
       })
     );
   });

@@ -4,5 +4,5 @@ import TokenAuthorizerMixin from 'ember-simple-auth-token/mixins/token-authorize
 
 export default DS.JSONAPIAdapter.extend(TokenAuthorizerMixin, {
   namespace: 'api',
-  host: config.API_HOST
+  host: config.API_HOST,
 });

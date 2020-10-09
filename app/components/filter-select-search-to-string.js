@@ -4,23 +4,23 @@ import { task } from 'ember-concurrency';
 import strToArray from 'cgrates-web-frontend/utils/str-to-array';
 
 export default Component.extend({
-  store:        service(),
+  store: service(),
   searchField: 'customId',
   placeholder: '...',
-  multiple:     false,
+  multiple: false,
 
   didReceiveAttrs() {
     this._super(...arguments);
     this.set('valueWrapper', strToArray(this.value));
-    this.onValueChange(this.get('key'), this.value);
+    this.onValueChange(this.key, this.value);
   },
 
-  searchTask: task(function * (term) {
-    const response = yield this.get('store').query(this.searchModel, {
+  searchTask: task(function* (term) {
+    const response = yield this.store.query(this.searchModel, {
       tpid: this.tpid,
       filter: {
         [this.searchField.underscore()]: term,
-      }
+      },
     });
     return response.mapBy(this.searchField);
   }).restartable(),
@@ -29,7 +29,7 @@ export default Component.extend({
     onChange(value) {
       this.set('valueWrapper', value);
       const newValue = this.multiple ? value.join(',') : value;
-      this.onValueChange(this.get('key'), newValue);
-    }
+      this.onValueChange(this.key, newValue);
+    },
   },
 });

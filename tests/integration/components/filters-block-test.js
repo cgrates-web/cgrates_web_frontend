@@ -8,7 +8,7 @@ const testFilter = {
   type: 'filter-text',
   label: 'Test',
   key: 'test',
-  value: ''
+  value: '',
 };
 
 describe('Integration: FiltersBlock', function () {
@@ -20,8 +20,7 @@ describe('Integration: FiltersBlock', function () {
       expect(find('h5').textContent).to.eq('Filters');
       expect(find('form')).to.exist;
       expect(find('button')).to.exist;
-    })
-  );
+    }));
 
   describe('setting filter values and clicking search button', () =>
     it('sends action with correct arguments', async function () {
@@ -29,7 +28,7 @@ describe('Integration: FiltersBlock', function () {
       this.set('actionTriggered', false);
       this.set('search', function (filters) {
         this.set('actionTriggered', true);
-        return expect(filters).to.deep.equal({'test': 'valuetest'});
+        return expect(filters).to.deep.equal({ test: 'valuetest' });
       });
       await render(hbs`(
         {{#filters-block search=(action search) as |block|}}
@@ -38,9 +37,8 @@ describe('Integration: FiltersBlock', function () {
       )`);
       await fillIn('input', 'valuetest');
       await click('[data-test-filter-search-btn]');
-      expect(this.get('actionTriggered')).to.be.ok;
-    })
-  );
+      expect(this.actionTriggered).to.be.ok;
+    }));
 
   return describe('setting filter values and clicking reset button', () =>
     it('sends action and passes null values', async function () {
@@ -48,7 +46,7 @@ describe('Integration: FiltersBlock', function () {
       this.set('actionTriggered', false);
       this.set('search', function (filters) {
         this.set('actionTriggered', true);
-        expect(filters).to.deep.equal({'test': null});
+        expect(filters).to.deep.equal({ test: null });
       });
       await render(hbs`(
         {{#filters-block search=(action search) as |block|}} 
@@ -57,7 +55,6 @@ describe('Integration: FiltersBlock', function () {
       )`);
       await fillIn('input', 'valuetest');
       await click('[data-test-filter-reset-btn]');
-      expect(this.get('actionTriggered')).to.be.ok;
-    })
-  );
+      expect(this.actionTriggered).to.be.ok;
+    }));
 });

@@ -3,7 +3,10 @@ import { expect } from 'chai';
 import { setupRenderingTest } from 'ember-mocha';
 import hbs from 'htmlbars-inline-precompile';
 import { find, findAll, render } from '@ember/test-helpers';
-import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
+import {
+  selectSearch,
+  selectChoose,
+} from 'ember-power-select/test-support/helpers';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
 describe('Integration: Filter select search to string', function () {
@@ -41,13 +44,23 @@ describe('Integration: Filter select search to string', function () {
         expectPushValue();
       });
       it('has correct selected items count', function () {
-        expect(findAll('.ember-power-select-multiple-options .ember-power-select-multiple-option').length).to.eq(2);
+        expect(
+          findAll(
+            '.ember-power-select-multiple-options .ember-power-select-multiple-option'
+          ).length
+        ).to.eq(2);
       });
       it('displays selected items', function () {
-        expect(find('.ember-power-select-multiple-options .ember-power-select-multiple-option:first-child')
-          .textContent.trim()).to.contain('test1');
-        expect(find('.ember-power-select-multiple-options .ember-power-select-multiple-option:nth-child(2)')
-          .textContent.trim()).to.contain('test2');
+        expect(
+          find(
+            '.ember-power-select-multiple-options .ember-power-select-multiple-option:first-child'
+          ).textContent.trim()
+        ).to.contain('test1');
+        expect(
+          find(
+            '.ember-power-select-multiple-options .ember-power-select-multiple-option:nth-child(2)'
+          ).textContent.trim()
+        ).to.contain('test2');
       });
       it('displays label', function () {
         expect(find('label').textContent.trim()).to.eq('Test label');
@@ -85,7 +98,9 @@ describe('Integration: Filter select search to string', function () {
         expectPushValue();
       });
       it('displays selected item', function () {
-        expect(find('.ember-power-select-selected-item').textContent.trim()).to.eq('test1');
+        expect(
+          find('.ember-power-select-selected-item').textContent.trim()
+        ).to.eq('test1');
       });
     });
   });
@@ -101,8 +116,15 @@ describe('Integration: Filter select search to string', function () {
         };
       });
 
-      this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
-      server.create('tp-action', { tpid: this.tariffPlan.alias, tag: 'test_tag' });
+      this.tariffPlan = server.create('tariff-plan', {
+        id: '1',
+        name: 'Test',
+        alias: 'tptest',
+      });
+      server.create('tp-action', {
+        tpid: this.tariffPlan.alias,
+        tag: 'test_tag',
+      });
 
       expectRequestToBeCorrect = () => expect(false).to.eq(true);
       server.get('/tp-actions', function (_schema, request) {
@@ -110,7 +132,11 @@ describe('Integration: Filter select search to string', function () {
           expect(request.queryParams.tpid).to.eq('tptest');
           expect(request.queryParams['filter[tag]']).to.eq('test_tag');
         };
-        return { data: [{id: '1', type: 'tp-action', attributes: { tag: 'test_tag' }}] };
+        return {
+          data: [
+            { id: '1', type: 'tp-action', attributes: { tag: 'test_tag' } },
+          ],
+        };
       });
 
       this.set('value', null);

@@ -4,7 +4,7 @@ import normalizeFilters from 'cgrates-web-frontend/utils/normalize-filters';
 
 export default Mixin.create({
   _getFilterQuery(params) {
-    return normalizeFilters(params, this.get('filterParams'));
+    return normalizeFilters(params, this.filterParams);
   },
 
   _getSortQuery(params) {
@@ -19,8 +19,8 @@ export default Mixin.create({
 
   _getPaginationQuery(params) {
     return {
-      'page':      params.page,
-      'page-size': params.pageSize
+      page: params.page,
+      'page-size': params.pageSize,
     };
   },
 
@@ -33,30 +33,29 @@ export default Mixin.create({
     const filterQuery = this._getFilterQuery(params);
     const sortQuery = this._getSortQuery(params);
     const paginationQuery = this._getPaginationQuery(params);
-    if (this.get('notInTariffPlan')) {
+    if (this.notInTariffPlan) {
       fullQuery = {
         filter: filterQuery,
         sort: sortQuery,
-        page: paginationQuery
+        page: paginationQuery,
       };
     } else {
       fullQuery = {
         tpid: this._getTtpid(),
         filter: filterQuery,
         sort: sortQuery,
-        page: paginationQuery
+        page: paginationQuery,
       };
     }
-    return this.store.query(this.get('modelName'), fullQuery).then(results =>
-      ({
-        records: results,
-        meta: results.get('meta')
-      }));
+    return this.store.query(this.modelName, fullQuery).then((results) => ({
+      records: results,
+      meta: results.get('meta'),
+    }));
   },
 
-  setupController(controller, {records, meta}) {
+  setupController(controller, { records, meta }) {
     this._super(controller, records);
-    if (!this.get('notInTariffPlan')) {
+    if (!this.notInTariffPlan) {
       controller.set('tariffPlanId', this._getTtpid());
     }
     return controller.set('meta', meta);
@@ -65,6 +64,6 @@ export default Mixin.create({
   actions: {
     refresh() {
       this.refresh();
-    }
-  }
+    },
+  },
 });

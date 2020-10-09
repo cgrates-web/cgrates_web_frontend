@@ -6,6 +6,6 @@ export default Mixin.create({
       if (this.currentModel.get('isNew')) {
         return this.currentModel.destroyRecord();
       }
-    }
-  }
+    },
+  },
 });

@@ -10,22 +10,20 @@ describe('Acceptance: User.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.user = server.create('user', { id: '1',  email: 'test@example.com'});
-    await authenticateSession({email: 'user@example.com'});
+    this.user = server.create('user', { id: '1', email: 'test@example.com' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/users/1');
       expect(find('main h2').textContent).to.eq('test@example.com');
-    })
-  );
+    }));
 
   describe('click edit button', () =>
     it('redirects to user edit page', async function () {
       await visit('/users/1');
       await click('[data-test-user-edit]');
       expect(currentRouteName()).to.equal('user.edit');
-    })
-  );
+    }));
 });

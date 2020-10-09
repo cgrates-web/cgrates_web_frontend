@@ -4,16 +4,28 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { isBlank } from '@ember/utils';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
 
 describe('Acceptance: TpSuppliers.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    server.createList('tp-supplier', 2, {tpid: this.tariffPlan.alias});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.createList('tp-supplier', 2, { tpid: this.tariffPlan.alias });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-suppliers', function () {
@@ -38,33 +50,33 @@ describe('Acceptance: TpSuppliers.Index', function () {
     it('reditects to tp-supplier page', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-suppliers.tp-supplier.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-suppliers.tp-supplier.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-supplier page', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-tp-supplier-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-suppliers.tp-supplier.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-suppliers.tp-supplier.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-supplier', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-tp-supplier-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-supplier page', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-suppliers.new');
-    })
-  );
+    }));
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-custom-id] input', 'customId');
@@ -73,13 +85,34 @@ describe('Acceptance: TpSuppliers.Index', function () {
     await fillIn('[data-test-filter-supplier-id] input', 'supplier_id');
     await fillIn('[data-test-filter-weight] input', 'weight');
     await fillIn('[data-test-filter-supplier-weight] input', 'supplier_weight');
-    await fillIn('[data-test-filter-activation-interval] input', 'activation_interval');
-    await fillIn('[data-test-filter-sorting-parameters] input', 'sorting_parameters');
-    await fillIn('[data-test-filter-supplier-filter-ids] input', 'supplier_filter_ids');
-    await fillIn('[data-test-filter-supplier-account-ids] input', 'supplier_account_ids');
-    await fillIn('[data-test-filter-supplier-ratingplan-ids] input', 'supplier_ratingplan_ids');
-    await fillIn('[data-test-filter-supplier-resource-ids] input', 'supplier_resource_ids');
-    await fillIn('[data-test-filter-supplier-stat-ids] input', 'supplier_stat_ids');
+    await fillIn(
+      '[data-test-filter-activation-interval] input',
+      'activation_interval'
+    );
+    await fillIn(
+      '[data-test-filter-sorting-parameters] input',
+      'sorting_parameters'
+    );
+    await fillIn(
+      '[data-test-filter-supplier-filter-ids] input',
+      'supplier_filter_ids'
+    );
+    await fillIn(
+      '[data-test-filter-supplier-account-ids] input',
+      'supplier_account_ids'
+    );
+    await fillIn(
+      '[data-test-filter-supplier-ratingplan-ids] input',
+      'supplier_ratingplan_ids'
+    );
+    await fillIn(
+      '[data-test-filter-supplier-resource-ids] input',
+      'supplier_resource_ids'
+    );
+    await fillIn(
+      '[data-test-filter-supplier-stat-ids] input',
+      'supplier_stat_ids'
+    );
   };
   const expectFiltersQueryParams = (request) => {
     expect(request.queryParams['tpid']).to.eq('tptest');
@@ -88,14 +121,30 @@ describe('Acceptance: TpSuppliers.Index', function () {
     expect(request.queryParams['filter[sorting]']).to.eq('sorting');
     expect(request.queryParams['filter[supplier_id]']).to.eq('supplier_id');
     expect(request.queryParams['filter[weight]']).to.eq('weight');
-    expect(request.queryParams['filter[supplier_weight]']).to.eq('supplier_weight');
-    expect(request.queryParams['filter[activation_interval]']).to.eq('activation_interval');
-    expect(request.queryParams['filter[sorting_parameters]']).to.eq('sorting_parameters');
-    expect(request.queryParams['filter[supplier_filter_ids]']).to.eq('supplier_filter_ids');
-    expect(request.queryParams['filter[supplier_account_ids]']).to.eq('supplier_account_ids');
-    expect(request.queryParams['filter[supplier_ratingplan_ids]']).to.eq('supplier_ratingplan_ids');
-    expect(request.queryParams['filter[supplier_resource_ids]']).to.eq('supplier_resource_ids');
-    expect(request.queryParams['filter[supplier_stat_ids]']).to.eq('supplier_stat_ids');
+    expect(request.queryParams['filter[supplier_weight]']).to.eq(
+      'supplier_weight'
+    );
+    expect(request.queryParams['filter[activation_interval]']).to.eq(
+      'activation_interval'
+    );
+    expect(request.queryParams['filter[sorting_parameters]']).to.eq(
+      'sorting_parameters'
+    );
+    expect(request.queryParams['filter[supplier_filter_ids]']).to.eq(
+      'supplier_filter_ids'
+    );
+    expect(request.queryParams['filter[supplier_account_ids]']).to.eq(
+      'supplier_account_ids'
+    );
+    expect(request.queryParams['filter[supplier_ratingplan_ids]']).to.eq(
+      'supplier_ratingplan_ids'
+    );
+    expect(request.queryParams['filter[supplier_resource_ids]']).to.eq(
+      'supplier_resource_ids'
+    );
+    expect(request.queryParams['filter[supplier_stat_ids]']).to.eq(
+      'supplier_stat_ids'
+    );
   };
 
   describe('set filters and click search button', () =>
@@ -109,14 +158,22 @@ describe('Acceptance: TpSuppliers.Index', function () {
         const filterSorting = request.queryParams['filter[sorting]'];
         const filterSupplierId = request.queryParams['filter[supplier_id]'];
         const filterWeight = request.queryParams['filter[weight]'];
-        const filterSupplierWeight = request.queryParams['filter[supplier_weight]'];
-        const filterActivationInterval = request.queryParams['filter[activation_interval]'];
-        const filterSortingParameters = request.queryParams['filter[sorting_parameters]'];
-        const filterSupplierFilterIds = request.queryParams['filter[supplier_filter_ids]'];
-        const filterSupplierAccountIds = request.queryParams['filter[supplier_account_ids]'];
-        const filterSupplierRatingplanIds = request.queryParams['filter[supplier_ratingplan_ids]'];
-        const filterSupplierResourceIds = request.queryParams['filter[supplier_resource_ids]'];
-        const filterSupplierStatIds = request.queryParams['filter[supplier_stat_ids]'];
+        const filterSupplierWeight =
+          request.queryParams['filter[supplier_weight]'];
+        const filterActivationInterval =
+          request.queryParams['filter[activation_interval]'];
+        const filterSortingParameters =
+          request.queryParams['filter[sorting_parameters]'];
+        const filterSupplierFilterIds =
+          request.queryParams['filter[supplier_filter_ids]'];
+        const filterSupplierAccountIds =
+          request.queryParams['filter[supplier_account_ids]'];
+        const filterSupplierRatingplanIds =
+          request.queryParams['filter[supplier_ratingplan_ids]'];
+        const filterSupplierResourceIds =
+          request.queryParams['filter[supplier_resource_ids]'];
+        const filterSupplierStatIds =
+          request.queryParams['filter[supplier_stat_ids]'];
         switch (counter) {
           case 1:
             expect(isBlank(filterCustomId)).to.eq(true);
@@ -136,16 +193,14 @@ describe('Acceptance: TpSuppliers.Index', function () {
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-supplier'}] };
+        return { data: [{ id: '1', type: 'tp-supplier' }] };
       });
 
       await visit('/tariff-plans/1/tp-suppliers');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
-
+    }));
 
   describe('filter and click download csv', function () {
     it('sends request to the server with filters', async function () {
@@ -154,7 +209,7 @@ describe('Acceptance: TpSuppliers.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'ttp-supplier'}] };
+        return { data: [{ id: '1', type: 'ttp-supplier' }] };
       });
       await visit('/tariff-plans/1/tp-suppliers');
       await setFilters();
@@ -179,7 +234,7 @@ describe('Acceptance: TpSuppliers.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-supplier'}] };
+        return { data: [{ id: '1', type: 'tp-supplier' }] };
       });
       await visit('/tariff-plans/1/tp-suppliers');
       await setFilters();
@@ -202,12 +257,22 @@ describe('Acceptance: TpSuppliers.Index', function () {
           expect(params.filter.supplier_id).to.eq('supplier_id');
           expect(params.filter.weight).to.eq('weight');
           expect(params.filter.supplier_weight).to.eq('supplier_weight');
-          expect(params.filter.activation_interval).to.eq('activation_interval');
+          expect(params.filter.activation_interval).to.eq(
+            'activation_interval'
+          );
           expect(params.filter.sorting_parameters).to.eq('sorting_parameters');
-          expect(params.filter.supplier_filter_ids).to.eq('supplier_filter_ids');
-          expect(params.filter.supplier_account_ids).to.eq('supplier_account_ids');
-          expect(params.filter.supplier_ratingplan_ids).to.eq('supplier_ratingplan_ids');
-          expect(params.filter.supplier_resource_ids).to.eq('supplier_resource_ids');
+          expect(params.filter.supplier_filter_ids).to.eq(
+            'supplier_filter_ids'
+          );
+          expect(params.filter.supplier_account_ids).to.eq(
+            'supplier_account_ids'
+          );
+          expect(params.filter.supplier_ratingplan_ids).to.eq(
+            'supplier_ratingplan_ids'
+          );
+          expect(params.filter.supplier_resource_ids).to.eq(
+            'supplier_resource_ids'
+          );
           expect(params.filter.supplier_stat_ids).to.eq('supplier_stat_ids');
         };
         return { tp_supplier: { id: '0' } };
@@ -242,15 +307,14 @@ describe('Acceptance: TpSuppliers.Index', function () {
           default:
             expect(sort).to.eq('-tenant');
         }
-        return { data: [{id: '1', type: 'tp-supplier'}] };
+        return { data: [{ id: '1', type: 'tp-supplier' }] };
       });
 
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-sort-tenant] a');
       await click('[data-test-sort-tenant] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -269,12 +333,14 @@ describe('Acceptance: TpSuppliers.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-supplier'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-supplier' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-suppliers');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

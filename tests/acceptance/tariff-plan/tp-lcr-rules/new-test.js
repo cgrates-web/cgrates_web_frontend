@@ -4,17 +4,30 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
-import { selectChoose, selectSearch } from 'ember-power-select/test-support/helpers';
+import {
+  selectChoose,
+  selectSearch,
+} from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpLcrRules.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpDestination1 = server.create('tp-destination', {tpid: this.tariffPlan.alias, tag: 'DST_1001'});
-    this.tpDestination2 = server.create('tp-destination', {tpid: this.tariffPlan.alias, tag: 'DST_1002'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpDestination1 = server.create('tp-destination', {
+      tpid: this.tariffPlan.alias,
+      tag: 'DST_1001',
+    });
+    this.tpDestination2 = server.create('tp-destination', {
+      tpid: this.tariffPlan.alias,
+      tag: 'DST_1002',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-lcr-rules/new', () =>
@@ -22,16 +35,14 @@ describe('Acceptance: TpLcrRules.New', function () {
       await visit('/tariff-plans/1/tp-lcr-rules/new');
       expect(findAll('form input').length).to.eq(8);
       expect(findAll('form .ember-power-select-trigger').length).to.eq(3);
-    })
-  );
+    }));
 
   describe('go away without save', () =>
     it('removes not saved tp-lcr-rule', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules/new');
       await click('[data-test-lcr-rules-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('submit empty form', function () {
     beforeEach(async function () {
@@ -39,48 +50,79 @@ describe('Acceptance: TpLcrRules.New', function () {
       await click('[data-test-submit-button]');
     });
     it('displays direction error', async function () {
-      expect(find('[data-test-select="direction"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-select="direction"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-select="direction"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-select="direction"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays tenant error', function () {
       expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
-      expect(find('[data-test-tenant] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays category error', function () {
       expect(find('[data-test-category] input')).to.have.class('is-invalid');
-      expect(find('[data-test-category] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-category] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays account error', function () {
       expect(find('[data-test-account] input')).to.have.class('is-invalid');
-      expect(find('[data-test-account] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-account] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays subject error', function () {
       expect(find('[data-test-subject] input')).to.have.class('is-invalid');
-      expect(find('[data-test-subject] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-subject] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays destination tag error', async function () {
-      expect(find('[data-test-tag="destination"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-tag="destination"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-tag="destination"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-tag="destination"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays rp-category error', function () {
       expect(find('[data-test-rp-category] input')).to.have.class('is-invalid');
-      expect(find('[data-test-rp-category] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-rp-category] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays strategy error', async function () {
-      expect(find('[data-test-select="strategy"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-select="strategy"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-select="strategy"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-select="strategy"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('does not displays strategy-params error', function () {
-      expect(find('[data-test-strategy-params] input')).not.to.have.class('is-invalid');
-      expect(find('[data-test-strategy-params] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-strategy-params] input')).not.to.have.class(
+        'is-invalid'
+      );
+      expect(find('[data-test-strategy-params] .invalid-feedback')).not.to
+        .exist;
     });
     it('displays activation-time error', function () {
-      expect(find('[data-test-activation-time] input')).to.have.class('is-invalid');
-      expect(find('[data-test-activation-time] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-activation-time] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-activation-time] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays weight error', function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
-      expect(find('[data-test-weight] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
   });
 
@@ -101,9 +143,11 @@ describe('Acceptance: TpLcrRules.New', function () {
         expect(params.data.attributes['rp-category']).to.eq('lcr_profile1');
         expect(params.data.attributes['strategy']).to.eq('*qos');
         expect(params.data.attributes['strategy-params']).to.eq('');
-        expect(params.data.attributes['activation-time']).to.eq('2014-01-14T00:00:00Z');
+        expect(params.data.attributes['activation-time']).to.eq(
+          '2014-01-14T00:00:00Z'
+        );
         expect(params.data.attributes['weight']).to.eq(10);
-        return { data: {id: '1', type: 'tp-lcr-rule'} };
+        return { data: { id: '1', type: 'tp-lcr-rule' } };
       });
 
       await visit('/tariff-plans/1/tp-lcr-rules/new');
@@ -121,6 +165,5 @@ describe('Acceptance: TpLcrRules.New', function () {
       await fillIn('[data-test-weight] input', '10');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

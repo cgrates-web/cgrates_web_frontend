@@ -10,8 +10,12 @@ describe('Acceptance: Upload Tariff plane to redis', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: 'user@exmple.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    await authenticateSession({ email: 'user@exmple.com' });
   });
 
   describe('go to load tariff-plan page and fill in form', function () {
@@ -25,7 +29,7 @@ describe('Acceptance: Upload Tariff plane to redis', function () {
           expect(params.data.attributes['dry-run']).to.eq(false);
           expect(params.data.attributes.validate).to.eq(false);
         };
-        return {result: 'OK'};
+        return { result: 'OK' };
       });
 
       await visit('/tariff-plans/1/upload-to-redis');
@@ -36,7 +40,7 @@ describe('Acceptance: Upload Tariff plane to redis', function () {
 
     describe('backend sends success', function () {
       it('renders suceess message', async function () {
-        server.post('/load-tariff-plan/', () => ({result: 'OK'}));
+        server.post('/load-tariff-plan/', () => ({ result: 'OK' }));
         await visit('/tariff-plans/1/upload-to-redis');
         await click('[data-test-flush-db] input');
         await click('[data-test-submit-button]');
@@ -45,7 +49,9 @@ describe('Acceptance: Upload Tariff plane to redis', function () {
     });
     describe('backend sends error', function () {
       it('renders danger message', async function () {
-        server.post('/load-tariff-plan/', () => ({error: 'Some error from cgrates'}));
+        server.post('/load-tariff-plan/', () => ({
+          error: 'Some error from cgrates',
+        }));
         await visit('/tariff-plans/1/upload-to-redis');
         await click('[data-test-flush-db] input');
         await click('[data-test-submit-button]');

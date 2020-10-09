@@ -5,8 +5,11 @@ export default Ember.Route.extend({
   session: Ember.inject.service(),
 
   afterModel() {
-    if ((this.get('route.currentRouteName') != 'login') && (!this.get('session.isAuthenticated'))) {
-      this.get('router').transitionTo('login');
+    if (
+      this.get('route.currentRouteName') != 'login' &&
+      !this.get('session.isAuthenticated')
+    ) {
+      this.router.transitionTo('login');
     }
-  }
+  },
 });

@@ -10,7 +10,7 @@ describe('Acceptance: NewDestination', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    await authenticateSession({email: 'user@exmple.com'});
+    await authenticateSession({ email: 'user@exmple.com' });
   });
 
   describe('go away without save', () =>
@@ -18,15 +18,13 @@ describe('Acceptance: NewDestination', function () {
       await visit('/realtime/destinations/new');
       await click('[data-test-destinations-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('visit /realtime/destinations/new', () =>
     it('renders destination form', async function () {
       await visit('/realtime/destinations/new');
       expect(findAll('form input').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('submit empty form', function () {
     beforeEach(async function () {
@@ -39,7 +37,9 @@ describe('Acceptance: NewDestination', function () {
     });
     it('displays prefixes error', async function () {
       expect(find('[data-test-prefixes] input')).to.have.class('is-invalid');
-      expect(find('[data-test-prefixes] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-prefixes] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
   });
 
@@ -52,7 +52,7 @@ describe('Acceptance: NewDestination', function () {
         const params = JSON.parse(request.requestBody);
         expect(params.data.id).to.eq('DST_RU');
         expect(params.data.attributes.prefixes.length).to.eq(2);
-        return { data: {id: 'DST_RU', type: 'destinations'} };
+        return { data: { id: 'DST_RU', type: 'destinations' } };
       });
 
       await visit('/realtime/destinations/new');
@@ -60,6 +60,5 @@ describe('Acceptance: NewDestination', function () {
       await fillIn('[data-test-prefixes] input', '+7913, +7923');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

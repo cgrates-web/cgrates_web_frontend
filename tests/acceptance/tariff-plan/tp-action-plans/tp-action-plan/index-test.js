@@ -10,9 +10,17 @@ describe('Acceptance: TpActionPlan.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpActionPlan = server.create('tp-action-plan', {id: '1', tpid: this.tariffPlan.alias, tag: 'test'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpActionPlan = server.create('tp-action-plan', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+      tag: 'test',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit TpActionPlan index page', function () {
@@ -31,6 +39,5 @@ describe('Acceptance: TpActionPlan.Index', function () {
       await visit('/tariff-plans/1/tp-action-plans/1');
       await click('[data-test-edit]');
       expect(currentURL()).to.eq('/tariff-plans/1/tp-action-plans/1/edit');
-    })
-  );
+    }));
 });

@@ -3,9 +3,11 @@ import { sort } from '@ember/object/computed';
 
 export default Controller.extend({
   usersSorting: ['id'],
-  sortedUsers:  sort('model', 'usersSorting'),
+  sortedUsers: sort('model', 'usersSorting'),
 
   actions: {
-    remove(user) { return user.destroyRecord(); }
-  }
+    remove(user) {
+      return user.destroyRecord();
+    },
+  },
 });

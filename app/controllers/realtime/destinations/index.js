@@ -8,6 +8,8 @@ export default Controller.extend(QueryControllerMixin, {
   sortedDestinations: computed.sort('model', 'destinationsSorting'),
 
   actions: {
-    remove(destination) { return destination.destroyRecord(); }
-  }
+    remove(destination) {
+      return destination.destroyRecord();
+    },
+  },
 });

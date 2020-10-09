@@ -9,8 +9,16 @@ describe('Acceptance: TpThreshold.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    const tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
-    server.create('tp-threshold', { id: '1', tpid: tariffPlan.alias, customId: 'custom_id' });
+    const tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('tp-threshold', {
+      id: '1',
+      tpid: tariffPlan.alias,
+      customId: 'custom_id',
+    });
     await authenticateSession({ email: 'user@example.com' });
   });
 
@@ -18,14 +26,14 @@ describe('Acceptance: TpThreshold.Index', function () {
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-thresholds/1');
       expect(find('main h2').textContent).to.eq('TpThreshold: custom_id');
-    })
-  );
+    }));
 
   return describe('click edit button', () =>
     it('redirects to tp-threshold edit page', async function () {
       await visit('/tariff-plans/1/tp-thresholds/1');
       await click('[data-test-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-thresholds.tp-threshold.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-thresholds.tp-threshold.edit'
+      );
+    }));
 });

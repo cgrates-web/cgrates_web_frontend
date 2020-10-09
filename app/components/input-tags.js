@@ -11,18 +11,24 @@ export default Component.extend(SelectComponentMixin, {
   allowAny: false,
 
   anyIfAllowed: computed('allowAny', function () {
-    if (this.get('allowAny')) { return ['*any']; } else { return null; }
+    if (this.allowAny) {
+      return ['*any'];
+    } else {
+      return null;
+    }
   }),
 
-  searchTask: task(function*(searchTerm) {
+  searchTask: task(function* (searchTerm) {
     yield timeout(300);
-    return this.get('store').query(
-      this.get('modelName'), {tpid: this.get('tpid'), filter: {tag: searchTerm}, sort: 'tag'}
-    ).then(items => {
-      const result = items.mapBy('tag').uniq();
-      if (this.get('allowAny')) { result.push('*any'); }
-      return result;
-    });
-  })
-}
-);
+    return this.store.query(
+      this.modelName, {tpid: this.tpid, filter: {tag: searchTerm}, sort: 'tag'}
+      })
+      .then((items) => {
+        const result = items.mapBy('tag').uniq();
+        if (this.get('allowAny')) {
+          result.push('*any');
+        }
+        return result;
+      });
+  }),
+});

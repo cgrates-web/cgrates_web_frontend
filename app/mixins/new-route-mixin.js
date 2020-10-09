@@ -6,6 +6,6 @@ export default Mixin.create({
       if (this.currentModel.get('hasDirtyAttributes')) {
         return this.currentModel.rollbackAttributes();
       }
-    }
-  }
+    },
+  },
 });

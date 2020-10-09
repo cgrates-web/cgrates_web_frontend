@@ -24,25 +24,35 @@ describe('Integration: Cgrates lcr form', function () {
     });
     it('displays category error', async function () {
       expect(find('[data-test-category] input')).to.have.class('is-invalid');
-      expect(find('[data-test-category] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-category] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays subject error', async function () {
       expect(find('[data-test-subject] input')).to.have.class('is-invalid');
-      expect(find('[data-test-subject] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-subject] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays destination error', async function () {
       expect(find('[data-test-destination] input')).to.have.class('is-invalid');
-      expect(find('[data-test-destination] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-destination] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays duration error', async function () {
       expect(find('[data-test-duration] input')).to.have.class('is-invalid');
-      expect(find('[data-test-duration] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-duration] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
   });
   describe('fill form with correct data and submit', function () {
     let expectCorrectRequest;
     beforeEach(async function () {
-      expectCorrectRequest = function () { expect(false).to.be.true; };
+      expectCorrectRequest = function () {
+        expect(false).to.be.true;
+      };
       server.get('/realtime/cgrates-lcrs', function (schema, request) {
         expectCorrectRequest = function () {
           expect(request.queryParams.category).to.eq('category');

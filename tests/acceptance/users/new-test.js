@@ -10,23 +10,21 @@ describe('Acceptance: Users.New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    await authenticateSession({email: 'user@example.com'});
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /users/new', () =>
     it('renders user form', async function () {
       await visit('/users/new');
       expect(findAll('form input').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('go away without save', () =>
     it('removes not saved user', async function () {
       await visit('/users/new');
       await click('[data-test-users-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('fill form with incorrect data and submit', function () {
     beforeEach(async function () {
@@ -37,11 +35,15 @@ describe('Acceptance: Users.New', function () {
     });
     it('displays email error', async function () {
       expect(find('[data-test-email] input')).to.have.class('is-invalid');
-      expect(find('[data-test-email] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-email] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays password error', async function () {
       expect(find('[data-test-password] input')).to.have.class('is-invalid');
-      expect(find('[data-test-password] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-password] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
   });
 
@@ -53,7 +55,7 @@ describe('Acceptance: Users.New', function () {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes.email).to.eq('test@example.com');
-        return { data: {id: '1', type: 'user'} };
+        return { data: { id: '1', type: 'user' } };
       });
 
       await visit('users/new');
@@ -61,6 +63,5 @@ describe('Acceptance: Users.New', function () {
       await fillIn('[data-test-password] input', 'secret');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

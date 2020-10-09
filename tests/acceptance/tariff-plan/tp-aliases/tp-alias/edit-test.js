@@ -10,9 +10,13 @@ describe('Acceptance: TpAliases.Edit', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
-    server.create('tp-alias', { id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('tp-alias', { id: '1', tpid: this.tariffPlan.alias });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -26,14 +30,16 @@ describe('Acceptance: TpAliases.Edit', function () {
           expect(params.data.attributes['category']).to.eq('category');
           expect(params.data.attributes['account']).to.eq('account');
           expect(params.data.attributes['subject']).to.eq('subject');
-          expect(params.data.attributes['destination-id']).to.eq('destination_id');
+          expect(params.data.attributes['destination-id']).to.eq(
+            'destination_id'
+          );
           expect(params.data.attributes['context']).to.eq('context');
           expect(params.data.attributes['target']).to.eq('target');
           expect(params.data.attributes['original']).to.eq('original');
           expect(params.data.attributes['alias']).to.eq('alias');
           expect(params.data.attributes['weight']).to.eq(10);
         };
-        return { data: {id: '1', type: 'tp-alias'} };
+        return { data: { id: '1', type: 'tp-alias' } };
       });
 
       await visit('/tariff-plans/1/tp-aliases/1/edit');
@@ -50,6 +56,5 @@ describe('Acceptance: TpAliases.Edit', function () {
       await fillIn('[data-test-weight] input', 10);
       await click('[data-test-submit-button]');
       expectCorrectRequest();
-    })
-  );
+    }));
 });

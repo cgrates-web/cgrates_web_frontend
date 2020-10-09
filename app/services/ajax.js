@@ -8,12 +8,15 @@ export default AjaxService.extend({
   host: config.API_HOST,
 
   headers: Ember.computed('session.data.authenticated.token', function () {
-    let headers = {'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json'};
+    let headers = {
+      Accept: 'application/vnd.api+json',
+      'Content-Type': 'application/vnd.api+json',
+    };
     const token = this.get('session.data.authenticated.token');
     if (!Ember.isBlank(token)) {
       headers['Authorization'] = `Bearer ${token}`;
     }
 
     return headers;
-  })
+  }),
 });

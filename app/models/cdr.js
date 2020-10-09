@@ -1,37 +1,41 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 import { computed } from '@ember/object';
 
-export default DS.Model.extend({
-  cgrid:           DS.attr('string'),
-  runId:           DS.attr('string'),
-  originHost:      DS.attr('string'),
-  source:          DS.attr('string'),
-  originId:        DS.attr('string'),
-  tor:             DS.attr('string'),
-  requestType:     DS.attr('string'),
-  tenant:          DS.attr('string'),
-  category:        DS.attr('string'),
-  account:         DS.attr('string'),
-  subject:         DS.attr('string'),
-  destination:     DS.attr('string'),
-  setupTime:       DS.attr('date'),
-  answerTime:      DS.attr('date'),
-  usage:           DS.attr('number'),
-  extraFields:     DS.attr({defaultValue: null}),
-  costSource:      DS.attr('string'),
-  cost:            DS.attr('number'),
-  costDetails:     DS.attr({defaultValue: null}),
-  extraInfo:       DS.attr('string'),
+export default Model.extend({
+  cgrid: attr('string'),
+  runId: attr('string'),
+  originHost: attr('string'),
+  source: attr('string'),
+  originId: attr('string'),
+  tor: attr('string'),
+  requestType: attr('string'),
+  tenant: attr('string'),
+  category: attr('string'),
+  account: attr('string'),
+  subject: attr('string'),
+  destination: attr('string'),
+  setupTime: attr('date'),
+  answerTime: attr('date'),
+  usage: attr('number'),
+  extraFields: attr({ defaultValue: null }),
+  costSource: attr('string'),
+  cost: attr('number'),
+  costDetails: attr({ defaultValue: null }),
+  extraInfo: attr('string'),
 
-  createdAt:       DS.attr('date'),
-  updatedAt:       DS.attr('date'),
-  deletedAt:       DS.attr('date'),
+  createdAt: attr('date'),
+  updatedAt: attr('date'),
+  deletedAt: attr('date'),
 
   extraFieldsObj: computed('extraFields', function () {
-    if (this.get('extraFields')) { return JSON.parse(this.get('extraFields')); }
+    if (this.extraFields) {
+      return JSON.parse(this.extraFields);
+    }
   }),
 
   costDetailsObj: computed('costDetails', function () {
-    if (this.get('costDetails')) { return JSON.parse(this.get('costDetails')); }
+    if (this.costDetails) {
+      return JSON.parse(this.costDetails);
+    }
   }),
 });

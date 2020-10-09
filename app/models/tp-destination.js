@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
@@ -6,19 +6,19 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('ds-error'),
     validator('length', {
-      max: 64
+      max: 64,
     }),
   ],
   prefix: [
     validator('presence', true),
     validator('length', {
-      max: 24
+      max: 24,
     }),
   ],
 });
-export default DS.Model.extend(Validations, {
-  tpid:      DS.attr('string'),
-  tag:       DS.attr('string'),
-  prefix:    DS.attr('string'),
-  createdAt: DS.attr('date'),
+export default Model.extend(Validations, {
+  tpid: attr('string'),
+  tag: attr('string'),
+  prefix: attr('string'),
+  createdAt: attr('date'),
 });

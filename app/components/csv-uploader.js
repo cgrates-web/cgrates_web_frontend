@@ -8,15 +8,15 @@ import { pluralize } from 'ember-inflector';
 export default Component.extend({
   classNames: ['csv-uploader'],
 
-  flashMessages:      service(),
-  router:             service(),
+  flashMessages: service(),
+  router: service(),
 
-  redirectAfterSave:  true,
-  host:               config.API_HOST,
+  redirectAfterSave: true,
+  host: config.API_HOST,
 
-  exampleUrl: computed('parentModelName', function () {
-    if (isPresent(this.get('parentModelName')))
-      return `${this.get('host')}/csv-example/${this.get('parentModelName')}.csv`;
+  exampleUrl: computed('host', 'parentModelName', function () {
+    if (isPresent(this.parentModelName))
+      return `${this.host}/csv-example/${this.parentModelName}.csv`;
     return null;
   }),
 
@@ -25,15 +25,20 @@ export default Component.extend({
       this.set('file', file.blob);
     },
     save() {
-      const file = this.get('file');
+      const file = this.file;
       this.model.set('csv', file);
-      this.model.save().then(() => {
-        this.get('flashMessages').success('Import from CSV is starting');
-        if (this.get('redirectAfterSave'))
-          this.get('router').transitionTo(`tariff-plan.${pluralize(this.get('parentModelName'))}.index`);
-      }).catch(() => {
-        this.get('flashMessages').danger('Somethings went wrong');
-      });
-    }
-  }
+      this.model
+        .save()
+        .then(() => {
+          this.flashMessages.success('Import from CSV is starting');
+          if (this.redirectAfterSave)
+            this.router.transitionTo(
+              `tariff-plan.${pluralize(this.parentModelName)}.index`
+            );
+        })
+        .catch(() => {
+          this.flashMessages.danger('Somethings went wrong');
+        });
+    },
+  },
 });

@@ -6,13 +6,16 @@ export default Component.extend({
   tagName: '',
 
   valueNumber: computed('value', function () {
-    return isPresent(this.get('value')) ? this.get('value').replace(/s$/, '') : null;
+    return isPresent(this.value) ? this.value.replace(/s$/, '') : null;
   }),
 
   actions: {
     change(event) {
-      this.set('value', isPresent(event.target.value) ? `${ event.target.value}s` : null);
+      this.set(
+        'value',
+        isPresent(event.target.value) ? `${event.target.value}s` : null
+      );
     },
     input() {},
-  }
+  },
 });

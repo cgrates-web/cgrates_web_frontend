@@ -6,7 +6,9 @@ export default Controller.extend({
 
   actions: {
     save() {
-      return this.model.save().then(() => this.get('router').transitionTo('realtime.destinations'));
-    }
-  }
+      return this.model
+        .save()
+        .then(() => this.router.transitionTo('realtime.destinations'));
+    },
+  },
 });

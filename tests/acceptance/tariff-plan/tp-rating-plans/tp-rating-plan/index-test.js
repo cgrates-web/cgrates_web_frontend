@@ -10,23 +10,31 @@ describe('Acceptance: TpRatingPlan.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpRatingPlan = server.create('tp-rating-plan', {id: '1', tpid: this.tariffPlan.alias, tag: 'tagtest'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpRatingPlan = server.create('tp-rating-plan', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+      tag: 'tagtest',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-rating-plans/1');
       expect(find('main h2').textContent).to.eq('TpRatingPlan: tagtest');
-    })
-  );
+    }));
 
   describe('click edit button', () =>
     it('redirects to tp-rating-plan edit page', async function () {
       await visit('/tariff-plans/1/tp-rating-plans/1');
       await click('[data-test-tp-rating-plan-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-rating-plans.tp-rating-plan.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-rating-plans.tp-rating-plan.edit'
+      );
+    }));
 });

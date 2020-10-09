@@ -4,17 +4,29 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
-import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
+import {
+  selectSearch,
+  selectChoose,
+} from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpSuppliers.New', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {name: 'Test', alias: 'tptest'});
-    server.create('tp-filter', { tpid: this.tariffPlan.alias, customId: 'test_id1' });
-    server.create('tp-filter', { tpid: this.tariffPlan.alias, customId: 'test_id2' });
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('tp-filter', {
+      tpid: this.tariffPlan.alias,
+      customId: 'test_id1',
+    });
+    server.create('tp-filter', {
+      tpid: this.tariffPlan.alias,
+      customId: 'test_id2',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('go away without save', () =>
@@ -22,8 +34,7 @@ describe('Acceptance: TpSuppliers.New', function () {
       await visit('/tariff-plans/1/tp-suppliers/new');
       await click('[data-test-tp-suppliers-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('submit empty form', function () {
     beforeEach(async function () {
@@ -32,59 +43,95 @@ describe('Acceptance: TpSuppliers.New', function () {
     });
     it('displays tenant error', function () {
       expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
-      expect(find('[data-test-tenant] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays custom-id error', function () {
       expect(find('[data-test-custom-id] input')).to.have.class('is-invalid');
-      expect(find('[data-test-custom-id] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-custom-id] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('does not displays filter-ids error', function () {
-      expect(find('[data-test-select-search-to-str="filter-ids"] div')).to.have.class('is-valid');
-      expect(find('[data-test-select-search-to-str="filter-ids"] .invalid-feedback')).not.to.exist;
+      expect(
+        find('[data-test-select-search-to-str="filter-ids"] div')
+      ).to.have.class('is-valid');
+      expect(
+        find('[data-test-select-search-to-str="filter-ids"] .invalid-feedback')
+      ).not.to.exist;
     });
     it('does not displays sorting error', function () {
       expect(find('[data-test-sorting] input')).to.have.class('is-valid');
       expect(find('[data-test-sorting] .invalid-feedback')).not.to.exist;
     });
     it('does not displays activation-interval error', function () {
-      expect(find('[data-test-activation-interval] input')).to.have.class('is-valid');
-      expect(find('[data-test-activation-interval] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-activation-interval] input')).to.have.class(
+        'is-valid'
+      );
+      expect(find('[data-test-activation-interval] .invalid-feedback')).not.to
+        .exist;
     });
     it('does not displays sorting-params error', function () {
-      expect(find('[data-test-sorting-params] input')).to.have.class('is-valid');
+      expect(find('[data-test-sorting-params] input')).to.have.class(
+        'is-valid'
+      );
       expect(find('[data-test-sorting-params] .invalid-feedback')).not.to.exist;
     });
     it('displays supplier-id error', function () {
       expect(find('[data-test-supplier-id] input')).to.have.class('is-invalid');
-      expect(find('[data-test-supplier-id] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-supplier-id] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('does not displays supplier-filter-ids error', function () {
-      expect(find('[data-test-supplier-filter-ids] input')).to.have.class('is-valid');
-      expect(find('[data-test-supplier-filter-ids] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-supplier-filter-ids] input')).to.have.class(
+        'is-valid'
+      );
+      expect(find('[data-test-supplier-filter-ids] .invalid-feedback')).not.to
+        .exist;
     });
     it('does not displays supplier-account-ids error', function () {
-      expect(find('[data-test-supplier-account-ids] input')).to.have.class('is-valid');
-      expect(find('[data-test-supplier-account-ids] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-supplier-account-ids] input')).to.have.class(
+        'is-valid'
+      );
+      expect(find('[data-test-supplier-account-ids] .invalid-feedback')).not.to
+        .exist;
     });
     it('does not displays supplier-ratingplan-ids error', function () {
-      expect(find('[data-test-supplier-ratingplan-ids] input')).to.have.class('is-valid');
-      expect(find('[data-test-supplier-ratingplan-ids] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-supplier-ratingplan-ids] input')).to.have.class(
+        'is-valid'
+      );
+      expect(find('[data-test-supplier-ratingplan-ids] .invalid-feedback')).not
+        .to.exist;
     });
     it('does not displays supplier-resource-ids error', function () {
-      expect(find('[data-test-supplier-resource-ids] input')).to.have.class('is-valid');
-      expect(find('[data-test-supplier-resource-ids] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-supplier-resource-ids] input')).to.have.class(
+        'is-valid'
+      );
+      expect(find('[data-test-supplier-resource-ids] .invalid-feedback')).not.to
+        .exist;
     });
     it('does not displays supplier-stat-ids error', function () {
-      expect(find('[data-test-supplier-stat-ids] input')).to.have.class('is-valid');
-      expect(find('[data-test-supplier-stat-ids] .invalid-feedback')).not.to.exist;
+      expect(find('[data-test-supplier-stat-ids] input')).to.have.class(
+        'is-valid'
+      );
+      expect(find('[data-test-supplier-stat-ids] .invalid-feedback')).not.to
+        .exist;
     });
     it('displays supplier-weight error', function () {
-      expect(find('[data-test-supplier-weight] input')).to.have.class('is-invalid');
-      expect(find('[data-test-supplier-weight] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-supplier-weight] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-supplier-weight] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays weight error', function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
-      expect(find('[data-test-weight] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
   });
 
@@ -111,15 +158,27 @@ describe('Acceptance: TpSuppliers.New', function () {
         expect(params.data.attributes['weight']).to.eq(100);
         expect(params.data.attributes['supplier-blocker']).to.eq(true);
 
-        return { data: {id: '1', type: 'tp-suppliers'} };
+        return { data: { id: '1', type: 'tp-suppliers' } };
       });
       await visit('/tariff-plans/1/tp-suppliers/new');
       await fillIn('[data-test-tenant] input', 'tenant');
       await fillIn('[data-test-custom-id] input', 'custom-id');
-      await selectSearch('[data-test-select-search-to-str="filter-ids"]', 'test_id1');
-      await selectChoose('[data-test-select-search-to-str="filter-ids"]', 'test_id1');
-      await selectSearch('[data-test-select-search-to-str="filter-ids"]', 'test_id2');
-      await selectChoose('[data-test-select-search-to-str="filter-ids"]', 'test_id2');
+      await selectSearch(
+        '[data-test-select-search-to-str="filter-ids"]',
+        'test_id1'
+      );
+      await selectChoose(
+        '[data-test-select-search-to-str="filter-ids"]',
+        'test_id1'
+      );
+      await selectSearch(
+        '[data-test-select-search-to-str="filter-ids"]',
+        'test_id2'
+      );
+      await selectChoose(
+        '[data-test-select-search-to-str="filter-ids"]',
+        'test_id2'
+      );
       await fillIn('[data-test-sorting] input', 'ASC');
       await fillIn('[data-test-activation-interval] input', 'Test');
       await fillIn('[data-test-sorting-params] input', 'sort');
@@ -134,6 +193,5 @@ describe('Acceptance: TpSuppliers.New', function () {
       await click('[data-test-supplier-blocker] input');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

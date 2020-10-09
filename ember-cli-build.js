@@ -9,21 +9,16 @@ module.exports = function (defaults) {
   }
   let app = new EmberApp(defaults, {
     'ember-service-worker': {
-      enabled: serviceWorkerIsEnabled
+      enabled: serviceWorkerIsEnabled,
     },
     // Add options here
     'ember-bootstrap': {
       importBootstrapCSS: false,
       blacklist: ['bs-popover', 'bs-accordion'],
-      'bootstrapVersion': 4,
-      'importBootstrapFont': false
+      bootstrapVersion: 4,
+      importBootstrapFont: false,
     },
-
-    'ember-cli-template-lint': {
-      testGenerator: 'mocha'
-    }
   });
-
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

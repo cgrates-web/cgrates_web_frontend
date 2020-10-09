@@ -35,7 +35,9 @@ describe('Integration: InputInterval', function () {
         expect(find('label').textContent.trim()).to.eq('Test');
       });
       it('has correct class', function () {
-        expect(find('[data-test-input-interval="test"]')).to.have.class('test-class');
+        expect(find('[data-test-input-interval="test"]')).to.have.class(
+          'test-class'
+        );
       });
     });
     context('when value is not empty', function () {
@@ -101,7 +103,7 @@ describe('Integration: InputInterval', function () {
   describe('entering a number', function () {
     beforeEach(async function () {
       this.set('value', null);
-      this.set('model', EmberObject.create({test: null}));
+      this.set('model', EmberObject.create({ test: null }));
       await render(hbs`('
         {{#bs-form model=model as |form|}}
           {{input-interval
@@ -116,18 +118,18 @@ describe('Integration: InputInterval', function () {
       await fillIn('input', '60');
     });
     it('appends default suffix', async function () {
-      expect(this.get('value')).to.eq('60s');
+      expect(this.value).to.eq('60s');
     });
     context('select minutes interval', function () {
       it('appends m suffix', async function () {
         await selectChoose('[data-test-input-interval="test"]', 'm');
-        expect(this.get('value')).to.eq('60m');
+        expect(this.value).to.eq('60m');
       });
     });
     context('select hours interval', function () {
       it('appends h suffix', async function () {
         await selectChoose('[data-test-input-interval="test"]', 'h');
-        expect(this.get('value')).to.eq('60h');
+        expect(this.value).to.eq('60h');
       });
     });
   });

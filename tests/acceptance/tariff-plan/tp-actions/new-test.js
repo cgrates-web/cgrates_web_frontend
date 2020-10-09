@@ -11,8 +11,12 @@ describe('Acceptance: TpActions.New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-actions/new', () =>
@@ -20,16 +24,14 @@ describe('Acceptance: TpActions.New', function () {
       await visit('/tariff-plans/1/tp-actions/new');
       expect(findAll('form input').length).to.eq(12);
       expect(findAll('form .ember-power-select-trigger').length).to.eq(6);
-    })
-  );
+    }));
 
   describe('go away without save', () =>
     it('removes not saved tp-action', async function () {
       await visit('/tariff-plans/1/tp-actions/new');
       await click('[data-test-actions-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('submit empty form', function () {
     beforeEach(async function () {
@@ -38,76 +40,132 @@ describe('Acceptance: TpActions.New', function () {
     });
     it('displays tag error', async function () {
       expect(find('[data-test-tag] input')).to.have.class('is-invalid');
-      expect(find('[data-test-tag] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-tag] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays action error', async function () {
-      expect(find('[data-test-select="action"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-select="action"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-select="action"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-select="action"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays balance-tag error', async function () {
       expect(find('[data-test-balance-tag] input')).to.have.class('is-invalid');
-      expect(find('[data-test-balance-tag] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-balance-tag] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays balance-type error', async function () {
-      expect(find('[data-test-select="balance-type"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-select="balance-type"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-select="balance-type"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-select="balance-type"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays directions error', async function () {
-      expect(find('[data-test-select="directions"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-select="directions"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-select="directions"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-select="directions"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays units error', async function () {
       expect(find('[data-test-units] input')).to.have.class('is-invalid');
-      expect(find('[data-test-units] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-units] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays expiry-time error', async function () {
       expect(find('[data-test-expiry-time] input')).to.have.class('is-invalid');
-      expect(find('[data-test-expiry-time] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-expiry-time] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays timing-tags error', async function () {
       expect(find('[data-test-timing-tags] input')).to.have.class('is-invalid');
-      expect(find('[data-test-timing-tags] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-timing-tags] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays destination tag error', async function () {
-      expect(find('[data-test-tag="destination"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-tag="destination"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-tag="destination"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-tag="destination"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays rating-subject error', async function () {
-      expect(find('[data-test-rating-subject] input')).to.have.class('is-invalid');
-      expect(find('[data-test-rating-subject] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-rating-subject] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-rating-subject] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays categories error', async function () {
       expect(find('[data-test-categories] input')).to.have.class('is-invalid');
-      expect(find('[data-test-categories] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-categories] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays shared-groups error', async function () {
-      expect(find('[data-test-shared-groups] input')).to.have.class('is-invalid');
-      expect(find('[data-test-shared-groups] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-shared-groups] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(find('[data-test-shared-groups] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays balance-weight error', async function () {
-      expect(find('[data-test-balance-weight] input')).to.have.class('is-invalid');
-      expect(find('[data-test-balance-weight] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-balance-weight] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-balance-weight] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays balance-blocker error', async function () {
-      expect(find('[data-test-select="balance-blocker"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-select="balance-blocker"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-select="balance-blocker"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-select="balance-blocker"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays balance-disabled error', async function () {
-      expect(find('[data-test-select="balance-disabled"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-select="balance-disabled"] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-select="balance-disabled"] div')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-select="balance-disabled"] .invalid-feedback')
+      ).to.have.class('d-block');
     });
 
     it('displays extra-parameters error', async function () {
-      expect(find('[data-test-extra-parameters] input')).to.have.class('is-invalid');
-      expect(find('[data-test-extra-parameters] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-extra-parameters] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-extra-parameters] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays filter error', async function () {
       expect(find('[data-test-filter] input')).to.have.class('is-invalid');
-      expect(find('[data-test-filter] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-filter] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays weight error', async function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
-      expect(find('[data-test-weight] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
   });
 
@@ -134,10 +192,12 @@ describe('Acceptance: TpActions.New', function () {
         expect(params.data.attributes['balance-weight']).to.eq('20');
         expect(params.data.attributes['balance-blocker']).to.eq('false');
         expect(params.data.attributes['balance-disabled']).to.eq('false');
-        expect(params.data.attributes['extra-parameters']).to.eq('parameterstest');
+        expect(params.data.attributes['extra-parameters']).to.eq(
+          'parameterstest'
+        );
         expect(params.data.attributes['filter']).to.eq('filtertest');
         expect(params.data.attributes['weight']).to.eq(10);
-        return { data: {id: '1', type: 'tp-action'} };
+        return { data: { id: '1', type: 'tp-action' } };
       });
 
       await visit('/tariff-plans/1/tp-actions/new');
@@ -161,6 +221,5 @@ describe('Acceptance: TpActions.New', function () {
       await fillIn('[data-test-weight] input', '10');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

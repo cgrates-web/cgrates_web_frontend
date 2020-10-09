@@ -4,7 +4,15 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { isBlank } from '@ember/utils';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpActions.Index', function () {
@@ -12,10 +20,16 @@ describe('Acceptance: TpActions.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpActions = server.createList('tp-action', 2, {tpid: this.tariffPlan.alias});
-    this.other = server.createList('tp-action', 2, {tpid: 'other'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpActions = server.createList('tp-action', 2, {
+      tpid: this.tariffPlan.alias,
+    });
+    this.other = server.createList('tp-action', 2, { tpid: 'other' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-actions', () =>
@@ -23,8 +37,7 @@ describe('Acceptance: TpActions.Index', function () {
       await visit('/tariff-plans/1/tp-actions');
       expect(find('main h2').textContent).to.eq('TpActions list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server responsed with meta: total_records', function () {
     it('displays total records', async function () {
@@ -40,33 +53,33 @@ describe('Acceptance: TpActions.Index', function () {
     it('reditects to tp-action page', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-actions.tp-action.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-actions.tp-action.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-action page', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-tp-action-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-actions.tp-action.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-actions.tp-action.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-action', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-tp-action-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-action page', async function () {
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-actions.new');
-    })
-  );
+    }));
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-tag] input', 'tagtest');
@@ -77,7 +90,10 @@ describe('Acceptance: TpActions.Index', function () {
     await fillIn('[data-test-filter-units] input', '120');
     await fillIn('[data-test-filter-expiry-time] input', '*unlimited');
     await fillIn('[data-test-filter-timing-tags] input', 'timingtest');
-    await fillIn('[data-test-filter-destination-tags] input', 'destinationtest');
+    await fillIn(
+      '[data-test-filter-destination-tags] input',
+      'destinationtest'
+    );
     await fillIn('[data-test-filter-rating-subject] input', 'subjecttest');
     await fillIn('[data-test-filter-categories] input', 'categoriestest');
     await fillIn('[data-test-filter-shared-groups] input', 'groupstest');
@@ -96,7 +112,9 @@ describe('Acceptance: TpActions.Index', function () {
     expect(request.queryParams['filter[units]']).to.eq('120');
     expect(request.queryParams['filter[expiry_time]']).to.eq('*unlimited');
     expect(request.queryParams['filter[timing_tags]']).to.eq('timingtest');
-    expect(request.queryParams['filter[destination_tags]']).to.eq('destinationtest');
+    expect(request.queryParams['filter[destination_tags]']).to.eq(
+      'destinationtest'
+    );
     expect(request.queryParams['filter[rating_subject]']).to.eq('subjecttest');
     expect(request.queryParams['filter[categories]']).to.eq('categoriestest');
     expect(request.queryParams['filter[shared_groups]']).to.eq('groupstest');
@@ -119,13 +137,18 @@ describe('Acceptance: TpActions.Index', function () {
         const filterUnits = request.queryParams['filter[units]'];
         const filterExpiryTime = request.queryParams['filter[expiry_time]'];
         const filterTimingTags = request.queryParams['filter[timing_tags]'];
-        const filterDestinationTags = request.queryParams['filter[destination_tags]'];
-        const filterRatingSubject = request.queryParams['filter[rating_subject]'];
+        const filterDestinationTags =
+          request.queryParams['filter[destination_tags]'];
+        const filterRatingSubject =
+          request.queryParams['filter[rating_subject]'];
         const filterCategories = request.queryParams['filter[categories]'];
         const filterSharedGroups = request.queryParams['filter[shared_groups]'];
-        const filterBalanceWeight = request.queryParams['filter[balance_weight]'];
-        const filterBalanceBlocker = request.queryParams['filter[balance_blocker]'];
-        const filterBalanceDisabled = request.queryParams['filter[balance_disabled]'];
+        const filterBalanceWeight =
+          request.queryParams['filter[balance_weight]'];
+        const filterBalanceBlocker =
+          request.queryParams['filter[balance_blocker]'];
+        const filterBalanceDisabled =
+          request.queryParams['filter[balance_disabled]'];
         const filterWeight = request.queryParams['filter[weight]'];
         switch (counter) {
           case 1:
@@ -149,15 +172,14 @@ describe('Acceptance: TpActions.Index', function () {
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-action'}] };
+        return { data: [{ id: '1', type: 'tp-action' }] };
       });
 
       await visit('/tariff-plans/1/tp-actions');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('filter and click download csv', function () {
     it('sends request to the server with filters', async function () {
@@ -166,7 +188,7 @@ describe('Acceptance: TpActions.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-action'}] };
+        return { data: [{ id: '1', type: 'tp-action' }] };
       });
       await visit('/tariff-plans/1/tp-actions');
       await setFilters();
@@ -191,7 +213,7 @@ describe('Acceptance: TpActions.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-action'}] };
+        return { data: [{ id: '1', type: 'tp-action' }] };
       });
       await visit('/tariff-plans/1/tp-actions');
       await setFilters();
@@ -257,15 +279,14 @@ describe('Acceptance: TpActions.Index', function () {
           default:
             expect(sort).to.eq('-tag');
         }
-        return { data: [{id: '1', type: 'tp-action'}] };
+        return { data: [{ id: '1', type: 'tp-action' }] };
       });
 
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-sort-tag] a');
       await click('[data-test-sort-tag] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -284,12 +305,14 @@ describe('Acceptance: TpActions.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-action'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-action' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-actions');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

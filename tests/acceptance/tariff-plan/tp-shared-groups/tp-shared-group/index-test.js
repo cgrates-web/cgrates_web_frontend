@@ -9,23 +9,31 @@ describe('Acceptance: TpSharedGroup.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    const tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    server.create('tp-shared-group', {id: '1', tpid: tariffPlan.alias, tag: 'tagtest'});
-    await authenticateSession({email: 'user@example.com'});
+    const tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('tp-shared-group', {
+      id: '1',
+      tpid: tariffPlan.alias,
+      tag: 'tagtest',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-shared-groups/1');
       expect(find('main h2').textContent).to.eq('TpSharedGroup: tagtest');
-    })
-  );
+    }));
 
   return describe('click edit button', () =>
     it('redirects to tp-shared-group edit page', async function () {
       await visit('/tariff-plans/1/tp-shared-groups/1');
       await click('[data-test-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-shared-groups.tp-shared-group.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-shared-groups.tp-shared-group.edit'
+      );
+    }));
 });

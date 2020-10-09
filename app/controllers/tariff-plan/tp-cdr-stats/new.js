@@ -3,6 +3,6 @@ import TpNewEditControllerMixin from 'cgrates-web-frontend/mixins/tp-new-edit-co
 import { inject as service } from '@ember/service';
 
 export default Controller.extend(TpNewEditControllerMixin, {
-  selectValues:   service(),
+  selectValues: service(),
   afterSaveRoute: 'tariff-plan.tp-cdr-stats',
 });
