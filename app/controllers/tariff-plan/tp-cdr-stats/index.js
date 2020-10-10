@@ -45,6 +45,7 @@ export default Controller.extend(QueryControllerMixin, {
   },
 
   init() {
+    this._super(...arguments);
     this.initEmptyDefaultParams();
   },
 
