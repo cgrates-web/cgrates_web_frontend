@@ -1,4 +1,5 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
+import faker from 'faker';
 const metrics = ['ACC', 'ACD', 'ASR', 'PDD', 'TCC', 'TCD'];
 export default Factory.extend({
   tpid() {

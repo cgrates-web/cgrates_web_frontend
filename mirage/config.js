@@ -3,7 +3,7 @@ export default function () {
 
   this.post('/sessions', () => {
     return {
-      token:
+      access_token:
         'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJVc2VyOjEiLCJpYXQiOjE1Mzk4NDE3MzUsImlzcyI6ImNncmF0ZXNfd2ViX2pzb25hcGkiLCJqdGkiOiJjODc0NDIzNS0zOTA5LTRjMWEtOTdhYS0zOGQzMzI5NGJlM2IiLCJwZW0iOnt9LCJzdWIiOiJVc2VyOjEiLCJ0eXAiOiJhY2Nlc3MifQ.lWqG6iDJKR4qzvEXJq-rb24qwSd-Ikwl6vF9M1-fdvME8No4WfqJCAcRCYuhDr3WGzF_Ou3eOoq3wmoQGeR2LQ',
       user: { id: '1', email: 'admin@example.com' },
     };

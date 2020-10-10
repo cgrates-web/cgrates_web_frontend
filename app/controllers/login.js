@@ -18,15 +18,17 @@ export default Controller.extend(Validations, {
 
   actions: {
     signIn() {
+      const { identification, password } = this.getProperties('email', 'password')
       return this.session
         .authenticate(
-          'authenticator:jwt',
-          this.getProperties('email', 'password')
+          'authenticator:oauth2',
+          identification,
+          password
         )
         .then(() => {
           return this.router.transitionTo('realtime');
         })
-        .catch(() => this.flashMessages.danger('Something went wrong'));
+        //.catch(() => this.flashMessages.danger('Something went wrong'));
     },
   },
 });

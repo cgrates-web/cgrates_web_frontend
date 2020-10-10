@@ -1,4 +1,6 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
+import faker from 'faker';
+
 const thresholdType = [
   '*min_counter',
   '*max_counter',

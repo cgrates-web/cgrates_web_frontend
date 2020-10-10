@@ -1,3 +1,3 @@
 import ImportJobAdapter from './import-job';
 
-export default ImportJobAdapter.extend({});
+export default class Adapter extends ImportJobAdapter {};

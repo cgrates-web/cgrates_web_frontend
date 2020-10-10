@@ -3,7 +3,6 @@ import fetch from 'fetch';
 
 export default {
   name: 'config',
-  after: 'ember-simple-auth-token',
   initialize(app) {
     if (config.environment === 'production') {
       const { host } = location;
@@ -17,9 +16,6 @@ export default {
               return (config[k] = json[k]);
             }
           });
-          config[
-            'ember-simple-auth-token'
-          ].serverTokenEndpoint = `${config.API_HOST}/sessions`;
           return app.advanceReadiness();
         });
     }
