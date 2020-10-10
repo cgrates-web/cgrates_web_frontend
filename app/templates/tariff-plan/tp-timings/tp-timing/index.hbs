@@ -4,9 +4,9 @@
       <h2>Timing: {{model.tag}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-timings.tp-timing.edit" model}}
+          <LinkTo @route="tariff-plan.tp-timings.tp-timing.edit" @model={{model}}>
             <i class="material-icons circle btn btn-primary" data-test-tp-timing>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>

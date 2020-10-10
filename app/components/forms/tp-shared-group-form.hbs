@@ -1,36 +1,40 @@
-{{#bs-form model=model onSubmit=(perform save) novalidate=true as |form|}}
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  @novalidate={{true}} as |form|
+>
   <div class="form-row">
-    {{form.element
-      label="Tag"
-      property="tag"
-      class="col-md-6"
-      data-test-tag=true
-    }}
-    {{form.element
-      label="Account"
-      property="account"
-      class="col-md-6"
-      data-test-account=true
-    }}
-    {{form.element
-      label="Strategy"
-      property="strategy"
-      class="col-md-6"
-      data-test-strategy=true
-    }}
-    {{form.element
-      label="Rating subject"
-      property="ratingSubject"
-      class="col-md-6"
-      data-test-rating-subject=true
-    }}
+    <form.element
+      @label="Tag"
+      @property="tag"
+      @class="col-md-6"
+      @data-test-tag={{true}}
+    />
+    <form.element
+      @label="Account"
+      @property="account"
+      @class="col-md-6"
+      @data-test-account={{true}}
+    />
+    <form.element
+      @label="Strategy"
+      @property="strategy"
+      @class="col-md-6"
+      @data-test-strategy={{true}}
+    />
+    <form.element
+      @label="Rating subject"
+      @property="ratingSubject"
+      @class="col-md-6"
+      @data-test-rating-subject={{true}}
+    />
   </div>
-  {{#bs-button
-    type="primary"
-    buttonType="submit"
-    disabled=save.isRunning
-    data-test-submit-button=true
-  }}
-    {{loading-button-text text="Save" isLoading=save.isRunning}}
-  {{/bs-button}}
-{{/bs-form}}
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    @disabled={{@save.isRunning}}
+    @data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

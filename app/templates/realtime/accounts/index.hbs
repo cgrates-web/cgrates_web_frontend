@@ -3,55 +3,99 @@
     <div class="actions-subtitle">
       <ul class="actions">
         <li>
-          {{#link-to "realtime.accounts.new"}}
-            <i class="material-icons circle btn btn-success" data-test-account-add>add</i>
-          {{/link-to}}
+          <LinkTo @route="realtime.accounts.new">
+            <i
+              class="material-icons circle btn btn-success"
+              data-test-account-add
+            >
+              add
+            </i>
+          </LinkTo>
         </li>
       </ul>
     </div>
     <div class="row">
-      <div class=" col-md-12">
+      <div class="col-md-12">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
-                <td>ID</td>
-                <td>Balance</td>
-                <td>Allow negative</td>
-                <td>Disabled</td>
-                <td>Actions</td>
+                <td>
+                  ID
+                </td>
+                <td>
+                  Balance
+                </td>
+                <td>
+                  Allow negative
+                </td>
+                <td>
+                  Disabled
+                </td>
+                <td>
+                  Actions
+                </td>
               </tr>
             </thead>
             <tbody>
               {{#each sortedAccounts as |account|}}
                 <tr>
                   <td>
-                    {{#link-to "realtime.accounts.account" account}}{{account.id}}{{/link-to}}
+                    <LinkTo
+                      @route="realtime.accounts.account"
+                      @model={{account}}
+                    >
+                      {{account.id}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "realtime.accounts.account" account}}{{account.balance}}{{/link-to}}
+                    <LinkTo
+                      @route="realtime.accounts.account"
+                      @model={{account}}
+                    >
+                      {{account.balance}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "realtime.accounts.account" account}}
+                    <LinkTo
+                      @route="realtime.accounts.account"
+                      @model={{account}}
+                    >
                       {{#if account.allowNegative}}
-                        <i class="material-icons text-success">check</i>
+                        <i class="material-icons text-success">
+                          check
+                        </i>
                       {{else}}
-                        <i class="material-icons text-danger">clear</i>
+                        <i class="material-icons text-danger">
+                          clear
+                        </i>
                       {{/if}}
-                    {{/link-to}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "realtime.accounts.account" account}}
+                    <LinkTo
+                      @route="realtime.accounts.account"
+                      @model={{account}}
+                    >
                       {{#if account.disabled}}
-                        <i class="material-icons text-success">check</i>
+                        <i class="material-icons text-success">
+                          check
+                        </i>
                       {{else}}
-                        <i class="material-icons text-danger">clear</i>
+                        <i class="material-icons text-danger">
+                          clear
+                        </i>
                       {{/if}}
-                    {{/link-to}}
+                    </LinkTo>
                   </td>
                   <td class="actions">
-                    <a {{action "remove" account}} role="button">
-                      <i class="material-icons circle btn btn-danger" data-test-account-remove>remove</i>
+                    <a role="button" {{action "remove" account}}>
+                      <i
+                        class="material-icons circle btn btn-danger"
+                        data-test-account-remove
+                      >
+                        remove
+                      </i>
                     </a>
                   </td>
                 </tr>
@@ -59,7 +103,12 @@
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
+        <PageNumbers
+          @content={{pagination}}
+          @action="toPage"
+          @showFL={{true}}
+          @numPagesToShow={{4}}
+        />
       </div>
     </div>
   </div>

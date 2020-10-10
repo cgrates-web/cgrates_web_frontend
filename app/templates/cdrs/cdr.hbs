@@ -104,7 +104,7 @@
         <h5>Extra fields (json)</h5>
         <p data-test-extra-fields>
           {{#if model.extraFieldsObj}}
-            {{json-pretty obj=model.extraFieldsObj}}
+            <JsonPretty @obj={{model.extraFieldsObj}} />
           {{else}}
             Not present
           {{/if}}
@@ -114,7 +114,7 @@
         <h5>Cost details (json)</h5>
         <p>
           {{#if model.costDetailsObj}}
-            {{json-pretty obj=model.costDetailsObj}}
+            <JsonPretty @obj={{model.costDetailsObj}} />
           {{else}}
             Not present
           {{/if}}

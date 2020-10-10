@@ -3,41 +3,15 @@
     <h5>CgRates LCR</h5>
   </div>
   <div class="card-body">
-    {{#bs-form
-      model=this
-      onSubmit=(perform getSuppliers)
-      novalidate=true
-    as |form|}}
-      {{form.element
-        label="Category"
-        property="category"
-        data-test-category=true
-      }}
-      {{form.element
-        label="Subject"
-        property="subject"
-        data-test-subject=true
-      }}
-      {{form.element
-        label="Destination"
-        property="destination"
-        data-test-destination=true
-      }}
-      {{form.element
-        label="Duration"
-        property="duration"
-        controlType="number"
-        data-test-duration=true
-      }}
-      {{#bs-button
-        type="primary"
-        buttonType="submit"
-        disabled=getSuppliers.isRunning
-        data-test-lcr-submit-button=true
-      }}
-        {{loading-button-text text="Get suppliers" isLoading=getSuppliers.isRunning}}
-      {{/bs-button}}
-    {{/bs-form}}
+    <BsForm @model={{this}} @onSubmit={{perform getSuppliers}} @novalidate={{true}} as |form|>
+      <form.element @label="Category" @property="category" @data-test-category={{true}} />
+      <form.element @label="Subject" @property="subject" @data-test-subject={{true}} />
+      <form.element @label="Destination" @property="destination" @data-test-destination={{true}} />
+      <form.element @label="Duration" @property="duration" @controlType="number" @data-test-duration={{true}} />
+      <BsButton @type="primary" @buttonType="submit" @disabled={{getSuppliers.isRunning}} @data-test-lcr-submit-button={{true}}>
+        <LoadingButtonText @text="Get suppliers" @isLoading={{getSuppliers.isRunning}} />
+      </BsButton>
+    </BsForm>
 
     {{#if response}}
       <div class="table-responsive mt-2" data-test-lcrs-table>

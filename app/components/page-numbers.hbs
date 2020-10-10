@@ -2,16 +2,34 @@
   <ul class="pagination">
     {{#if canStepBackward}}
       <li class="page-item">
-        <a href="#" class="page-link" {{action "incrementPage" -1}} aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
+        <a
+          href="#"
+          class="page-link"
+          aria-label="Previous"
+          {{action "incrementPage" -1}}
+        >
+          <span aria-hidden="true">
+            &laquo;
+          </span>
+          <span class="sr-only">
+            Previous
+          </span>
         </a>
       </li>
     {{else}}
       <li class="page-item disabled">
-        <a href="#" class="page-link" {{action "incrementPage" -1}} aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
+        <a
+          href="#"
+          class="page-link"
+          aria-label="Previous"
+          {{action "incrementPage" -1}}
+        >
+          <span aria-hidden="true">
+            &laquo;
+          </span>
+          <span class="sr-only">
+            Previous
+          </span>
         </a>
       </li>
     {{/if}}
@@ -19,32 +37,57 @@
     {{#each pageItems as |item|}}
       {{#if item.dots}}
         <li class="page-item disabled">
-          <span class="page-link">...</span>
+          <span class="page-link">
+            ...
+          </span>
         </li>
       {{/if}}
       {{#if item.current}}
         <li class="page-item active">
-          <a class="page-link"> {{item.page}}</a>
+          <a class="page-link">
+            {{item.page}}
+          </a>
         </li>
       {{else}}
         <li class="page-item">
-          <a href="#" class="page-link" {{action "pageClicked" item.page}}>{{item.page}}</a>
+          <a href="#" class="page-link" {{action "pageClicked" item.page}}>
+            {{item.page}}
+          </a>
         </li>
       {{/if}}
     {{/each}}
 
     {{#if canStepForward}}
       <li class="page-item">
-        <a href="#" class="page-link" aria-label="Next"  {{action "incrementPage" 1}} data-test-pagination-forward>
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
+        <a
+          href="#"
+          class="page-link"
+          aria-label="Next"
+          data-test-pagination-forward
+          {{action "incrementPage" 1}}
+        >
+          <span aria-hidden="true">
+            &raquo;
+          </span>
+          <span class="sr-only">
+            Next
+          </span>
         </a>
       </li>
     {{else}}
       <li class="page-item disabled">
-        <a href="#" class="page-link" aria-label="Next" {{action "incrementPage" 1}}>
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
+        <a
+          href="#"
+          class="page-link"
+          aria-label="Next"
+          {{action "incrementPage" 1}}
+        >
+          <span aria-hidden="true">
+            &raquo;
+          </span>
+          <span class="sr-only">
+            Next
+          </span>
         </a>
       </li>
     {{/if}}

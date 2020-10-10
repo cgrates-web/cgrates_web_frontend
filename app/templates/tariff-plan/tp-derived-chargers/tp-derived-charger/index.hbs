@@ -4,9 +4,9 @@
       <h2>TpDerivedCharger: {{model.id}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-derived-chargers.tp-derived-charger.edit" model}}
+          <LinkTo @route="tariff-plan.tp-derived-chargers.tp-derived-charger.edit" @model={{model}}>
             <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>

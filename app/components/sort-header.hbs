@@ -1,8 +1,8 @@
 <a {{action "toggleSort"}} role="button">{{label}}</a>
-  {{#if currentColumn}}
-    {{#if (eq sortOrder "desc")}}
-      <i class="material-icons">arrow_downward</i>
-    {{else}}
-      <i class="material-icons">arrow_upward</i>
-    {{/if}}
+{{#if currentColumn}}
+  {{#if (eq sortOrder "desc")}}
+    <i class="material-icons">arrow_downward</i>
+  {{else}}
+    <i class="material-icons">arrow_upward</i>
   {{/if}}
+{{/if}}

@@ -1,193 +1,197 @@
-{{#bs-form model=model onSubmit=(perform save) novalidate=true as |form|}}
+<BsForm
+  @model={{model}}
+  @onSubmit={{perform save}}
+  @novalidate={{true}} as |form|
+>
   <div class="form-row">
-    {{form.element
-      label="Tag"
-      property="tag"
-      class="col-md-6"
-      data-test-tag=true
-    }}
-    {{form.element
-      label="Unique ID"
-      property="uniqueId"
-      class="col-md-6"
-      data-test-unique-id=true
-    }}
-    {{input-select
-      property="thresholdType"
-      form=form
-      label="Threshold type"
-      content=selectValues.thresholdType
-      class="col-md-3"
-      dataTest="threshold-type"
-    }}
-    {{form.element
-      label="Threshold value"
-      controlType="number"
-      property="thresholdValue"
-      class="col-md-3"
-      data-test-threshold-value=true
-    }}
-    {{form.element
-      label="Min sleep"
-      property="minSleep"
-      class="col-md-3"
-      data-test-min-sleep=true
-    }}
-    {{form.element
-      label="Expiry time"
-      property="expiryTime"
-      class="col-md-3"
-      data-test-expiry-time=true
-    }}
-    {{form.element
-      label="Activation time"
-      property="activationTime"
-      class="col-md-3"
-      data-test-activation-time=true
-    }}
-    {{form.element
-      label="Min queued items"
-      property="minQueuedItems"
-      controlType="number"
-      min="0"
-      class="col-md-3"
-      data-test-min-queued-items=true
-    }}
-    {{input-select-search-to-string
-      label="Actions tag"
-      value=model.actionsTag
-      searchModel="tp-action"
-      searchField="tag"
-      phName="tag"
-      tpid=model.tpid
-      property="actionsTag"
-      form=form
-      class="col-md-3"
-      dataTest="actions-tag"
-    }}
-    {{form.element
-      label="Weight"
-      property="weight"
-      controlType="number"
-      step="0.1"
-      min="0"
-      class="col-md-3"
-      data-test-weight=true
-    }}
+    <form.element
+      @label="Tag"
+      @property="tag"
+      @class="col-md-6"
+      @data-test-tag={{true}}
+    />
+    <form.element
+      @label="Unique ID"
+      @property="uniqueId"
+      @class="col-md-6"
+      @data-test-unique-id={{true}}
+    />
+    <InputSelect
+      @property="thresholdType"
+      @form={{form}}
+      @label="Threshold type"
+      @content={{selectValues.thresholdType}}
+      @class="col-md-3"
+      @dataTest="threshold-type"
+    />
+    <form.element
+      @label="Threshold value"
+      @controlType="number"
+      @property="thresholdValue"
+      @class="col-md-3"
+      @data-test-threshold-value={{true}}
+    />
+    <form.element
+      @label="Min sleep"
+      @property="minSleep"
+      @class="col-md-3"
+      @data-test-min-sleep={{true}}
+    />
+    <form.element
+      @label="Expiry time"
+      @property="expiryTime"
+      @class="col-md-3"
+      @data-test-expiry-time={{true}}
+    />
+    <form.element
+      @label="Activation time"
+      @property="activationTime"
+      @class="col-md-3"
+      @data-test-activation-time={{true}}
+    />
+    <form.element
+      @label="Min queued items"
+      @property="minQueuedItems"
+      @controlType="number"
+      @min="0"
+      @class="col-md-3"
+      @data-test-min-queued-items={{true}}
+    />
+    <InputSelectSearchToString
+      @label="Actions tag"
+      @value={{model.actionsTag}}
+      @searchModel="tp-action"
+      @searchField="tag"
+      @phName="tag"
+      @tpid={{model.tpid}}
+      @property="actionsTag"
+      @form={{form}}
+      @class="col-md-3"
+      @dataTest="actions-tag"
+    />
+    <form.element
+      @label="Weight"
+      @property="weight"
+      @controlType="number"
+      @step="0.1"
+      @min="0"
+      @class="col-md-3"
+      @data-test-weight={{true}}
+    />
   </div>
-  <hr>
+  <hr />
   <div class="form-row">
-    {{input-select
-      property="balanceTag"
-      form=form
-      label="Balance tag"
-      content=selectValues.balanceTag
-      class="col-md-3"
-      dataTest="balance-tag"
-    }}
-    {{input-select
-      property="balanceType"
-      form=form
-      label="Balance type"
-      content=selectValues.balanceType
-      class="col-md-3"
-      dataTest="balance-type"
-    }}
-    {{input-select
-      property="balanceDirections"
-      form=form
-      label="Balance directions"
-      content=selectValues.direction
-      class="col-md-3"
-      dataTest="balance-directions"
-    }}
-    {{form.element
-      label="Balance categories"
-      property="balanceCategories"
-      class="col-md-3"
-      data-test-balance-categories=true
-    }}
-    {{form.element
-      label="Balance shared groups"
-      property="balanceSharedGroups"
-      class="col-md-3"
-      data-test-balance-shared-groups=true
-    }}
+    <InputSelect
+      @property="balanceTag"
+      @form={{form}}
+      @label="Balance tag"
+      @content={{selectValues.balanceTag}}
+      @class="col-md-3"
+      @dataTest="balance-tag"
+    />
+    <InputSelect
+      @property="balanceType"
+      @form={{form}}
+      @label="Balance type"
+      @content={{selectValues.balanceType}}
+      @class="col-md-3"
+      @dataTest="balance-type"
+    />
+    <InputSelect
+      @property="balanceDirections"
+      @form={{form}}
+      @label="Balance directions"
+      @content={{selectValues.direction}}
+      @class="col-md-3"
+      @dataTest="balance-directions"
+    />
+    <form.element
+      @label="Balance categories"
+      @property="balanceCategories"
+      @class="col-md-3"
+      @data-test-balance-categories={{true}}
+    />
+    <form.element
+      @label="Balance shared groups"
+      @property="balanceSharedGroups"
+      @class="col-md-3"
+      @data-test-balance-shared-groups={{true}}
+    />
 
-    {{form.element
-      label="Balance rating subject"
-      property="balanceRatingSubject"
-      class="col-md-3"
-      data-test-balance-rating-subject=true
-    }}
-    {{form.element
-      label="Balance expiry time"
-      property="balanceExpiryTime"
-      class="col-md-3"
-      data-test-balance-expiry-time=true
-    }}
-    {{form.element
-      label="Balance weight"
-      property="balanceWeight"
-      class="col-md-3"
-      data-test-balance-weight=true
-    }}
-    {{input-select-search-to-string
-      label="Balance timing tags"
-      value=model.balanceTimingTags
-      searchModel="tp-timing"
-      searchField="tag"
-      phName="tag"
-      tpid=model.tpid
-      multiple=true
-      property="balanceTimingTags"
-      form=form
-      class="col-md-6"
-      dataTest="balance-timings-tags"
-    }}
-    {{input-select-search-to-string
-      label="Balance destination tags"
-      value=model.balanceDestinationTags
-      searchModel="tp-destination"
-      searchField="tag"
-      phName="tag"
-      tpid=model.tpid
-      multiple=true
-      property="balanceDestinationTags"
-      form=form
-      class="col-md-6"
-      dataTest="balance-destination-tags"
-    }}
+    <form.element
+      @label="Balance rating subject"
+      @property="balanceRatingSubject"
+      @class="col-md-3"
+      @data-test-balance-rating-subject={{true}}
+    />
+    <form.element
+      @label="Balance expiry time"
+      @property="balanceExpiryTime"
+      @class="col-md-3"
+      @data-test-balance-expiry-time={{true}}
+    />
+    <form.element
+      @label="Balance weight"
+      @property="balanceWeight"
+      @class="col-md-3"
+      @data-test-balance-weight={{true}}
+    />
+    <InputSelectSearchToString
+      @label="Balance timing tags"
+      @value={{model.balanceTimingTags}}
+      @searchModel="tp-timing"
+      @searchField="tag"
+      @phName="tag"
+      @tpid={{model.tpid}}
+      @multiple={{true}}
+      @property="balanceTimingTags"
+      @form={{form}}
+      @class="col-md-6"
+      @dataTest="balance-timings-tags"
+    />
+    <InputSelectSearchToString
+      @label="Balance destination tags"
+      @value={{model.balanceDestinationTags}}
+      @searchModel="tp-destination"
+      @searchField="tag"
+      @phName="tag"
+      @tpid={{model.tpid}}
+      @multiple={{true}}
+      @property="balanceDestinationTags"
+      @form={{form}}
+      @class="col-md-6"
+      @dataTest="balance-destination-tags"
+    />
     <div class="col-12 mb-2">
-      {{form.element
-        label="Recurrent"
-        property="recurrent"
-        class="form-check-inline"
-        controlType="checkbox"
-        data-test-recurrent=true
-      }}
-      {{form.element
-        label="Balance blocker"
-        property="balanceBlocker"
-        class="form-check-inline"
-        controlType="checkbox"
-        data-test-balance-blocker=true
-      }}
-      {{form.element
-        label="Balance disabled"
-        property="balanceDisabled"
-        class="form-check-inline"
-        controlType="checkbox"
-        data-test-balance-disabled=true
-      }}
+      <form.element
+        @label="Recurrent"
+        @property="recurrent"
+        @class="form-check-inline"
+        @controlType="checkbox"
+        @data-test-recurrent={{true}}
+      />
+      <form.element
+        @label="Balance blocker"
+        @property="balanceBlocker"
+        @class="form-check-inline"
+        @controlType="checkbox"
+        @data-test-balance-blocker={{true}}
+      />
+      <form.element
+        @label="Balance disabled"
+        @property="balanceDisabled"
+        @class="form-check-inline"
+        @controlType="checkbox"
+        @data-test-balance-disabled={{true}}
+      />
     </div>
   </div>
-  {{#bs-button
-    type="primary"
-    buttonType="submit"
-    disabled=save.isRunning
-    data-test-submit-button=true
-  }}
-    {{loading-button-text text="Save" isLoading=save.isRunning}}
-  {{/bs-button}}
-{{/bs-form}}
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    @disabled={{save.isRunning}}
+    @data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{save.isRunning}} />
+  </BsButton>
+</BsForm>

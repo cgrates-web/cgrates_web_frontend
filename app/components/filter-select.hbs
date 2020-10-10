@@ -1,14 +1,16 @@
 <div class="form-group">
-  <label>{{label}}</label>
-  {{#power-select
-    triggerId=id
-    placeholder="..."
-    searchEnabled=false
-    allowClear=true
-    options=content
-    selected=valueWrapper
-    onchange=(action (mut valueWrapper))
-  as |item|}}
+  <label>
+    {{@label}}
+  </label>
+  <PowerSelect
+    @triggerId={{this.id}}
+    @placeholder="..."
+    @searchEnabled={{false}}
+    @allowClear={{true}}
+    @options={{@content}}
+    @selected={{@valueWrapper}}
+    @onchange={{action (mut this.valueWrapper)}} as |item|
+  >
     {{item}}
-  {{/power-select}}
+  </PowerSelect>
 </div>

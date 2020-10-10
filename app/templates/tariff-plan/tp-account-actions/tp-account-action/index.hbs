@@ -1,52 +1,95 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpAccountAction: {{model.id}}</h2>
+      <h2>
+        TpAccountAction: {{model.id}}
+      </h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-account-actions.tp-account-action.edit" model}}
-            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          <LinkTo
+            @route="tariff-plan.tp-account-actions.tp-account-action.edit"
+            @model={{model}}
+          >
+            <i class="material-icons circle btn btn-primary" data-test-edit>
+              edit
+            </i>
+          </LinkTo>
         </li>
       </ul>
     </div>
     <hr>
     <div class="row">
       <div class="col-12 col-md-3">
-        <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <h5>
+          Id
+        </h5>
+        <p>
+          {{model.id}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Load ID</h5>
-        <p>{{model.loadid}}</p>
+        <h5>
+          Load ID
+        </h5>
+        <p>
+          {{model.loadid}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Tenant</h5>
-        <p>{{model.tenant}}</p>
+        <h5>
+          Tenant
+        </h5>
+        <p>
+          {{model.tenant}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Account</h5>
-        <p>{{model.account}}</p>
+        <h5>
+          Account
+        </h5>
+        <p>
+          {{model.account}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Action plan tag</h5>
-        <p>{{model.actionPlanTag}}</p>
+        <h5>
+          Action plan tag
+        </h5>
+        <p>
+          {{model.actionPlanTag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Action triggers tag</h5>
-        <p>{{model.actionTriggersTag}}</p>
+        <h5>
+          Action triggers tag
+        </h5>
+        <p>
+          {{model.actionTriggersTag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Allow negative</h5>
-        <p>{{model.allowNegative}}</p>
+        <h5>
+          Allow negative
+        </h5>
+        <p>
+          {{model.allowNegative}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Disabled</h5>
-        <p>{{model.disabled}}</p>
+        <h5>
+          Disabled
+        </h5>
+        <p>
+          {{model.disabled}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Created at</h5>
-        <p>{{moment-format model.createdAt}}</p>
+        <h5>
+          Created at
+        </h5>
+        <p>
+          {{moment-format model.createdAt}}
+        </p>
       </div>
     </div>
   </div>

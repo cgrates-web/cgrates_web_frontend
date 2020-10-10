@@ -1,4 +1,11 @@
 <div class="form-group">
-  <label>{{label}}</label>
-  {{input value=valueWrapper type="number" step=step class="form-control"}}
+  <label>
+    {{@label}}
+  </label>
+  <Input
+    @value={{@valueWrapper}}
+    @type="number"
+    @step={{step}}
+    class="form-control"
+  />
 </div>

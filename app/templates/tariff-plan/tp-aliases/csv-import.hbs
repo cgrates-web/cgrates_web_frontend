@@ -1,8 +1,5 @@
 <main class="page-content">
   <div class="container">
-    {{csv-uploader
-      model=model
-      parentModelName=parentModelName
-    }}
+    <CsvUploader @model={{model}} @parentModelName={{parentModelName}} />
   </div>
 </main>

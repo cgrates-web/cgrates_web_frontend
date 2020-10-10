@@ -4,9 +4,9 @@
       <h2>TpResource: {{model.customId}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-resources.tp-resource.edit"}}
+          <LinkTo @route="tariff-plan.tp-resources.tp-resource.edit">
             <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>

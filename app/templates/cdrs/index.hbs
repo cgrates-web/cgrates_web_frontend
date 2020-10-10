@@ -6,262 +6,297 @@
 <main class="page-content">
   <div class="container-fluid">
     <div class="row">
-      <div class=" col-md-9">
+      <div class="col-md-9">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
-                {{sort-header
-                  label="ID"
-                  key="id"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="CGRateS ID"
-                  key="cgrid"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                  data-test-sort-cgrid=true
-                }}
-                {{sort-header
-                  label="Run ID"
-                  key="runId"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Origin Host"
-                  key="originHost"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Source"
-                  key="source"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Origin ID"
-                  key="originId"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Type of record"
-                  key="tor"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Direction"
-                  key="direction"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Tenant"
-                  key="tenant"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Category"
-                  key="category"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Account"
-                  key="account"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Destination"
-                  key="destination"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Cost"
-                  key="cost"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Created at"
-                  key="createdAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Updated at"
-                  key="updatedAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Deleted at"
-                  key="deletedAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
+                <SortHeader
+                  @label="ID"
+                  @key="id"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="CGRateS ID"
+                  @key="cgrid"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                  @data-test-sort-cgrid={{true}}
+                />
+                <SortHeader
+                  @label="Run ID"
+                  @key="runId"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Origin Host"
+                  @key="originHost"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Source"
+                  @key="source"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Origin ID"
+                  @key="originId"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Type of record"
+                  @key="tor"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Direction"
+                  @key="direction"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Tenant"
+                  @key="tenant"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Category"
+                  @key="category"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Account"
+                  @key="account"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Destination"
+                  @key="destination"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Cost"
+                  @key="cost"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Created at"
+                  @key="createdAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Updated at"
+                  @key="updatedAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Deleted at"
+                  @key="deletedAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
               </tr>
             </thead>
             <tbody>
               {{#each model as |cdr|}}
                 <tr>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.id}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.id}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.cgrid}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.cgrid}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.runId}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.runId}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.originHost}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.originHost}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.source}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.source}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.originId}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.originId}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.tor}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.tor}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.direction}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.direction}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.tenant}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.tenant}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.category}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.category}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.account}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.account}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.destination}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.destination}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{cdr.cost}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{cdr.cost}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{moment-format cdr.createdAt}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{moment-format cdr.createdAt}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}{{moment-format cdr.updatedAt}}{{/link-to}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                      {{moment-format cdr.updatedAt}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "cdrs.cdr" cdr}}
+                    <LinkTo @route="cdrs.cdr" @model={{cdr}}>
                       {{#if cdr.deletedAt}}
                         {{moment-format cdr.deletedAt}}
                       {{/if}}
-                    {{/link-to}}
+                    </LinkTo>
                   </td>
                 </tr>
               {{/each}}
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
+        <PageNumbers
+          @content={{pagination}}
+          @action="toPage"
+          @showFL={{true}}
+          @numPagesToShow={{4}}
+        />
       </div>
       <div class="col-md-3">
-        {{#filters-block search=(action "search") as |filtersBlock|}}
-          {{filter-text
-            label="CGRateS ID"
-            key="cgrid"
-            value=cgrid
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-cgrid=true
-          }}
-          {{filter-text
-            label="Run ID"
-            key="runId"
-            value=runId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-runid=true
-          }}
-          {{filter-text
-            label="Origin Host"
-            key="originHost"
-            value=originHost
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-origin-host=true
-          }}
-          {{filter-text
-            label="Source"
-            key="source"
-            value=source
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-source=true
-          }}
-          {{filter-text
-            label="Origin ID"
-            key="originId"
-            value=originId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-origin-id=true
-          }}
-          {{filter-select
-            label="Type of record"
-            key="tor"
-            value=tor
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.typeOfRecord
-            data-test-filter-tor=true
-          }}
-          {{filter-text
-            label="Tenant"
-            key="tenant"
-            value=tenant
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-tenant=true
-          }}
-          {{filter-text
-            label="Category"
-            key="category"
-            value=category
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-category=true
-          }}
-          {{filter-text
-            label="Account"
-            key="account"
-            value=account
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-account=true
-          }}
-          {{filter-text
-            label="Destination"
-            key="destination"
-            value=destination
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-destination=true
-          }}
-        {{/filters-block}}
+        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+          <FilterText
+            @label="CGRateS ID"
+            @key="cgrid"
+            @value={{cgrid}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-cgrid={{true}}
+          />
+          <FilterText
+            @label="Run ID"
+            @key="runId"
+            @value={{runId}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-runid={{true}}
+          />
+          <FilterText
+            @label="Origin Host"
+            @key="originHost"
+            @value={{originHost}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-origin-host={{true}}
+          />
+          <FilterText
+            @label="Source"
+            @key="source"
+            @value={{source}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-source={{true}}
+          />
+          <FilterText
+            @label="Origin ID"
+            @key="originId"
+            @value={{originId}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-origin-id={{true}}
+          />
+          <FilterSelect
+            @label="Type of record"
+            @key="tor"
+            @value={{tor}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @content={{selectValues.typeOfRecord}}
+            @data-test-filter-tor={{true}}
+          />
+          <FilterText
+            @label="Tenant"
+            @key="tenant"
+            @value={{tenant}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-tenant={{true}}
+          />
+          <FilterText
+            @label="Category"
+            @key="category"
+            @value={{category}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-category={{true}}
+          />
+          <FilterText
+            @label="Account"
+            @key="account"
+            @value={{account}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-account={{true}}
+          />
+          <FilterText
+            @label="Destination"
+            @key="destination"
+            @value={{destination}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-destination={{true}}
+          />
+        </FiltersBlock>
       </div>
     </div>
   </div>

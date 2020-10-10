@@ -1,160 +1,191 @@
 <div class="row m-0">
-  <a {{action "sidebarCollapse"}} class="side-nav-collapse" role="button">
-    <i class="material-icons">more_vert</i>
+  <a class="side-nav-collapse" role="button" {{action "sidebarCollapse"}}>
+    <i class="material-icons">
+      more_vert
+    </i>
   </a>
-  {{#bs-navbar
-    collapsed=sidebarCollapsed
-    class="flex-column navbar-dark bg-dark navbar-expand-lg side-nav col-lg-2"
-    id="left-sidebar"
-    onCollapse=(action (mut collapsed) true)
-    onExpand=(action (mut collapsed) false)
-  as |navbar|}}
-    {{#navbar.content class="w-100"}}
-      {{#navbar.nav class="mb-auto" as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-destinations" data-test-destinations-link}}
+  <BsNavbar
+    @collapsed={{sidebarCollapsed}}
+    @class="flex-column navbar-dark bg-dark navbar-expand-lg side-nav col-lg-2"
+    @onCollapse={{action (mut collapsed) true}}
+    @onExpand={{action (mut collapsed) false}} as |navbar|
+  >
+    <navbar.content @class="w-100">
+      <navbar.nav @class="mb-auto" as |nav|>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-destinations"
+            data-test-destinations-link
+          >
             Destinations
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-rates" data-test-rates-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="tariff-plan.tp-rates">
             Rates
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to
-            "tariff-plan.tp-destination-rates"
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-destination-rates"
             data-test-destination-rates-link
-          }}
+          >
             Destination rates
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-timings" data-test-tp-timings-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="tariff-plan.tp-timings" data-test-tp-timings-link>
             Timings
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-rating-plans" data-test-rating-plans-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-rating-plans"
+            data-test-rating-plans-link
+          >
             Rating plans
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to
-            "tariff-plan.tp-rating-profiles"
-            data-test-rating-profiles-link=true
-          }}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-rating-profiles"
+            data-test-rating-profiles-link
+          >
             Rating profiles
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-actions" data-test-actions-link}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="tariff-plan.tp-actions" data-test-actions-link>
             Actions
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-action-plans" data-test-action-palns-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-action-plans"
+            data-test-action-palns-link
+          >
             Action plans
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to
-            "tariff-plan.tp-action-triggers"
-            data-test-tp-action-triggers-link=true
-          }}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-action-triggers"
+            data-test-tp-action-triggers-link
+          >
             Action triggers
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-lcr-rules" data-test-lcr-rules-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-lcr-rules"
+            data-test-lcr-rules-link
+          >
             Lcr rules
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-filters" data-test-filters-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="tariff-plan.tp-filters" data-test-filters-link>
             Filters
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-suppliers" data-test-tp-suppliers-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-suppliers"
+            data-test-tp-suppliers-link
+          >
             Suppliers
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-resources" data-test-tp-resources-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-resources"
+            data-test-tp-resources-link
+          >
             Resources
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-aliases" data-test-tp-aliases-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="tariff-plan.tp-aliases" data-test-tp-aliases-link>
             Aliases
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-attributes" data-test-tp-attributes-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-attributes"
+            data-test-tp-attributes-link
+          >
             Attributes
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-thresholds" data-test-tp-thresholds-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-thresholds"
+            data-test-tp-thresholds-link
+          >
             Thresholds
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to
-            "tariff-plan.tp-account-actions"
-            data-test-tp-account-actions-link=true
-          }}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-account-actions"
+            data-test-tp-account-actions-link
+          >
             Account actions
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to
-            "tariff-plan.tp-derived-chargers"
-            data-test-tp-derived-chargers-link=true
-          }}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-derived-chargers"
+            data-test-tp-derived-chargers-link
+          >
             Derived chargers
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-cdr-stats" data-test-tp-cdr-stats-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-cdr-stats"
+            data-test-tp-cdr-stats-link
+          >
             Cdr stats
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to
-            "tariff-plan.raw-supplier-rates"
-            data-test-supplier-rates-link=true
-          }}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.raw-supplier-rates"
+            data-test-supplier-rates-link
+          >
             Raw suppliers rates
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-chargers" data-test-tp-chargers-link=true}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-chargers"
+            data-test-tp-chargers-link
+          >
             Chargers
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to
-            "tariff-plan.tp-shared-groups"
-            data-test-tp-shared-groups-link=true
-          }}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="tariff-plan.tp-shared-groups"
+            data-test-tp-shared-groups-link
+          >
             Shared groups
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.tp-smart-rates.csv-import"}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="tariff-plan.tp-smart-rates.csv-import">
             Import from csv
-          {{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "tariff-plan.upload-to-redis"}}
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="tariff-plan.upload-to-redis">
             Upload to redis
-          {{/nav.link-to}}
-        {{/nav.item}}
-      {{/navbar.nav}}
-    {{/navbar.content}}
-  {{/bs-navbar}}
+          </nav.link-to>
+        </nav.item>
+      </navbar.nav>
+    </navbar.content>
+  </BsNavbar>
 
   <div class="col-lg-10 p-0">
     <section class="page-header">

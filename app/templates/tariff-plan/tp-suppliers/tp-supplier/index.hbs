@@ -4,9 +4,9 @@
       <h2>Supplier: {{model.customId}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-suppliers.tp-supplier.edit"}}
+          <LinkTo @route="tariff-plan.tp-suppliers.tp-supplier.edit">
             <i class="material-icons circle btn btn-primary" data-test-tp-supplier-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>

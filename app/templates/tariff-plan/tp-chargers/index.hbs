@@ -1,129 +1,189 @@
 <main class="page-content">
   <div class="container xl">
     <div class="actions-subtitle">
-      <h2>TpChargers list</h2>
+      <h2>
+        TpChargers list
+      </h2>
       <ul class="actions">
-        {{tp-index-buttons
-          model=model
-          tariffPlanId=tariffPlanId
-          permittedFilters=permittedFilters
-          refresh="refresh"
-          controller=this
-        }}
+        <TpIndexButtons
+          @model={{model}}
+          @tariffPlanId={{tariffPlanId}}
+          @permittedFilters={{permittedFilters}}
+          @refresh="refresh"
+          @controller={{this}}
+        />
       </ul>
     </div>
-    {{total-records totalRecords=meta.total_records}}
+    <TotalRecords @totalRecords={{meta.total_records}} />
     <div class="row">
-      <div class=" col-md-9">
+      <div class="col-md-9">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
-                {{sort-header
-                  label="ID"
-                  key="id"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Tenant"
-                  key="tenant"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                  data-test-sort-tenant=true
-                }}
-                {{sort-header
-                  label="Custom ID"
-                  key="customId"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Filter IDs"
-                  key="filterIds"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Activation interval"
-                  key="activationInterval"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Run ID"
-                  key="runId"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Attribute IDs"
-                  key="attributeIds"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Weight"
-                  key="weight"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Created at"
-                  key="createdAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                <td>Actions</td>
+                <SortHeader
+                  @label="ID"
+                  @key="id"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Tenant"
+                  @key="tenant"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                  @data-test-sort-tenant={{true}}
+                />
+                <SortHeader
+                  @label="Custom ID"
+                  @key="customId"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Filter IDs"
+                  @key="filterIds"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Activation interval"
+                  @key="activationInterval"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Run ID"
+                  @key="runId"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Attribute IDs"
+                  @key="attributeIds"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Weight"
+                  @key="weight"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Created at"
+                  @key="createdAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <td>
+                  Actions
+                </td>
               </tr>
             </thead>
             <tbody>
               {{#each model as |tpCharger|}}
                 <tr>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.id}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.id}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.tenant}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.tenant}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.customId}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.customId}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.filterIds}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.filterIds}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.activationInterval}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.activationInterval}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.runId}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.runId}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.attributeIds}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.attributeIds}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}{{tpCharger.weight}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
+                      {{tpCharger.weight}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger" tpCharger}}
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger"
+                      @model={{tpCharger}}
+                    >
                       {{moment-format tpCharger.createdAt}}
-                    {{/link-to}}
+                    </LinkTo>
                   </td>
                   <td class="actions">
-                    {{#link-to "tariff-plan.tp-chargers.tp-charger.edit" tpCharger}}
-                      <i class="material-icons circle btn btn-primary" data-test-tp-charger-edit>edit</i>
-                    {{/link-to}}
-                    <a {{action "remove" tpCharger}} class="ml-1" role="button">
-                      <i class="material-icons circle btn btn-danger" data-test-tp-charger-remove>remove</i>
+                    <LinkTo
+                      @route="tariff-plan.tp-chargers.tp-charger.edit"
+                      @model={{tpCharger}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-primary"
+                        data-test-tp-charger-edit
+                      >
+                        edit
+                      </i>
+                    </LinkTo>
+                    <a class="ml-1" role="button" {{action "remove" tpCharger}}>
+                      <i
+                        class="material-icons circle btn btn-danger"
+                        data-test-tp-charger-remove
+                      >
+                        remove
+                      </i>
                     </a>
                   </td>
                 </tr>
@@ -131,62 +191,67 @@
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
+        <PageNumbers
+          @content={{pagination}}
+          @action="toPage"
+          @showFL={{true}}
+          @numPagesToShow={{4}}
+        />
       </div>
       <div class="col-md-3">
-        {{#filters-block search=(action "search") as |filtersBlock|}}
-          {{filter-text
-            label="Tenant"
-            key="tenant"
-            value=tenant
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-tenant=true
-          }}
-          {{filter-text
-            label="Custom ID"
-            key="customId"
-            value=customId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-customid=true
-          }}
-          {{filter-text
-            label="Filter IDs"
-            key="filterIds"
-            value=filterIds
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-filter-ids=true
-          }}
-          {{filter-text
-            label="Activation interval"
-            key="activationInterval"
-            value=activationInterval
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-activation-interval=true
-          }}
-          {{filter-text
-            label="Run ID"
-            key="runId"
-            value=runId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-run-id=true
-          }}
-          {{filter-text
-            label="Attribute IDs"
-            key="attributeIds"
-            value=attributeIds
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-attribute-ids=true
-          }}
-          {{filter-number
-            label="Weight"
-            key="weight"
-            value=weight
-            onValueChange=(action "pushValue" target=filtersBlock)
-            step="0.1"
-            min="0"
-            data-test-filter-weight=true
-          }}
-        {{/filters-block}}
+        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+          <FilterText
+            @label="Tenant"
+            @key="tenant"
+            @value={{tenant}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-tenant={{true}}
+          />
+          <FilterText
+            @label="Custom ID"
+            @key="customId"
+            @value={{customId}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-customid={{true}}
+          />
+          <FilterText
+            @label="Filter IDs"
+            @key="filterIds"
+            @value={{filterIds}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-filter-ids={{true}}
+          />
+          <FilterText
+            @label="Activation interval"
+            @key="activationInterval"
+            @value={{activationInterval}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-activation-interval={{true}}
+          />
+          <FilterText
+            @label="Run ID"
+            @key="runId"
+            @value={{runId}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-run-id={{true}}
+          />
+          <FilterText
+            @label="Attribute IDs"
+            @key="attributeIds"
+            @value={{attributeIds}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-attribute-ids={{true}}
+          />
+          <FilterNumber
+            @label="Weight"
+            @key="weight"
+            @value={{weight}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @step="0.1"
+            @min="0"
+            @data-test-filter-weight={{true}}
+          />
+        </FiltersBlock>
       </div>
     </div>
   </div>

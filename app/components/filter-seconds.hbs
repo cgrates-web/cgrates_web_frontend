@@ -1,4 +1,12 @@
 <div class="form-group">
-  <label>{{label}}</label>
-  {{input value=valueNumber type="number" step="10" min="0" class="form-control"}}
+  <label>
+    {{@label}}
+  </label>
+  <Input
+    @value={{@valueNumber}}
+    @type="number"
+    @step="10"
+    @min="0"
+    class="form-control"
+  />
 </div>

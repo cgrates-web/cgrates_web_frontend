@@ -1,26 +1,28 @@
 <div class="form-group">
-  <label>{{label}}</label>
+  <label>
+    {{label}}
+  </label>
   {{#if multiple}}
-    {{#power-select-multiple
-      placeholder=placeholder
-      searchEnabled=true
-      allowClear=true
-      selected=valueWrapper
-      search=(perform searchTask)
-      onchange=(action "onChange")
-    as |item|}}
+    <PowerSelectMultiple
+      @placeholder={{placeholder}}
+      @searchEnabled={{true}}
+      @allowClear={{true}}
+      @selected={{valueWrapper}}
+      @search={{perform searchTask}}
+      @onchange={{action "onChange"}} as |item|
+    >
       {{item}}
-    {{/power-select-multiple}}
+    </PowerSelectMultiple>
   {{else}}
-    {{#power-select
-      placeholder=placeholder
-      searchEnabled=true
-      allowClear=true
-      selected=valueWrapper
-      search=(perform searchTask)
-      onchange=(action "onChange")
-    as |item|}}
+    <PowerSelect
+      @placeholder={{placeholder}}
+      @searchEnabled={{true}}
+      @allowClear={{true}}
+      @selected={{valueWrapper}}
+      @search={{perform searchTask}}
+      @onchange={{action "onChange"}} as |item|
+    >
       {{item}}
-    {{/power-select}}
+    </PowerSelect>
   {{/if}}
 </div>

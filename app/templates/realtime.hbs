@@ -1,28 +1,38 @@
 <div class="row m-0">
-  <a {{action "sidebarCollapse"}} role="button" class="side-nav-collapse">
-    <i class="material-icons">more_vert</i>
+  <a role="button" class="side-nav-collapse" {{action "sidebarCollapse"}}>
+    <i class="material-icons">
+      more_vert
+    </i>
   </a>
-  {{#bs-navbar
-    collapsed=sidebarCollapsed
-    class="flex-column navbar-dark bg-dark navbar-expand-lg side-nav col-lg-2"
-    id="left-sidebar"
-    onCollapse=(action (mut collapsed) true)
-    onExpand=(action (mut collapsed) false)
-  as |navbar|}}
-    {{#navbar.content class="w-100"}}
-      {{#navbar.nav class="mb-auto" as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "realtime"}}Dashboard{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "realtime.destinations" data-test-destinations-link=true}}Destinations{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "realtime.accounts" data-test-accounts-link=true}}Accounts{{/nav.link-to}}
-        {{/nav.item}}
-      {{/navbar.nav}}
-    {{/navbar.content}}
-  {{/bs-navbar}}
+  <BsNavbar
+    @collapsed={{sidebarCollapsed}}
+    @class="flex-column navbar-dark bg-dark navbar-expand-lg side-nav col-lg-2"
+    @onCollapse={{action (mut collapsed) true}}
+    @onExpand={{action (mut collapsed) false}} as |navbar|
+  >
+    <navbar.content @class="w-100">
+      <navbar.nav @class="mb-auto" as |nav|>
+        <nav.item>
+          <nav.link-to @route="realtime">
+            Dashboard
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to
+            @route="realtime.destinations"
+            data-test-destinations-link
+          >
+            Destinations
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="realtime.accounts" data-test-accounts-link>
+            Accounts
+          </nav.link-to>
+        </nav.item>
+      </navbar.nav>
+    </navbar.content>
+  </BsNavbar>
   <div class="col-md-10 p-0">
     {{outlet}}
   </div>

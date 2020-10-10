@@ -1,69 +1,73 @@
-{{#bs-form model=model onSubmit=(perform save) novalidate=true as |form|}}
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  @novalidate={{true}} as |form|
+>
   <div class="form-row">
-    {{form.element
-      label="Tenant"
-      property="tenant"
-      class="col-md-6"
-      data-test-tenant=true
-    }}
-    {{form.element
-      label="Custom ID"
-      property="customId"
-      class="col-md-6"
-      data-test-customid=true
-    }}
-    {{input-select-search-to-string
-      label="Filter IDs"
-      value=model.filterIds
-      searchModel="tp-filter"
-      searchField="customId"
-      tpid=model.tpid
-      multiple=true
-      property="filterIds"
-      form=form
-      class="col-md-6"
-      dataTest="filter-ids"
-    }}
-    {{input-select-search-to-string
-      label="Attribute IDs"
-      value=model.attributeIds
-      searchModel="tp-attribute"
-      searchField="customId"
-      tpid=model.tpid
-      multiple=true
-      property="attributeIds"
-      form=form
-      class="col-md-6"
-      dataTest="attribute-ids"
-    }}
-    {{form.element
-      label="Activation interval"
-      property="activationInterval"
-      class="col-md-6"
-      data-test-activation-interval=true
-    }}
-    {{form.element
-      label="Run ID"
-      property="runId"
-      class="col-md-6"
-      data-test-run-id=true
-    }}
-    {{form.element
-      label="Weight"
-      property="weight"
-      controlType="number"
-      step="0.1"
-      min="0"
-      class="col-md-6"
-      data-test-weight=true
-    }}
+    <form.element
+      @label="Tenant"
+      @property="tenant"
+      @class="col-md-6"
+      @data-test-tenant={{true}}
+    />
+    <form.element
+      @label="Custom ID"
+      @property="customId"
+      @class="col-md-6"
+      @data-test-customid={{true}}
+    />
+    <InputSelectSearchToString
+      @label="Filter IDs"
+      @value={{@model.filterIds}}
+      @searchModel="tp-filter"
+      @searchField="customId"
+      @tpid={{@model.tpid}}
+      @multiple={{true}}
+      @property="filterIds"
+      @form={{form}}
+      @class="col-md-6"
+      @dataTest="filter-ids"
+    />
+    <InputSelectSearchToString
+      @label="Attribute IDs"
+      @value={{@model.attributeIds}}
+      @searchModel="tp-attribute"
+      @searchField="customId"
+      @tpid={{@model.tpid}}
+      @multiple={{true}}
+      @property="attributeIds"
+      @form={{form}}
+      @class="col-md-6"
+      @dataTest="attribute-ids"
+    />
+    <form.element
+      @label="Activation interval"
+      @property="activationInterval"
+      @class="col-md-6"
+      @data-test-activation-interval={{true}}
+    />
+    <form.element
+      @label="Run ID"
+      @property="runId"
+      @class="col-md-6"
+      @data-test-run-id={{true}}
+    />
+    <form.element
+      @label="Weight"
+      @property="weight"
+      @controlType="number"
+      @step="0.1"
+      @min="0"
+      @class="col-md-6"
+      @data-test-weight={{true}}
+    />
   </div>
-  {{#bs-button
-    type="primary"
-    buttonType="submit"
-    disabled=save.isRunning
-    data-test-submit-button=true
-  }}
-    {{loading-button-text text="Save" isLoading=save.isRunning}}
-  {{/bs-button}}
-{{/bs-form}}
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    @disabled={{@save.isRunning}}
+    @data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

@@ -9,9 +9,9 @@
       <h2>{{model.email}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "user.edit"}}
+          <LinkTo @route="user.edit">
             <i class="material-icons circle btn btn-primary" data-test-user-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>

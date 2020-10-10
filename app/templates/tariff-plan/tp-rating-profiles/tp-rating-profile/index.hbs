@@ -4,9 +4,9 @@
       <h2>TpRatingProfile: {{model.id}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-rating-profiles.tp-rating-profile.edit" model}}
+          <LinkTo @route="tariff-plan.tp-rating-profiles.tp-rating-profile.edit" @model={{model}}>
             <i class="material-icons circle btn btn-primary" data-test-rating-profile-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>

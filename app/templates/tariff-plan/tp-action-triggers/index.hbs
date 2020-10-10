@@ -1,192 +1,283 @@
 <main class="page-content">
   <div class="container xxl">
     <div class="actions-subtitle">
-      <h2>TpActionTriggers list</h2>
+      <h2>
+        TpActionTriggers list
+      </h2>
       <ul class="actions">
-        {{tp-index-buttons
-          model=model
-          tariffPlanId=tariffPlanId
-          permittedFilters=permittedFilters
-          refresh="refresh"
-          controller=this
-        }}
+        <TpIndexButtons
+          @model={{model}}
+          @tariffPlanId={{tariffPlanId}}
+          @permittedFilters={{permittedFilters}}
+          @refresh="refresh"
+          @controller={{this}}
+        />
       </ul>
     </div>
-    {{total-records totalRecords=meta.total_records}}
+    <TotalRecords @totalRecords={{meta.total_records}} />
     <div class="row">
-      <div class=" col-md-9">
+      <div class="col-md-9">
         <div class="table-responsive">
           <table class="table table-striped table-sm">
             <thead>
               <tr>
-                {{sort-header
-                  label="ID"
-                  key="id"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Tag"
-                  key="tag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                  data-test-sort-tag=true
-                }}
-                {{sort-header
-                  label="Unique ID"
-                  key="uniqueId"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Threshold type"
-                  key="thresholdType"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Threshold value"
-                  key="thresholdValue"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="recurrent"
-                  key="recurrent"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Min sleep"
-                  key="minSleep"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Expiry time"
-                  key="expiryTime"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Activation time"
-                  key="activationTime"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Balance tag"
-                  key="balanceTag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Balance type"
-                  key="balanceType"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Min queued items"
-                  key="minQueuedItems"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Actions tag"
-                  key="actionsTag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Weight"
-                  key="weight"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Created at"
-                  key="createdAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                <td>Actions</td>
+                <SortHeader
+                  @label="ID"
+                  @key="id"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Tag"
+                  @key="tag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                  @data-test-sort-tag={{true}}
+                />
+                <SortHeader
+                  @label="Unique ID"
+                  @key="uniqueId"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Threshold type"
+                  @key="thresholdType"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Threshold value"
+                  @key="thresholdValue"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="recurrent"
+                  @key="recurrent"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Min sleep"
+                  @key="minSleep"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Expiry time"
+                  @key="expiryTime"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Activation time"
+                  @key="activationTime"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Balance tag"
+                  @key="balanceTag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Balance type"
+                  @key="balanceType"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Min queued items"
+                  @key="minQueuedItems"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Actions tag"
+                  @key="actionsTag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Weight"
+                  @key="weight"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <SortHeader
+                  @label="Created at"
+                  @key="createdAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction="sortBy"
+                />
+                <td>
+                  Actions
+                </td>
               </tr>
             </thead>
             <tbody>
               {{#each model as |tpActionTrigger|}}
                 <tr>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.id}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.id}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.tag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.tag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.uniqueId}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.uniqueId}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.thresholdType}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.thresholdType}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.thresholdValue}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.thresholdValue}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.recurrent}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.recurrent}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.minSleep}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.minSleep}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.expiryTime}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.expiryTime}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.activationTime}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.activationTime}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.balanceTag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.balanceTag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.balanceType}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.balanceType}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.minQueuedItems}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.minQueuedItems}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.actionsTag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.actionsTag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}{{tpActionTrigger.weight}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
+                      {{tpActionTrigger.weight}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger" tpActionTrigger}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
+                      @model={{tpActionTrigger}}
+                    >
                       {{moment-format tpActionTrigger.createdAt}}
-                    {{/link-to}}
+                    </LinkTo>
                   </td>
                   <td class="actions">
-                    {{#link-to
-                      "tariff-plan.tp-action-triggers.tp-action-trigger.edit"
-                      tpActionTrigger
-                    }}
-                      <i class="material-icons circle btn btn-primary" data-test-action-trigger-edit>edit</i>
-                    {{/link-to}}
-                    <a {{action "remove" tpActionTrigger}} class="ml-1" role="button">
-                      <i class="material-icons circle btn btn-danger" data-test-action-trigger-remove>remove</i>
+                    <LinkTo
+                      @route="tariff-plan.tp-action-triggers.tp-action-trigger.edit"
+                      @model={{tpActionTrigger}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-primary"
+                        data-test-action-trigger-edit
+                      >
+                        edit
+                      </i>
+                    </LinkTo>
+                    <a
+                      class="ml-1"
+                      role="button"
+                      {{action "remove" tpActionTrigger}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-danger"
+                        data-test-action-trigger-remove
+                      >
+                        remove
+                      </i>
                     </a>
                   </td>
                 </tr>
@@ -194,114 +285,119 @@
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
+        <PageNumbers
+          @content={{pagination}}
+          @action="toPage"
+          @showFL={{true}}
+          @numPagesToShow={{4}}
+        />
       </div>
       <div class="col-md-3">
-        {{#filters-block search=(action "search") as |filtersBlock|}}
-          {{filter-text
-            label="Tag"
-            key="tag"
-            value=tag
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-tag=true
-          }}
-          {{filter-text
-            label="Unique id"
-            key="uniqueId"
-            value=uniqueId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-unique-id=true
-          }}
-          {{filter-select
-            label="Threshold type"
-            key="thresholdType"
-            value=thresholdType
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.thresholdType
-            data-test-filter-threshold-type=true
-          }}
-          {{filter-number
-            label="Threshold value"
-            key="thresholdValue"
-            value=thresholdValue
-            onValueChange=(action "pushValue" target=filtersBlock)
-            min="0"
-            data-test-filter-threshold-value=true
-          }}
-          {{filter-select
-            label="Recurrent"
-            key="recurrent"
-            value=recurrent
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.boolean
-            data-test-filter-recurrent=true
-          }}
-          {{filter-text
-            label="Min sleep"
-            key="minSleep"
-            value=minSleep
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-min-sleep=true
-          }}
-          {{filter-text
-            label="Expiry time"
-            key="expiryTime"
-            value=expiryTime
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-expiry-time=true
-          }}
-          {{filter-text
-            label="Activation time"
-            key="activationTime"
-            value=activationTime
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-activation-time=true
-          }}
-          {{filter-select
-            label="Balance tag"
-            key="balanceTag"
-            value=balanceTag
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.balanceTag
-            data-test-filter-balance-tag=true
-          }}
-          {{filter-select
-            label="Balance type"
-            key="balanceType"
-            value=balanceType
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.balanceType
-            data-test-filter-balance-type=true
-          }}
-          {{filter-number
-            label="Min queued items"
-            key="minQueuedItems"
-            value=minQueuedItems
-            onValueChange=(action "pushValue" target=filtersBlock)
-            step="0.1"
-            min="0"
-            data-test-filter-min-queued-items=true
-          }}
-          {{filter-select-search-to-string
-            label="Actions tag"
-            key="actionsTag"
-            value=actionsTag
-            searchModel="tp-action"
-            searchField="tag"
-            tpid=tariffPlanId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-actions-tag=true
-          }}
-          {{filter-number
-            label="Weight"
-            key="weight"
-            value=weight
-            onValueChange=(action "pushValue" target=filtersBlock)
-            step="0.1"
-            min="0"
-            data-test-filter-weight=true
-          }}
-        {{/filters-block}}
+        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+          <FilterText
+            @label="Tag"
+            @key="tag"
+            @value={{tag}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-tag={{true}}
+          />
+          <FilterText
+            @label="Unique id"
+            @key="uniqueId"
+            @value={{uniqueId}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-unique-id={{true}}
+          />
+          <FilterSelect
+            @label="Threshold type"
+            @key="thresholdType"
+            @value={{thresholdType}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @content={{selectValues.thresholdType}}
+            @data-test-filter-threshold-type={{true}}
+          />
+          <FilterNumber
+            @label="Threshold value"
+            @key="thresholdValue"
+            @value={{thresholdValue}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @min="0"
+            @data-test-filter-threshold-value={{true}}
+          />
+          <FilterSelect
+            @label="Recurrent"
+            @key="recurrent"
+            @value={{recurrent}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @content={{selectValues.boolean}}
+            @data-test-filter-recurrent={{true}}
+          />
+          <FilterText
+            @label="Min sleep"
+            @key="minSleep"
+            @value={{minSleep}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-min-sleep={{true}}
+          />
+          <FilterText
+            @label="Expiry time"
+            @key="expiryTime"
+            @value={{expiryTime}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-expiry-time={{true}}
+          />
+          <FilterText
+            @label="Activation time"
+            @key="activationTime"
+            @value={{activationTime}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-activation-time={{true}}
+          />
+          <FilterSelect
+            @label="Balance tag"
+            @key="balanceTag"
+            @value={{balanceTag}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @content={{selectValues.balanceTag}}
+            @data-test-filter-balance-tag={{true}}
+          />
+          <FilterSelect
+            @label="Balance type"
+            @key="balanceType"
+            @value={{balanceType}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @content={{selectValues.balanceType}}
+            @data-test-filter-balance-type={{true}}
+          />
+          <FilterNumber
+            @label="Min queued items"
+            @key="minQueuedItems"
+            @value={{minQueuedItems}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @step="0.1"
+            @min="0"
+            @data-test-filter-min-queued-items={{true}}
+          />
+          <FilterSelectSearchToString
+            @label="Actions tag"
+            @key="actionsTag"
+            @value={{actionsTag}}
+            @searchModel="tp-action"
+            @searchField="tag"
+            @tpid={{tariffPlanId}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @data-test-filter-actions-tag={{true}}
+          />
+          <FilterNumber
+            @label="Weight"
+            @key="weight"
+            @value={{weight}}
+            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @step="0.1"
+            @min="0"
+            @data-test-filter-weight={{true}}
+          />
+        </FiltersBlock>
       </div>
     </div>
   </div>

@@ -1,12 +1,12 @@
 <li>
-  {{#link-to newRouteName data-test-add=true}}
+  <LinkTo @route={{newRouteName}} data-test-add={{true}}>
     <i class="material-icons circle btn btn-success">add</i>
-  {{/link-to}}
+  </LinkTo>
 </li>
 <li>
-  {{#link-to csvImportRouteName data-test-upload=true}}
+  <LinkTo @route={{csvImportRouteName}} data-test-upload={{true}}>
     <i class="material-icons circle btn btn-success">cloud_upload</i>
-  {{/link-to}}
+  </LinkTo>
 </li>
 <li>
   <a {{action (perform exportToCsv)}} role="button" data-test-download>
