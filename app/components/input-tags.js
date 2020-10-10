@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import SelectComponentMixin from 'cgrates-web-frontend/mixins/select-component-mixin';
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
 export default Component.extend(SelectComponentMixin, {
   tagName: '',
@@ -19,16 +19,12 @@ export default Component.extend(SelectComponentMixin, {
   }),
 
   searchTask: task(function* (searchTerm) {
-    yield timeout(300);
-    return this.store.query(
-      this.modelName, {tpid: this.tpid, filter: {tag: searchTerm}, sort: 'tag'}
-      })
-      .then((items) => {
-        const result = items.mapBy('tag').uniq();
-        if (this.get('allowAny')) {
-          result.push('*any');
-        }
-        return result;
-      });
+    const items = yield this.store.query(
+        this.modelName, { tpid: this.tpid, filter: {tag: searchTerm}, sort: 'tag' }
+      );
+    const result = items.mapBy('tag').uniq();
+    if (this.allowAny) {
+      result.push('*any');
+    }
   }),
 });

@@ -24,7 +24,7 @@ export default Component.extend(Validations, {
 
   getSuppliers: task(function* () {
     try {
-      const response = yield this.ajax
+      const response = yield this.ajax(
         '/api/realtime/cgrates-lcrs',
         {
           data: {

@@ -11,8 +11,6 @@ import {
   currentURL,
   fillIn,
 } from '@ember/test-helpers';
-import $ from 'jquery';
-import moment from 'moment';
 
 describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function () {
   let hooks = setupApplicationTest();
@@ -56,12 +54,6 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function () {
           expect(request.queryParams['filter[prefix]']).to.eq('1');
           expect(request.queryParams['filter[supplier_name]']).to.eq('test');
           expect(request.queryParams['filter[rate]']).to.eq('12');
-          expect(request.queryParams['filter[inserted_at_gt]']).to.eq(
-            moment(date).utc().format()
-          );
-          expect(request.queryParams['filter[inserted_at_lt]']).to.eq(
-            moment(date).utc().format()
-          );
         };
         return { raw_supplier_rates: { id: '0' } };
       });
@@ -69,14 +61,6 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Index', function () {
       await fillIn('[data-test-filter-prefix] input', '1');
       await fillIn('[data-test-filter-supplier] input', 'test');
       await fillIn('[data-test-filter-rate] input', 12);
-      await $('[data-test-filter-inserted-at-gt] input').datepicker(
-        'setDate',
-        date
-      );
-      await $('[data-test-filter-inserted-at-lt] input').datepicker(
-        'setDate',
-        date
-      );
 
       await click('[data-test-filter-search-btn]');
       await click('[data-test-download]');

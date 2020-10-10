@@ -1,4 +1,5 @@
 import config from 'cgrates-web-frontend/config/environment';
+import fetch from 'fetch';
 
 export default {
   name: 'config',
