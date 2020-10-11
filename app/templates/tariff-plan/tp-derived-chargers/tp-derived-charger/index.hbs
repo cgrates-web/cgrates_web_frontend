@@ -2,13 +2,13 @@
   <div class="container">
     <div class="actions-subtitle">
       <h2>
-        TpDerivedCharger: {{model.id}}
+        TpDerivedCharger: {{this.model.id}}
       </h2>
       <ul class="actions">
         <li>
           <LinkTo
             @route="tariff-plan.tp-derived-chargers.tp-derived-charger.edit"
-            @model={{model}}
+            @model={{this.model}}
           >
             <i class="material-icons circle btn btn-primary" data-test-edit>
               edit
@@ -24,7 +24,7 @@
           ID
         </h5>
         <p>
-          {{model.id}}
+          {{this.model.id}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -32,7 +32,7 @@
           Load ID
         </h5>
         <p>
-          {{model.loadid}}
+          {{this.model.loadid}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -40,7 +40,7 @@
           Direction
         </h5>
         <p>
-          {{model.direction}}
+          {{this.model.direction}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -48,7 +48,7 @@
           Tenant
         </h5>
         <p>
-          {{model.tenant}}
+          {{this.model.tenant}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -56,7 +56,7 @@
           Category
         </h5>
         <p>
-          {{model.category}}
+          {{this.model.category}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -64,7 +64,7 @@
           Subject
         </h5>
         <p>
-          {{model.subject}}
+          {{this.model.subject}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -72,7 +72,7 @@
           Destination tags
         </h5>
         <p>
-          {{model.destinationIds}}
+          {{this.model.destinationIds}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -80,7 +80,7 @@
           Run ID
         </h5>
         <p>
-          {{model.runid}}
+          {{this.model.runid}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -88,7 +88,7 @@
           Run filters
         </h5>
         <p>
-          {{model.runFilters}}
+          {{this.model.runFilters}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -96,7 +96,7 @@
           Req type field
         </h5>
         <p>
-          {{model.reqTypeField}}
+          {{this.model.reqTypeField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -104,7 +104,7 @@
           Direction field
         </h5>
         <p>
-          {{model.directionField}}
+          {{this.model.directionField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -112,7 +112,7 @@
           Tenant field
         </h5>
         <p>
-          {{model.tenantField}}
+          {{this.model.tenantField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -120,7 +120,7 @@
           Category field
         </h5>
         <p>
-          {{model.categoryField}}
+          {{this.model.categoryField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -128,7 +128,7 @@
           Account field
         </h5>
         <p>
-          {{model.accountField}}
+          {{this.model.accountField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -136,7 +136,7 @@
           Subject field
         </h5>
         <p>
-          {{model.subjectField}}
+          {{this.model.subjectField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -144,7 +144,7 @@
           Destination field
         </h5>
         <p>
-          {{model.destinationField}}
+          {{this.model.destinationField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -152,7 +152,7 @@
           Setup time field
         </h5>
         <p>
-          {{model.setupTimeField}}
+          {{this.model.setupTimeField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -160,7 +160,7 @@
           Pdd field
         </h5>
         <p>
-          {{model.pddField}}
+          {{this.model.pddField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -168,7 +168,7 @@
           Answer time field
         </h5>
         <p>
-          {{model.answerTimeField}}
+          {{this.model.answerTimeField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -176,7 +176,7 @@
           Usage field
         </h5>
         <p>
-          {{model.usageField}}
+          {{this.model.usageField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -184,7 +184,7 @@
           Supplier field
         </h5>
         <p>
-          {{model.supplierField}}
+          {{this.model.supplierField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -192,7 +192,7 @@
           Disconnect cause field
         </h5>
         <p>
-          {{model.disconnectCauseField}}
+          {{this.model.disconnectCauseField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -200,7 +200,7 @@
           Rated field
         </h5>
         <p>
-          {{model.ratedField}}
+          {{this.model.ratedField}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -208,7 +208,7 @@
           Cost field
         </h5>
         <p>
-          {{model.costField}}
+          {{this.model.costField}}
         </p>
       </div>
       <div class="col-12 col-md-3">

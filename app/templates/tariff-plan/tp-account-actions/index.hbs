@@ -6,8 +6,8 @@
       </h2>
       <ul class="actions">
         <TpIndexButtons
-          @model={{model}}
-          @tariffPlanId={{tariffPlanId}}
+          @model={{this.model}}
+          @tariffPlanId={{this.tariffPlanId}}
           @permittedFilters={{permittedFilters}}
           @refresh="refresh"
           @controller={{this}}
@@ -231,7 +231,7 @@
             @value={{actionPlanTag}}
             @searchModel="tp-action-plan"
             @searchField="tag"
-            @tpid={{tariffPlanId}}
+            @tpid={{this.tariffPlanId}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-filter-action-plan-tag={{true}}
           />
@@ -241,7 +241,7 @@
             @value={{actionTriggersTag}}
             @searchModel="tp-action-trigger"
             @searchField="tag"
-            @tpid={{tariffPlanId}}
+            @tpid={{this.tariffPlanId}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-filter-action-triggers-tag={{true}}
           />

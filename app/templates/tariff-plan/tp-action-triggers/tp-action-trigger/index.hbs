@@ -2,13 +2,13 @@
   <div class="container">
     <div class="actions-subtitle">
       <h2>
-        TpActionTrigger: {{model.tag}}
+        TpActionTrigger: {{this.model.tag}}
       </h2>
       <ul class="actions">
         <li>
           <LinkTo
             @route="tariff-plan.tp-action-triggers.tp-action-trigger.edit"
-            @model={{model}}
+            @model={{this.model}}
           >
             <i class="material-icons circle btn btn-primary" data-test-edit>
               edit
@@ -24,7 +24,7 @@
           Id
         </h5>
         <p>
-          {{model.id}}
+          {{this.model.id}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -32,7 +32,7 @@
           Tag
         </h5>
         <p>
-          {{model.tag}}
+          {{this.model.tag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -40,7 +40,7 @@
           Unique ID
         </h5>
         <p>
-          {{model.uniqueId}}
+          {{this.model.uniqueId}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -48,7 +48,7 @@
           Threshold type
         </h5>
         <p>
-          {{model.thresholdType}}
+          {{this.model.thresholdType}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -56,7 +56,7 @@
           Threshold value
         </h5>
         <p>
-          {{model.thresholdValue}}
+          {{this.model.thresholdValue}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -64,7 +64,7 @@
           Recurrent
         </h5>
         <p>
-          {{model.recurrent}}
+          {{this.model.recurrent}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -72,7 +72,7 @@
           Expiry time
         </h5>
         <p>
-          {{model.expiryTime}}
+          {{this.model.expiryTime}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -80,7 +80,7 @@
           Activation time
         </h5>
         <p>
-          {{model.activationTime}}
+          {{this.model.activationTime}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -88,7 +88,7 @@
           Balance tag
         </h5>
         <p>
-          {{model.balanceTag}}
+          {{this.model.balanceTag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -96,7 +96,7 @@
           Balance type
         </h5>
         <p>
-          {{model.balanceType}}
+          {{this.model.balanceType}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -104,7 +104,7 @@
           Balance directions
         </h5>
         <p>
-          {{model.balanceDirections}}
+          {{this.model.balanceDirections}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -112,7 +112,7 @@
           Balance categories
         </h5>
         <p>
-          {{model.balanceCategories}}
+          {{this.model.balanceCategories}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -120,7 +120,7 @@
           Balance destination tags
         </h5>
         <p>
-          {{model.balanceDestinationTags}}
+          {{this.model.balanceDestinationTags}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -128,7 +128,7 @@
           Balance rating subject
         </h5>
         <p>
-          {{model.balanceRatingSubject}}
+          {{this.model.balanceRatingSubject}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -136,7 +136,7 @@
           Balance shared groups
         </h5>
         <p>
-          {{model.balanceSharedGroups}}
+          {{this.model.balanceSharedGroups}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -144,7 +144,7 @@
           Balance expiry time
         </h5>
         <p>
-          {{model.balanceExpiryTime}}
+          {{this.model.balanceExpiryTime}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -152,7 +152,7 @@
           Balance timing tags
         </h5>
         <p>
-          {{model.balanceTimingTags}}
+          {{this.model.balanceTimingTags}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -160,7 +160,7 @@
           Balance weight
         </h5>
         <p>
-          {{model.balanceWeight}}
+          {{this.model.balanceWeight}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -168,7 +168,7 @@
           Balance blocker
         </h5>
         <p>
-          {{model.balanceBlocker}}
+          {{this.model.balanceBlocker}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -176,7 +176,7 @@
           Balance disabled
         </h5>
         <p>
-          {{model.balanceDisabled}}
+          {{this.model.balanceDisabled}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -184,7 +184,7 @@
           Min queued items
         </h5>
         <p>
-          {{model.minQueuedItems}}
+          {{this.model.minQueuedItems}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -192,7 +192,7 @@
           Actions tag
         </h5>
         <p>
-          {{model.actionsTag}}
+          {{this.model.actionsTag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -200,7 +200,7 @@
           Weight
         </h5>
         <p>
-          {{model.weight}}
+          {{this.model.weight}}
         </p>
       </div>
       <div class="col-12 col-md-3">

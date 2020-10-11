@@ -1,7 +1,7 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>Raw supplier rate: {{model.id}}</h2>
+      <h2>Raw supplier rate: {{this.model.id}}</h2>
       <ul class="actions">
         <li>
           <LinkTo @route="tariff-plan.raw-supplier-rates.raw-supplier-rate.edit">
@@ -14,19 +14,19 @@
     <div class="row">
       <div class="col-12 col-md-3">
         <h5>Rate</h5>
-        <p>{{model.rate}}</p>
+        <p>{{this.model.rate}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Prefix</h5>
-        <p>{{model.prefix}}</p>
+        <p>{{this.model.prefix}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Supplier name</h5>
-        <p>{{model.supplierName}}</p>
+        <p>{{this.model.supplierName}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Description</h5>
-        <p>{{model.description}}</p>
+        <p>{{this.model.description}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Created at</h5>

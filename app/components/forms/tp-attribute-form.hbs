@@ -1,5 +1,5 @@
 <BsForm
-  @model={{model}}
+  @model={{@model}}
   @onSubmit={{perform save}}
   @novalidate={{true}} as |form|
 >
@@ -24,10 +24,10 @@
     />
     <InputSelectSearchToString
       @label="Filter IDs"
-      @value={{model.filterIds}}
+      @value={{@model.filterIds}}
       @searchModel="tp-filter"
       @searchField="customId"
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @multiple={{true}}
       @property="filterIds"
       @form={{form}}

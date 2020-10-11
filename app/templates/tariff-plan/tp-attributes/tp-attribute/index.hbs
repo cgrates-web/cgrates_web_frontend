@@ -1,11 +1,18 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpAttribute: {{model.customId}}</h2>
+      <h2>
+        TpAttribute: {{this.model.customId}}
+      </h2>
       <ul class="actions">
         <li>
-          <LinkTo @route="tariff-plan.tp-attributes.tp-attribute.edit" @model={{model}}>
-            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
+          <LinkTo
+            @route="tariff-plan.tp-attributes.tp-attribute.edit"
+            @model={{this.model}}
+          >
+            <i class="material-icons circle btn btn-primary" data-test-edit>
+              edit
+            </i>
           </LinkTo>
         </li>
       </ul>
@@ -13,56 +20,108 @@
     <hr>
     <div class="row">
       <div class="col-12 col-md-3">
-        <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <h5>
+          Id
+        </h5>
+        <p>
+          {{this.model.id}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Tenant</h5>
-        <p>{{model.tenant}}</p>
+        <h5>
+          Tenant
+        </h5>
+        <p>
+          {{this.model.tenant}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Custom ID</h5>
-        <p>{{model.customId}}</p>
+        <h5>
+          Custom ID
+        </h5>
+        <p>
+          {{this.model.customId}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Contexts</h5>
-        <p>{{model.contexts}}</p>
+        <h5>
+          Contexts
+        </h5>
+        <p>
+          {{this.model.contexts}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Filter IDs</h5>
-        <p>{{model.filterIds}}</p>
+        <h5>
+          Filter IDs
+        </h5>
+        <p>
+          {{this.model.filterIds}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Activation interval</h5>
-        <p>{{model.activationInterval}}</p>
+        <h5>
+          Activation interval
+        </h5>
+        <p>
+          {{this.model.activationInterval}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Field name</h5>
-        <p>{{model.fieldName}}</p>
+        <h5>
+          Field name
+        </h5>
+        <p>
+          {{this.model.fieldName}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Initial</h5>
-        <p>{{model.initial}}</p>
+        <h5>
+          Initial
+        </h5>
+        <p>
+          {{this.model.initial}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Substitute</h5>
-        <p>{{model.substitute}}</p>
+        <h5>
+          Substitute
+        </h5>
+        <p>
+          {{this.model.substitute}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Append</h5>
-        <p>{{model.append}}</p>
+        <h5>
+          Append
+        </h5>
+        <p>
+          {{this.model.append}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Blocker</h5>
-        <p>{{model.blocker}}</p>
+        <h5>
+          Blocker
+        </h5>
+        <p>
+          {{this.model.blocker}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Weight</h5>
-        <p>{{model.weight}}</p>
+        <h5>
+          Weight
+        </h5>
+        <p>
+          {{this.model.weight}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Created at</h5>
-        <p>{{moment-format model.createdAt}}</p>
+        <h5>
+          Created at
+        </h5>
+        <p>
+          {{moment-format model.createdAt}}
+        </p>
       </div>
     </div>
   </div>

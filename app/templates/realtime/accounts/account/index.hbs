@@ -1,12 +1,12 @@
 <div class="actions-subtitle">
   <h2>
-    Account: {{model.id}}
+    Account: {{this.model.id}}
   </h2>
   <ul class="actions">
     <li>
       <LinkTo
         @route="realtime.accounts.account.add-balance"
-        @model={{model}}
+        @model={{this.model}}
         @title="Add balance"
       >
         <i
@@ -26,7 +26,7 @@
       Id
     </h5>
     <p>
-      {{model.id}}
+      {{this.model.id}}
     </p>
   </div>
   <div class="col-12 col-md-3">
@@ -34,7 +34,7 @@
       Balance
     </h5>
     <p>
-      {{model.balance}}
+      {{this.model.balance}}
     </p>
   </div>
   <div class="col-12 col-md-3">
@@ -42,7 +42,7 @@
       Allow negative
     </h5>
     <p>
-      {{model.allowNegative}}
+      {{this.model.allowNegative}}
     </p>
   </div>
   <div class="col-12 col-md-3">
@@ -50,7 +50,7 @@
       Disabled
     </h5>
     <p>
-      {{model.disabled}}
+      {{this.model.disabled}}
     </p>
   </div>
   <div class="col-12">
@@ -59,7 +59,7 @@
     </h5>
     <p>
       {{#if model.balanceMap}}
-        <JsonPretty @obj={{model.balanceMap}} />
+        <JsonPretty @obj={{this.model.balanceMap}} />
       {{else}}
         Not present
       {{/if}}
@@ -71,7 +71,7 @@
     </h5>
     <p>
       {{#if model.unitCounters}}
-        <JsonPretty @obj={{model.unitCounters}} />
+        <JsonPretty @obj={{this.model.unitCounters}} />
       {{else}}
         Not present
       {{/if}}
@@ -83,7 +83,7 @@
     </h5>
     <p>
       {{#if model.actionTriggers}}
-        <JsonPretty @obj={{model.actionTriggers}} />
+        <JsonPretty @obj={{this.model.actionTriggers}} />
       {{else}}
         Not present
       {{/if}}

@@ -228,42 +228,42 @@
           <FilterText
             @label="CGRateS ID"
             @key="cgrid"
-            @value={{cgrid}}
+            @value={{this.cgrid}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-cgrid={{true}}
           />
           <FilterText
             @label="Run ID"
             @key="runId"
-            @value={{runId}}
+            @value={{this.runId}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-runid={{true}}
           />
           <FilterText
             @label="Origin Host"
             @key="originHost"
-            @value={{originHost}}
+            @value={{this.originHost}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-origin-host={{true}}
           />
           <FilterText
             @label="Source"
             @key="source"
-            @value={{source}}
+            @value={{this.source}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-source={{true}}
           />
           <FilterText
             @label="Origin ID"
             @key="originId"
-            @value={{originId}}
+            @value={{this.originId}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-origin-id={{true}}
           />
           <FilterSelect
             @label="Type of record"
             @key="tor"
-            @value={{tor}}
+            @value={{this.tor}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @content={{selectValues.typeOfRecord}}
             @data-test-filter-tor={{true}}
@@ -271,28 +271,28 @@
           <FilterText
             @label="Tenant"
             @key="tenant"
-            @value={{tenant}}
+            @value={{this.tenant}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-tenant={{true}}
           />
           <FilterText
             @label="Category"
             @key="category"
-            @value={{category}}
+            @value={{this.category}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-category={{true}}
           />
           <FilterText
             @label="Account"
             @key="account"
-            @value={{account}}
+            @value={{this.account}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-account={{true}}
           />
           <FilterText
             @label="Destination"
             @key="destination"
-            @value={{destination}}
+            @value={{this.destination}}
             @onValueChange={{action "pushValue" target=filtersBlock}}
             @data-test-destination={{true}}
           />

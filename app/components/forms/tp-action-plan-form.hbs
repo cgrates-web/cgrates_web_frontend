@@ -1,5 +1,5 @@
 <BsForm
-  @model={{model}}
+  @model={{@model}}
   @onSubmit={{perform save}}
   @novalidate={{true}} as |form|
 >
@@ -15,7 +15,7 @@
       @form={{form}}
       @label="Actions tag"
       @modelName="tp-action"
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @class="col-md-6"
       @dataTest="action"
     />

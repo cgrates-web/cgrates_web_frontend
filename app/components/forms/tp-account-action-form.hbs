@@ -24,11 +24,11 @@
     />
     <InputSelectSearchToString
       @label="Action plan tag"
-      @value={{model.actionPlanTag}}
+      @value={{@model.actionPlanTag}}
       @searchModel="tp-action-plan"
       @searchField="tag"
       @phName="tag"
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @property="actionPlanTag"
       @form={{form}}
       @allowClear={{true}}
@@ -37,11 +37,11 @@
     />
     <InputSelectSearchToString
       @label="Action triggers tag"
-      @value={{model.actionTriggersTag}}
+      @value={{@model.actionTriggersTag}}
       @searchModel="tp-action-trigger"
       @searchField="tag"
       @phName="tag"
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @property="actionTriggersTag"
       @form={{form}}
       @allowClear={{true}}

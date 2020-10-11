@@ -3,9 +3,12 @@ import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import './helpers/flash-message';
 import { mocha } from 'mocha';
+import { start } from 'ember-mocha';
 
 mocha.setup({
   timeout: 200000,
   slow: 2000,
 });
 setApplication(Application.create(config.APP));
+
+start();

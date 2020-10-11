@@ -2,13 +2,13 @@
   <div class="container">
     <div class="actions-subtitle">
       <h2>
-        TpRatingProfile: {{model.id}}
+        TpRatingProfile: {{this.model.id}}
       </h2>
       <ul class="actions">
         <li>
           <LinkTo
             @route="tariff-plan.tp-rating-profiles.tp-rating-profile.edit"
-            @model={{model}}
+            @model={{this.model}}
           >
             <i
               class="material-icons circle btn btn-primary"
@@ -27,7 +27,7 @@
           Id
         </h5>
         <p>
-          {{model.id}}
+          {{this.model.id}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -35,7 +35,7 @@
           Load ID
         </h5>
         <p>
-          {{model.loadid}}
+          {{this.model.loadid}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -43,7 +43,7 @@
           Direction
         </h5>
         <p>
-          {{model.direction}}
+          {{this.model.direction}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -51,7 +51,7 @@
           Tenant
         </h5>
         <p>
-          {{model.tenant}}
+          {{this.model.tenant}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -59,7 +59,7 @@
           Category
         </h5>
         <p>
-          {{model.category}}
+          {{this.model.category}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -67,7 +67,7 @@
           Subject
         </h5>
         <p>
-          {{model.subject}}
+          {{this.model.subject}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -75,7 +75,7 @@
           Fallback subjects
         </h5>
         <p>
-          {{model.fallbackSubjects}}
+          {{this.model.fallbackSubjects}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -83,7 +83,7 @@
           Activation time
         </h5>
         <p>
-          {{model.activationTime}}
+          {{this.model.activationTime}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -91,7 +91,7 @@
           CDR stat queue IDs
         </h5>
         <p>
-          {{model.cdrStatQueueIds}}
+          {{this.model.cdrStatQueueIds}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -99,7 +99,7 @@
           Rating plan tag
         </h5>
         <p>
-          {{model.ratingPlanTag}}
+          {{this.model.ratingPlanTag}}
         </p>
       </div>
       <div class="col-12 col-md-3">

@@ -2,13 +2,13 @@
   <div class="container">
     <div class="actions-subtitle">
       <h2>
-        TpActionPlan: {{model.tag}}
+        TpActionPlan: {{this.model.tag}}
       </h2>
       <ul class="actions">
         <li>
           <LinkTo
             @route="tariff-plan.tp-action-plans.tp-action-plan.edit"
-            @model={{model}}
+            @model={{this.model}}
             data-test-edit={{true}}
           >
             <i class="material-icons circle btn btn-primary">
@@ -25,7 +25,7 @@
           Id
         </h5>
         <p>
-          {{model.id}}
+          {{this.model.id}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -33,7 +33,7 @@
           Tag
         </h5>
         <p>
-          {{model.tag}}
+          {{this.model.tag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -41,7 +41,7 @@
           Actions tag
         </h5>
         <p>
-          {{model.actionsTag}}
+          {{this.model.actionsTag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -49,7 +49,7 @@
           Timing tag
         </h5>
         <p>
-          {{model.timingTag}}
+          {{this.model.timingTag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -57,7 +57,7 @@
           Weight
         </h5>
         <p>
-          {{model.weight}}
+          {{this.model.weight}}
         </p>
       </div>
       <div class="col-12 col-md-3">

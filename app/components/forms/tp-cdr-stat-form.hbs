@@ -1,5 +1,5 @@
 <BsForm
-  @model={{model}}
+  @model={{@model}}
   @onSubmit={{perform save}}
   @novalidate={{true}} as |form|
 >
@@ -27,7 +27,7 @@
       @dataTest="metrics"
     />
     <InputInterval
-      @value={{model.timeWindow}}
+      @value={{@model.timeWindow}}
       @form={{form}}
       @label="Time window"
       @property="timeWindow"
@@ -35,7 +35,7 @@
       @dataTest="time-window"
     />
     <InputInterval
-      @value={{model.saveInterval}}
+      @value={{@model.saveInterval}}
       @form={{form}}
       @label="Save interval"
       @property="saveInterval"
@@ -104,10 +104,10 @@
     />
     <InputSelectSearchToString
       @label="Destination IDs"
-      @value={{model.destinationIds}}
+      @value={{@model.destinationIds}}
       @searchModel="tp-destination"
       @searchField="tag"
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @multiple={{true}}
       @property="destinationIds"
       @form={{form}}
@@ -164,10 +164,10 @@
     />
     <InputSelectSearchToString
       @label="Action triggers"
-      @value={{model.actionTriggers}}
+      @value={{@model.actionTriggers}}
       @searchModel="tp-action-trigger"
       @searchField="tag"
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @multiple={{true}}
       @property="actionTriggers"
       @form={{form}}

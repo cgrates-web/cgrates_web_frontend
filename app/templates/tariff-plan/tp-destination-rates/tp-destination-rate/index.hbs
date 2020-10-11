@@ -2,13 +2,13 @@
   <div class="container">
     <div class="actions-subtitle">
       <h2>
-        TpDestinationRate: {{model.tag}}
+        TpDestinationRate: {{this.model.tag}}
       </h2>
       <ul class="actions">
         <li>
           <LinkTo
             @route="tariff-plan.tp-destination-rates.tp-destination-rate.edit"
-            @model={{model}}
+            @model={{this.model}}
           >
             <i class="material-icons circle btn btn-primary" data-test-edit>
               edit
@@ -24,7 +24,7 @@
           Id
         </h5>
         <p>
-          {{model.id}}
+          {{this.model.id}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -32,7 +32,7 @@
           Tag
         </h5>
         <p>
-          {{model.tag}}
+          {{this.model.tag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -40,7 +40,7 @@
           Rates tag
         </h5>
         <p>
-          {{model.ratesTag}}
+          {{this.model.ratesTag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -48,7 +48,7 @@
           Destinations tag
         </h5>
         <p>
-          {{model.destinationsTag}}
+          {{this.model.destinationsTag}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -56,7 +56,7 @@
           Rounding decimals
         </h5>
         <p>
-          {{model.roundingDecimals}}
+          {{this.model.roundingDecimals}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -64,7 +64,7 @@
           Max cost
         </h5>
         <p>
-          {{model.roundingDecimals}}
+          {{this.model.roundingDecimals}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -72,7 +72,7 @@
           Rounding method
         </h5>
         <p>
-          {{model.roundingMethod}}
+          {{this.model.roundingMethod}}
         </p>
       </div>
       <div class="col-12 col-md-3">
@@ -80,7 +80,7 @@
           Max cost strategy
         </h5>
         <p>
-          {{model.maxCostStrategy}}
+          {{this.model.maxCostStrategy}}
         </p>
       </div>
       <div class="col-12 col-md-3">

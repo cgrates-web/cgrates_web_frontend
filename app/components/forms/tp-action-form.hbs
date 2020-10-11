@@ -1,5 +1,5 @@
 <BsForm
-  @model={{model}}
+  @model={{@model}}
   @onSubmit={{perform save}}
   @novalidate={{true}} as |form|
 >
@@ -66,7 +66,7 @@
       @label="Destination tags"
       @modelName="tp-destination"
       @allowAny={{true}}
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @class="col-md-6"
       @dataTest="destination"
     />
