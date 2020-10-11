@@ -1,6 +1,6 @@
 <BsForm
-  @model={{model}}
-  @onSubmit={{perform save}}
+  @model={{@model}}
+  @onSubmit={{perform @save}}
   @novalidate={{true}} as |form|
 >
   <div class="form-row">
@@ -20,7 +20,7 @@
       @property="thresholdType"
       @form={{form}}
       @label="Threshold type"
-      @content={{selectValues.thresholdType}}
+      @content={{this.selectValues.thresholdType}}
       @class="col-md-3"
       @dataTest="threshold-type"
     />
@@ -79,13 +79,13 @@
       @data-test-weight={{true}}
     />
   </div>
-  <hr />
+  <hr>
   <div class="form-row">
     <InputSelect
       @property="balanceTag"
       @form={{form}}
       @label="Balance tag"
-      @content={{selectValues.balanceTag}}
+      @content={{this.selectValues.balanceTag}}
       @class="col-md-3"
       @dataTest="balance-tag"
     />
@@ -93,7 +93,7 @@
       @property="balanceType"
       @form={{form}}
       @label="Balance type"
-      @content={{selectValues.balanceType}}
+      @content={{this.selectValues.balanceType}}
       @class="col-md-3"
       @dataTest="balance-type"
     />
@@ -101,7 +101,7 @@
       @property="balanceDirections"
       @form={{form}}
       @label="Balance directions"
-      @content={{selectValues.direction}}
+      @content={{this.selectValues.direction}}
       @class="col-md-3"
       @dataTest="balance-directions"
     />
@@ -142,7 +142,7 @@
       @searchModel="tp-timing"
       @searchField="tag"
       @phName="tag"
-      @tpid={{model.tpid}}
+      @tpid={{@model.tpid}}
       @multiple={{true}}
       @property="balanceTimingTags"
       @form={{form}}
@@ -151,7 +151,7 @@
     />
     <InputSelectSearchToString
       @label="Balance destination tags"
-      @value={{model.balanceDestinationTags}}
+      @value={{@model.balanceDestinationTags}}
       @searchModel="tp-destination"
       @searchField="tag"
       @phName="tag"
@@ -189,9 +189,9 @@
   <BsButton
     @type="primary"
     @buttonType="submit"
-    @disabled={{save.isRunning}}
+    @disabled={{@save.isRunning}}
     @data-test-submit-button={{true}}
   >
-    <LoadingButtonText @text="Save" @isLoading={{save.isRunning}} />
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>
 </BsForm>

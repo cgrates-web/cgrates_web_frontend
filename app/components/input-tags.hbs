@@ -1,3 +1,4 @@
+{{!-- template-lint-disable attribute-indentation--}}
 <@form.element
   @controlType="power-select"
   @property={{property}}
@@ -10,11 +11,6 @@
 >
   <el.control
     @search={{perform searchTask}}
-    @class={{
-      if
-      (eq el.validation "error")
-      "is-invalid"
-      (if (eq el.validation "success") "is-valid")
-    }}
+    @class={{if (eq el.validation "error") "is-invalid" (if (eq el.validation "success") "is-valid")}}
   />
 </@form.element>

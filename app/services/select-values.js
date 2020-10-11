@@ -70,7 +70,20 @@ export default Service.extend({
     '*max_pdd',
   ]),
 
-  balanceTag: Object.freeze(['MONETARY', 'SMS', 'INTERNET', 'INTERNET_TIME', 'MINUTES']),
+  balanceTag: Object.freeze([
+    'MONETARY',
+    'SMS',
+    'INTERNET',
+    'INTERNET_TIME',
+    'MINUTES',
+  ]),
 
-  metrics: Object.freeze(['ACC', 'ACD', 'ASR', 'PDD', 'TCC', 'TCD']),
+  metrics: Object.freeze([
+    'ACC',
+    'ACD',
+    'ASR',
+    'PDD',
+    'TCC',
+    'TCD'
+  ]),
 });
