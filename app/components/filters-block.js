@@ -2,11 +2,6 @@ import Component from '@ember/component';
 import { action } from '@ember/object';
 
 export default class FilterBlockComponent extends Component {
-  constructor() {
-    super(...arguments);
-    this.activeFilters = {};
-  }
-
   @action
   submit() {
     return this.search(this.activeFilters);

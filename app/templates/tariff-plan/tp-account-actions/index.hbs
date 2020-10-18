@@ -196,68 +196,56 @@
           </table>
         </div>
         <PageNumbers
-          @content={{pagination}}
-          @action="toPage"
-          @showFL={{true}}
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
           @numPagesToShow={{4}}
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Load ID"
-            @key="loadid"
-            @value={{loadid}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.loadid}}
             @data-test-filter-loadid={{true}}
           />
           <FilterText
             @label="Tenant"
-            @key="tenant"
-            @value={{tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.tenant}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Account"
-            @key="account"
-            @value={{account}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.account}}
             @data-test-filter-account={{true}}
           />
           <FilterSelectSearchToString
             @label="Action plan tag"
-            @key="actionPlanTag"
-            @value={{actionPlanTag}}
+            @value={{filtersBlock.activeFilters.actionPlanTag}}
             @searchModel="tp-action-plan"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-action-plan-tag={{true}}
           />
           <FilterSelectSearchToString
             @label="Action triggers tag"
-            @key="actionTriggersTag"
-            @value={{actionTriggersTag}}
+            @value={{filtersBlock.activeFilters.actionTriggersTag}}
             @searchModel="tp-action-trigger"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-action-triggers-tag={{true}}
           />
           <FilterSelect
             @label="Allow negative"
-            @key="allowNegative"
-            @value={{allowNegative}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.allowNegative}}
             @content={{selectValues.boolean}}
             @data-test-filter-allow-negative={{true}}
           />
           <FilterSelect
             @label="Disabled"
-            @key="disabled"
-            @value={{disabled}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.disabled}}
             @content={{selectValues.boolean}}
             @data-test-filter-disabled={{true}}
           />

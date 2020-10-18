@@ -327,119 +327,95 @@
           </table>
         </div>
         <PageNumbers
-          @content={{pagination}}
-          @action="toPage"
-          @showFL={{true}}
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
           @numPagesToShow={{4}}
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tag"
-            @key="tag"
-            @value={{tag}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.tag}}
             @data-test-filter-tag={{true}}
           />
 
           <FilterSelect
             @label="Action"
-            @key="action"
-            @value={{action}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.action}}
             @content={{selectValues.action}}
             @data-test-filter-action={{true}}
           />
 
           <FilterText
             @label="Balance tag"
-            @key="balanceTag"
-            @value={{balanceTag}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.balanceTag}}
             @data-test-filter-balance-tag={{true}}
           />
 
           <FilterSelect
             @label="Balance type"
-            @key="balanceType"
-            @value={{balanceType}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.balanceType}}
             @content={{selectValues.balanceType}}
             @data-test-filter-balance-type={{true}}
           />
 
           <FilterSelect
             @label="Directions"
-            @key="directions"
-            @value={{directions}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.directions}}
             @content={{selectValues.direction}}
             @data-test-filter-directions={{true}}
           />
 
           <FilterNumber
             @label="Units"
-            @key="units"
-            @value={{units}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.units}}
             @min="0"
             @data-test-filter-units={{true}}
           />
 
           <FilterText
             @label="Expiry time"
-            @key="expiryTime"
-            @value={{expiryTime}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.expiryTime}}
             @data-test-filter-expiry-time={{true}}
           />
 
           <FilterText
             @label="Timing tags"
-            @key="timingTags"
-            @value={{timingTags}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.timingTags}}
             @data-test-filter-timing-tags={{true}}
           />
 
           <FilterText
             @label="Destination tags"
-            @key="destinationTags"
-            @value={{destinationTags}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.destinationTags}}
             @data-test-filter-destination-tags={{true}}
           />
 
           <FilterText
             @label="Rating subject"
-            @key="ratingSubject"
-            @value={{ratingSubject}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.ratingSubject}}
             @data-test-filter-rating-subject={{true}}
           />
 
           <FilterText
             @label="Categories"
-            @key="categories"
-            @value={{categories}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.categories}}
             @data-test-filter-categories={{true}}
           />
 
           <FilterText
             @label="Shared groups"
-            @key="sharedGroups"
-            @value={{sharedGroups}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.sharedGroups}}
             @data-test-filter-shared-groups={{true}}
           />
 
           <FilterNumber
             @label="Balance weight"
-            @key="balanceWeight"
-            @value={{balanceWeight}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.balanceWeight}}
             @step="0.1"
             @min="0"
             @data-test-filter-balance-weight={{true}}
@@ -447,27 +423,21 @@
 
           <FilterSelect
             @label="Balance blocker"
-            @key="balanceBlocker"
-            @value={{balanceBlocker}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.balanceBlocker}}
             @content={{selectValues.boolean}}
             @data-test-filter-balance-blocker={{true}}
           />
 
           <FilterSelect
             @label="Balance disabled"
-            @key="balanceDisabled"
-            @value={{balanceDisabled}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.balanceDisabled}}
             @content={{selectValues.boolean}}
             @data-test-filter-balance-disabled={{true}}
           />
 
           <FilterNumber
             @label="Weight"
-            @key="weight"
-            @value={{weight}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.weight}}
             @step="0.1"
             @min="0"
             @data-test-filter-weight={{true}}

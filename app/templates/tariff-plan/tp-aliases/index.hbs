@@ -252,89 +252,80 @@
           </table>
         </div>
         <PageNumbers
-          @content={{pagination}}
-          @action="toPage"
-          @showFL={{true}}
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
           @numPagesToShow={{4}}
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tenant"
             @key="tenant"
-            @value={{tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.tenant}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Direction"
             @key="direction"
-            @value={{direction}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.direction}}
             @data-test-filter-direction={{true}}
           />
           <FilterText
             @label="Account"
             @key="account"
-            @value={{account}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.account}}
             @data-test-filter-account={{true}}
           />
           <FilterText
             @label="Destination ID"
             @key="destinationId"
-            @value={{destinationId}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.destinationId}}
             @data-test-filter-destination-id={{true}}
           />
           <FilterText
             @label="Category"
             @key="category"
-            @value={{category}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.category}}
             @data-test-filter-category={{true}}
           />
           <FilterText
             @label="Subject"
             @key="subject"
-            @value={{subject}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.subject}}
             @data-test-filter-subject={{true}}
           />
           <FilterText
             @label="Context"
             @key="context"
-            @value={{context}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.context}}
             @data-test-filter-context={{true}}
           />
           <FilterText
             @label="Target"
             @key="targetParam"
-            @value={{targetParam}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.targetParam}}
             @data-test-filter-target={{true}}
           />
           <FilterText
             @label="Original"
             @key="original"
-            @value={{original}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.original}}
             @data-test-filter-original={{true}}
           />
           <FilterText
             @label="Alias"
             @key="alias"
-            @value={{alias}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.alias}}
             @data-test-filter-alias={{true}}
           />
           <FilterNumber
             @label="Weight"
             @key="weight"
-            @value={{weight}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.weight}}
             @step="0.1"
             @min="0"
             @data-test-filter-weight={{true}}

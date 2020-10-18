@@ -154,49 +154,41 @@
           </table>
         </div>
         <PageNumbers
-          @content={{pagination}}
-          @action="toPage"
-          @showFL={{true}}
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
           @numPagesToShow={{4}}
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Prefix"
-            @key="prefix"
-            @value={{prefix}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.prefix}}
             @data-test-filter-prefix={{true}}
           />
           <FilterText
             @label="Supplier"
-            @key="supplierName"
-            @value={{supplierName}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.supplierName}}
             @data-test-filter-supplier={{true}}
           />
           <FilterNumber
             @label="rate"
-            @key="rate"
-            @value={{rate}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.rate}}
             @step="0.0001"
             @min="0"
             @data-test-filter-rate={{true}}
           />
           <FilterDate
             @label="from"
-            @key="insertedAtGt"
-            @value={{insertedAtGt}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.insertedAtGt}}
             @data-test-filter-inserted-at-gt={{true}}
           />
           <FilterDate
             @label="to"
-            @key="insertedAtLt"
-            @value={{insertedAtLt}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.insertedAtLt}}
             @data-test-filter-inserted-at-lt={{true}}
           />
         </FiltersBlock>

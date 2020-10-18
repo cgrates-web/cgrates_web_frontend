@@ -7095,6 +7095,13 @@ ember-element-helper@^0.2.0:
   dependencies:
     ember-cli-babel "^6.16.0"
 
+ember-event-helpers@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/ember-event-helpers/-/ember-event-helpers-0.1.1.tgz#8df141306c927b9d1a7bc63d63095e92c0ba90a1"
+  integrity sha512-fWcbWd4W4nRv8bbato8JB6oGRpATkR+oGYxMIqnfgTgPWaCS0ww7CuUVNpwg1TulojKMCuTXi8Fem2b1NSF1ZQ==
+  dependencies:
+    ember-cli-babel "^7.19.0"
+
 ember-export-application-global@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/ember-export-application-global/-/ember-export-application-global-2.0.1.tgz#b120a70e322ab208defc9e2daebe8d0dfc2dcd46"
@@ -7502,13 +7509,14 @@ ember-template-recast@^4.1.5:
     tmp "^0.2.1"
     workerpool "^6.0.1"
 
-ember-test-selectors@^0.3.8:
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-0.3.9.tgz#dbe0a815cf04cad83c555f232cd69f50e95b342a"
-  integrity sha1-2+CoFc8Eytg8VV8jLNafUOlbNCo=
+ember-test-selectors@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-5.0.0.tgz#36c30f64498039cb88797cdda682275a460ee624"
+  integrity sha512-hqAPqyJLEGBYcQ9phOKvHhSCyvcSbUL8Yj2si8OASsQWxwRqbxrtk5YlkN2aZiZdp9PAd2wErS8uClG0U7tNpA==
   dependencies:
-    ember-cli-babel "^6.8.2"
-    ember-cli-version-checker "^2.0.0"
+    calculate-cache-key-for-tree "^2.0.0"
+    ember-cli-babel "^7.22.1"
+    ember-cli-version-checker "^5.1.1"
 
 ember-test-waiters@^1.1.1:
   version "1.2.0"

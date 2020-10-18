@@ -192,9 +192,8 @@
           </table>
         </div>
         <PageNumbers
-          @content={{pagination}}
-          @action="toPage"
-          @showFL={{true}}
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
           @numPagesToShow={{4}}
         />
       </div>

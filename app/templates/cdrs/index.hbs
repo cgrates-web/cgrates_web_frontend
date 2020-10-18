@@ -217,84 +217,66 @@
           </table>
         </div>
         <PageNumbers
-          @content={{pagination}}
-          @action="toPage"
-          @showFL={{true}}
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
           @numPagesToShow={{4}}
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="CGRateS ID"
-            @key="cgrid"
-            @value={{this.cgrid}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-cgrid={{true}}
+            @value={{filtersBlock.activeFilters.cgrid}}
+            data-test-cgrid
           />
           <FilterText
             @label="Run ID"
-            @key="runId"
-            @value={{this.runId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-runid={{true}}
+            @value={{filtersBlock.activeFilters.runId}}
+            data-test-runid
           />
           <FilterText
             @label="Origin Host"
-            @key="originHost"
-            @value={{this.originHost}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-origin-host={{true}}
+            @value={{filtersBlock.activeFilters.originHost}}
+            data-test-origin-host
           />
           <FilterText
             @label="Source"
-            @key="source"
-            @value={{this.source}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-source={{true}}
+            @value={{filtersBlock.activeFilters.source}}
+            data-test-source
           />
           <FilterText
             @label="Origin ID"
-            @key="originId"
-            @value={{this.originId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-origin-id={{true}}
+            @value={{filtersBlock.activeFilters.originId}}
+            data-test-origin-id
           />
           <FilterSelect
             @label="Type of record"
-            @key="tor"
-            @value={{this.tor}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.tor}}
             @content={{selectValues.typeOfRecord}}
-            @data-test-filter-tor={{true}}
+            data-test-filter-tor
           />
           <FilterText
             @label="Tenant"
-            @key="tenant"
-            @value={{this.tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-tenant={{true}}
+            @value={{filtersBlock.activeFilters.tenant}}
+            data-test-tenant
           />
           <FilterText
             @label="Category"
-            @key="category"
-            @value={{this.category}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-category={{true}}
+            @value={{filtersBlock.activeFilters.category}}
+            data-test-category
           />
           <FilterText
             @label="Account"
-            @key="account"
-            @value={{this.account}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-account={{true}}
+            @value={{filtersBlock.activeFilters.account}}
+            data-test-account
           />
           <FilterText
             @label="Destination"
-            @key="destination"
-            @value={{this.destination}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-destination={{true}}
+            @value={{filtersBlock.activeFilters.destination}}
+            data-test-destination
           />
         </FiltersBlock>
       </div>

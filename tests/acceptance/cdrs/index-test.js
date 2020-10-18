@@ -14,7 +14,7 @@ import {
 } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe('Acceptance: Cdrs.Index', function () {
+describe.only('Acceptance: Cdrs.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
@@ -124,7 +124,7 @@ describe('Acceptance: Cdrs.Index', function () {
       expect(counter).to.eq(3);
     }));
 
-  return describe('click pagination link', () =>
+  describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
       let counter = 0;
 

@@ -1,5 +1,13 @@
 import Mixin from '@ember/object/mixin';
 import { computed } from '@ember/object';
+import { __, includes, pipe, prop, reject, anyPass, pick } from 'ramda';
+
+const isPaginationQP = includes(__, ['page', 'pageSize']);
+const isSortingQP = includes(__, ['sortColumn', 'sortOrder']);
+
+function self() {
+  return this;
+}
 
 export default Mixin.create({
   sortColumn: 'id',
@@ -8,10 +16,26 @@ export default Mixin.create({
   page: 1,
   pageSize: 10,
 
+  filtersQP: computed(
+    'queryParams',
+    pipe(
+      self,
+      prop('queryParams'),
+      reject(anyPass([isPaginationQP, isSortingQP]))
+    )
+  ),
+
+  filters: computed(
+    'filtersQP',
+    function() {
+      return pick(this.filtersQP, this);
+    }
+  ),
+
   pagination: computed('page', 'totalPages', function () {
     return {
       page: this.page,
-      totalPages: this.totalPages,
+      totalPages: this.meta.total_pages,
     };
   }),
 
