@@ -25,7 +25,7 @@ describe('Acceptance: TpLcrRule.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules/test');
-      expect(find('main h2').textContent).to.eq('TpLcrRule: test');
+      expect(find('main h2')).to.have.trimmed.text('TpLcrRule: test');
     }));
 
   describe('click edit button', () =>

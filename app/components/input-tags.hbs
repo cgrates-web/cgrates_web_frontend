@@ -1,16 +1,17 @@
 {{!-- template-lint-disable attribute-indentation--}}
 <@form.element
   @controlType="power-select"
-  @property={{property}}
-  @label={{label}}
-  @options={{anyIfAllowed}}
+  @property={{@property}}
+  @label={{@label}}
+  @options={{this.anyIfAllowed}}
   @placeholder="Select tag..."
   @showValidationOn="change"
-  @class={{class}}
-  @data-test-tag={{dataTest}} as |el|
+  @class={{@class}}
+  @data-test-tag={{@dataTest}} as |el|
 >
   <el.control
-    @search={{perform searchTask}}
+    @search={{perform this.searchTask}}
+    @searchEnabled={{true}}
     @class={{if (eq el.validation "error") "is-invalid" (if (eq el.validation "success") "is-valid")}}
   />
 </@form.element>

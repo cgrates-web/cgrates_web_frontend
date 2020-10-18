@@ -17,7 +17,7 @@ describe('Acceptance: User.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/users/1');
-      expect(find('main h2').textContent).to.eq('test@example.com');
+      expect(find('main h2')).to.have.trimmed.text('test@example.com');
     }));
 
   describe('click edit button', () =>

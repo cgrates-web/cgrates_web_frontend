@@ -24,7 +24,7 @@ export default Component.extend(Validations, {
 
   getSuppliers: task(function* () {
     try {
-      const response = yield this.ajax(
+      const response = yield this.ajax.request(
         '/api/realtime/cgrates-lcrs',
         {
           data: {
@@ -40,6 +40,7 @@ export default Component.extend(Validations, {
       else this.flashMessages.danger('Unsupported destination');
     } catch (err) {
       this.flashMessages.danger('An error occured while receiving the data');
+      throw err;
     }
   }),
 });

@@ -204,49 +204,49 @@
             @label="Tenant"
             @key="tenant"
             @value={{tenant}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Custom ID"
             @key="customId"
             @value={{customId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-customid={{true}}
           />
           <FilterText
             @label="Filter IDs"
             @key="filterIds"
             @value={{filterIds}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-filter-ids={{true}}
           />
           <FilterText
             @label="Activation interval"
             @key="activationInterval"
             @value={{activationInterval}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-activation-interval={{true}}
           />
           <FilterText
             @label="Run ID"
             @key="runId"
             @value={{runId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-run-id={{true}}
           />
           <FilterText
             @label="Attribute IDs"
             @key="attributeIds"
             @value={{attributeIds}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-attribute-ids={{true}}
           />
           <FilterNumber
             @label="Weight"
             @key="weight"
             @value={{weight}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.1"
             @min="0"
             @data-test-filter-weight={{true}}

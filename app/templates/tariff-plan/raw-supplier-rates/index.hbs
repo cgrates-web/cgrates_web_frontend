@@ -166,21 +166,21 @@
             @label="Prefix"
             @key="prefix"
             @value={{prefix}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-prefix={{true}}
           />
           <FilterText
             @label="Supplier"
             @key="supplierName"
             @value={{supplierName}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-supplier={{true}}
           />
           <FilterNumber
             @label="rate"
             @key="rate"
             @value={{rate}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.0001"
             @min="0"
             @data-test-filter-rate={{true}}
@@ -189,14 +189,14 @@
             @label="from"
             @key="insertedAtGt"
             @value={{insertedAtGt}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-inserted-at-gt={{true}}
           />
           <FilterDate
             @label="to"
             @key="insertedAtLt"
             @value={{insertedAtLt}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-inserted-at-lt={{true}}
           />
         </FiltersBlock>

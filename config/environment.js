@@ -40,14 +40,11 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    // ENV.API_HOST = "http://cgrates-web.staging.yufuphone.com:4000";
-    // ENV['ember-cli-mirage'] = { enabled: false };
+    ENV.API_HOST = 'http://localhost:4000';
+    ENV['ember-cli-mirage'] = { enabled: false };
 
-    // ENV.API_HOST = 'http://localhost:4000';
-    // ENV['ember-cli-mirage'] = { enabled: false };
-
-    ENV.API_HOST = 'http://localhost:4200';
-    ENV['ember-cli-mirage'] = { enabled: true };
+    // ENV.API_HOST = 'http://localhost:4200';
+    // ENV['ember-cli-mirage'] = { enabled: true };
   }
 
   if (environment === 'test') {

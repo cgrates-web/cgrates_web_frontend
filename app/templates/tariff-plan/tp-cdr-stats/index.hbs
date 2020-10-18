@@ -309,14 +309,14 @@
             @label="Tag"
             @key="tag"
             @value={{tag}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tag={{true}}
           />
           <FilterSelect
             @label="Metrics"
             @key="metrics"
             @value={{metrics}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.metrics}}
             @data-test-filter-metrics={{true}}
           />
@@ -324,70 +324,70 @@
             @label="Tors"
             @key="tors"
             @value={{tors}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tors={{true}}
           />
           <FilterText
             @label="Cdr hosts"
             @key="cdrHosts"
             @value={{cdrHosts}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-cdr-hosts={{true}}
           />
           <FilterText
             @label="Cdr sources"
             @key="cdrSources"
             @value={{cdrSources}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-cdr-sources={{true}}
           />
           <FilterText
             @label="Req types"
             @key="reqTypes"
             @value={{reqTypes}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-req-types={{true}}
           />
           <FilterText
             @label="Directions"
             @key="directions"
             @value={{directions}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-directions={{true}}
           />
           <FilterText
             @label="Tenants"
             @key="tenants"
             @value={{tenants}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenants={{true}}
           />
           <FilterText
             @label="Categories"
             @key="categories"
             @value={{categories}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-categories={{true}}
           />
           <FilterText
             @label="Accounts"
             @key="accounts"
             @value={{accounts}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-accounts={{true}}
           />
           <FilterText
             @label="Subjects"
             @key="subjects"
             @value={{subjects}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-subjects={{true}}
           />
           <FilterText
             @label="Suppliers"
             @key="suppliers"
             @value={{suppliers}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-suppliers={{true}}
           />
           <FilterSelectSearchToString
@@ -398,7 +398,7 @@
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
             @multiple={{true}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-destination-ids={{true}}
           />
           <FilterSelectSearchToString
@@ -409,7 +409,7 @@
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
             @multiple={{true}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-action-triggers={{true}}
           />
           <FilterCollapseBtn
@@ -421,7 +421,7 @@
               @label="Queue length"
               @key="queueLength"
               @value={{queueLength}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @min="0"
               @data-test-filter-queue-length={{true}}
             />
@@ -429,7 +429,7 @@
               @label="Time window"
               @key="timeWindow"
               @value={{timeWindow}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @min="0"
               @data-test-filter-time-window={{true}}
             />
@@ -437,7 +437,7 @@
               @label="Save interval"
               @key="saveInterval"
               @value={{saveInterval}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @min="0"
               @data-test-filter-save-interval={{true}}
             />
@@ -445,56 +445,56 @@
               @label="Setup interval"
               @key="setupInterval"
               @value={{setupInterval}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-setup-interval={{true}}
             />
             <FilterText
               @label="Pdd interval"
               @key="pddInterval"
               @value={{pddInterval}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-pdd-interval={{true}}
             />
             <FilterText
               @label="Usage interval"
               @key="usageInterval"
               @value={{usageInterval}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-usage-interval={{true}}
             />
             <FilterText
               @label="Disconnect causes"
               @key="disconnectCauses"
               @value={{disconnectCauses}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-disconnect-causes={{true}}
             />
             <FilterText
               @label="Mediation run IDs"
               @key="mediationRunids"
               @value={{mediationRunids}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-mediation-runids={{true}}
             />
             <FilterText
               @label="Rated accounts"
               @key="ratedAccounts"
               @value={{ratedAccounts}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-rated-accounts={{true}}
             />
             <FilterText
               @label="Rated subjects"
               @key="ratedSubjects"
               @value={{ratedSubjects}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-rated-subjects={{true}}
             />
             <FilterText
               @label="Cost interval"
               @key="costInterval"
               @value={{costInterval}}
-              @onValueChange={{action "pushValue" target=filtersBlock}}
+              @onValueChange={{filtersBlock.pushValue}}
               @data-test-filter-cost-interval={{true}}
             />
           </BsCollapse>

@@ -16,12 +16,12 @@ describe('Integration: InputSelect', function () {
       await render(hbs`('
         {{#bs-form model=model as |form|}}
           {{input-select
-            property='inputSelect'
+            property="inputSelect"
             form=form
-            label='Test'
+            label="Test"
             content=content
-            class='test-class'
-            dataTest='test'
+            class="test-class"
+            dataTest="test"
           }}
         {{/bs-form}}
       ')`);
@@ -55,9 +55,9 @@ describe('Integration: InputSelect', function () {
       await render(hbs`('
         {{#bs-form model=model as |form|}}
           {{input-select
-            property='inputSelect'
+            property="inputSelect"
             form=form
-            label='Test'
+            label="Test"
             content=content
           }}
         {{/bs-form}}

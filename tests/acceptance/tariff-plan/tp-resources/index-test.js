@@ -30,7 +30,7 @@ describe('Acceptance: TpResources.Index', function () {
   describe('visit /tariff-plans/1/tp-resources', () =>
     it('renders table with tp-resources', async function () {
       await visit('/tariff-plans/1/tp-resources');
-      expect(find('main h2').textContent).to.eq('TpResources list');
+      expect(find('main h2')).to.have.trimmed.text('TpResources list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
   describe('server response with meta: total_records', function () {

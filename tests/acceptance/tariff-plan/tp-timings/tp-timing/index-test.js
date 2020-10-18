@@ -26,7 +26,7 @@ describe('Acceptance: TpTiming.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-timings/1');
-      expect(find('main h2').textContent).to.eq('Timing: new-timing');
+      expect(find('main h2')).to.have.trimmed.text('Timing: new-timing');
     }));
 
   describe('click edit button', () =>

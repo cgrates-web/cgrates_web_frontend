@@ -18,9 +18,9 @@ describe('Integration: InputInterval', function () {
             {{input-interval
               value=value
               form=form
-              label='Test'
-              class='test-class'
-              dataTest='test'
+              label="Test"
+              class="test-class"
+              dataTest="test"
             }}
           {{/bs-form}}
         ')`);
@@ -109,9 +109,9 @@ describe('Integration: InputInterval', function () {
           {{input-interval
             value=value
             form=form
-            label='Test'
-            property='test'
-            dataTest='test'
+            label="Test"
+            property="test"
+            dataTest="test"
           }}
         {{/bs-form}}
       ')`);

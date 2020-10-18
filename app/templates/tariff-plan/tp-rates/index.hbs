@@ -189,28 +189,28 @@
             @label="Tag"
             @key="tag"
             @value={{tag}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tag={{true}}
           />
           <FilterSeconds
             @label="Rate unit"
             @key="rateUnit"
             @value={{rateUnit}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-rate-unit={{true}}
           />
           <FilterSeconds
             @label="Rate increment"
             @key="rateIncrement"
             @value={{rateIncrement}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-rate-increment={{true}}
           />
           <FilterNumber
             @label="Rate (value)"
             @key="rate"
             @value={{rate}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.0001"
             @min="0"
             @data-test-filter-rate={{true}}
@@ -219,14 +219,14 @@
             @label="Group interval start"
             @key="groupIntervalStart"
             @value={{groupIntervalStart}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-group-interval-start={{true}}
           />
           <FilterNumber
             @label="Connect fee"
             @key="connectFee"
             @value={{connectFee}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.0001"
             @min="0"
             @data-test-filter-connect-fee={{true}}

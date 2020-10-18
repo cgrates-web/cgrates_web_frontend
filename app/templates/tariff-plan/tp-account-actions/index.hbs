@@ -208,21 +208,21 @@
             @label="Load ID"
             @key="loadid"
             @value={{loadid}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-loadid={{true}}
           />
           <FilterText
             @label="Tenant"
             @key="tenant"
             @value={{tenant}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Account"
             @key="account"
             @value={{account}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-account={{true}}
           />
           <FilterSelectSearchToString
@@ -232,7 +232,7 @@
             @searchModel="tp-action-plan"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-action-plan-tag={{true}}
           />
           <FilterSelectSearchToString
@@ -242,14 +242,14 @@
             @searchModel="tp-action-trigger"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-action-triggers-tag={{true}}
           />
           <FilterSelect
             @label="Allow negative"
             @key="allowNegative"
             @value={{allowNegative}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.boolean}}
             @data-test-filter-allow-negative={{true}}
           />
@@ -257,7 +257,7 @@
             @label="Disabled"
             @key="disabled"
             @value={{disabled}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.boolean}}
             @data-test-filter-disabled={{true}}
           />

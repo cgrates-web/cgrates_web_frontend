@@ -25,7 +25,7 @@ describe('Acceptance: TpThreshold.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-thresholds/1');
-      expect(find('main h2').textContent).to.eq('TpThreshold: custom_id');
+      expect(find('main h2')).to.have.trimmed.text('TpThreshold: custom_id');
     }));
 
   return describe('click edit button', () =>

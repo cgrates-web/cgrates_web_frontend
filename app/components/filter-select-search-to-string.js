@@ -1,35 +1,44 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
+import { action, set, computed } from '@ember/object';
 import strToArray from 'cgrates-web-frontend/utils/str-to-array';
+import { tracked } from '@glimmer/tracking';
 
-export default Component.extend({
-  store: service(),
-  searchField: 'customId',
-  placeholder: '...',
-  multiple: false,
+export default class FilterSelectSearchToStringComponent extends Component{
+  @service
+  store;
 
-  didReceiveAttrs() {
-    this._super(...arguments);
-    this.set('valueWrapper', strToArray(this.value));
-    this.onValueChange(this.key, this.value);
-  },
+  @tracked
+  searchField = 'customId';
 
-  searchTask: task(function* (term) {
-    const response = yield this.store.query(this.searchModel, {
-      tpid: this.tpid,
-      filter: {
-        [this.searchField.underscore()]: term,
-      },
-    });
-    return response.mapBy(this.searchField);
-  }).restartable(),
+  @tracked
+  placeholder = '...';
 
-  actions: {
-    onChange(value) {
-      this.set('valueWrapper', value);
-      const newValue = this.multiple ? value.join(',') : value;
-      this.onValueChange(this.key, newValue);
-    },
-  },
-});
+  @tracked
+  multiple = false;
+
+  @computed('value')
+  get selected() {
+    return this.multiple ? strToArray(this.value) : this.value;
+  }
+
+  @task(
+    function* (term) {
+      const response = yield this.store.query(this.searchModel, {
+        tpid: this.tpid,
+        filter: {
+          [this.searchField.underscore()]: term,
+        },
+      });
+      return response.mapBy(this.searchField);
+    }
+  ).restartable()
+  searchTask;
+
+  @action
+  onChange(value) {
+    const newValue = this.multiple ? value.join(',') : value;
+    set(this, 'value', newValue);
+  };
+}

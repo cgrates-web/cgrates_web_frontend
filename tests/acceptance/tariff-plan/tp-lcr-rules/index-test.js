@@ -35,7 +35,7 @@ describe('Acceptance: TpLcrRules.Index', function () {
   describe('visit /tariff-plans/1/tp-lcr-rules', () =>
     it('renders table with tp-lcr-rules', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
-      expect(find('main h2').textContent).to.eq('TpLcrRules list');
+      expect(find('main h2')).to.have.trimmed.text('TpLcrRules list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

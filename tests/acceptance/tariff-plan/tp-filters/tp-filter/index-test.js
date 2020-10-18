@@ -26,7 +26,7 @@ describe('Acceptance: TpFilter.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-filters/1');
-      await expect(find('main h2').textContent).to.eq('TpFilter: tagtest');
+      await expect(find('main h2')).to.have.trimmed.text('TpFilter: tagtest');
     }));
 
   describe('click edit button', () =>

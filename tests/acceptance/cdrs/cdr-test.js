@@ -26,7 +26,7 @@ describe('Acceptance: Cdr.Index', function () {
         it('shows minus icon', async function () {
           server.create('cdr', { id: 777, deletedAt: null });
           await visit('/cdrs/777');
-          expect(find('[data-test-deleted-at] i').textContent).to.eq('remove');
+          expect(find('[data-test-deleted-at] i')).to.have.trimmed.text('remove');
         });
       });
       context('when deleted at != null', function () {

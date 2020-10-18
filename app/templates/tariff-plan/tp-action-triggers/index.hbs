@@ -298,21 +298,21 @@
             @label="Tag"
             @key="tag"
             @value={{tag}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tag={{true}}
           />
           <FilterText
             @label="Unique id"
             @key="uniqueId"
             @value={{uniqueId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-unique-id={{true}}
           />
           <FilterSelect
             @label="Threshold type"
             @key="thresholdType"
             @value={{thresholdType}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.thresholdType}}
             @data-test-filter-threshold-type={{true}}
           />
@@ -320,7 +320,7 @@
             @label="Threshold value"
             @key="thresholdValue"
             @value={{thresholdValue}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @min="0"
             @data-test-filter-threshold-value={{true}}
           />
@@ -328,7 +328,7 @@
             @label="Recurrent"
             @key="recurrent"
             @value={{recurrent}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.boolean}}
             @data-test-filter-recurrent={{true}}
           />
@@ -336,28 +336,28 @@
             @label="Min sleep"
             @key="minSleep"
             @value={{minSleep}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-min-sleep={{true}}
           />
           <FilterText
             @label="Expiry time"
             @key="expiryTime"
             @value={{expiryTime}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-expiry-time={{true}}
           />
           <FilterText
             @label="Activation time"
             @key="activationTime"
             @value={{activationTime}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-activation-time={{true}}
           />
           <FilterSelect
             @label="Balance tag"
             @key="balanceTag"
             @value={{balanceTag}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.balanceTag}}
             @data-test-filter-balance-tag={{true}}
           />
@@ -365,7 +365,7 @@
             @label="Balance type"
             @key="balanceType"
             @value={{balanceType}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.balanceType}}
             @data-test-filter-balance-type={{true}}
           />
@@ -373,7 +373,7 @@
             @label="Min queued items"
             @key="minQueuedItems"
             @value={{minQueuedItems}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.1"
             @min="0"
             @data-test-filter-min-queued-items={{true}}
@@ -385,14 +385,14 @@
             @searchModel="tp-action"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-actions-tag={{true}}
           />
           <FilterNumber
             @label="Weight"
             @key="weight"
             @value={{weight}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.1"
             @min="0"
             @data-test-filter-weight={{true}}

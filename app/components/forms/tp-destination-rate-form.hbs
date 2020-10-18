@@ -1,6 +1,6 @@
 <BsForm
   @model={{@model}}
-  @onSubmit={{perform save}}
+  @onSubmit={{perform @save}}
   @novalidate={{true}} as |form|
 >
   <div class="form-row">
@@ -51,7 +51,7 @@
       @property="roundingMethod"
       @form={{form}}
       @label="Rounding method"
-      @content={{selectValues.roundingMethod}}
+      @content={{this.selectValues.roundingMethod}}
       @class="col-md-6"
       @dataTest="rounding-method"
     />
@@ -59,7 +59,7 @@
       @property="maxCostStrategy"
       @form={{form}}
       @label="Max cost strategy"
-      @content={{selectValues.maxCostStrategy}}
+      @content={{this.selectValues.maxCostStrategy}}
       @class="col-md-6"
       @dataTest="max-cost-strategy"
     />
@@ -67,9 +67,9 @@
   <BsButton
     @type="primary"
     @buttonType="submit"
-    @disabled={{save.isRunning}}
+    @disabled={{@save.isRunning}}
     @data-test-submit-button={{true}}
   >
-    <LoadingButtonText @text="Save" @isLoading={{save.isRunning}} />
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>
 </BsForm>

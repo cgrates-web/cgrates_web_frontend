@@ -7,7 +7,7 @@
   <div class="card-body">
     <BsForm
       @model={{this}}
-      @onSubmit={{perform getSuppliers}}
+      @onSubmit={{perform this.getSuppliers}}
       @novalidate={{true}} as |form|
     >
       <form.element
@@ -39,12 +39,12 @@
       >
         <LoadingButtonText
           @text="Get suppliers"
-          @isLoading={{getSuppliers.isRunning}}
+          @isLoading={{this.getSuppliers.isRunning}}
         />
       </BsButton>
     </BsForm>
 
-    {{#if response}}
+    {{#if this.response}}
       <div class="table-responsive mt-2" data-test-lcrs-table>
         <table class="table table-striped table-sm">
           <thead>
@@ -70,7 +70,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each response.sorted_suppliers as |supplier|}}
+            {{#each this.response.sorted_suppliers as |supplier|}}
               <tr>
                 <td>
                   {{response.profile_id}}

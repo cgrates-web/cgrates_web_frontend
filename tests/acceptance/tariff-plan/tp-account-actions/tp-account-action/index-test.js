@@ -21,7 +21,7 @@ describe('Acceptance: TpAccountActions.TpAccountAction.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-account-actions/1');
-      expect(find('main h2').textContent).to.eq('TpAccountAction: 1');
+      expect(find('main h2')).to.have.trimmed.text('TpAccountAction: 1');
     }));
 
   return describe('click edit button', () =>

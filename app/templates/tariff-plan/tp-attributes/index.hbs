@@ -238,63 +238,63 @@
             @label="Tenant"
             @key="tenant"
             @value={{tenant}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Custom ID"
             @key="customId"
             @value={{customId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-customid={{true}}
           />
           <FilterText
             @label="Contexts"
             @key="contexts"
             @value={{contexts}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-contexts={{true}}
           />
           <FilterText
             @label="Filter ids"
             @key="filterIds"
             @value={{filterIds}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-filter-ids={{true}}
           />
           <FilterText
             @label="Activation interval"
             @key="activationInterval"
             @value={{activationInterval}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-activation-interval={{true}}
           />
           <FilterText
             @label="Field name"
             @key="fieldName"
             @value={{fieldName}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-field-name={{true}}
           />
           <FilterText
             @label="Initial"
             @key="initial"
             @value={{initial}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-initial={{true}}
           />
           <FilterText
             @label="Substitute"
             @key="substitute"
             @value={{substitute}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-substitute={{true}}
           />
           <FilterSelect
             @label="Append"
             @key="append"
             @value={{append}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.boolean}}
             @data-test-filter-append={{true}}
           />
@@ -302,7 +302,7 @@
             @label="Blocker"
             @key="blocker"
             @value={{blocker}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.boolean}}
             @data-test-filter-blocker={{true}}
           />
@@ -310,7 +310,7 @@
             @label="Weight"
             @key="weight"
             @value={{weight}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.1"
             @min="0"
             @data-test-filter-weight={{true}}

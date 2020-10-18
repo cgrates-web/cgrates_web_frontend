@@ -19,11 +19,11 @@ describe('Integration: InputTags', function () {
         await render(hbs`('
           {{#bs-form model=model as |form|}}
             {{input-tags
-              property='inputTag'
+              property="inputTag"
               form=form
-              label='Test'
-              class='test-class'
-              dataTest='test'
+              label="Test"
+              class="test-class"
+              dataTest="test"
             }}
           {{/bs-form}}
         ')`);
@@ -47,7 +47,7 @@ describe('Integration: InputTags', function () {
         await render(hbs`('
           {{#bs-form model=model as |form|}}
             {{input-tags
-              property='inputTag'
+              property="inputTag"
               form=form
               allowAny=true
             }}
@@ -84,10 +84,10 @@ describe('Integration: InputTags', function () {
         await render(hbs`('
           {{#bs-form model=model as |form|}}
             {{input-tags
-              property='inputTag'
+              property="inputTag"
               form=form
-              modelName='tp-rate' 
-              tpid='tptest'
+              modelName="tp-rate"
+              tpid="tptest"
             }}
           {{/bs-form}}
         ')`);
@@ -101,15 +101,16 @@ describe('Integration: InputTags', function () {
         this.server.get('/tp-rates/', () => ({
           data: [{ id: '1', type: 'tp-rate', attributes: { tag: 'test' } }],
         }));
+        this.server.logging = true;
         this.set('model', EmberObject.create({}));
         await render(hbs`('
           {{#bs-form model=model as |form|}}
             {{input-tags
-              property='inputTag'
+              property="inputTag"
               form=form
               allowAny=true
-              modelName='tp-rate' 
-              tpid='tptest'
+              modelName="tp-rate"
+              tpid="tptest"
             }}
           {{/bs-form}}
         ')`);

@@ -25,7 +25,7 @@ describe('Acceptance: TpRatingProfile.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles/test');
-      expect(find('main h2').textContent).to.eq('TpRatingProfile: test');
+      expect(find('main h2')).to.have.trimmed.text('TpRatingProfile: test');
     }));
 
   describe('click edit button', () =>

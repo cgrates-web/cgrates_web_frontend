@@ -25,7 +25,7 @@ describe('Acceptance: TpCdrStats.TpCdrStat.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-cdr-stats/1');
-      expect(find('main h2').textContent).to.eq('TpCdrStat: tag-test');
+      expect(find('main h2')).to.have.trimmed.text('TpCdrStat: tag-test');
     }));
 
   return describe('click edit button', () =>

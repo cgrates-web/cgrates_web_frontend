@@ -17,7 +17,7 @@ describe('Integration: FiltersBlock', function () {
   describe('basic rendering', () =>
     it('renders a form', async function () {
       await render(hbs('{{filters-block}}'));
-      expect(find('h5').textContent).to.eq('Filters');
+      expect(find('h5')).to.have.trimmed.text('Filters');
       expect(find('form')).to.exist;
       expect(find('button')).to.exist;
     }));
@@ -48,11 +48,15 @@ describe('Integration: FiltersBlock', function () {
         this.set('actionTriggered', true);
         expect(filters).to.deep.equal({ test: null });
       });
-      await render(hbs`(
-        {{#filters-block search=(action search) as |block|}} 
-        {{filter-text label='Test' key='test' value=filterValue onValueChange=(action 'pushValue' target=block)}} 
-        {{/filters-block}}\
-      )`);
+      await render(hbs`
+        {{#filters-block search=(action search)}}
+          {{filter-text
+            label="Test"
+            key="test"
+            value=filterValue
+          }}
+        {{/filters-block}}
+      `);
       await fillIn('input', 'valuetest');
       await click('[data-test-filter-reset-btn]');
       expect(this.actionTriggered).to.be.ok;

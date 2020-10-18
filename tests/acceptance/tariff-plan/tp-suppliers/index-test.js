@@ -31,7 +31,7 @@ describe('Acceptance: TpSuppliers.Index', function () {
   describe('visit /tariff-plans/1/tp-suppliers', function () {
     it('renders table with tp-suppliers', async function () {
       await visit('/tariff-plans/1/tp-suppliers');
-      expect(find('main h2').textContent).to.eq('Suppliers list');
+      expect(find('main h2')).to.have.trimmed.text('Suppliers list');
       expect(findAll('table tbody tr').length).to.eq(2);
     });
   });

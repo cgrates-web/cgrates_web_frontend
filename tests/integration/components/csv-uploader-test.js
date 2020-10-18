@@ -50,6 +50,7 @@ describe('Integration: Csv-uploader', function () {
         {{csv-uploader
           file=file
           model=baseImportJob
+          redirectAfterSave=false
         }}
       ')`);
       await uploadFile(
@@ -59,10 +60,7 @@ describe('Integration: Csv-uploader', function () {
       );
     });
     it('displays file name', async function () {
-      expect(find('.file-name').textContent).to.eq('test.csv');
-    });
-    it('set file', async function () {
-      expect(this.file).to.exist;
+      expect(find('.file-name')).to.have.trimmed.text('test.csv');
     });
 
     context('click upload file', function () {

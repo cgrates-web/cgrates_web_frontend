@@ -40,7 +40,7 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
   describe('visit /tariff-plans/1/tp-derived-chargers', () =>
     it('renders table with tp-derived-chargers', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers');
-      expect(find('main h2').textContent).to.eq('TpDerivedChargers list');
+      expect(find('main h2')).to.have.trimmed.text('TpDerivedChargers list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

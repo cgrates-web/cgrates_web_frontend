@@ -1,13 +1,13 @@
 <@form.element
-  @label={{label}}
-  @placeholder={{placeholder}}
-  @property={{property}}
-  @class={{class}}
-  @data-test-input-interval={{dataTest}} as |el|
+  @label={{@label}}
+  @placeholder={{@placeholder}}
+  @property={{@property}}
+  @class={{@class}}
+  @data-test-input-interval={{@dataTest}} as |el|
 >
   <div class="input-interval">
     <el.control
-      @value={{valueNumber}}
+      @value={{this.valueNumber}}
       @change={{action "change"}}
       @input={{action "input"}}
       @type="number"
@@ -18,10 +18,10 @@
       @placeholder="..."
       @searchEnabled={{false}}
       @allowClear={{false}}
-      @options={{intervalUnits}}
-      @selected={{currentIntervalUnit}}
+      @options={{this.intervalUnits}}
+      @selected={{this.currentIntervalUnit}}
       @class="ml-1"
-      @onchange={{action "intervalChange"}} as |item|
+      @onChange={{action "intervalChange"}} as |item|
     >
       {{item}}
     </PowerSelect>

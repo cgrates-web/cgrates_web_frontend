@@ -25,7 +25,7 @@ describe('Acceptance: TpResource.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-resources/1');
-      expect(find('main h2').textContent).to.eq('TpResource: tagtest');
+      expect(find('main h2')).to.have.trimmed.text('TpResource: tagtest');
     }));
 
   return describe('click edit button', () =>

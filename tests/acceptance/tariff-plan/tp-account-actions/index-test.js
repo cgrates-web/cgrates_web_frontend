@@ -44,7 +44,7 @@ describe('Acceptance: TpAccountActions.Index', function () {
   describe('visit /tariff-plans/1/tp-account-actions', () =>
     it('renders table with tp-account-actions', async function () {
       await visit('/tariff-plans/1/tp-account-actions');
-      expect(find('main h2').textContent).to.eq('TpAccountActions list');
+      expect(find('main h2')).to.have.trimmed.text('TpAccountActions list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

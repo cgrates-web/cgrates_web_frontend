@@ -22,7 +22,7 @@ describe('Acceptance: RawSupplierRate.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates/1');
-      expect(find('main h2').textContent).to.eq('Raw supplier rate: 1');
+      expect(find('main h2')).to.have.trimmed.text('Raw supplier rate: 1');
     }));
 
   describe('click edit button', () =>

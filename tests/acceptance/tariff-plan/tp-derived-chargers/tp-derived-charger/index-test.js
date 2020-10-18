@@ -21,7 +21,7 @@ describe('Acceptance: TpDerivedChargers.TpDerivedCharger.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers/1');
-      expect(find('main h2').textContent).to.eq('TpDerivedCharger: 1');
+      expect(find('main h2')).to.have.trimmed.text('TpDerivedCharger: 1');
     }));
 
   return describe('click edit button', () =>

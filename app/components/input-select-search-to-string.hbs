@@ -1,21 +1,21 @@
 <@form.element
-  @controlType={{controlType}}
-  @property={{property}}
-  @label={{label}}
-  @searchEnabled={{true}}
-  @placeholder={{placeholder}}
+  @controlType={{this.controlType}}
+  @property={{@property}}
+  @label={{@label}}
+  @placeholder={{this.placeholder}}
   @showValidationOn="change"
-  @class={{class}}
+  @class={{@class}}
   @change={{null}}
-  @showOwnValidation={{showOwnValidation}}
-  @data-test-select-search-to-str={{dataTest}} as |el|
+  @showOwnValidation={{@showOwnValidation}}
+  @data-test-select-search-to-str={{@dataTest}} as |el|
 >
   <el.control
-    @allowClear={{allowClear}}
+    @allowClear={{this.allowClear}}
     @tagName="div"
     @class={{bs-element-validation el.validation}}
-    @search={{perform searchTask}}
-    @value={{valueWrapper}}
+    @search={{perform this.searchTask}}
+    @value={{this.valueWrapper}}
+    @searchEnabled={{true}}
     @onChange={{action "onChange"}} as |item|
   >
     {{item}}

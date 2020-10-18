@@ -40,7 +40,7 @@ describe('Acceptance: tpActionTriggers.Index', function () {
   describe('visit /tariff-plans/1/tp-action-triggers', () =>
     it('renders table with tp-action-triggers', async function () {
       await visit('/tariff-plans/1/tp-action-triggers');
-      expect(find('main h2').textContent).to.eq('TpActionTriggers list');
+      expect(find('main h2')).to.have.trimmed.text('TpActionTriggers list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

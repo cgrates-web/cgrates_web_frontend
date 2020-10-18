@@ -208,42 +208,42 @@
             @label="Load ID"
             @key="loadid"
             @value={{loadid}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-loadid={{true}}
           />
           <FilterText
             @label="Direction"
             @key="direction"
             @value={{direction}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-direction={{true}}
           />
           <FilterText
             @label="Tenant"
             @key="tenant"
             @value={{tenant}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Category"
             @key="category"
             @value={{category}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-category={{true}}
           />
           <FilterText
             @label="Account"
             @key="account"
             @value={{account}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-account={{true}}
           />
           <FilterText
             @label="Subject"
             @key="subject"
             @value={{subject}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-subject={{true}}
           />
           <FilterSelectSearchToString
@@ -254,7 +254,7 @@
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
             @multiple={{true}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-destination-ids={{true}}
           />
         </FiltersBlock>

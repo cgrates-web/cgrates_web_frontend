@@ -24,8 +24,8 @@ describe('Acceptance: TariffPlans', function () {
       this.tpPlan = server.create('tariff-plan');
       await visit('/tariff-plans');
       expect(
-        find('[data-test-tarif-plan-card] .card-header').textContent
-      ).to.eq(this.tpPlan.name);
+        find('[data-test-tarif-plan-card] .card-header')
+      ).to.have.trimmed.text(this.tpPlan.name);
     });
     it('displays tp-plan description', async function () {
       this.tpPlan = server.create('tariff-plan');

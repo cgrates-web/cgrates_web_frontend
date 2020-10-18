@@ -25,7 +25,7 @@ describe('Acceptance: TpSupplier.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-suppliers/1');
-      expect(find('main h2').textContent).to.eq('Supplier: tagtest');
+      expect(find('main h2')).to.have.trimmed.text('Supplier: tagtest');
     }));
 
   return describe('click edit button', () =>

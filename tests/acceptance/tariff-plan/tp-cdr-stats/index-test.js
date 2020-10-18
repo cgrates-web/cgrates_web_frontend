@@ -44,7 +44,7 @@ describe('Acceptance: TpCdrStats.Index', function () {
   describe('visit /tariff-plans/1/tp-cdr-stats', () =>
     it('renders table with tp-cdr-stats', async function () {
       await visit('/tariff-plans/1/tp-cdr-stats');
-      expect(find('main h2').textContent).to.eq('TpCdrStats list');
+      expect(find('main h2')).to.have.trimmed.text('TpCdrStats list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

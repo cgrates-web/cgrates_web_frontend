@@ -20,11 +20,12 @@ export default Component.extend(SelectComponentMixin, {
 
   searchTask: task(function* (searchTerm) {
     const items = yield this.store.query(
-        this.modelName, { tpid: this.tpid, filter: {tag: searchTerm}, sort: 'tag' }
+        this.modelName, { tpid: this.tpid, filter: { tag: searchTerm }, sort: 'tag' }
       );
     const result = items.mapBy('tag').uniq();
     if (this.allowAny) {
       result.push('*any');
     }
+    return result;
   }),
 });

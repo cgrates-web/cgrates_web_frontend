@@ -166,28 +166,28 @@
             @label="Tag"
             @key="tag"
             @value={{tag}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tag={{true}}
           />
           <FilterText
             @label="Account"
             @key="account"
             @value={{account}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-account={{true}}
           />
           <FilterText
             @label="Strategy"
             @key="strategy"
             @value={{strategy}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-strategy={{true}}
           />
           <FilterText
             @label="Rating subject"
             @key="ratingSubject"
             @value={{ratingSubject}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-rating-subject={{true}}
           />
         </FiltersBlock>

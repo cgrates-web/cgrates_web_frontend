@@ -26,7 +26,7 @@ describe('Acceptance: TpAction.Index', function () {
   describe('basic rendering', function () {
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-actions/1');
-      expect(find('main h2').textContent).to.eq('TpAction: test');
+      expect(find('main h2')).to.have.trimmed.text('TpAction: test');
     });
   });
 

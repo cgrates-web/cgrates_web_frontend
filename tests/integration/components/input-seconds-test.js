@@ -17,9 +17,9 @@ describe('Integration: InputSeconds', function () {
             {{input-seconds
               value=value
               form=form
-              label='Test'
-              class='test-class'
-              dataTest='test'
+              label="Test"
+              class="test-class"
+              dataTest="test"
             }}
           {{/bs-form}}
         ')`);
@@ -62,9 +62,9 @@ describe('Integration: InputSeconds', function () {
           {{input-seconds
             value=value
             form=form
-            label='Test'
-            property='test'
-            class='test-class'
+            label="Test"
+            property="test"
+            class="test-class"
           }}
         {{/bs-form}}
       ')`);

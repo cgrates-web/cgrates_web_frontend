@@ -268,42 +268,42 @@
             @label="Tenant"
             @key="tenant"
             @value={{tenant}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Custom ID"
             @key="customId"
             @value={{customId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-customid={{true}}
           />
           <FilterText
             @label="Filter IDs"
             @key="filterIds"
             @value={{filterIds}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-filter-ids={{true}}
           />
           <FilterText
             @label="Action IDs"
             @key="actionIds"
             @value={{actionIds}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-action-ids={{true}}
           />
           <FilterText
             @label="Activation interval"
             @key="activationInterval"
             @value={{activationInterval}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-activation-interval={{true}}
           />
           <FilterNumber
             @label="Max hits"
             @key="maxHits"
             @value={{maxHits}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @min="0"
             @data-test-filter-max-hits={{true}}
           />
@@ -311,7 +311,7 @@
             @label="Min hits"
             @key="minHits"
             @value={{minHits}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @min="0"
             @data-test-filter-min-hits={{true}}
           />
@@ -319,7 +319,7 @@
             @label="Min slleep"
             @key="minSleep"
             @value={{minSleep}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @min="0"
             @data-test-filter-min-sleep={{true}}
           />
@@ -327,7 +327,7 @@
             @label="Blocker"
             @key="blocker"
             @value={{blocker}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.boolean}}
             @data-test-filter-blocker={{true}}
           />
@@ -335,7 +335,7 @@
             @label="Async"
             @key="async"
             @value={{async}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.boolean}}
             @data-test-filter-async={{true}}
           />
@@ -343,7 +343,7 @@
             @label="Weight"
             @key="weight"
             @value={{weight}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @step="0.1"
             @min="0"
             @data-test-filter-weight={{true}}

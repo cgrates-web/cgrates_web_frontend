@@ -21,13 +21,13 @@ describe('Integration: Input select search to string', function () {
         await render(hbs`('
           {{#bs-form as |form|}}
             {{input-select-search-to-string
-              searchField='customId'
+              searchField="customId"
               value=model.customId
               form=form
-              label='Test'
-              class='test-class'
+              label="Test"
+              class="test-class"
               multiple=true
-              dataTest='test'
+              dataTest="test"
             }}
           {{/bs-form}}
         ')`);
@@ -92,15 +92,15 @@ describe('Integration: Input select search to string', function () {
         await render(hbs`('
           {{#bs-form as |form|}}
             {{input-select-search-to-string
-              searchField='customId'
-              searchModel='tp-filter'
-              tpid='tptest'
+              searchField="customId"
+              searchModel="tp-filter"
+              tpid="tptest"
               value=model.customId
               form=form
               multiple=true
-              label='Test'
-              class='test-class'
-              dataTest='test'
+              label="Test"
+              class="test-class"
+              dataTest="test"
             }}
           {{/bs-form}}
         ')`);
@@ -141,12 +141,12 @@ describe('Integration: Input select search to string', function () {
         await render(hbs`('
           {{#bs-form as |form|}}
             {{input-select-search-to-string
-              searchField='customId'
+              searchField="customId"
               value=model.customId
               form=form
-              label='Test'
-              class='test-class'
-              dataTest='test'
+              label="Test"
+              class="test-class"
+              dataTest="test"
             }}
           {{/bs-form}}
         ')`);
@@ -195,14 +195,14 @@ describe('Integration: Input select search to string', function () {
       await render(hbs`('
           {{#bs-form as |form|}}
             {{input-select-search-to-string
-              searchField='customId'
-              searchModel='tp-filter'
-              tpid='tptest'
+              searchField="customId"
+              searchModel="tp-filter"
+              tpid="tptest"
               value=model.customId
               form=form
-              label='Test'
-              class='test-class'
-              dataTest='test'
+              label="Test"
+              class="test-class"
+              dataTest="test"
             }}
           {{/bs-form}}
        ')`);

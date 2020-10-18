@@ -18,12 +18,11 @@ export default Controller.extend(Validations, {
 
   actions: {
     signIn() {
-      const { identification, password } = this.getProperties('email', 'password')
       return this.session
         .authenticate(
           'authenticator:oauth2',
-          identification,
-          password
+          this.email,
+          this.password
         )
         .then(() => {
           return this.router.transitionTo('realtime');

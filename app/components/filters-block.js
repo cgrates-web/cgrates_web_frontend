@@ -1,27 +1,22 @@
 import Component from '@ember/component';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  classNames: ['card', 'filter-block'],
+export default class FilterBlockComponent extends Component {
+  constructor() {
+    super(...arguments);
+    this.activeFilters = {};
+  }
 
-  init() {
-    this._super(...arguments);
-    return this.set('activeFilters', {});
-  },
+  @action
+  submit() {
+    return this.search(this.activeFilters);
+  };
 
-  actions: {
-    pushValue(key, value) {
-      return (this.activeFilters[key] = value);
-    },
-
-    search() {
-      return this.search(this.activeFilters);
-    },
-
-    reset() {
-      for (let key in this.activeFilters) {
-        this.activeFilters[key] = null;
-      }
-      return this.search(this.activeFilters);
-    },
-  },
-});
+  @action
+  reset() {
+    for (let key in this.activeFilters) {
+      this.activeFilters[key] = null;
+    }
+    return this.search(this.activeFilters);
+  };
+}

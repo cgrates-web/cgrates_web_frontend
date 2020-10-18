@@ -3,13 +3,12 @@
     {{@label}}
   </label>
   <PowerSelect
-    @triggerId={{this.id}}
     @placeholder="..."
     @searchEnabled={{false}}
     @allowClear={{true}}
     @options={{@content}}
-    @selected={{@valueWrapper}}
-    @onchange={{action (mut this.valueWrapper)}} as |item|
+    @selected={{@value}}
+    @onChange={{action (mut @value)}} as |item|
   >
     {{item}}
   </PowerSelect>

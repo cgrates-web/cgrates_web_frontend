@@ -30,7 +30,7 @@ describe('Acceptance: TpThresholds.Index', function () {
   describe('visit /tariff-plans/1/p-thresholds', () =>
     it('renders table with tp-thresholds', async function () {
       await visit('/tariff-plans/1/tp-thresholds');
-      expect(find('main h2').textContent).to.eq('TpThresholds list');
+      expect(find('main h2')).to.have.trimmed.text('TpThresholds list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
   describe('server response with meta: total_records', function () {

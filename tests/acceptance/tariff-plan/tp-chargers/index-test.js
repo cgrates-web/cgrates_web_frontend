@@ -32,7 +32,7 @@ describe('Acceptance: TpChargers.Index', function () {
   describe('visit /tariff-plans/1/tp-chargers', () =>
     it('renders table with tp-chargers', async function () {
       await visit('/tariff-plans/1/tp-chargers');
-      expect(find('main h2').textContent).to.eq('TpChargers list');
+      expect(find('main h2')).to.have.trimmed.text('TpChargers list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

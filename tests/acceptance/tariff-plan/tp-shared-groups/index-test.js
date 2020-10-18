@@ -30,7 +30,7 @@ describe('Acceptance: TpSharedGroups.Index', function () {
   describe('visit /tariff-plans/1/tp-shared-groups', () =>
     it('renders table with tp-shared-groups', async function () {
       await visit('/tariff-plans/1/tp-shared-groups');
-      expect(find('main h2').textContent).to.eq('TpSharedGroups list');
+      expect(find('main h2')).to.have.trimmed.text('TpSharedGroups list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
   describe('server response with meta: total_records', function () {

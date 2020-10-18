@@ -17,7 +17,7 @@ describe('Acceptance: Account.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/realtime/accounts/test');
-      expect(find('main h2').textContent).to.eq('Account: test');
+      expect(find('main h2')).to.have.trimmed.text('Account: test');
     }));
 
   describe('click add balance button', () =>

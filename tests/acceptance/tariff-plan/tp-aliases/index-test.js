@@ -32,7 +32,7 @@ describe('Acceptance: TpAliases.Index', function () {
   describe('visit /tariff-plans/1/tp-aliases', () =>
     it('renders table with tp-aliases', async function () {
       await visit('/tariff-plans/1/tp-aliases');
-      expect(find('main h2').textContent).to.eq('TpAliases list');
+      expect(find('main h2')).to.have.trimmed.text('TpAliases list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

@@ -6,7 +6,7 @@
   @data-test-second={{@dataTest}} as |el|
 >
   <el.control
-    @value={{@valueNumber}}
+    @value={{this.valueNumber}}
     @change={{action "change"}}
     @input={{action "input"}}
     @type="number"

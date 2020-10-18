@@ -34,7 +34,7 @@ describe('Acceptance: TpRatingPlans.Index', function () {
   describe('visit /tariff-plans/1/tp-rating-plans', () =>
     it('renders table with tp-rating-plans', async function () {
       await visit('/tariff-plans/1/tp-rating-plans');
-      expect(find('main h2').textContent).to.eq('TpRatingPlans list');
+      expect(find('main h2')).to.have.trimmed.text('TpRatingPlans list');
       expect(findAll('table tbody tr').length).to.eq(2);
     }));
 

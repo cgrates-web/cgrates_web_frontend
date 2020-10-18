@@ -174,7 +174,7 @@
             @label="ID"
             @key="customId"
             @value={{customId}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-customid={{true}}
           />
 
@@ -182,7 +182,7 @@
             @label="Tenant"
             @key="tenant"
             @value={{tenant}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenant={{true}}
           />
 
@@ -190,7 +190,7 @@
             @label="Filter type"
             @key="filterType"
             @value={{filterType}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.filterTypes}}
             @class="fiter-type-select"
             @data-test-filter-fitertype={{true}}
@@ -200,7 +200,7 @@
             @label="Filter field name"
             @key="filterFieldName"
             @value={{filterFieldName}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-field-name={{true}}
           />
 
@@ -208,7 +208,7 @@
             @label="Activation interval"
             @key="activationInterval"
             @value={{activationInterval}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-activation-interval={{true}}
           />
         </FiltersBlock>

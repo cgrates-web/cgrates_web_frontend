@@ -219,7 +219,7 @@
             @label="Direction"
             @key="direction"
             @value={{direction}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.direction}}
             @data-test-filter-direction={{true}}
           />
@@ -227,49 +227,49 @@
             @label="Tenant"
             @key="tenant"
             @value={{tenant}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Category"
             @key="category"
             @value={{category}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-category={{true}}
           />
           <FilterText
             @label="Account"
             @key="account"
             @value={{account}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-account={{true}}
           />
           <FilterText
             @label="Subject"
             @key="subject"
             @value={{subject}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-subject={{true}}
           />
           <FilterText
             @label="Destination tag"
             @key="destinationTag"
             @value={{destinationTag}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-destination-tag={{true}}
           />
           <FilterText
             @label="RP category"
             @key="rpCategory"
             @value={{rpCategory}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-rp-category={{true}}
           />
           <FilterSelect
             @label="Strategy"
             @key="strategy"
             @value={{strategy}}
-            @onValueChange={{action "pushValue" target=filtersBlock}}
+            @onValueChange={{filtersBlock.pushValue}}
             @content={{selectValues.strategy}}
             @data-test-filter-strategy={{true}}
           />

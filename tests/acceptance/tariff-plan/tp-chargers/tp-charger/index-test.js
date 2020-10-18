@@ -25,7 +25,7 @@ describe('Acceptance: TpCharger.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-chargers/1');
-      expect(find('main h2').textContent).to.eq('TpCharger: custom_id');
+      expect(find('main h2')).to.have.trimmed.text('TpCharger: custom_id');
     }));
 
   return describe('click edit button', () =>
