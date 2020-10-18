@@ -303,112 +303,87 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tag"
-            @key="tag"
-            @value={{tag}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tag={{true}}
+            @value={{filtersBlock.activeFilters.tag}}
+            data-test-filter-tag
           />
           <FilterSelect
             @label="Metrics"
-            @key="metrics"
-            @value={{metrics}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.metrics}}
             @content={{selectValues.metrics}}
             @data-test-filter-metrics={{true}}
           />
           <FilterText
             @label="Tors"
-            @key="tors"
-            @value={{tors}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tors={{true}}
+            @value={{filtersBlock.activeFilters.tors}}
+            data-test-filter-tors
           />
           <FilterText
             @label="Cdr hosts"
-            @key="cdrHosts"
-            @value={{cdrHosts}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-cdr-hosts={{true}}
+            @value={{filtersBlock.activeFilters.cdrHosts}}
+            data-test-filter-cdr-hosts
           />
           <FilterText
             @label="Cdr sources"
-            @key="cdrSources"
-            @value={{cdrSources}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-cdr-sources={{true}}
+            @value={{filtersBlock.activeFilters.cdrSources}}
+            data-test-filter-cdr-sources
           />
           <FilterText
             @label="Req types"
-            @key="reqTypes"
-            @value={{reqTypes}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-req-types={{true}}
+            @value={{filtersBlock.activeFilters.reqTypes}}
+            data-test-filter-req-types
           />
           <FilterText
             @label="Directions"
-            @key="directions"
-            @value={{directions}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-directions={{true}}
+            @value={{filtersBlock.activeFilters.directions}}
+            data-test-filter-directions
           />
           <FilterText
             @label="Tenants"
-            @key="tenants"
-            @value={{tenants}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tenants={{true}}
+            @value={{filtersBlock.activeFilters.tenants}}
+            data-test-filter-tenants
           />
           <FilterText
             @label="Categories"
-            @key="categories"
-            @value={{categories}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-categories={{true}}
+            @value={{filtersBlock.activeFilters.categories}}
+            data-test-filter-categories
           />
           <FilterText
             @label="Accounts"
-            @key="accounts"
-            @value={{accounts}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-accounts={{true}}
+            @value={{filtersBlock.activeFilters.accounts}}
+            data-test-filter-accounts
           />
           <FilterText
             @label="Subjects"
-            @key="subjects"
-            @value={{subjects}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-subjects={{true}}
+            @value={{filtersBlock.activeFilters.subjects}}
+            data-test-filter-subjects
           />
           <FilterText
             @label="Suppliers"
-            @key="suppliers"
-            @value={{suppliers}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-suppliers={{true}}
+            @value={{filtersBlock.activeFilters.suppliers}}
+            data-test-filter-suppliers
           />
           <FilterSelectSearchToString
             @label="Destination IDs"
-            @key="destinationIds"
-            @value={{destinationIds}}
+            @value={{filtersBlock.activeFilters.destinationIds}}
             @searchModel="tp-destination"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
             @multiple={{true}}
-            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-destination-ids={{true}}
           />
           <FilterSelectSearchToString
             @label="Action triggers"
-            @key="actionTriggers"
-            @value={{actionTriggers}}
+            @value={{filtersBlock.activeFilters.actionTriggers}}
             @searchModel="tp-action-trigger"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
             @multiple={{true}}
-            @onValueChange={{filtersBlock.pushValue}}
             @data-test-filter-action-triggers={{true}}
           />
           <FilterCollapseBtn
@@ -418,83 +393,62 @@
           <BsCollapse @collapsed={{otherFiltersCollapsed}}>
             <FilterNumber
               @label="Queue length"
-              @key="queueLength"
-              @value={{queueLength}}
+              @value={{filtersBlock.activeFilters.queueLength}}
               @onValueChange={{filtersBlock.pushValue}}
               @min="0"
-              @data-test-filter-queue-length={{true}}
+              data-test-filter-queue-length
             />
             <FilterNumber
               @label="Time window"
-              @key="timeWindow"
-              @value={{timeWindow}}
-              @onValueChange={{filtersBlock.pushValue}}
+              @value={{filtersBlock.activeFilters.timeWindow}}
               @min="0"
-              @data-test-filter-time-window={{true}}
+              data-test-filter-time-window
             />
             <FilterNumber
               @label="Save interval"
-              @key="saveInterval"
-              @value={{saveInterval}}
-              @onValueChange={{filtersBlock.pushValue}}
+              @value={{filtersBlock.activeFilters.saveInterval}}
               @min="0"
-              @data-test-filter-save-interval={{true}}
+              data-test-filter-save-interval
             />
             <FilterText
               @label="Setup interval"
-              @key="setupInterval"
-              @value={{setupInterval}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-setup-interval={{true}}
+              @value={{filtersBlock.activeFilters.setupInterval}}
+              data-test-filter-setup-interval
             />
             <FilterText
               @label="Pdd interval"
-              @key="pddInterval"
-              @value={{pddInterval}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-pdd-interval={{true}}
+              @value={{filtersBlock.activeFilters.pddInterval}}
+              data-test-filter-pdd-interval
             />
             <FilterText
               @label="Usage interval"
-              @key="usageInterval"
-              @value={{usageInterval}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-usage-interval={{true}}
+              @value={{filtersBlock.activeFilters.usageInterval}}
+              data-test-filter-usage-interval
             />
             <FilterText
               @label="Disconnect causes"
-              @key="disconnectCauses"
-              @value={{disconnectCauses}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-disconnect-causes={{true}}
+              @value={{filtersBlock.activeFilters.disconnectCauses}}
+              data-test-filter-disconnect-causes
             />
             <FilterText
               @label="Mediation run IDs"
-              @key="mediationRunids"
-              @value={{mediationRunids}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-mediation-runids={{true}}
+              @value={{filtersBlock.activeFilters.mediationRunids}}
+              data-test-filter-mediation-runids
             />
             <FilterText
               @label="Rated accounts"
-              @key="ratedAccounts"
-              @value={{ratedAccounts}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-rated-accounts={{true}}
+              @value={{filtersBlock.activeFilters.ratedAccounts}}
+              data-test-filter-rated-accounts
             />
             <FilterText
               @label="Rated subjects"
-              @key="ratedSubjects"
-              @value={{ratedSubjects}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-rated-subjects={{true}}
+              @value={{filtersBlock.activeFilters.ratedSubjects}}
+              data-test-filter-rated-subjects
             />
             <FilterText
               @label="Cost interval"
-              @key="costInterval"
-              @value={{costInterval}}
-              @onValueChange={{filtersBlock.pushValue}}
-              @data-test-filter-cost-interval={{true}}
+              @value={{filtersBlock.activeFilters.costInterval}}
+              data-test-filter-cost-interval
             />
           </BsCollapse>
         </FiltersBlock>

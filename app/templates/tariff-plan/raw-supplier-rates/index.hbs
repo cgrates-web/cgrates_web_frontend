@@ -167,29 +167,29 @@
           <FilterText
             @label="Prefix"
             @value={{filtersBlock.activeFilters.prefix}}
-            @data-test-filter-prefix={{true}}
+            data-test-filter-prefix
           />
           <FilterText
             @label="Supplier"
             @value={{filtersBlock.activeFilters.supplierName}}
-            @data-test-filter-supplier={{true}}
+            data-test-filter-suppliet
           />
           <FilterNumber
             @label="rate"
             @value={{filtersBlock.activeFilters.rate}}
             @step="0.0001"
             @min="0"
-            @data-test-filter-rate={{true}}
+            data-test-filter-rate
           />
           <FilterDate
             @label="from"
             @value={{filtersBlock.activeFilters.insertedAtGt}}
-            @data-test-filter-inserted-at-gt={{true}}
+            data-test-filter-inserted-at-gt
           />
           <FilterDate
             @label="to"
             @value={{filtersBlock.activeFilters.insertedAtLt}}
-            @data-test-filter-inserted-at-lt={{true}}
+            data-test-filter-inserted-at-lt
           />
         </FiltersBlock>
       </div>

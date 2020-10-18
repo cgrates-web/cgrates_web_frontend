@@ -160,25 +160,25 @@
           <FilterText
             @label="Tag"
             @value={{filtersBlock.activeFilters.tag}}
-            @data-test-filter-tag={{true}}
+            data-test-filter-tag
           />
           {
           <FilterText
             @label="Actions tag"
             @value={{filtersBlock.activeFilters.actionsTag}}
-            @data-test-filter-actions-tag={{true}}
+            data-test-filter-actions-tag
           />
           <FilterText
             @label="Timing tag"
             @value={{filtersBlock.activeFilters.timingTag}}
-            @data-test-filter-timing-tag={{true}}
+            data-test-filter-timing-tag
           />
           <FilterNumber
             @label="Weight"
             @value={{filtersBlock.activeFilters.weight}}
             @step="0.1"
             @min="0"
-            @data-test-filter-weight={{true}}
+            data-test-filter-weight
           />
         </FiltersBlock>
       </div>

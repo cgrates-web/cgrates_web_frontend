@@ -232,87 +232,68 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tenant"
-            @key="tenant"
-            @value={{tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.tenant}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Custom ID"
-            @key="customId"
-            @value={{customId}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.customId}}
             @data-test-filter-customid={{true}}
           />
           <FilterText
             @label="Contexts"
-            @key="contexts"
-            @value={{contexts}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.contexts}}
             @data-test-filter-contexts={{true}}
           />
           <FilterText
             @label="Filter ids"
-            @key="filterIds"
-            @value={{filterIds}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.filterIds}}
             @data-test-filter-filter-ids={{true}}
           />
           <FilterText
             @label="Activation interval"
-            @key="activationInterval"
-            @value={{activationInterval}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.activationInterval}}
             @data-test-filter-activation-interval={{true}}
           />
           <FilterText
             @label="Field name"
-            @key="fieldName"
-            @value={{fieldName}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.fieldName}}
             @data-test-filter-field-name={{true}}
           />
           <FilterText
             @label="Initial"
-            @key="initial"
-            @value={{initial}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.initial}}
             @data-test-filter-initial={{true}}
           />
           <FilterText
             @label="Substitute"
-            @key="substitute"
-            @value={{substitute}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.substitute}}
             @data-test-filter-substitute={{true}}
           />
           <FilterSelect
             @label="Append"
-            @key="append"
-            @value={{append}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @content={{selectValues.boolean}}
+            @value={{filtersBlock.activeFilters.append}}
+            @content={{this.selectValues.boolean}}
             @data-test-filter-append={{true}}
           />
           <FilterSelect
             @label="Blocker"
-            @key="blocker"
-            @value={{blocker}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @content={{selectValues.boolean}}
+            @value={{filtersBlock.activeFilters.blocker}}
+            @content={{this.selectValues.boolean}}
             @data-test-filter-blocker={{true}}
           />
           <FilterNumber
             @label="Weight"
-            @key="weight"
-            @value={{weight}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.weight}}
             @step="0.1"
             @min="0"
-            @data-test-filter-weight={{true}}
+            data-test-filter-weight
           />
         </FiltersBlock>
       </div>

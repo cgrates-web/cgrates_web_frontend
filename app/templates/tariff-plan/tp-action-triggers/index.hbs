@@ -299,12 +299,12 @@
           <FilterText
             @label="Tag"
             @value={{filtersBlock.activeFilters.tag}}
-            @data-test-filter-tag={{true}}
+            data-test-filter-tag
           />
           <FilterText
             @label="Unique id"
             @value={{filtersBlock.activeFilters.uniqueId}}
-            @data-test-filter-unique-id={{true}}
+            data-test-filter-unique-id
           />
           <FilterSelect
             @label="Threshold type"
@@ -316,7 +316,7 @@
             @label="Threshold value"
             @value={{filtersBlock.activeFilters.thresholdValue}}
             @min="0"
-            @data-test-filter-threshold-value={{true}}
+            data-test-filter-threshold-value
           />
           <FilterSelect
             @label="Recurrent"
@@ -327,17 +327,17 @@
           <FilterText
             @label="Min sleep"
             @value={{filtersBlock.activeFilters.minSleep}}
-            @data-test-filter-min-sleep={{true}}
+            data-test-filter-min-sleep
           />
           <FilterText
             @label="Expiry time"
             @value={{filtersBlock.activeFilters.expiryTime}}
-            @data-test-filter-expiry-time={{true}}
+            data-test-filter-expiry-time
           />
           <FilterText
             @label="Activation time"
             @value={{filtersBlock.activeFilters.activationTime}}
-            @data-test-filter-activation-time={{true}}
+            data-test-filter-activation-time
           />
           <FilterSelect
             @label="Balance tag"
@@ -356,7 +356,7 @@
             @value={{filtersBlock.activeFilters.minQueuedItems}}
             @step="0.1"
             @min="0"
-            @data-test-filter-min-queued-items={{true}}
+            data-test-filter-min-queued-items
           />
           <FilterSelectSearchToString
             @label="Actions tag"
@@ -371,7 +371,7 @@
             @value={{filtersBlock.activeFilters.weight}}
             @step="0.1"
             @min="0"
-            @data-test-filter-weight={{true}}
+            data-test-filter-weight
           />
         </FiltersBlock>
       </div>

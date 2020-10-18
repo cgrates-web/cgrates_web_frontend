@@ -198,57 +198,46 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tenant"
-            @key="tenant"
-            @value={{tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.tenant}}
             @data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Custom ID"
-            @key="customId"
-            @value={{customId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-customid={{true}}
+            @value={{filtersBlock.activeFilters.customId}}
+            data-test-filter-customid
           />
           <FilterText
             @label="Filter IDs"
-            @key="filterIds"
-            @value={{filterIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-filter-ids={{true}}
+            @value={{filtersBlock.activeFilters.filterIds}}
+            data-test-filter-filter-ids
           />
           <FilterText
             @label="Activation interval"
-            @key="activationInterval"
-            @value={{activationInterval}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-activation-interval={{true}}
+            @value={{filtersBlock.activeFilters.activationInterval}}
+            data-test-filter-activation-interval
           />
           <FilterText
             @label="Run ID"
-            @key="runId"
-            @value={{runId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-run-id={{true}}
+            @value={{filtersBlock.activeFilters.runId}}
+            data-test-filter-run-id
           />
           <FilterText
             @label="Attribute IDs"
-            @key="attributeIds"
-            @value={{attributeIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-attribute-ids={{true}}
+            @value={{filtersBlock.activeFilters.attributeIds}}
+            data-test-filter-attribute-ids
           />
           <FilterNumber
             @label="Weight"
-            @key="weight"
-            @value={{weight}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.weight}}
             @step="0.1"
             @min="0"
-            @data-test-filter-weight={{true}}
+            data-test-filter-weight
           />
         </FiltersBlock>
       </div>

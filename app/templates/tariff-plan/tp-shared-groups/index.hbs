@@ -160,34 +160,29 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tag"
-            @key="tag"
-            @value={{tag}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tag={{true}}
+            @value={{filtersBlock.activeFilters.tag}}
+            data-test-filter-tag
           />
           <FilterText
             @label="Account"
-            @key="account"
-            @value={{account}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-account={{true}}
+            @value={{filtersBlock.activeFilters.account}}
+            data-test-filter-account
           />
           <FilterText
             @label="Strategy"
-            @key="strategy"
-            @value={{strategy}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-strategy={{true}}
+            @value={{filtersBlock.activeFilters.strategy}}
+            data-test-filter-strategy
           />
           <FilterText
             @label="Rating subject"
-            @key="ratingSubject"
-            @value={{ratingSubject}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-rating-subject={{true}}
+            @value={{filtersBlock.activeFilters.ratingSubject}}
+            data-test-filter-rating-subject
           />
         </FiltersBlock>
       </div>

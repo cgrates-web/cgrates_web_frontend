@@ -213,62 +213,49 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterSelect
             @label="Direction"
-            @key="direction"
-            @value={{direction}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.direction}}
             @content={{selectValues.direction}}
             @data-test-filter-direction={{true}}
           />
           <FilterText
             @label="Tenant"
-            @key="tenant"
-            @value={{tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tenant={{true}}
+            @value={{filtersBlock.activeFilters.tenant}}
+            data-test-filter-tenant
           />
           <FilterText
             @label="Category"
-            @key="category"
-            @value={{category}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-category={{true}}
+            @value={{filtersBlock.activeFilters.category}}
+            data-test-filter-category
           />
           <FilterText
             @label="Account"
-            @key="account"
-            @value={{account}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-account={{true}}
+            @value={{filtersBlock.activeFilters.account}}
+            data-test-filter-account
           />
           <FilterText
             @label="Subject"
-            @key="subject"
-            @value={{subject}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-subject={{true}}
+            @value={{filtersBlock.activeFilters.subject}}
+            data-test-filter-subject
           />
           <FilterText
             @label="Destination tag"
-            @key="destinationTag"
-            @value={{destinationTag}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-destination-tag={{true}}
+            @value={{filtersBlock.activeFilters.destinationTag}}
+            data-test-filter-destination-tag
           />
           <FilterText
             @label="RP category"
-            @key="rpCategory"
-            @value={{rpCategory}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-rp-category={{true}}
+            @value={{filtersBlock.activeFilters.rpCategory}}
+            data-test-filter-rp-category
           />
           <FilterSelect
             @label="Strategy"
-            @key="strategy"
-            @value={{strategy}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.strategy}}
             @content={{selectValues.strategy}}
             @data-test-filter-strategy={{true}}
           />

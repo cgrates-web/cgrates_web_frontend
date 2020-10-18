@@ -108,13 +108,14 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tag"
-            @key="tag"
-            @value={{tag}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tag={{true}}
+            @value={{filtersBlock.activeFilters.tag}}
+            data-test-filter-tag
           />
         </FiltersBlock>
       </div>

@@ -187,104 +187,79 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Custom ID"
-            @key="customId"
-            @value={{customId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-custom-id={{true}}
+            @value={{filtersBlock.activeFilters.customId}}
+            data-test-filter-custom-id
           />
           <FilterText
             @label="Filter IDs"
-            @key="filterIds"
-            @value={{filterIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-filter-ids={{true}}
+            @value={{filtersBlock.activeFilters.filterIds}}
+            data-test-filter-filter-ids
           />
           <FilterText
             @label="Sorting"
-            @key="sorting"
-            @value={{sorting}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-sorting={{true}}
+            @value={{filtersBlock.activeFilters.sorting}}
+            data-test-filter-sorting
           />
           <FilterText
             @label="Supplier ID"
-            @key="supplierId"
-            @value={{supplierId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-supplier-id={{true}}
+            @value={{filtersBlock.activeFilters.supplierId}}
+            data-test-filter-supplier-id
           />
           <FilterText
             @label="Weight"
-            @key="weight"
-            @value={{weight}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-weight={{true}}
+            @value={{filtersBlock.activeFilters.weight}}
+            data-test-filter-weight
           />
           <FilterText
             @label="Supplier weight"
-            @key="supplierWeight"
-            @value={{supplierWeight}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-supplier-weight={{true}}
+            @value={{filtersBlock.activeFilters.supplierWeight}}
+            @data-test-filter-supplier-weight
           />
           <FilterText
             @label="Activation interval"
-            @key="activationInterval"
-            @value={{activationInterval}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-activation-interval={{true}}
+            @value={{filtersBlock.activeFilters.activationInterval}}
+            @data-test-filter-activation-interval
           />
           <FilterText
             @label="Activation interval"
-            @key="activationInterval"
-            @value={{activationInterval}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-activation-interval={{true}}
+            @value={{filtersBlock.activeFilters.activationInterval}}
+            data-test-filter-activation-interval
           />
           <FilterText
             @label="Sorting parameters"
-            @key="sortingParameters"
-            @value={{sortingParameters}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-sorting-parameters={{true}}
+            @value={{filtersBlock.activeFilters.sortingParameters}}
+            data-test-filter-sorting-parameters
           />
           <FilterText
             @label="Supplier filter ids"
-            @key="supplierFilterIds"
-            @value={{supplierFilterIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-supplier-filter-ids={{true}}
+            @value={{filtersBlock.activeFilters.supplierFilterIds}}
+            data-test-filter-supplier-filter-ids
           />
           <FilterText
             @label="Supplier account ids"
-            @key="supplierAccountIds"
-            @value={{supplierAccountIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-supplier-account-ids={{true}}
+            @value={{filtersBlock.activeFilters.supplierAccountIds}}
+            data-test-filter-supplier-account-ids
           />
           <FilterText
             @label="Supplier rating plan ids"
-            @key="supplierRatingplanIds"
-            @value={{supplierRatingplanIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-supplier-ratingplan-ids={{true}}
+            @value={{filtersBlock.activeFilters.supplierRatingplanIds}}
+            data-test-filter-supplier-ratingplan-ids
           />
           <FilterText
             @label="Supplier resource ids"
-            @key="supplierResourceIds"
-            @value={{supplierResourceIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-supplier-resource-ids={{true}}
+            @value={{filtersBlock.activeFilters.supplierResourceIds}}
+            data-test-filter-supplier-resource-ids
           />
           <FilterText
             @label="Supplier stat ids"
-            @key="supplierStatIds"
-            @value={{supplierStatIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-supplier-stat-ids={{true}}
+            @value={{filtersBlock.activeFilters.supplierStatIds}}
+            data-test-filter-supplier-stat-ids
           />
         </FiltersBlock>
       </div>

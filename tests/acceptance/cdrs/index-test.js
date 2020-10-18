@@ -14,7 +14,7 @@ import {
 } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
-describe.only('Acceptance: Cdrs.Index', function () {
+describe('Acceptance: Cdrs.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 

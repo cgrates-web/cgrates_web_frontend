@@ -204,59 +204,50 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tag"
-            @key="tag"
-            @value={{tag}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tag={{true}}
+            @value={{filtersBlock.activeFilters.tag}}
+            data-test-filter-tag
           />
           <FilterText
             @label="Rates tag"
-            @key="ratesTag"
-            @value={{ratesTag}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-rates-tag={{true}}
+            @value={{filtersBlock.activeFilters.ratesTag}}
+            data-test-filter-rates-tag
           />
           <FilterText
             @label="Destinations tag"
-            @key="destinationsTag"
-            @value={{destinationsTag}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-destinations-tag={{true}}
+            @value={{filtersBlock.activeFilters.destinationsTag}}
+            data-test-filter-destinations-tag
           />
           <FilterNumber
             @label="Rounding decimals"
-            @key="roundingDecimals"
-            @value={{roundingDecimals}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.roundingDecimals}}
             @step="1"
             @min="0"
-            @data-test-filter-rounding-decimals={{true}}
+            data-test-filter-rounding-decimals
           />
           <FilterNumber
             @label="Max cost (decimal)"
-            @key="maxCost"
-            @value={{maxCost}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.maxCost}}
             @step="0.0001"
             @min="0"
-            @data-test-filter-max-cost={{true}}
+            data-test-filter-max-cost
           />
           <FilterSelect
             @label="Rounding method"
             @key="roundingMethod"
-            @value={{roundingMethod}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.roundingMethod}}
             @content={{selectValues.roundingMethod}}
             @data-test-filter-rounding-method={{true}}
           />
           <FilterSelect
             @label="Max cost strategy"
             @key="maxCostStrategy"
-            @value={{maxCostStrategy}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.maxCostStrategy}}
             @content={{selectValues.maxCostStrategy}}
             @data-test-filter-max-cost-strategy={{true}}
           />

@@ -209,17 +209,17 @@
           <FilterText
             @label="Load ID"
             @value={{filtersBlock.activeFilters.loadid}}
-            @data-test-filter-loadid={{true}}
+            data-test-filter-loadid
           />
           <FilterText
             @label="Tenant"
             @value={{filtersBlock.activeFilters.tenant}}
-            @data-test-filter-tenant={{true}}
+            data-test-filter-tenant
           />
           <FilterText
             @label="Account"
             @value={{filtersBlock.activeFilters.account}}
-            @data-test-filter-account={{true}}
+            data-test-filter-account
           />
           <FilterSelectSearchToString
             @label="Action plan tag"
@@ -241,13 +241,13 @@
             @label="Allow negative"
             @value={{filtersBlock.activeFilters.allowNegative}}
             @content={{selectValues.boolean}}
-            @data-test-filter-allow-negative={{true}}
+            data-test-filter-allow-negative
           />
           <FilterSelect
             @label="Disabled"
             @value={{filtersBlock.activeFilters.disabled}}
             @content={{selectValues.boolean}}
-            @data-test-filter-disabled={{true}}
+            data-test-filter-disabled
           />
         </FiltersBlock>
       </div>

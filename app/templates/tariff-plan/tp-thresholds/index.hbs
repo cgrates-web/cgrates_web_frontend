@@ -262,90 +262,71 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="Tenant"
-            @key="tenant"
-            @value={{tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tenant={{true}}
+            @value={{filtersBlock.activeFilters.tenant}}
+            data-test-filter-tenant
           />
           <FilterText
             @label="Custom ID"
-            @key="customId"
-            @value={{customId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-customid={{true}}
+            @value={{filtersBlock.activeFilters.customId}}
+            data-test-filter-customid
           />
           <FilterText
             @label="Filter IDs"
-            @key="filterIds"
-            @value={{filterIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-filter-ids={{true}}
+            @value={{filtersBlock.activeFilters.filterIds}}
+            data-test-filter-filter-ids
           />
           <FilterText
             @label="Action IDs"
-            @key="actionIds"
-            @value={{actionIds}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-action-ids={{true}}
+            @value={{filtersBlock.activeFilters.actionIds}}
+            data-test-filter-action-ids
           />
           <FilterText
             @label="Activation interval"
-            @key="activationInterval"
-            @value={{activationInterval}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-activation-interval={{true}}
+            @value={{filtersBlock.activeFilters.activationInterval}}
+            data-test-filter-activation-interval
           />
           <FilterNumber
             @label="Max hits"
-            @key="maxHits"
-            @value={{maxHits}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.maxHits}}
             @min="0"
-            @data-test-filter-max-hits={{true}}
+            data-test-filter-max-hits
           />
           <FilterNumber
             @label="Min hits"
-            @key="minHits"
-            @value={{minHits}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.minHits}}
             @min="0"
-            @data-test-filter-min-hits={{true}}
+            data-test-filter-min-hits
           />
           <FilterNumber
             @label="Min slleep"
-            @key="minSleep"
-            @value={{minSleep}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.minSleep}}
             @min="0"
-            @data-test-filter-min-sleep={{true}}
+            data-test-filter-min-sleep
           />
           <FilterSelect
             @label="Blocker"
-            @key="blocker"
-            @value={{blocker}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.blocker}}
             @content={{selectValues.boolean}}
             @data-test-filter-blocker={{true}}
           />
           <FilterSelect
             @label="Async"
-            @key="async"
-            @value={{async}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.async}}
             @content={{selectValues.boolean}}
             @data-test-filter-async={{true}}
           />
           <FilterNumber
             @label="Weight"
-            @key="weight"
-            @value={{weight}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.weight}}
             @step="0.1"
             @min="0"
-            @data-test-filter-weight={{true}}
+            data-test-filter-weight
           />
         </FiltersBlock>
       </div>

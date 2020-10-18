@@ -168,28 +168,25 @@
         />
       </div>
       <div class="col-md-3">
-        <FiltersBlock @search={{action "search"}} as |filtersBlock|>
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
           <FilterText
             @label="ID"
-            @key="customId"
-            @value={{customId}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-customid={{true}}
+            @value={{filtersBlock.activeFilters.customId}}
+            data-test-filter-customid
           />
 
           <FilterText
             @label="Tenant"
-            @key="tenant"
-            @value={{tenant}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-tenant={{true}}
+            @value={{filtersBlock.activeFilters.tenant}}
+            data-test-filter-tenant
           />
 
           <FilterSelect
             @label="Filter type"
-            @key="filterType"
-            @value={{filterType}}
-            @onValueChange={{filtersBlock.pushValue}}
+            @value={{filtersBlock.activeFilters.filterType}}
             @content={{selectValues.filterTypes}}
             @class="fiter-type-select"
             @data-test-filter-fitertype={{true}}
@@ -197,18 +194,14 @@
 
           <FilterText
             @label="Filter field name"
-            @key="filterFieldName"
-            @value={{filterFieldName}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-field-name={{true}}
+            @value={{filtersBlock.activeFilters.filterFieldName}}
+            data-test-filter-field-name
           />
 
           <FilterText
             @label="Activation interval"
-            @key="activationInterval"
-            @value={{activationInterval}}
-            @onValueChange={{filtersBlock.pushValue}}
-            @data-test-filter-activation-interval={{true}}
+            @value={{filtersBlock.activeFilters.activationInterval}}
+            data-test-filter-activation-interval
           />
         </FiltersBlock>
       </div>
