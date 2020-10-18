@@ -29,7 +29,7 @@ describe('Acceptance: tpActionTriggers.Index', function () {
       alias: 'tptest',
     });
     server.createList('tp-action-trigger', 2, { tpid: this.tariffPlan.alias });
-    server.createList('tp-action-triggers', 2, { tpid: 'other' });
+    server.createList('tp-action-trigger', 2, { tpid: 'other' });
     server.createList('tp-action', 2, {
       tpid: this.tariffPlan.alias,
       tag: 'tag-1',

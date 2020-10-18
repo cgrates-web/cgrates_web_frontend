@@ -56,14 +56,6 @@ describe('Acceptance: TpCdrStats.New', function () {
         'd-block'
       );
     });
-    it('displays metrics error', async function () {
-      expect(find('[data-test-select="metrics"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="metrics"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays time-window error', async function () {
       expect(
         find('[data-test-input-interval="time-window"] input')
@@ -109,12 +101,6 @@ describe('Acceptance: TpCdrStats.New', function () {
     it('displays req-types error', async function () {
       expect(find('[data-test-req-types] input')).to.have.class('is-invalid');
       expect(find('[data-test-req-types] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays directions error', async function () {
-      expect(find('[data-test-directions] input')).to.have.class('is-invalid');
-      expect(find('[data-test-directions] .invalid-feedback')).to.have.class(
         'd-block'
       );
     });

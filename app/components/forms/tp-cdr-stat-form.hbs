@@ -1,6 +1,6 @@
 <BsForm
   @model={{@model}}
-  @onSubmit={{perform save}}
+  @onSubmit={{perform @save}}
   @novalidate={{true}} as |form|
 >
   <div class="form-row">
@@ -22,7 +22,7 @@
       @property="metrics"
       @form={{form}}
       @label="Metrics"
-      @content={{selectValues.metrics}}
+      @content={{this.selectValues.metrics}}
       @class="col-md-3"
       @dataTest="metrics"
     />
@@ -178,9 +178,9 @@
   <BsButton
     @type="primary"
     @buttonType="submit"
-    @disabled={{save.isRunning}}
+    @disabled={{@save.isRunning}}
     @data-test-submit-button={{true}}
   >
-    <LoadingButtonText @text="Save" @isLoading={{save.isRunning}} />
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>
 </BsForm>

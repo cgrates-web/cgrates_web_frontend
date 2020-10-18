@@ -58,14 +58,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
         'd-block'
       );
     });
-    it('displays threshold-type error', async function () {
-      expect(find('[data-test-select="threshold-type"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="threshold-type"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays threshold-value error', async function () {
       expect(find('[data-test-threshold-value] input')).to.have.class(
         'is-invalid'
@@ -117,22 +109,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
       );
     });
 
-    it('displays balance-tag error', async function () {
-      expect(find('[data-test-select="balance-tag"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="balance-tag"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays balance-type error', async function () {
-      expect(find('[data-test-select="balance-type"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="balance-type"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays balance-directions error', async function () {
       expect(find('[data-test-select="balance-directions"] div')).to.have.class(
         'is-invalid'

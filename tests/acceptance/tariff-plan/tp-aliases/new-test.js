@@ -42,12 +42,6 @@ describe('Acceptance: TpAliases.New', function () {
         'd-block'
       );
     });
-    it('displays direction error', async function () {
-      expect(find('[data-test-direction] input')).to.have.class('is-invalid');
-      expect(find('[data-test-direction] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
     it('displays category error', async function () {
       expect(find('[data-test-category] input')).to.have.class('is-invalid');
       expect(find('[data-test-category] .invalid-feedback')).to.have.class(

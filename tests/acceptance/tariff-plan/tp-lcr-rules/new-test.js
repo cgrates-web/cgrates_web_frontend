@@ -49,14 +49,6 @@ describe('Acceptance: TpLcrRules.New', function () {
       await visit('/tariff-plans/1/tp-lcr-rules/new');
       await click('[data-test-submit-button]');
     });
-    it('displays direction error', async function () {
-      expect(find('[data-test-select="direction"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="direction"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays tenant error', function () {
       expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
       expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(
@@ -81,27 +73,11 @@ describe('Acceptance: TpLcrRules.New', function () {
         'd-block'
       );
     });
-    it('displays destination tag error', async function () {
-      expect(find('[data-test-tag="destination"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-tag="destination"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays rp-category error', function () {
       expect(find('[data-test-rp-category] input')).to.have.class('is-invalid');
       expect(find('[data-test-rp-category] .invalid-feedback')).to.have.class(
         'd-block'
       );
-    });
-    it('displays strategy error', async function () {
-      expect(find('[data-test-select="strategy"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="strategy"] .invalid-feedback')
-      ).to.have.class('d-block');
     });
     it('does not displays strategy-params error', function () {
       expect(find('[data-test-strategy-params] input')).not.to.have.class(

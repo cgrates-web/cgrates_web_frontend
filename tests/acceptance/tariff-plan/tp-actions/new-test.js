@@ -44,36 +44,6 @@ describe('Acceptance: TpActions.New', function () {
         'd-block'
       );
     });
-    it('displays action error', async function () {
-      expect(find('[data-test-select="action"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="action"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays balance-tag error', async function () {
-      expect(find('[data-test-balance-tag] input')).to.have.class('is-invalid');
-      expect(find('[data-test-balance-tag] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays balance-type error', async function () {
-      expect(find('[data-test-select="balance-type"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="balance-type"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays directions error', async function () {
-      expect(find('[data-test-select="directions"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="directions"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays units error', async function () {
       expect(find('[data-test-units] input')).to.have.class('is-invalid');
       expect(find('[data-test-units] .invalid-feedback')).to.have.class(
@@ -91,14 +61,6 @@ describe('Acceptance: TpActions.New', function () {
       expect(find('[data-test-timing-tags] .invalid-feedback')).to.have.class(
         'd-block'
       );
-    });
-    it('displays destination tag error', async function () {
-      expect(find('[data-test-tag="destination"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-tag="destination"] .invalid-feedback')
-      ).to.have.class('d-block');
     });
     it('displays rating-subject error', async function () {
       expect(find('[data-test-rating-subject] input')).to.have.class(
@@ -128,22 +90,6 @@ describe('Acceptance: TpActions.New', function () {
       );
       expect(
         find('[data-test-balance-weight] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays balance-blocker error', async function () {
-      expect(find('[data-test-select="balance-blocker"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="balance-blocker"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays balance-disabled error', async function () {
-      expect(find('[data-test-select="balance-disabled"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="balance-disabled"] .invalid-feedback')
       ).to.have.class('d-block');
     });
 

@@ -44,12 +44,6 @@ describe('Acceptance: TpDerivedChargers.New', function () {
         'd-block'
       );
     });
-    it('displays direction error', async function () {
-      expect(find('[data-test-direction] input')).to.have.class('is-invalid');
-      expect(find('[data-test-direction] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
     it('displays tenant error', async function () {
       expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
       expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(

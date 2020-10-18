@@ -1,6 +1,6 @@
 <BsForm
   @model={{@model}}
-  @onSubmit={{perform save}}
+  @onSubmit={{perform @save}}
   @novalidate={{true}} as |form|
 >
   <div class="form-row">
@@ -77,9 +77,9 @@
   <BsButton
     @type="primary"
     @buttonType="submit"
-    @disabled={{save.isRunning}}
+    @disabled={{@save.isRunning}}
     @data-test-submit-button={{true}}
   >
-    <LoadingButtonText @text="Save" @isLoading={{save.isRunning}} />
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>
 </BsForm>

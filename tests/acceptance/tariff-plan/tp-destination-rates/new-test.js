@@ -69,20 +69,6 @@ describe('Acceptance: TpDestinationRates.New', function () {
         'd-block'
       );
     });
-    it('displays rates tag error', async function () {
-      expect(find('[data-test-tag="rates"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-tag="rates"] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays destinations tag error', async function () {
-      expect(find('[data-test-tag="destinations"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-tag="destinations"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays rounding-decimals error', async function () {
       expect(find('[data-test-rounding-decimals] input')).to.have.class(
         'is-invalid'
@@ -96,22 +82,6 @@ describe('Acceptance: TpDestinationRates.New', function () {
       expect(find('[data-test-max-cost] .invalid-feedback')).to.have.class(
         'd-block'
       );
-    });
-    it('displays rounding-method error', async function () {
-      expect(find('[data-test-select="rounding-method"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="rounding-method"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays max-cost-strategy error', async function () {
-      expect(find('[data-test-select="max-cost-strategy"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="max-cost-strategy"] .invalid-feedback')
-      ).to.have.class('d-block');
     });
   });
 

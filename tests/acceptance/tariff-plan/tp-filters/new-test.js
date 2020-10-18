@@ -94,14 +94,6 @@ describe('Acceptance: TpFilter.New', function () {
           find('[data-test-activation-interval] .invalid-feedback')
         ).not.to.exist;
       });
-      it('displays filter-type error', async function () {
-        expect(find('[data-test-select="filter-type"] div')).to.have.class(
-          'is-invalid'
-        );
-        expect(
-          find('[data-test-select="filter-type"] .invalid-feedback')
-        ).to.have.class('d-block');
-      });
     });
   });
 

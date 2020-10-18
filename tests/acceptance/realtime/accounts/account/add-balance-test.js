@@ -20,21 +20,6 @@ describe('Acceptance: Account.AddBalance', function () {
       expect(findAll('form input').length).to.eq(15);
     }));
 
-  describe('submit empty form', function () {
-    beforeEach(async function () {
-      await visit('/realtime/accounts/test/add-balance');
-      await click('[data-test-submit-button]');
-    });
-    it('displays balance-type error', async function () {
-      expect(find('[data-test-balance-type] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(find('[data-test-balance-type] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-  });
-
   describe('fill form with correct data and submit', () =>
     it('submits correct data', async function () {
       let counter = 0;

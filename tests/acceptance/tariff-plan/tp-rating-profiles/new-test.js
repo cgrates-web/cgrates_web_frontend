@@ -55,14 +55,6 @@ describe('Acceptance: TpRatingProfiles.New', function () {
         'd-block'
       );
     });
-    it('displays direction error', function () {
-      expect(find('[data-test-select="direction"] div')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-select="direction"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays tenant error', function () {
       expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
       expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(

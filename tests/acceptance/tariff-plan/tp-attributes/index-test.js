@@ -26,7 +26,7 @@ describe('Acceptance: TpAttributes.Index', function () {
       alias: 'tptest',
     });
     server.createList('tp-attribute', 2, { tpid: this.tariffPlan.alias });
-    server.createList('tp-attributes', 2, { tpid: 'other' });
+    server.createList('tp-attribute', 2, { tpid: 'other' });
     await authenticateSession({ email: 'user@example.com' });
   });
 

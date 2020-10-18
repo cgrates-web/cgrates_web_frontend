@@ -64,12 +64,6 @@ describe('Acceptance: TpActionPlans.New', function () {
         'd-block'
       );
     });
-    it('displays action-tag error', async function () {
-      expect(find('[data-test-tag="action"] div')).to.have.class('is-invalid');
-      expect(find('[data-test-tag="action"] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
     it('displays weight error', async function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
       expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
@@ -81,6 +75,7 @@ describe('Acceptance: TpActionPlans.New', function () {
   describe('fill form with correct data and submit', () =>
     it('saves new tp-action-plan with correct data', async function () {
       let counter = 0;
+      server.logging = true;
 
       server.post('/tp-action-plans/', function (schema, request) {
         counter = counter + 1;
