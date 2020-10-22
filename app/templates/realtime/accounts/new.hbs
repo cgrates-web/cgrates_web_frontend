@@ -11,26 +11,26 @@
     @label="ID"
     @property="id"
     @class="col-md-6"
-    @data-test-id={{true}}
+    data-test-id={{true}}
   />
   <div class="ml-3 mb-2">
     <form.element
       @label="Prefixes"
       @property="disabled"
       @controlType="checkbox"
-      @data-test-disabled={{true}}
+      data-test-disabled={{true}}
     />
     <form.element
       @label="Allow negative"
       @property="allowNegative"
       @controlType="checkbox"
-      @data-test-allow-negative={{true}}
+      data-test-allow-negative={{true}}
     />
   </div>
   <BsButton
     @defaultText="Save"
     @type="primary"
     @buttonType="submit"
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   />
 </BsForm>

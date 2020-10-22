@@ -8,7 +8,7 @@
       @label="Tag"
       @property="tag"
       @class="col-md-6"
-      @data-test-tag={{true}}
+      data-test-tag={{true}}
     />
     <InputSelect
       @property="action"
@@ -22,7 +22,7 @@
       @label="Balance tag"
       @property="balanceTag"
       @class="col-md-6"
-      @data-test-balance-tag={{true}}
+      data-test-balance-tag={{true}}
     />
     <InputSelect
       @property="balanceType"
@@ -46,19 +46,19 @@
       @controlType="number"
       @min="0"
       @class="col-md-6"
-      @data-test-units={{true}}
+      data-test-units={{true}}
     />
     <form.element
       @label="Expiry time"
       @property="expiryTime"
       @class="col-md-6"
-      @data-test-expiry-time={{true}}
+      data-test-expiry-time={{true}}
     />
     <form.element
       @label="Timing tags"
       @property="timingTags"
       @class="col-md-6"
-      @data-test-timing-tags={{true}}
+      data-test-timing-tags={{true}}
     />
     <InputTags
       @property="destinationTags"
@@ -74,19 +74,19 @@
       @label="Rating subject"
       @property="ratingSubject"
       @class="col-md-6"
-      @data-test-rating-subject={{true}}
+      data-test-rating-subject={{true}}
     />
     <form.element
       @label="Categories"
       @property="categories"
       @class="col-md-6"
-      @data-test-categories={{true}}
+      data-test-categories={{true}}
     />
     <form.element
       @label="Shared groups"
       @property="sharedGroups"
       @class="col-md-6"
-      @data-test-shared-groups={{true}}
+      data-test-shared-groups={{true}}
     />
     <form.element
       @label="Balance weight"
@@ -95,7 +95,7 @@
       @step="0.1"
       @min="0"
       @class="col-md-6"
-      @data-test-balance-weight={{true}}
+      data-test-balance-weight={{true}}
     />
     <InputSelect
       @property="balanceBlocker"
@@ -117,13 +117,13 @@
       @label="Extra parameters"
       @property="extraParameters"
       @class="col-md-6"
-      @data-test-extra-parameters={{true}}
+      data-test-extra-parameters={{true}}
     />
     <form.element
       @label="Filter"
       @property="filter"
       @class="col-md-6"
-      @data-test-filter={{true}}
+      data-test-filter={{true}}
     />
     <form.element
       @label="Weight"
@@ -132,14 +132,14 @@
       @step="0.1"
       @min="0"
       @class="col-md-6"
-      @data-test-weight={{true}}
+      data-test-weight={{true}}
     />
   </div>
   <BsButton
     @type="primary"
     @buttonType="submit"
     @disabled={{save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{save.isRunning}} />
   </BsButton>

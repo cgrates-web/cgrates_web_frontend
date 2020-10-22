@@ -8,19 +8,19 @@
       @label="Tenant"
       @property="tenant"
       @class="col-md-6"
-      @data-test-tenant={{true}}
+      data-test-tenant={{true}}
     />
     <form.element
       @label="Custom ID"
       @property="customId"
       @class="col-md-6"
-      @data-test-customid={{true}}
+      data-test-customid={{true}}
     />
     <form.element
       @label="Contexts"
       @property="contexts"
       @class="col-md-6"
-      @data-test-contexts={{true}}
+      data-test-contexts={{true}}
     />
     <InputSelectSearchToString
       @label="Filter IDs"
@@ -38,25 +38,25 @@
       @label="Activation interval"
       @property="activationInterval"
       @class="col-md-6"
-      @data-test-activation-interval={{true}}
+      data-test-activation-interval={{true}}
     />
     <form.element
       @label="Field name"
       @property="fieldName"
       @class="col-md-6"
-      @data-test-field-name={{true}}
+      data-test-field-name={{true}}
     />
     <form.element
       @label="Initial"
       @property="initial"
       @class="col-md-6"
-      @data-test-initial={{true}}
+      data-test-initial={{true}}
     />
     <form.element
       @label="Substitute"
       @property="substitute"
       @class="col-md-6"
-      @data-test-substitute={{true}}
+      data-test-substitute={{true}}
     />
     <form.element
       @label="Weight"
@@ -65,7 +65,7 @@
       @step="0.1"
       @min="0"
       @class="col-md-6"
-      @data-test-weight={{true}}
+      data-test-weight={{true}}
     />
     <div class="col-12 mb-2">
       <form.element
@@ -73,14 +73,14 @@
         @property="append"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-append={{true}}
+        data-test-append={{true}}
       />
       <form.element
         @label="Blocker"
         @property="blocker"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-blocker={{true}}
+        data-test-blocker={{true}}
       />
     </div>
   </div>
@@ -88,7 +88,7 @@
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

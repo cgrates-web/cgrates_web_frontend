@@ -37,7 +37,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tag={{true}}
+                  data-test-sort-tag={{true}}
                 />
                 <SortHeader
                   @label="Rate unit"
@@ -195,12 +195,12 @@
           <FilterSeconds
             @label="Rate unit"
             @value={{filtersBlock.activeFilters.rateUnit}}
-            @data-test-filter-rate-unit={{true}}
+            data-test-filter-rate-unit={{true}}
           />
           <FilterSeconds
             @label="Rate increment"
             @value={{filtersBlock.activeFilters.rateIncrement}}
-            @data-test-filter-rate-increment={{true}}
+            data-test-filter-rate-increment={{true}}
           />
           <FilterNumber
             @label="Rate (value)"
@@ -212,7 +212,7 @@
           <FilterSeconds
             @label="Group interval start"
             @value={{filtersBlock.activeFilters.groupIntervalStart}}
-            @data-test-filter-group-interval-start={{true}}
+            data-test-filter-group-interval-start={{true}}
           />
           <FilterNumber
             @label="Connect fee"

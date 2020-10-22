@@ -8,7 +8,7 @@
       @label="Tag"
       @property="tag"
       @class="col-md-6"
-      @data-test-tag={{true}}
+      data-test-tag={{true}}
     />
     <InputTags
       @property="actionsTag"
@@ -23,7 +23,7 @@
       @label="Timing tag"
       @property="timingTag"
       @class="col-md-6"
-      @data-test-timing-tag={{true}}
+      data-test-timing-tag={{true}}
     />
     <form.element
       @label="Weight"
@@ -32,14 +32,14 @@
       @step="0.1"
       @min="0"
       @class="col-md-6"
-      @data-test-weight={{true}}
+      data-test-weight={{true}}
     />
   </div>
   <BsButton
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

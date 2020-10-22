@@ -8,13 +8,13 @@
       @label="Tag"
       @property="tag"
       @class="col-md-6"
-      @data-test-tag={{true}}
+      data-test-tag={{true}}
     />
     <form.element
       @label="Unique ID"
       @property="uniqueId"
       @class="col-md-6"
-      @data-test-unique-id={{true}}
+      data-test-unique-id={{true}}
     />
     <InputSelect
       @property="thresholdType"
@@ -29,25 +29,25 @@
       @controlType="number"
       @property="thresholdValue"
       @class="col-md-3"
-      @data-test-threshold-value={{true}}
+      data-test-threshold-value={{true}}
     />
     <form.element
       @label="Min sleep"
       @property="minSleep"
       @class="col-md-3"
-      @data-test-min-sleep={{true}}
+      data-test-min-sleep={{true}}
     />
     <form.element
       @label="Expiry time"
       @property="expiryTime"
       @class="col-md-3"
-      @data-test-expiry-time={{true}}
+      data-test-expiry-time={{true}}
     />
     <form.element
       @label="Activation time"
       @property="activationTime"
       @class="col-md-3"
-      @data-test-activation-time={{true}}
+      data-test-activation-time={{true}}
     />
     <form.element
       @label="Min queued items"
@@ -55,7 +55,7 @@
       @controlType="number"
       @min="0"
       @class="col-md-3"
-      @data-test-min-queued-items={{true}}
+      data-test-min-queued-items={{true}}
     />
     <InputSelectSearchToString
       @label="Actions tag"
@@ -76,7 +76,7 @@
       @step="0.1"
       @min="0"
       @class="col-md-3"
-      @data-test-weight={{true}}
+      data-test-weight={{true}}
     />
   </div>
   <hr>
@@ -109,32 +109,32 @@
       @label="Balance categories"
       @property="balanceCategories"
       @class="col-md-3"
-      @data-test-balance-categories={{true}}
+      data-test-balance-categories={{true}}
     />
     <form.element
       @label="Balance shared groups"
       @property="balanceSharedGroups"
       @class="col-md-3"
-      @data-test-balance-shared-groups={{true}}
+      data-test-balance-shared-groups={{true}}
     />
 
     <form.element
       @label="Balance rating subject"
       @property="balanceRatingSubject"
       @class="col-md-3"
-      @data-test-balance-rating-subject={{true}}
+      data-test-balance-rating-subject={{true}}
     />
     <form.element
       @label="Balance expiry time"
       @property="balanceExpiryTime"
       @class="col-md-3"
-      @data-test-balance-expiry-time={{true}}
+      data-test-balance-expiry-time={{true}}
     />
     <form.element
       @label="Balance weight"
       @property="balanceWeight"
       @class="col-md-3"
-      @data-test-balance-weight={{true}}
+      data-test-balance-weight={{true}}
     />
     <InputSelectSearchToString
       @label="Balance timing tags"
@@ -168,21 +168,21 @@
         @property="recurrent"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-recurrent={{true}}
+        data-test-recurrent={{true}}
       />
       <form.element
         @label="Balance blocker"
         @property="balanceBlocker"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-balance-blocker={{true}}
+        data-test-balance-blocker={{true}}
       />
       <form.element
         @label="Balance disabled"
         @property="balanceDisabled"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-balance-disabled={{true}}
+        data-test-balance-disabled={{true}}
       />
     </div>
   </div>
@@ -190,7 +190,7 @@
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

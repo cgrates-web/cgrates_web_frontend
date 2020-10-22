@@ -34,7 +34,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tag={{true}}
+                  data-test-sort-tag={{true}}
                 />
                 <SortHeader
                   @label="Unique ID"
@@ -310,7 +310,7 @@
             @label="Threshold type"
             @value={{filtersBlock.activeFilters.thresholdType}}
             @content={{selectValues.thresholdType}}
-            @data-test-filter-threshold-type={{true}}
+            data-test-filter-threshold-type={{true}}
           />
           <FilterNumber
             @label="Threshold value"
@@ -322,7 +322,7 @@
             @label="Recurrent"
             @value={{filtersBlock.activeFilters.recurrent}}
             @content={{selectValues.boolean}}
-            @data-test-filter-recurrent={{true}}
+            data-test-filter-recurrent={{true}}
           />
           <FilterText
             @label="Min sleep"
@@ -343,13 +343,13 @@
             @label="Balance tag"
             @value={{filtersBlock.activeFilters.balanceTag}}
             @content={{selectValues.balanceTag}}
-            @data-test-filter-balance-tag={{true}}
+            data-test-filter-balance-tag={{true}}
           />
           <FilterSelect
             @label="Balance type"
             @value={{filtersBlock.activeFilters.balanceType}}
             @content={{selectValues.balanceType}}
-            @data-test-filter-balance-type={{true}}
+            data-test-filter-balance-type={{true}}
           />
           <FilterNumber
             @label="Min queued items"
@@ -364,7 +364,7 @@
             @searchModel="tp-action"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @data-test-filter-actions-tag={{true}}
+            data-test-filter-actions-tag={{true}}
           />
           <FilterNumber
             @label="Weight"

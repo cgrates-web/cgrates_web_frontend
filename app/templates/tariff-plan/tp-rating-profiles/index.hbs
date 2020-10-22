@@ -48,7 +48,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tenant={{true}}
+                  data-test-sort-tenant={{true}}
                 />
                 <SortHeader
                   @label="Category"
@@ -245,7 +245,7 @@
             @label="Direction"
             @value={{filtersBlock.activeFilters.direction}}
             @content={{selectValues.direction}}
-            @data-test-filter-direction={{true}}
+            data-test-filter-direction={{true}}
           />
           <FilterText
             @label="Tenant"

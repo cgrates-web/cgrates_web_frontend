@@ -69,7 +69,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-destination-tag={{true}}
+                  data-test-sort-destination-tag={{true}}
                 />
                 <SortHeader
                   @label="RP category"
@@ -221,7 +221,7 @@
             @label="Direction"
             @value={{filtersBlock.activeFilters.direction}}
             @content={{selectValues.direction}}
-            @data-test-filter-direction={{true}}
+            data-test-filter-direction={{true}}
           />
           <FilterText
             @label="Tenant"
@@ -257,7 +257,7 @@
             @label="Strategy"
             @value={{filtersBlock.activeFilters.strategy}}
             @content={{selectValues.strategy}}
-            @data-test-filter-strategy={{true}}
+            data-test-filter-strategy={{true}}
           />
         </FiltersBlock>
       </div>

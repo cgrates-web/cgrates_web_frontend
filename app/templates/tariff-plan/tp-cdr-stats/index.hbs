@@ -34,7 +34,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tag={{true}}
+                  data-test-sort-tag={{true}}
                 />
                 <SortHeader
                   @label="Metrics"
@@ -316,7 +316,7 @@
             @label="Metrics"
             @value={{filtersBlock.activeFilters.metrics}}
             @content={{selectValues.metrics}}
-            @data-test-filter-metrics={{true}}
+            data-test-filter-metrics={{true}}
           />
           <FilterText
             @label="Tors"
@@ -375,7 +375,7 @@
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
             @multiple={{true}}
-            @data-test-filter-destination-ids={{true}}
+            data-test-filter-destination-ids={{true}}
           />
           <FilterSelectSearchToString
             @label="Action triggers"
@@ -384,7 +384,7 @@
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
             @multiple={{true}}
-            @data-test-filter-action-triggers={{true}}
+            data-test-filter-action-triggers={{true}}
           />
           <FilterCollapseBtn
             @label="Other filters"

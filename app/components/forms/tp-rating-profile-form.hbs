@@ -8,7 +8,7 @@
       @label="Load ID"
       @property="loadid"
       @class="col-md-6"
-      @data-test-loadid={{true}}
+      data-test-loadid={{true}}
     />
     <InputSelect
       @property="direction"
@@ -22,37 +22,37 @@
       @label="Tenant"
       @property="tenant"
       @class="col-md-6"
-      @data-test-tenant={{true}}
+      data-test-tenant={{true}}
     />
     <form.element
       @label="Category"
       @property="category"
       @class="col-md-6"
-      @data-test-category={{true}}
+      data-test-category={{true}}
     />
     <form.element
       @label="Subject"
       @property="subject"
       @class="col-md-6"
-      @data-test-subject={{true}}
+      data-test-subject={{true}}
     />
     <form.element
       @label="Fallback subjects"
       @property="fallbackSubjects"
       @class="col-md-6"
-      @data-test-fallback-subjects={{true}}
+      data-test-fallback-subjects={{true}}
     />
     <form.element
       @label="Activation time"
       @property="activationTime"
       @class="col-md-6"
-      @data-test-activation-time={{true}}
+      data-test-activation-time={{true}}
     />
     <form.element
       @label="CDR stat queue IDs"
       @property="cdrStatQueueIds"
       @class="col-md-6"
-      @data-test-cdr-stat-queue-ids={{true}}
+      data-test-cdr-stat-queue-ids={{true}}
     />
     <InputTags
       @property="ratingPlanTag"
@@ -68,7 +68,7 @@
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

@@ -36,7 +36,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tag={{true}}
+                  data-test-sort-tag={{true}}
                 />
                 <SortHeader
                   @label="Rounding method"
@@ -242,14 +242,14 @@
             @key="roundingMethod"
             @value={{filtersBlock.activeFilters.roundingMethod}}
             @content={{selectValues.roundingMethod}}
-            @data-test-filter-rounding-method={{true}}
+            data-test-filter-rounding-method={{true}}
           />
           <FilterSelect
             @label="Max cost strategy"
             @key="maxCostStrategy"
             @value={{filtersBlock.activeFilters.maxCostStrategy}}
             @content={{selectValues.maxCostStrategy}}
-            @data-test-filter-max-cost-strategy={{true}}
+            data-test-filter-max-cost-strategy={{true}}
           />
         </FiltersBlock>
       </div>

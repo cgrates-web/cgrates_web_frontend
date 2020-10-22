@@ -8,19 +8,19 @@
       @label="Load ID"
       @property="loadid"
       @class="col-md-6"
-      @data-test-loadid={{true}}
+      data-test-loadid={{true}}
     />
     <form.element
       @label="Tenant"
       @property="tenant"
       @class="col-md-6"
-      @data-test-tenant={{true}}
+      data-test-tenant={{true}}
     />
     <form.element
       @label="Account"
       @property="account"
       @class="col-md-6"
-      @data-test-account={{true}}
+      data-test-account={{true}}
     />
     <InputSelectSearchToString
       @label="Action plan tag"
@@ -54,14 +54,14 @@
         @property="allowNegative"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-allow-negative={{true}}
+        data-test-allow-negative={{true}}
       />
       <form.element
         @label="Disabled"
         @property="disabled"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-disabled={{true}}
+        data-test-disabled={{true}}
       />
     </div>
   </div>
@@ -69,7 +69,7 @@
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

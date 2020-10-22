@@ -13,29 +13,29 @@
       <form.element
         @label="Category"
         @property="category"
-        @data-test-category={{true}}
+        data-test-category={{true}}
       />
       <form.element
         @label="Subject"
         @property="subject"
-        @data-test-subject={{true}}
+        data-test-subject={{true}}
       />
       <form.element
         @label="Destination"
         @property="destination"
-        @data-test-destination={{true}}
+        data-test-destination={{true}}
       />
       <form.element
         @label="Duration"
         @property="duration"
         @controlType="number"
-        @data-test-duration={{true}}
+        data-test-duration={{true}}
       />
       <BsButton
         @type="primary"
         @buttonType="submit"
         @disabled={{getSuppliers.isRunning}}
-        @data-test-lcr-submit-button={{true}}
+        data-test-lcr-submit-button={{true}}
       >
         <LoadingButtonText
           @text="Get suppliers"

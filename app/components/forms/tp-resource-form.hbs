@@ -8,13 +8,13 @@
       @label="Tenant"
       @property="tenant"
       @class="col-md-6"
-      @data-test-tenant={{true}}
+      data-test-tenant={{true}}
     />
     <form.element
       @label="Custom ID"
       @property="customId"
       @class="col-md-6"
-      @data-test-customid={{true}}
+      data-test-customid={{true}}
     />
     <InputSelectSearchToString
       @label="Filter IDs"
@@ -44,25 +44,25 @@
       @label="Activation interval"
       @property="activationInterval"
       @class="col-md-6"
-      @data-test-activation-interval={{true}}
+      data-test-activation-interval={{true}}
     />
     <form.element
       @label="Usage ttl"
       @property="usageTtl"
       @class="col-md-6"
-      @data-test-usage-ttl={{true}}
+      data-test-usage-ttl={{true}}
     />
     <form.element
       @label="Limit"
       @property="limit"
       @class="col-md-6"
-      @data-test-limit={{true}}
+      data-test-limit={{true}}
     />
     <form.element
       @label="Allocation message"
       @property="allocationMessage"
       @class="col-md-6"
-      @data-test-allocation-message={{true}}
+      data-test-allocation-message={{true}}
     />
     <form.element
       @label="Weight"
@@ -71,7 +71,7 @@
       @step="0.1"
       @min="0"
       @class="col-md-6"
-      @data-test-weight={{true}}
+      data-test-weight={{true}}
     />
     <div class="col-12 mb-2">
       <form.element
@@ -79,14 +79,14 @@
         @property="blocker"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-blocker={{true}}
+        data-test-blocker={{true}}
       />
       <form.element
         @label="Stored"
         @property="stored"
         @class="form-check-inline"
         @controlType="checkbox"
-        @data-test-stored={{true}}
+        data-test-stored={{true}}
       />
     </div>
   </div>
@@ -94,7 +94,7 @@
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

@@ -34,7 +34,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tenant={{true}}
+                  data-test-sort-tenant={{true}}
                 />
                 <SortHeader
                   @label="Custom ID"
@@ -239,54 +239,54 @@
           <FilterText
             @label="Tenant"
             @value={{filtersBlock.activeFilters.tenant}}
-            @data-test-filter-tenant={{true}}
+            data-test-filter-tenant={{true}}
           />
           <FilterText
             @label="Custom ID"
             @value={{filtersBlock.activeFilters.customId}}
-            @data-test-filter-customid={{true}}
+            data-test-filter-customid={{true}}
           />
           <FilterText
             @label="Contexts"
             @value={{filtersBlock.activeFilters.contexts}}
-            @data-test-filter-contexts={{true}}
+            data-test-filter-contexts={{true}}
           />
           <FilterText
             @label="Filter ids"
             @value={{filtersBlock.activeFilters.filterIds}}
-            @data-test-filter-filter-ids={{true}}
+            data-test-filter-filter-ids={{true}}
           />
           <FilterText
             @label="Activation interval"
             @value={{filtersBlock.activeFilters.activationInterval}}
-            @data-test-filter-activation-interval={{true}}
+            data-test-filter-activation-interval={{true}}
           />
           <FilterText
             @label="Field name"
             @value={{filtersBlock.activeFilters.fieldName}}
-            @data-test-filter-field-name={{true}}
+            data-test-filter-field-name={{true}}
           />
           <FilterText
             @label="Initial"
             @value={{filtersBlock.activeFilters.initial}}
-            @data-test-filter-initial={{true}}
+            data-test-filter-initial={{true}}
           />
           <FilterText
             @label="Substitute"
             @value={{filtersBlock.activeFilters.substitute}}
-            @data-test-filter-substitute={{true}}
+            data-test-filter-substitute={{true}}
           />
           <FilterSelect
             @label="Append"
             @value={{filtersBlock.activeFilters.append}}
             @content={{this.selectValues.boolean}}
-            @data-test-filter-append={{true}}
+            data-test-filter-append={{true}}
           />
           <FilterSelect
             @label="Blocker"
             @value={{filtersBlock.activeFilters.blocker}}
             @content={{this.selectValues.boolean}}
-            @data-test-filter-blocker={{true}}
+            data-test-filter-blocker={{true}}
           />
           <FilterNumber
             @label="Weight"

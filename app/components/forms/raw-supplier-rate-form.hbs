@@ -11,32 +11,32 @@
       @class="col-md-6"
       @step="0.0001"
       @min="0"
-      @data-test-rate={{true}}
+      data-test-rate={{true}}
     />
     <form.element
       @label="Supplier name"
       @property="supplierName"
       @class="col-md-6"
-      @data-test-supplier-name={{true}}
+      data-test-supplier-name={{true}}
     />
     <form.element
       @label="Prefix"
       @property="prefix"
       @class="col-md-6"
-      @data-test-prefix={{true}}
+      data-test-prefix={{true}}
     />
     <form.element
       @label="Description"
       @property="description"
       @class="col-md-6"
-      @data-test-description={{true}}
+      data-test-description={{true}}
     />
   </div>
   <BsButton
     @type="primary"
     @buttonType="submit"
     @disabled={{save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

@@ -41,7 +41,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tenant={{true}}
+                  data-test-sort-tenant={{true}}
                 />
                 <SortHeader
                   @label="Filter IDs"
@@ -219,12 +219,12 @@
           <FilterText
             @label="Supplier weight"
             @value={{filtersBlock.activeFilters.supplierWeight}}
-            @data-test-filter-supplier-weight
+            data-test-filter-supplier-weight
           />
           <FilterText
             @label="Activation interval"
             @value={{filtersBlock.activeFilters.activationInterval}}
-            @data-test-filter-activation-interval
+            data-test-filter-activation-interval
           />
           <FilterText
             @label="Activation interval"

@@ -8,7 +8,7 @@
       @label="Tag"
       @property="tag"
       @class="col-md-6"
-      @data-test-tag={{true}}
+      data-test-tag={{true}}
     />
     <form.element
       @label="Weight (decimal)"
@@ -17,7 +17,7 @@
       @step="0.1"
       @min="0"
       @class="col-md-6"
-      @data-test-weight={{true}}
+      data-test-weight={{true}}
     />
     <InputTags
       @property="destratesTag"
@@ -43,7 +43,7 @@
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

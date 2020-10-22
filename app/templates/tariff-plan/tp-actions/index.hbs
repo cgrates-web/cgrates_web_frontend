@@ -34,7 +34,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tag={{true}}
+                  data-test-sort-tag={{true}}
                 />
                 <SortHeader
                   @label="Action"
@@ -347,7 +347,7 @@
             @label="Action"
             @value={{filtersBlock.activeFilters.action}}
             @content={{selectValues.action}}
-            @data-test-filter-action={{true}}
+            data-test-filter-action={{true}}
           />
 
           <FilterText
@@ -360,14 +360,14 @@
             @label="Balance type"
             @value={{filtersBlock.activeFilters.balanceType}}
             @content={{selectValues.balanceType}}
-            @data-test-filter-balance-type={{true}}
+            data-test-filter-balance-type={{true}}
           />
 
           <FilterSelect
             @label="Directions"
             @value={{filtersBlock.activeFilters.directions}}
             @content={{selectValues.direction}}
-            @data-test-filter-directions={{true}}
+            data-test-filter-directions={{true}}
           />
 
           <FilterNumber
@@ -425,14 +425,14 @@
             @label="Balance blocker"
             @value={{filtersBlock.activeFilters.balanceBlocker}}
             @content={{selectValues.boolean}}
-            @data-test-filter-balance-blocker={{true}}
+            data-test-filter-balance-blocker={{true}}
           />
 
           <FilterSelect
             @label="Balance disabled"
             @value={{filtersBlock.activeFilters.balanceDisabled}}
             @content={{selectValues.boolean}}
-            @data-test-filter-balance-disabled={{true}}
+            data-test-filter-balance-disabled={{true}}
           />
 
           <FilterNumber

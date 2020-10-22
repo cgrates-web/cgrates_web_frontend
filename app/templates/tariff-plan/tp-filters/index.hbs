@@ -41,7 +41,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tenant={{true}}
+                  data-test-sort-tenant={{true}}
                 />
                 <SortHeader
                   @label="Filter type"
@@ -189,7 +189,7 @@
             @value={{filtersBlock.activeFilters.filterType}}
             @content={{selectValues.filterTypes}}
             @class="fiter-type-select"
-            @data-test-filter-fitertype={{true}}
+            data-test-filter-fitertype={{true}}
           />
 
           <FilterText

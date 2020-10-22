@@ -8,32 +8,32 @@
       @label="Tag"
       @property="tag"
       @class="col-md-6"
-      @data-test-tag={{true}}
+      data-test-tag={{true}}
     />
     <form.element
       @label="Account"
       @property="account"
       @class="col-md-6"
-      @data-test-account={{true}}
+      data-test-account={{true}}
     />
     <form.element
       @label="Strategy"
       @property="strategy"
       @class="col-md-6"
-      @data-test-strategy={{true}}
+      data-test-strategy={{true}}
     />
     <form.element
       @label="Rating subject"
       @property="ratingSubject"
       @class="col-md-6"
-      @data-test-rating-subject={{true}}
+      data-test-rating-subject={{true}}
     />
   </div>
   <BsButton
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

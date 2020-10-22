@@ -34,7 +34,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tenant={{true}}
+                  data-test-sort-tenant={{true}}
                 />
                 <SortHeader
                   @label="Custom ID"
@@ -313,13 +313,13 @@
             @label="Blocker"
             @value={{filtersBlock.activeFilters.blocker}}
             @content={{selectValues.boolean}}
-            @data-test-filter-blocker={{true}}
+            data-test-filter-blocker={{true}}
           />
           <FilterSelect
             @label="Async"
             @value={{filtersBlock.activeFilters.async}}
             @content={{selectValues.boolean}}
-            @data-test-filter-async={{true}}
+            data-test-filter-async={{true}}
           />
           <FilterNumber
             @label="Weight"

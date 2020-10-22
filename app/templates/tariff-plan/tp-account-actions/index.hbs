@@ -41,7 +41,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tenant={{true}}
+                  data-test-sort-tenant={{true}}
                 />
                 <SortHeader
                   @label="Account"
@@ -227,7 +227,7 @@
             @searchModel="tp-action-plan"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @data-test-filter-action-plan-tag={{true}}
+            data-test-filter-action-plan-tag={{true}}
           />
           <FilterSelectSearchToString
             @label="Action triggers tag"
@@ -235,7 +235,7 @@
             @searchModel="tp-action-trigger"
             @searchField="tag"
             @tpid={{this.tariffPlanId}}
-            @data-test-filter-action-triggers-tag={{true}}
+            data-test-filter-action-triggers-tag={{true}}
           />
           <FilterSelect
             @label="Allow negative"

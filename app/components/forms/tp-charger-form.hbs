@@ -8,13 +8,13 @@
       @label="Tenant"
       @property="tenant"
       @class="col-md-6"
-      @data-test-tenant={{true}}
+      data-test-tenant={{true}}
     />
     <form.element
       @label="Custom ID"
       @property="customId"
       @class="col-md-6"
-      @data-test-customid={{true}}
+      data-test-customid={{true}}
     />
     <InputSelectSearchToString
       @label="Filter IDs"
@@ -44,13 +44,13 @@
       @label="Activation interval"
       @property="activationInterval"
       @class="col-md-6"
-      @data-test-activation-interval={{true}}
+      data-test-activation-interval={{true}}
     />
     <form.element
       @label="Run ID"
       @property="runId"
       @class="col-md-6"
-      @data-test-run-id={{true}}
+      data-test-run-id={{true}}
     />
     <form.element
       @label="Weight"
@@ -59,14 +59,14 @@
       @step="0.1"
       @min="0"
       @class="col-md-6"
-      @data-test-weight={{true}}
+      data-test-weight={{true}}
     />
   </div>
   <BsButton
     @type="primary"
     @buttonType="submit"
     @disabled={{@save.isRunning}}
-    @data-test-submit-button={{true}}
+    data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
   </BsButton>

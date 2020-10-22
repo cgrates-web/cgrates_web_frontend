@@ -7,7 +7,7 @@
   @placeholder="Select tag..."
   @showValidationOn="change"
   @class={{@class}}
-  @data-test-tag={{@dataTest}} as |el|
+  data-test-tag={{@dataTest}} as |el|
 >
   <el.control
     @search={{perform this.searchTask}}

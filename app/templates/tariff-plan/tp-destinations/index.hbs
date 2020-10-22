@@ -34,7 +34,7 @@
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction="sortBy"
-                  @data-test-sort-tag={{true}}
+                  data-test-sort-tag={{true}}
                 />
                 <SortHeader
                   @label="Prefix"
@@ -134,12 +134,12 @@
           <FilterText
             @label="Tag"
             @value={{filtersBlock.activeFilters.tag}}
-            @data-test-filter-tag={{true}}
+            data-test-filter-tag={{true}}
           />
           <FilterText
             @label="Prefix"
             @value={{filtersBlock.activeFilters.prefix}}
-            @data-test-filter-prefix={{true}}
+            data-test-filter-prefix={{true}}
           />
         </FiltersBlock>
       </div>
