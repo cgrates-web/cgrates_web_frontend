@@ -19,7 +19,7 @@ describe('Acceptance: TariffPlan.Index', function () {
   it('has correct url', async function () {
     expect(currentURL()).to.equal(`/tariff-plans/${this.tpPlan.id}`);
   });
-  it('renders specic header', async function () {
+  it('renders specific header', async function () {
     expect(find('h1.page-title').textContent.trim()).to.eq(
       'Tariff plan: Test TpPlan'
     );

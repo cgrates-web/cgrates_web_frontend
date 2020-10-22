@@ -110,9 +110,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
     });
 
     it('displays balance-directions error', async function () {
-      expect(find('[data-test-select="balance-directions"] div')).to.have.class(
-        'is-invalid'
-      );
       expect(
         find('[data-test-select="balance-directions"] .invalid-feedback')
       ).to.have.class('d-block');

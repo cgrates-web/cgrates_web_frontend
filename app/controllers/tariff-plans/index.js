@@ -12,6 +12,7 @@ export default Controller.extend({
         this.flashMessages.success('Tariff plan have been deleted');
       } catch (err) {
         this.flashMessages.danger('Somethings went wrong');
+        throw err;
       }
     }
   }),

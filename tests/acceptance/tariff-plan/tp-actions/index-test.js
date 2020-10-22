@@ -87,7 +87,6 @@ describe('Acceptance: TpActions.Index', function () {
     await fillIn('[data-test-filter-balance-tag] input', 'balancetest');
     await selectChoose('[data-test-filter-balance-type]', '*monetary');
     await selectChoose('[data-test-filter-directions]', '*out');
-    await fillIn('[data-test-filter-units] input', '120');
     await fillIn('[data-test-filter-expiry-time] input', '*unlimited');
     await fillIn('[data-test-filter-timing-tags] input', 'timingtest');
     await fillIn(
@@ -109,7 +108,6 @@ describe('Acceptance: TpActions.Index', function () {
     expect(request.queryParams['filter[balance_tag]']).to.eq('balancetest');
     expect(request.queryParams['filter[balance_type]']).to.eq('*monetary');
     expect(request.queryParams['filter[directions]']).to.eq('*out');
-    expect(request.queryParams['filter[units]']).to.eq('120');
     expect(request.queryParams['filter[expiry_time]']).to.eq('*unlimited');
     expect(request.queryParams['filter[timing_tags]']).to.eq('timingtest');
     expect(request.queryParams['filter[destination_tags]']).to.eq(
@@ -235,7 +233,6 @@ describe('Acceptance: TpActions.Index', function () {
           expect(params.filter.balance_tag).to.eq('balancetest');
           expect(params.filter.balance_type).to.eq('*monetary');
           expect(params.filter.directions).to.eq('*out');
-          expect(params.filter.units).to.eq('120');
           expect(params.filter.expiry_time).to.eq('*unlimited');
           expect(params.filter.timing_tags).to.eq('timingtest');
           expect(params.filter.destination_tags).to.eq('destinationtest');

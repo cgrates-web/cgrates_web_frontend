@@ -96,9 +96,6 @@ describe('Acceptance: TpRatingProfiles.New', function () {
         .exist;
     });
     it('displays tp-rating-plan tag error', function () {
-      expect(find('[data-test-tag="tp-rating-plan"] div')).to.have.class(
-        'is-invalid'
-      );
       expect(
         find('[data-test-tag="tp-rating-plan"] .invalid-feedback')
       ).to.have.class('d-block');

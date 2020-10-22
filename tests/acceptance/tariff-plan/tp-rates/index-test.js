@@ -97,7 +97,7 @@ describe('Acceptance: TpRates.Index', function () {
   describe('set filters and click search button', () =>
     it('makes a correct filter query', async function () {
       let counter = 0;
-
+      server.logging = true;
       server.get('/tp-rates/', function (schema, request) {
         counter = counter + 1;
         const filterTag = request.queryParams['filter[tag]'];

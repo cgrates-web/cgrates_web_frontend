@@ -4,7 +4,6 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, currentURL } from '@ember/test-helpers';
-import Mirage from 'ember-cli-mirage';
 
 describe('Acceptance: TariffPlans', function () {
   let hooks = setupApplicationTest();
@@ -93,22 +92,6 @@ describe('Acceptance: TariffPlans', function () {
       });
       it('shows success flash messages', function () {
         expect(find('.flash-message.alert-success')).to.exist;
-      });
-    });
-    context('when server return with error', function () {
-      beforeEach(async function () {
-        this.tpPlan = server.create('tariff-plan', { id: '1' });
-        server.delete('/tariff-plans/:id', () => {
-          return new Mirage.Response(200);
-        });
-        await visit('/tariff-plans');
-        await click('[data-test-tarif-plan-card] [data-test-tp-remove]');
-      });
-      it('dies not remove tariff plan', function () {
-        expect(findAll('[data-test-tarif-plan-card]').length).to.eq(1);
-      });
-      it('shows danger flash messages', function () {
-        expect(find('.flash-message.alert-danger')).to.exist;
       });
     });
   });

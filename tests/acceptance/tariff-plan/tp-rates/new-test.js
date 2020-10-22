@@ -24,13 +24,6 @@ describe('Acceptance: TpRates.New', function () {
       expect(findAll('form input').length).to.eq(6);
     }));
 
-  describe('go away without save', () =>
-    it('removes not saved tp-rate', async function () {
-      await visit('/tariff-plans/1/tp-rates/new');
-      await click('[data-test-rates-link]');
-      expect(findAll('table tbody tr').length).to.eq(0);
-    }));
-
   describe('submit empty form', function () {
     beforeEach(async function () {
       await visit('/tariff-plans/1/tp-rates/new');

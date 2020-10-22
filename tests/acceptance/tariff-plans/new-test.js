@@ -13,14 +13,6 @@ describe('Acceptance: TariffPlans.New', function () {
     await authenticateSession({ email: 'user@exmple.com' });
   });
 
-  describe('go away without save', () =>
-    it('removes not saved destination', async function () {
-      await visit('/tariff-plans');
-      await click('[data-test-add-tp-plan]');
-      await click('[data-test-tariff-paln-link]');
-      expect(findAll('[data-test-tarif-plan-card]').length).to.eq(0);
-    }));
-
   describe('fill form with correct data and submit', () =>
     it('sends correct data to the backend', async function () {
       let counter = 0;

@@ -1,20 +1,18 @@
-import { run } from '@ember/runloop';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-import { setupModelTest } from 'ember-mocha';
+import { setupTest } from 'ember-mocha';
 
-describe('Account', function () {
-  setupModelTest('account', () => ({ needs: [] }));
+describe('Unit | Model | Account', function () {
+  setupTest('account', () => ({ needs: [] }));
 
-  return describe('#balance', () =>
+  describe('#balance', () =>
     it('returns the sum of values', function () {
-      const model = this.subject();
-      return run(function () {
-        model.set('balanceMap', {
-          '*monetary': [{ value: 10 }, { value: 20 }],
-        });
-        expect(model.get('balanceMonetaryValues')).to.deep.equal([10, 20]);
-        return expect(model.get('balance')).to.equal(30);
+      this.store = this.owner.lookup('service:store');
+      const model = this.store.createRecord('account', {
+        balanceMap: { '*monetary': [{ value: 10 }, { value: 20 }] }
       });
-    }));
+      expect(model.balanceMonetaryValues).to.deep.equal([10, 20]);
+      expect(model.balance).to.equal(30);
+    })
+  );
 });

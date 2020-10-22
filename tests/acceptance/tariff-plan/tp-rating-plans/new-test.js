@@ -70,15 +70,11 @@ describe('Acceptance: TpRatingPlans.New', function () {
       );
     });
     it('displays destination-rates tag error', function () {
-      expect(find('[data-test-tag="destination-rates"] div')).to.have.class(
-        'is-invalid'
-      );
       expect(
         find('[data-test-tag="destination-rates"] .invalid-feedback')
       ).to.have.class('d-block');
     });
     it('displays timing tag error', function () {
-      expect(find('[data-test-tag="timing"] div')).to.have.class('is-invalid');
       expect(find('[data-test-tag="timing"] .invalid-feedback')).to.have.class(
         'd-block'
       );
