@@ -41,7 +41,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'direction',
     'tenant',
     'category',
@@ -50,7 +50,7 @@ export default Route.extend(QueryRouteMixin, {
     'destinationTag',
     'rpCategory',
     'strategy',
-  ],
+  ]),
 
   modelName: 'tp-lcr-rule',
 });

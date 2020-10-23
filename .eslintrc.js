@@ -25,6 +25,7 @@ module.exports = {
   rules: {
     // TODO:
     'ember/no-mixins': 'warn',
+    'ember/no-new-mixins': 'warn',
   },
   overrides: [
     // node files

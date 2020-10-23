@@ -47,7 +47,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'cgrid',
     'runId',
     'originHost',
@@ -58,7 +58,7 @@ export default Route.extend(QueryRouteMixin, {
     'category',
     'account',
     'destination',
-  ],
+  ]),
 
   modelName: 'cdr',
 

@@ -23,7 +23,7 @@ export default Route.extend(QueryRouteMixin, {
     pageSize: { refreshModel: true },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'tag',
     'uniqueId',
     'thresholdType',
@@ -37,7 +37,7 @@ export default Route.extend(QueryRouteMixin, {
     'minQueuedItems',
     'actionsTag',
     'weight',
-  ],
+  ]),
 
   modelName: 'tp-action-trigger',
 });

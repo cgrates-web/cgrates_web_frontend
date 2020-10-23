@@ -13,7 +13,7 @@ export default Route.extend(QueryRouteMixin, {
     pageSize: { refreshModel: true },
   },
 
-  filterParams: ['tag', 'account', 'strategy', 'ratingSubject'],
+  filterParams: Object.freeze(['tag', 'account', 'strategy', 'ratingSubject']),
 
   modelName: 'tp-shared-group',
 });

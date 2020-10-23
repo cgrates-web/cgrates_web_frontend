@@ -4,7 +4,7 @@ export default Mixin.create({
   parentModelName: '',
   model() {
     return this.store.createRecord(`${this.parentModelName}-import-job`, {
-      tpid: this.modelFor('tariff-plan').get('alias'),
+      tpid: this.modelFor('tariff-plan').alias,
     });
   },
 
@@ -15,7 +15,7 @@ export default Mixin.create({
 
   actions: {
     willTransition() {
-      if (this.currentModel.get('isNew')) {
+      if (this.currentModel.isNew) {
         this.currentModel.destroyRecord();
       }
     },

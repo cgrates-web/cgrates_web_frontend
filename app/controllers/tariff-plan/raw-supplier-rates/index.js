@@ -29,7 +29,7 @@ export default Controller.extend(QueryControllerMixin, {
     resolve() {
       this.store
         .createRecord('raw-supplier-resolve-job', {
-          tpid: this.get('tariffPlan.id'),
+          tpid: this.tariffPlan.id,
         })
         .save()
         .then(() => {

@@ -1,15 +1,19 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Ember.Route.extend({
-  router: Ember.inject.service(),
-  session: Ember.inject.service(),
+export default class ApplicationRoute extends Route {
+  @service
+  router;
+
+  @service
+  session;
 
   afterModel() {
     if (
-      this.get('route.currentRouteName') != 'login' &&
-      !this.get('session.isAuthenticated')
+      this.route.currentRouteName != 'login' &&
+      !this.session.isAuthenticated
     ) {
       this.router.transitionTo('login');
     }
-  },
-});
+  }
+}

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, find, findAll, fillIn, click } from '@ember/test-helpers';
+import { visit, find, fillIn, click } from '@ember/test-helpers';
 
 describe('Acceptance: TariffPlans.New', function () {
   let hooks = setupApplicationTest();

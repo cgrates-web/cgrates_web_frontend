@@ -35,14 +35,14 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'tag',
     'rateUnit',
     'rateIncrement',
     'rate',
     'groupIntervalStart',
     'connectFee',
-  ],
+  ]),
 
   modelName: 'tp-rate',
 });

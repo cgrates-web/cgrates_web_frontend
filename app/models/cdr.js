@@ -31,11 +31,13 @@ export default Model.extend({
     if (this.extraFields) {
       return JSON.parse(this.extraFields);
     }
+    return null;
   }),
 
   costDetailsObj: computed('costDetails', function () {
     if (this.costDetails) {
       return JSON.parse(this.costDetails);
     }
+    return null;
   }),
 });

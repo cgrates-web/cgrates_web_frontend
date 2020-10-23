@@ -38,7 +38,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'tag',
     'roundingMethod',
     'roundingDecimals',
@@ -46,7 +46,7 @@ export default Route.extend(QueryRouteMixin, {
     'maxCostStrategy',
     'maxCost',
     'destinationsTag',
-  ],
+  ]),
 
   modelName: 'tp-destination-rate',
 });

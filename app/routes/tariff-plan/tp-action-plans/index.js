@@ -29,7 +29,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: ['tag', 'actionsTag', 'timingTag', 'weight'],
+  filterParams: Object.freeze(['tag', 'actionsTag', 'timingTag', 'weight']),
 
   modelName: 'tp-action-plan',
 });

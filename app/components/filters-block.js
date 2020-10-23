@@ -9,9 +9,9 @@ export default class FilterBlockComponent extends Component {
 
   @action
   reset() {
-    for (let key in this.activeFilters) {
-      this.activeFilters[key] = null;
-    }
+    Object.keys(this.activeFilters).forEach(
+      (key) => (this.activeFilters[key] = null)
+    );
     return this.search(this.activeFilters);
   }
 }

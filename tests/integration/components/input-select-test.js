@@ -63,6 +63,6 @@ describe('Integration: InputSelect', function () {
         {{/bs-form}}
       ')`);
       await selectChoose('.ember-power-select-trigger', 'test2');
-      expect(this.get('model.inputSelect')).to.eq('test2');
+      expect(this.model.inputSelect).to.eq('test2');
     }));
 });

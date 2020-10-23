@@ -13,7 +13,7 @@ export default Controller.extend({
   actions: {
     upload() {
       const attrs = {
-        tpid: this.get('model.alias'),
+        tpid: this.model.alias,
         'flush-db': this.flushDB,
         'dry-run': this.dryRun,
         validate: this.validate,

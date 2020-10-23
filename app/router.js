@@ -32,7 +32,7 @@ Router.map(function () {
           this.route('csv-import');
           this.route(
             'raw-supplier-rate',
-            { path: ':raw-supplier_rate_id' },
+            { path: ':raw_supplier_rate_id' },
             function () {
               this.route('edit');
             }

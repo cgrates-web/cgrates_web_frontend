@@ -25,7 +25,7 @@ export default Mixin.create({
   },
 
   _getTtpid() {
-    return this.modelFor('tariff-plan').get('alias');
+    return this.modelFor('tariff-plan').alias;
   },
 
   model(params) {
@@ -49,7 +49,7 @@ export default Mixin.create({
     }
     return this.store.query(this.modelName, fullQuery).then((results) => ({
       records: results,
-      meta: results.get('meta'),
+      meta: results.meta,
     }));
   },
 

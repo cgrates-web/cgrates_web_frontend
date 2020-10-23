@@ -29,7 +29,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: ['tag', 'destratesTag', 'timingTag', 'weight'],
+  filterParams: Object.freeze(['tag', 'destratesTag', 'timingTag', 'weight']),
 
   modelName: 'tp-rating-plan',
 });

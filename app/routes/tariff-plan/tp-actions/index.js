@@ -65,7 +65,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'tag',
     'action',
     'balanceTag',
@@ -82,7 +82,7 @@ export default Route.extend(QueryRouteMixin, {
     'balanceBlocker',
     'balanceDisabled',
     'weight',
-  ],
+  ]),
 
   modelName: 'tp-action',
 });

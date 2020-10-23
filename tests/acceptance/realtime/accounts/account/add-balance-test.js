@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, fillIn } from '@ember/test-helpers';
+import { visit, click, findAll, fillIn } from '@ember/test-helpers';
 
 describe('Acceptance: Account.AddBalance', function () {
   let hooks = setupApplicationTest();

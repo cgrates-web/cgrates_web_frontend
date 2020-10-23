@@ -1,22 +1,25 @@
-import Ember from 'ember';
 import config from 'cgrates-web-frontend/config/environment';
 import AjaxService from 'ember-ajax/services/ajax';
+import { inject as service } from '@ember/service';
+import { path } from 'ramda';
 
-export default AjaxService.extend({
-  session: Ember.inject.service(),
+const getAccessToken = path('data.authenticated.access_token');
 
-  host: config.API_HOST,
+export default class Ajax extends AjaxService {
+  @service()
+  session;
 
-  headers: Ember.computed('session.data.authenticated.token', function () {
-    let headers = {
+  host = config.API_HOST;
+
+  get headers() {
+    const headers = {
       Accept: 'application/vnd.api+json',
       'Content-Type': 'application/vnd.api+json',
     };
-    const token = this.get('session.data.authenticated.token');
-    if (!Ember.isBlank(token)) {
+    const token = getAccessToken(this.session);
+    if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }
-
     return headers;
-  }),
-});
+  }
+}

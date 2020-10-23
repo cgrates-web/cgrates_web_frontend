@@ -1,6 +1,6 @@
 import Mixin from '@ember/object/mixin';
-import { computed, get } from '@ember/object';
-import { __, includes, pipe, prop, reject, anyPass, pick } from 'ramda';
+import { computed } from '@ember/object';
+import { __, includes, pipe, prop, reject, anyPass, pick, path } from 'ramda';
 
 const isPaginationQP = includes(__, ['page', 'pageSize']);
 const isSortingQP = includes(__, ['sortColumn', 'sortOrder']);
@@ -32,12 +32,12 @@ export default Mixin.create({
   pagination: computed('meta.total_pages', 'page', 'totalPages', function () {
     return {
       page: this.page,
-      totalPages: get(this, 'meta.total_pages') || 1,
+      totalPages: path('meta.total_pages', this) || 1,
     };
   }),
 
   totalPages: computed('meta.total_pages', function () {
-    return this.get('meta.total_pages') || 1;
+    return this.meta.total_pages || 1;
   }),
 
   actions: {

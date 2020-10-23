@@ -20,7 +20,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: ['tag'],
+  filterParams: Object.freeze(['tag']),
 
   modelName: 'tp-timing',
 });

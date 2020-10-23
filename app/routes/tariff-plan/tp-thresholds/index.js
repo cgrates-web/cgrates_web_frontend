@@ -20,7 +20,7 @@ export default Route.extend(QueryRouteMixin, {
     pageSize: { refreshModel: true },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'tenant',
     'customId',
     'filterIds',
@@ -32,7 +32,7 @@ export default Route.extend(QueryRouteMixin, {
     'blocker',
     'async',
     'weight',
-  ],
+  ]),
 
   modelName: 'tp-threshold',
 });

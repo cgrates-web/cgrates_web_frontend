@@ -40,7 +40,7 @@ export default Controller.extend(QueryControllerMixin, {
 
   initEmptyDefaultParams() {
     this.permittedFilters.forEach((item) => {
-      if (isBlank(this.get(`${item}`))) this.set(item, null);
+      if (isBlank(this[item])) this.set(item, null);
     });
   },
 

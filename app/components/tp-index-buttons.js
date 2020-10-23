@@ -19,11 +19,11 @@ export default Component.extend(FileSaverMixin, {
   },
 
   csvImportRouteName: computed('model.modelName', function () {
-    return `tariff-plan.${pluralize(this.get('model.modelName'))}.csv-import`;
+    return `tariff-plan.${pluralize(this.model.modelName)}.csv-import`;
   }),
 
   newRouteName: computed('model.modelName', function () {
-    return `tariff-plan.${pluralize(this.get('model.modelName'))}.new`;
+    return `tariff-plan.${pluralize(this.model.modelName)}.new`;
   }),
 
   tagName: '',
@@ -32,7 +32,7 @@ export default Component.extend(FileSaverMixin, {
     try {
       const filter = normalizeFilters(this.controller, this.permittedFilters);
       const response = yield this.ajax.request(
-        `/api/${pluralize(this.get('model.modelName'))}/export-to-csv`,
+        `/api/${pluralize(this.model.modelName)}/export-to-csv`,
         {
           dataType: 'blob',
           data: {
@@ -51,7 +51,7 @@ export default Component.extend(FileSaverMixin, {
     try {
       const filter = normalizeFilters(this.controller, this.permittedFilters);
       yield this.ajax.request(
-        `/api/${pluralize(this.get('model.modelName'))}/delete-all`,
+        `/api/${pluralize(this.model.modelName)}/delete-all`,
         {
           method: 'POST',
           data: {

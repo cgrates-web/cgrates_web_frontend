@@ -20,7 +20,7 @@ export default Route.extend(QueryRouteMixin, {
     pageSize: { refreshModel: true },
   },
 
-  filterParams: [
+  filterParams: Object.freeze([
     'tenant',
     'customId',
     'contexts',
@@ -32,7 +32,7 @@ export default Route.extend(QueryRouteMixin, {
     'append',
     'blocker',
     'weight',
-  ],
+  ]),
 
   modelName: 'tp-attribute',
 });

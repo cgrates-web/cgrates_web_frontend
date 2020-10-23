@@ -23,7 +23,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: ['tag', 'prefix'],
+  filterParams: Object.freeze(['tag', 'prefix']),
 
   modelName: 'tp-destination',
 });

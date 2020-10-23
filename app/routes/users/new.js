@@ -7,7 +7,7 @@ export default Route.extend({
 
   actions: {
     willTransition() {
-      if (this.currentModel.get('isNew')) {
+      if (this.currentModel.isNew) {
         return this.currentModel.destroyRecord();
       }
     },

@@ -24,6 +24,6 @@ export default Route.extend(QueryRouteMixin, {
   modelName: 'raw-supplier-rate',
 
   _getTtpid() {
-    return this.modelFor('tariff-plan').get('id');
+    return this.modelFor('tariff-plan').id;
   },
 });

@@ -3,7 +3,7 @@ import NewRouteMixin from 'cgrates-web-frontend/mixins/new-route-mixin';
 export default Route.extend(NewRouteMixin, {
   model() {
     return this.store.createRecord('tp-supplier', {
-      tpid: this.modelFor('tariff-plan').get('alias'),
+      tpid: this.modelFor('tariff-plan').alias,
     });
   },
 });
