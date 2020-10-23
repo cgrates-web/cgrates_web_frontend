@@ -3,13 +3,12 @@
   @placeholder={{@placeholder}}
   @property={{@property}}
   @class={{@class}}
+  @onChange={{this.onChange}}
   data-test-input-interval={{@dataTest}} as |el|
 >
   <div class="input-interval">
     <el.control
       @value={{this.valueNumber}}
-      @change={{action "change"}}
-      @input={{action "input"}}
       @type="number"
       @step="1"
       @min="0"
@@ -21,7 +20,7 @@
       @options={{this.intervalUnits}}
       @selected={{this.currentIntervalUnit}}
       @class="ml-1"
-      @onChange={{action "intervalChange"}} as |item|
+      @onChange={{this.intervalChange}} as |item|
     >
       {{item}}
     </PowerSelect>

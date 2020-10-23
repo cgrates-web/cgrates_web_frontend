@@ -7,5 +7,5 @@ export default class IndexRoute extends Route {
 
   beforeModel() {
     return this.router.transitionTo('realtime');
-  };
-};
+  }
+}

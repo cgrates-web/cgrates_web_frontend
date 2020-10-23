@@ -5,7 +5,7 @@ import { action, set, computed } from '@ember/object';
 import strToArray from 'cgrates-web-frontend/utils/str-to-array';
 import { tracked } from '@glimmer/tracking';
 
-export default class FilterSelectSearchToStringComponent extends Component{
+export default class FilterSelectSearchToStringComponent extends Component {
   @service
   store;
 
@@ -23,22 +23,20 @@ export default class FilterSelectSearchToStringComponent extends Component{
     return this.multiple ? strToArray(this.value) : this.value;
   }
 
-  @task(
-    function* (term) {
-      const response = yield this.store.query(this.searchModel, {
-        tpid: this.tpid,
-        filter: {
-          [this.searchField.underscore()]: term,
-        },
-      });
-      return response.mapBy(this.searchField);
-    }
-  ).restartable()
+  @(task(function* (term) {
+    const response = yield this.store.query(this.searchModel, {
+      tpid: this.tpid,
+      filter: {
+        [this.searchField.underscore()]: term,
+      },
+    });
+    return response.mapBy(this.searchField);
+  }).restartable())
   searchTask;
 
   @action
   onChange(value) {
     const newValue = this.multiple ? value.join(',') : value;
     set(this, 'value', newValue);
-  };
+  }
 }

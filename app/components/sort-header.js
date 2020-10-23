@@ -19,9 +19,9 @@ export default Component.extend({
         } else {
           newSortOrder = 'desc';
         }
-        return this.sendAction('sortAction', this.sortColumn, newSortOrder);
+        this.sortAction(this.sortColumn, newSortOrder);
       } else {
-        return this.sendAction('sortAction', this.key, 'asc');
+        this.sortAction(this.key, 'asc');
       }
     },
   },

@@ -91,11 +91,13 @@ describe('Integration: Tp index buttons', function () {
       this.set('refresh', function () {
         refreshIsCalled = true;
       });
-      await render(hbs`('
+      this.set('model', EmberObject.create({ modelName: 'tp-destination' }));
+      await render(hbs`
         {{tp-index-buttons
           refresh=refresh
+          model=model
         }}
-      ')`);
+      `);
       await click('[data-test-refresh]');
       expect(refreshIsCalled).to.be.true;
     });

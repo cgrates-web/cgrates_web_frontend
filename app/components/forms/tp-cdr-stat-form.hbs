@@ -33,6 +33,7 @@
       @property="timeWindow"
       @class="col-md-3"
       @dataTest="time-window"
+      @onChange={{fn (mut @model.timeWindow)}}
     />
     <InputInterval
       @value={{@model.saveInterval}}
@@ -41,6 +42,7 @@
       @property="saveInterval"
       @class="col-md-3"
       @dataTest="save-interval"
+      @onChange={{fn (mut @model.saveInterval)}}
     />
     <form.element
       @label="Setup interval"

@@ -68,7 +68,7 @@ export default Component.extend(FileSaverMixin, {
 
   actions: {
     refresh() {
-      this.sendAction('refresh');
+      this.refresh();
     },
   },
 });

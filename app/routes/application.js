@@ -10,7 +10,7 @@ export default class ApplicationRoute extends Route {
 
   afterModel() {
     if (
-      this.route.currentRouteName != 'login' &&
+      this.router.currentRouteName != 'login' &&
       !this.session.isAuthenticated
     ) {
       this.router.transitionTo('login');

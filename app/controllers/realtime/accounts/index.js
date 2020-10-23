@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
   queryParams: ['page', 'pageSize'],
-  accountsSorting: ['id'],
+  accountsSorting: Object.freeze(['id']),
 
   page: 1,
   pageSize: 10,

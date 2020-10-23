@@ -32,7 +32,7 @@ export default Mixin.create({
   pagination: computed('meta.total_pages', 'page', 'totalPages', function () {
     return {
       page: this.page,
-      totalPages: path('meta.total_pages', this) || 1,
+      totalPages: path(['meta', 'total_pages'], this) || 1,
     };
   }),
 

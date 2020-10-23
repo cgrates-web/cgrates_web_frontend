@@ -9,21 +9,25 @@ import EmberObject from '@ember/object';
 describe('Integration: InputInterval', function () {
   setupRenderingTest();
 
+  const renderComponent = () =>
+    render(hbs`('
+      {{#bs-form model=model as |form|}}
+        <InputInterval
+          @value={{this.value}}
+          @form={{form}}
+          @label="Test"
+          @class="test-class"
+          @dataTest="test"
+          @onChange={{fn (mut this.value)}}
+        />
+      {{/bs-form}}
+    ')`);
+
   describe('basic rendering', function () {
     context('when value is empty', function () {
       beforeEach(async function () {
         this.set('value', null);
-        await render(hbs`('
-          {{#bs-form model=model as |form|}}
-            {{input-interval
-              value=value
-              form=form
-              label="Test"
-              class="test-class"
-              dataTest="test"
-            }}
-          {{/bs-form}}
-        ')`);
+        await renderComponent();
       });
       it('renders number input field', function () {
         expect(find('input[type="number"]')).to.exist;
@@ -44,56 +48,28 @@ describe('Integration: InputInterval', function () {
       context('with seconds', function () {
         it('displays value without suffix', async function () {
           this.set('value', '40s');
-          await render(hbs`('
-            {{#bs-form model=model as |form|}}
-              {{input-interval
-                value=value
-                form=form
-              }}
-            {{/bs-form}}
-          ')`);
+          await renderComponent();
           expect(find('input[type="number"]').value).to.eq('40');
         });
       });
       context('with minutes', function () {
         it('displays value without suffix', async function () {
           this.set('value', '40m');
-          await render(hbs`('
-            {{#bs-form model=model as |form|}}
-              {{input-interval
-                value=value
-                form=form
-              }}
-            {{/bs-form}}
-          ')`);
+          await renderComponent();
           expect(find('input[type="number"]').value).to.eq('40');
         });
       });
       context('with hours', function () {
         it('displays value without suffix', async function () {
           this.set('value', '40h');
-          await render(hbs`('
-            {{#bs-form model=model as |form|}}
-              {{input-interval
-                value=value
-                form=form
-              }}
-            {{/bs-form}}
-          ')`);
+          await renderComponent();
           expect(find('input[type="number"]').value).to.eq('40');
         });
       });
       context('with other', function () {
         it('does not displays value', async function () {
           this.set('value', '40k');
-          await render(hbs`('
-            {{#bs-form model=model as |form|}}
-              {{input-interval
-                value=value
-                form=form
-              }}
-            {{/bs-form}}
-          ')`);
+          await renderComponent();
           expect(find('input[type="number"]').value).to.eq('');
         });
       });
@@ -104,17 +80,7 @@ describe('Integration: InputInterval', function () {
     beforeEach(async function () {
       this.set('value', null);
       this.set('model', EmberObject.create({ test: null }));
-      await render(hbs`('
-        {{#bs-form model=model as |form|}}
-          {{input-interval
-            value=value
-            form=form
-            label="Test"
-            property="test"
-            dataTest="test"
-          }}
-        {{/bs-form}}
-      ')`);
+      await renderComponent();
       await fillIn('input', '60');
     });
     it('appends default suffix', async function () {
