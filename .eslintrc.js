@@ -22,7 +22,10 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    // TODO:
+    'ember/no-mixins': 'warn',
+  },
   overrides: [
     // node files
     {

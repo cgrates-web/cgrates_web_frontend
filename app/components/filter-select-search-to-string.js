@@ -18,7 +18,7 @@ export default class FilterSelectSearchToStringComponent extends Component{
   @tracked
   multiple = false;
 
-  @computed('value')
+  @computed('multiple', 'value')
   get selected() {
     return this.multiple ? strToArray(this.value) : this.value;
   }

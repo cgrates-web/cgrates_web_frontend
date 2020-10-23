@@ -26,7 +26,9 @@ describe('Acceptance: TpDestinationRate.Index', function () {
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-destination-rates/1');
-      expect(find('main h2')).to.have.trimmed.text('TpDestinationRate: tagtest');
+      expect(find('main h2')).to.have.trimmed.text(
+        'TpDestinationRate: tagtest'
+      );
     }));
 
   describe('click edit button', () =>

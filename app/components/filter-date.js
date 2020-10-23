@@ -4,6 +4,4 @@ import { on } from '@ember/object/evented';
 import { isBlank, isPresent } from '@ember/utils';
 import moment from 'moment';
 
-export default class FilterDate extends Component {
-
-}
+export default class FilterDate extends Component {}

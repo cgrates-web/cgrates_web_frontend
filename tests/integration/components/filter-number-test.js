@@ -22,11 +22,9 @@ describe('Integration: FilterNumber', function () {
       this.set('value', null);
       this.set('actionCounter', 0);
       await render(
-        hbs(
-          "{{filter-number label='Test' key='test' value=value step='0.01'}}"
-        )
+        hbs("{{filter-number label='Test' key='test' value=value step='0.01'}}")
       );
       await fillIn('input', '0.01');
-      expect(this.value).to.eq('0.01')
+      expect(this.value).to.eq('0.01');
     }));
 });

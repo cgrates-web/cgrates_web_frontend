@@ -28,7 +28,6 @@ export default class PageNumberComponent extends Component {
     return this.args.content.page > 1;
   }
 
-
   get canStepForward() {
     return (this.args.content.page || 1) < this.args.content.totalPages;
   }

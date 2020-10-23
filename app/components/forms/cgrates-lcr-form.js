@@ -24,18 +24,15 @@ export default Component.extend(Validations, {
 
   getSuppliers: task(function* () {
     try {
-      const response = yield this.ajax.request(
-        '/api/realtime/cgrates-lcrs',
-        {
-          data: {
-            category: this.category,
-            subject: this.subject,
-            destination: this.destination,
-            duration: this.duration,
-            account: this.account,
-          },
-        }
-      );
+      const response = yield this.ajax.request('/api/realtime/cgrates-lcrs', {
+        data: {
+          category: this.category,
+          subject: this.subject,
+          destination: this.destination,
+          duration: this.duration,
+          account: this.account,
+        },
+      });
       if (isPresent(response)) this.set('response', response);
       else this.flashMessages.danger('Unsupported destination');
     } catch (err) {

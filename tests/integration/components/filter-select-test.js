@@ -35,9 +35,7 @@ describe('Integration: FilterSelect', function () {
       this.set('value', null);
       this.set('content', ['test1', 'test2']);
       await render(
-        hbs(
-          "{{filter-select key='test' value=value content=content}}"
-        )
+        hbs("{{filter-select key='test' value=value content=content}}")
       );
       await selectChoose('.ember-power-select-trigger', 'test1');
       expect(this.value).to.eq('test1');

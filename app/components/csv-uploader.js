@@ -27,8 +27,8 @@ export default class CSVUploader extends Component {
 
   @action
   attachFile(file) {
-   this.file = file.blob;
-  };
+    this.file = file.blob;
+  }
 
   @action
   save() {

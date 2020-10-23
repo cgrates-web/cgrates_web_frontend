@@ -5,7 +5,7 @@ export default class FilterBlockComponent extends Component {
   @action
   submit() {
     return this.search(this.activeFilters);
-  };
+  }
 
   @action
   reset() {
@@ -13,5 +13,5 @@ export default class FilterBlockComponent extends Component {
       this.activeFilters[key] = null;
     }
     return this.search(this.activeFilters);
-  };
+  }
 }

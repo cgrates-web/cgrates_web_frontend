@@ -78,12 +78,5 @@ export default Service.extend({
     'MINUTES',
   ]),
 
-  metrics: Object.freeze([
-    'ACC',
-    'ACD',
-    'ASR',
-    'PDD',
-    'TCC',
-    'TCD'
-  ]),
+  metrics: Object.freeze(['ACC', 'ACD', 'ASR', 'PDD', 'TCC', 'TCD']),
 });

@@ -9,12 +9,17 @@ export default class ApplicationAdapter extends JSONAPIAdapter {
   namespace = 'api';
   host = ENV.API_HOST;
 
-  @computed('session.data.authenticated.access_token')
+  @computed(
+    'session.data.authenticated.access_token',
+    'session.isAuthenticated'
+  )
   get headers() {
     let headers = {};
     if (this.session.isAuthenticated) {
       // OAuth 2
-      headers['Authorization'] = `Bearer ${this.session.data.authenticated.access_token}`;
+      headers[
+        'Authorization'
+      ] = `Bearer ${this.session.data.authenticated.access_token}`;
     }
 
     return headers;

@@ -21,9 +21,7 @@ describe('Integration: FilterText', function () {
     it('changes the value', async function () {
       this.set('filterValue', null);
       await render(
-        hbs(
-          "{{filter-text label='Test' key='test' value=filterValue}}"
-        )
+        hbs("{{filter-text label='Test' key='test' value=filterValue}}")
       );
       await fillIn('input', 'valuetest');
       expect(this.filterValue).to.eq('valuetest');

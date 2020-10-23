@@ -5,7 +5,6 @@ import { replace } from 'ramda';
 const replaceSeconds = replace(/s$/, '');
 
 export default class FilterSecondsComponent extends Component {
-
   get valueWithoutSeconds() {
     return replaceSeconds(this.value || '');
   }
@@ -13,6 +12,6 @@ export default class FilterSecondsComponent extends Component {
   @action
   onInput({ target: { value } }) {
     const valToSet = value ? `${value}s` : value;
-    set(this, 'value', valToSet)
+    set(this, 'value', valToSet);
   }
 }
