@@ -9,7 +9,7 @@
           @model={{this.model}}
           @tariffPlanId={{this.tariffPlanId}}
           @permittedFilters={{permittedFilters}}
-          @refresh="refresh"
+          @refresh={{route-action "refresh"}}
           @controller={{this}}
         />
         <li>

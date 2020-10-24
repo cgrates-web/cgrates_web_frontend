@@ -65,6 +65,7 @@
     "ember-moment": "^8.0.0",
     "ember-power-select": "^4.0.5",
     "ember-resolver": "^8.0.0",
+    "ember-route-action-helper": "^2.0.8",
     "ember-service-worker": "^0.7.0",
     "ember-service-worker-asset-cache": "^0.6.3",
     "ember-service-worker-index": "^0.6.9",
