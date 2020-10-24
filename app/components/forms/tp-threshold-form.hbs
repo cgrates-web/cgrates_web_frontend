@@ -99,7 +99,7 @@
   <BsButton
     @type="primary"
     @buttonType="submit"
-    @disabled={{@save.isRunning}}
+    disabled={{@save.isRunning}}
     data-test-submit-button={{true}}
   >
     <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
