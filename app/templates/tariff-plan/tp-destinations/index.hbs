@@ -26,14 +26,14 @@
                   @key="id"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="Tag"
                   @key="tag"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                   data-test-sort-tag={{true}}
                 />
                 <SortHeader
@@ -41,14 +41,14 @@
                   @key="prefix"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="Created at"
                   @key="createdAt"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <td>
                   Actions

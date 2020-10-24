@@ -26,14 +26,14 @@
                   @key="id"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="Tag"
                   @key="tag"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                   data-test-sort-tag={{true}}
                 />
                 <SortHeader
@@ -41,7 +41,7 @@
                   @key="account"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                   data-test-sort-tenant={{true}}
                 />
                 <SortHeader
@@ -49,7 +49,7 @@
                   @key="strategy"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                   data-test-sort-tenant={{true}}
                 />
                 <SortHeader
@@ -57,7 +57,7 @@
                   @key="ratingSubject"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                   data-test-sort-tenant={{true}}
                 />
                 <SortHeader
@@ -65,7 +65,7 @@
                   @key="createdAt"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <td>
                   Actions

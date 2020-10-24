@@ -26,21 +26,21 @@
                   @key="id"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="ID"
                   @key="customId"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="Tenant"
                   @key="tenant"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                   data-test-sort-tenant={{true}}
                 />
                 <SortHeader
@@ -48,28 +48,28 @@
                   @key="filterType"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="Filter field name"
                   @key="filterFieldName"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="Activation interval"
                   @key="activationInterval"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
                   @label="Created at"
                   @key="createdAt"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
-                  @sortAction="sortBy"
+                  @sortAction={{action "sortBy"}}
                 />
                 <td>
                   Actions
