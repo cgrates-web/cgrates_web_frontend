@@ -2,7 +2,6 @@
   @controlType={{this.controlType}}
   @property={{@property}}
   @label={{@label}}
-  @placeholder={{this.placeholder}}
   @showValidationOn="change"
   @class={{@class}}
   @change={{null}}
@@ -10,6 +9,7 @@
   data-test-select-search-to-str={{@dataTest}} as |el|
 >
   <el.control
+    placeholder={{this.placeholder}}
     @allowClear={{this.allowClear}}
     @tagName="div"
     @class={{bs-element-validation el.validation}}

@@ -4,7 +4,6 @@
   @property={{@property}}
   @label={{@label}}
   @options={{this.anyIfAllowed}}
-  @placeholder="Select tag..."
   @showValidationOn="change"
   @class={{@class}}
   data-test-tag={{@dataTest}} as |el|
@@ -12,6 +11,7 @@
   <el.control
     @search={{perform this.searchTask}}
     @searchEnabled={{true}}
-    @class={{if (eq el.validation "error") "is-invalid" (if (eq el.validation "success") "is-valid")}}
+    placeholder="Select tag..."
+    class={{if (eq el.validation "error") "is-invalid" (if (eq el.validation "success") "is-valid")}}
   />
 </@form.element>

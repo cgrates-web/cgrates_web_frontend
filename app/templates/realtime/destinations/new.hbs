@@ -4,7 +4,7 @@
 <BsForm
   @model={{this.model}}
   @onSubmit={{action "save"}}
-  @novalidate={{true}} as |form|
+  novalidate={{true}} as |form|
 >
   <form.element @label="ID" @property="id" data-test-id={{true}} />
   <form.element

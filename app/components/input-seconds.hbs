@@ -1,6 +1,5 @@
 <@form.element
   @label={{@label}}
-  @placeholder={{@placeholder}}
   @property={{@property}}
   @class={{@class}}
   data-test-second={{@dataTest}} as |el|
@@ -12,5 +11,6 @@
     @type="number"
     @step="1"
     @min="0"
+    placeholder={{@placeholder}}
   />
 </@form.element>
