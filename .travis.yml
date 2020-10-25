@@ -8,16 +8,27 @@ dist: trusty
 addons:
   chrome: stable
 
+stages:
+  - test
+
 cache:
   directories:
     - node_modules
   yarn: true
-
-before_install:
-  - yarn global add bower
 
 install:
   - yarn install --non-interactive
 
 script:
   - yarn test
+
+jobs:
+  include:
+    - stage: test
+      name: Tests
+      script:
+        - yarn test
+    - stage: test
+      name: Lint
+      script:
+        - yarn lint

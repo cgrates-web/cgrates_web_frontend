@@ -3,8 +3,19 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { selectChoose, selectSearch } from 'ember-power-select/test-support/helpers';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
+import {
+  selectChoose,
+  selectSearch,
+} from 'ember-power-select/test-support/helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
 
 describe('Acceptance: TpCdrStats.Index', function () {
@@ -12,21 +23,30 @@ describe('Acceptance: TpCdrStats.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
     server.createList('tp-cdr-stat', 2, { tpid: this.tariffPlan.alias });
-    server.createList('tp-cdr-stat', 2, {tpid: 'other'});
-    server.create('tp-destination', { tpid: this.tariffPlan.alias, tag: 'tag-1' });
-    server.create('tp-action-trigger', { tpid: this.tariffPlan.alias, tag: 'tag-2' });
-    await authenticateSession({email: 'user@example.com'});
+    server.createList('tp-cdr-stat', 2, { tpid: 'other' });
+    server.create('tp-destination', {
+      tpid: this.tariffPlan.alias,
+      tag: 'tag-1',
+    });
+    server.create('tp-action-trigger', {
+      tpid: this.tariffPlan.alias,
+      tag: 'tag-2',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-cdr-stats', () =>
     it('renders table with tp-cdr-stats', async function () {
       await visit('/tariff-plans/1/tp-cdr-stats');
-      expect(find('main h2').textContent).to.eq('TpCdrStats list');
+      expect(find('main h2')).to.have.trimmed.text('TpCdrStats list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server response with meta: total_records', function () {
     it('displays total records', async function () {
@@ -42,33 +62,33 @@ describe('Acceptance: TpCdrStats.Index', function () {
     it('reditects to tp-cdr-stat page', async function () {
       await visit('/tariff-plans/1/tp-cdr-stats');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-cdr-stats.tp-cdr-stat.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-cdr-stats.tp-cdr-stat.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-cdr-stat page', async function () {
       await visit('/tariff-plans/1/tp-cdr-stats');
       await click('[data-test-tp-cdr-stat-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-cdr-stats.tp-cdr-stat.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-cdr-stats.tp-cdr-stat.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-cdr-stat', async function () {
       await visit('/tariff-plans/1/tp-cdr-stats');
       await click('[data-test-tp-cdr-stat-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-cdr-stat page', async function () {
       await visit('/tariff-plans/1/tp-cdr-stats');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-cdr-stats.new');
-    })
-  );
+    }));
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-tag] input', 'tag');
@@ -93,8 +113,14 @@ describe('Acceptance: TpCdrStats.Index', function () {
     await fillIn('[data-test-filter-setup-interval] input', 'setup-interval');
     await fillIn('[data-test-filter-pdd-interval] input', 'pdd-interval');
     await fillIn('[data-test-filter-usage-interval] input', 'usage-interval');
-    await fillIn('[data-test-filter-disconnect-causes] input', 'disconnect-causes');
-    await fillIn('[data-test-filter-mediation-runids] input', 'mediation-runids');
+    await fillIn(
+      '[data-test-filter-disconnect-causes] input',
+      'disconnect-causes'
+    );
+    await fillIn(
+      '[data-test-filter-mediation-runids] input',
+      'mediation-runids'
+    );
     await fillIn('[data-test-filter-rated-accounts] input', 'rated-accounts');
     await fillIn('[data-test-filter-rated-subjects] input', 'rated-subjects');
     await fillIn('[data-test-filter-subjects] input', 'subjects');
@@ -119,13 +145,25 @@ describe('Acceptance: TpCdrStats.Index', function () {
     expect(request.queryParams['filter[queue_length]']).to.eq('22');
     expect(request.queryParams['filter[time_window]']).to.eq('10');
     expect(request.queryParams['filter[save_interval]']).to.eq('20');
-    expect(request.queryParams['filter[setup_interval]']).to.eq('setup-interval');
+    expect(request.queryParams['filter[setup_interval]']).to.eq(
+      'setup-interval'
+    );
     expect(request.queryParams['filter[pdd_interval]']).to.eq('pdd-interval');
-    expect(request.queryParams['filter[usage_interval]']).to.eq('usage-interval');
-    expect(request.queryParams['filter[disconnect_causes]']).to.eq('disconnect-causes');
-    expect(request.queryParams['filter[mediation_runids]']).to.eq('mediation-runids');
-    expect(request.queryParams['filter[rated_accounts]']).to.eq('rated-accounts');
-    expect(request.queryParams['filter[rated_subjects]']).to.eq('rated-subjects');
+    expect(request.queryParams['filter[usage_interval]']).to.eq(
+      'usage-interval'
+    );
+    expect(request.queryParams['filter[disconnect_causes]']).to.eq(
+      'disconnect-causes'
+    );
+    expect(request.queryParams['filter[mediation_runids]']).to.eq(
+      'mediation-runids'
+    );
+    expect(request.queryParams['filter[rated_accounts]']).to.eq(
+      'rated-accounts'
+    );
+    expect(request.queryParams['filter[rated_subjects]']).to.eq(
+      'rated-subjects'
+    );
     expect(request.queryParams['filter[cost_interval]']).to.eq('cost-interval');
   };
 
@@ -140,41 +178,82 @@ describe('Acceptance: TpCdrStats.Index', function () {
             expect(isBlank(request.queryParams['filter[tag]'])).to.eq(true);
             expect(isBlank(request.queryParams['filter[metrics]'])).to.eq(true);
             expect(isBlank(request.queryParams['filter[tors]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[cdr_hosts]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[cdr_sources]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[req_types]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[directions]'])).to.eq(true);
+            expect(isBlank(request.queryParams['filter[cdr_hosts]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[cdr_sources]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[req_types]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[directions]'])).to.eq(
+              true
+            );
             expect(isBlank(request.queryParams['filter[tenants]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[categories]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[accounts]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[subjects]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[suppliers]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[destination_ids]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[action_triggers]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[queue_length]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[time_window]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[save_interval]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[setup_interval]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[pdd_interval]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[usage_interval]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[disconnect_causes]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[mediation_runids]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[rated_accounts]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[rated_subjects]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[cost_interval]'])).to.eq(true);
+            expect(isBlank(request.queryParams['filter[categories]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[accounts]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[subjects]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[suppliers]'])).to.eq(
+              true
+            );
+            expect(
+              isBlank(request.queryParams['filter[destination_ids]'])
+            ).to.eq(true);
+            expect(
+              isBlank(request.queryParams['filter[action_triggers]'])
+            ).to.eq(true);
+            expect(isBlank(request.queryParams['filter[queue_length]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[time_window]'])).to.eq(
+              true
+            );
+            expect(isBlank(request.queryParams['filter[save_interval]'])).to.eq(
+              true
+            );
+            expect(
+              isBlank(request.queryParams['filter[setup_interval]'])
+            ).to.eq(true);
+            expect(isBlank(request.queryParams['filter[pdd_interval]'])).to.eq(
+              true
+            );
+            expect(
+              isBlank(request.queryParams['filter[usage_interval]'])
+            ).to.eq(true);
+            expect(
+              isBlank(request.queryParams['filter[disconnect_causes]'])
+            ).to.eq(true);
+            expect(
+              isBlank(request.queryParams['filter[mediation_runids]'])
+            ).to.eq(true);
+            expect(
+              isBlank(request.queryParams['filter[rated_accounts]'])
+            ).to.eq(true);
+            expect(
+              isBlank(request.queryParams['filter[rated_subjects]'])
+            ).to.eq(true);
+            expect(isBlank(request.queryParams['filter[cost_interval]'])).to.eq(
+              true
+            );
             break;
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-cdr-stat'}] };
+        return { data: [{ id: '1', type: 'tp-cdr-stat' }] };
       });
 
       await visit('/tariff-plans/1/tp-cdr-stats');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('set filters and click download csv button', function () {
     it('sends request to the server with filters', async function () {
@@ -183,7 +262,7 @@ describe('Acceptance: TpCdrStats.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-cdr-stat'}] };
+        return { data: [{ id: '1', type: 'tp-cdr-stat' }] };
       });
       await visit('/tariff-plans/1/tp-cdr-stats');
       await setFilters();
@@ -208,7 +287,7 @@ describe('Acceptance: TpCdrStats.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-cdr-stat'}] };
+        return { data: [{ id: '1', type: 'tp-cdr-stat' }] };
       });
       await visit('/tariff-plans/1/tp-cdr-stats');
       await setFilters();
@@ -283,15 +362,14 @@ describe('Acceptance: TpCdrStats.Index', function () {
           default:
             expect(sort).to.eq('-tag');
         }
-        return { data: [{id: '1', type: 'tp-cdr-stat'}] };
+        return { data: [{ id: '1', type: 'tp-cdr-stat' }] };
       });
 
       await visit('/tariff-plans/1/tp-cdr-stats');
       await click('[data-test-sort-tag] a');
       await click('[data-test-sort-tag] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -310,12 +388,14 @@ describe('Acceptance: TpCdrStats.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-cdr-stat'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-cdr-stat' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-cdr-stats');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

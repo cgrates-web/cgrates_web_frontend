@@ -1,6 +1,11 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default Ember.Route.extend({
-  router: Ember.inject.service(),
-  beforeModel() { return this.get('router').transitionTo('realtime'); }
-});
+export default class IndexRoute extends Route {
+  @service
+  router;
+
+  beforeModel() {
+    return this.router.transitionTo('realtime');
+  }
+}

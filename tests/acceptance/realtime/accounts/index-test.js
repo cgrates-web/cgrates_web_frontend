@@ -1,9 +1,15 @@
-import { describe, it, beforeEach, } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+} from '@ember/test-helpers';
 
 describe('Acceptance: Accounts.Index', function () {
   let hooks = setupApplicationTest();
@@ -12,7 +18,7 @@ describe('Acceptance: Accounts.Index', function () {
   beforeEach(async function () {
     server.create('account', { id: '2' });
     server.create('account', { id: '1' });
-    await authenticateSession({email: 'user@example.com'});
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /realtime/accounts', function () {
@@ -22,7 +28,9 @@ describe('Acceptance: Accounts.Index', function () {
     });
     it('renders table with accounts sorted by id', async function () {
       await visit('/realtime/accounts');
-      expect(find('table tbody tr:first-child td:first-child').textContent.trim()).to.eq('1');
+      expect(
+        find('table tbody tr:first-child td:first-child').textContent.trim()
+      ).to.eq('1');
     });
     it('renders page header', async function () {
       await visit('/realtime/accounts');
@@ -35,24 +43,21 @@ describe('Acceptance: Accounts.Index', function () {
       await visit('/realtime/accounts');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('realtime.accounts.account.index');
-    })
-  );
+    }));
 
   describe('click remove button', () =>
     it('removes account', async function () {
       await visit('/realtime/accounts');
       await click('[data-test-account-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new account page', async function () {
       await visit('/realtime/accounts');
       await click('[data-test-account-add]');
       expect(currentRouteName()).to.equal('realtime.accounts.new');
-    })
-  );
+    }));
 
   return describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -71,12 +76,11 @@ describe('Acceptance: Accounts.Index', function () {
             expect(page).to.eq('2');
             expect(perPage).to.eq('10');
         }
-        return { data: [{id: '1', type: 'account'}] };
+        return { data: [{ id: '1', type: 'account' }] };
       });
 
       await visit('/realtime/accounts');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

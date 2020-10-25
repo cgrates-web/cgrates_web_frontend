@@ -1,0 +1,112 @@
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  novalidate={{true}} as |form|
+>
+  <div class="form-row">
+    <form.element
+      @label="Tenant"
+      @property="tenant"
+      @class="col-md-6"
+      data-test-tenant={{true}}
+    />
+    <form.element
+      @label="Custom ID"
+      @property="customId"
+      @class="col-md-6"
+      data-test-custom-id={{true}}
+    />
+    <InputSelectSearchToString
+      @label="Filter IDs"
+      @value={{@model.filterIds}}
+      @searchModel="tp-filter"
+      @searchField="customId"
+      @tpid={{@model.tpid}}
+      @property="filterIds"
+      @form={{form}}
+      @class="col-md-6"
+      @dataTest="filter-ids"
+    />
+    <form.element
+      @label="Sorting"
+      @property="sorting"
+      @class="col-md-6"
+      data-test-sorting={{true}}
+    />
+    <form.element
+      @label="Activation interval"
+      @property="activationInterval"
+      @class="col-md-6"
+      data-test-activation-interval={{true}}
+    />
+    <form.element
+      @label="Sorting parameters"
+      @property="sortingParameters"
+      @class="col-md-6"
+      data-test-sorting-params={{true}}
+    />
+    <form.element
+      @label="Supplier ID"
+      @property="supplierId"
+      @class="col-md-6"
+      data-test-supplier-id={{true}}
+    />
+    <form.element
+      @label="Supplier Filter IDs"
+      @property="supplierFilterIds"
+      @class="col-md-6"
+      data-test-supplier-filter-ids={{true}}
+    />
+    <form.element
+      @label="Supplier Account IDs"
+      @property="supplierAccountIds"
+      @class="col-md-6"
+      data-test-supplier-account-ids={{true}}
+    />
+    <form.element
+      @label="Supplier Rating plan IDs"
+      @property="supplierRatingplanIds"
+      @class="col-md-6"
+      data-test-supplier-ratingplan-ids={{true}}
+    />
+    <form.element
+      @label="Supplier Resource IDs"
+      @property="supplierResourceIds"
+      @class="col-md-6"
+      data-test-supplier-resource-ids={{true}}
+    />
+    <form.element
+      @label="Supplier Stat IDs"
+      @property="supplierStatIds"
+      @class="col-md-6"
+      data-test-supplier-stat-ids={{true}}
+    />
+    <form.element
+      @label="Supplier weight"
+      @property="supplierWeight"
+      @class="col-md-6"
+      data-test-supplier-weight={{true}}
+    />
+    <form.element
+      @label="Weight"
+      @property="weight"
+      @class="col-md-6"
+      data-test-weight={{true}}
+    />
+    <form.element
+      @label="Supplier blocker"
+      @property="supplierBlocker"
+      @class="col-md-3 ml-3 mb-2"
+      @controlType="checkbox"
+      data-test-supplier-blocker={{true}}
+    />
+  </div>
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    disabled={{@save.isRunning}}
+    data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

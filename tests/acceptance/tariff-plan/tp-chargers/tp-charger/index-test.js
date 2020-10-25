@@ -9,23 +9,31 @@ describe('Acceptance: TpCharger.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    const tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    server.create('tp-charger', {id: '1', tpid: tariffPlan.alias, customId: 'custom_id'});
-    await authenticateSession({email: 'user@example.com'});
+    const tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('tp-charger', {
+      id: '1',
+      tpid: tariffPlan.alias,
+      customId: 'custom_id',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-chargers/1');
-      expect(find('main h2').textContent).to.eq('TpCharger: custom_id');
-    })
-  );
+      expect(find('main h2')).to.have.trimmed.text('TpCharger: custom_id');
+    }));
 
   return describe('click edit button', () =>
     it('redirects to tp-charger edit page', async function () {
       await visit('/tariff-plans/1/tp-chargers/1');
       await click('[data-test-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-chargers.tp-charger.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-chargers.tp-charger.edit'
+      );
+    }));
 });

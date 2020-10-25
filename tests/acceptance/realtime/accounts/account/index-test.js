@@ -10,22 +10,22 @@ describe('Acceptance: Account.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.account = server.create('account', {id: 'test'});
-    await authenticateSession({email: 'user@example.com'});
+    this.account = server.create('account', { id: 'test' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', () =>
     it('renders specific header', async function () {
       await visit('/realtime/accounts/test');
-      expect(find('main h2').textContent).to.eq('Account: test');
-    })
-  );
+      expect(find('main h2')).to.have.trimmed.text('Account: test');
+    }));
 
   describe('click add balance button', () =>
     it('redirects to add balance page', async function () {
       await visit('/realtime/accounts/test');
       await click('[data-test-account-blabce-add]');
-      expect(currentRouteName()).to.equal('realtime.accounts.account.add-balance');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'realtime.accounts.account.add-balance'
+      );
+    }));
 });

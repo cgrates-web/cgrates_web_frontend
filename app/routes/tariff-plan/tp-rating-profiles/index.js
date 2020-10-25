@@ -4,49 +4,57 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     loadid: {
-      refreshModel: true
+      refreshModel: true,
     },
     direction: {
-      refreshModel: true
+      refreshModel: true,
     },
     tenant: {
-      refreshModel: true
+      refreshModel: true,
     },
     category: {
-      refreshModel: true
+      refreshModel: true,
     },
     subject: {
-      refreshModel: true
+      refreshModel: true,
     },
     fallbackSubjects: {
-      refreshModel: true
+      refreshModel: true,
     },
     activationTime: {
-      refreshModel: true
+      refreshModel: true,
     },
     cdrStatQueueIds: {
-      refreshModel: true
+      refreshModel: true,
     },
     ratingPlanTag: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
-  filterParams: ['loadid', 'direction', 'tenant', 'category', 'subject', 'fallbackSubjects',
-    'activationTime', 'cdrStatQueueIds', 'ratingPlanTag'],
+  filterParams: Object.freeze([
+    'loadid',
+    'direction',
+    'tenant',
+    'category',
+    'subject',
+    'fallbackSubjects',
+    'activationTime',
+    'cdrStatQueueIds',
+    'ratingPlanTag',
+  ]),
 
-  modelName: 'tp-rating-profile'
-}
-);
+  modelName: 'tp-rating-profile',
+});

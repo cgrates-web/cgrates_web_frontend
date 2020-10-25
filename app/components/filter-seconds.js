@@ -1,5 +1,17 @@
 import Component from '@ember/component';
-import FilterComponentMixin from 'cgrates-web-frontend/mixins/filter-component-mixin';
-import SecondsComponentMixin from 'cgrates-web-frontend/mixins/seconds-component-mixin';
+import { action, set } from '@ember/object';
+import { replace } from 'ramda';
 
-export default Component.extend(FilterComponentMixin, SecondsComponentMixin);
+const replaceSeconds = replace(/s$/, '');
+
+export default class FilterSecondsComponent extends Component {
+  get valueWithoutSeconds() {
+    return replaceSeconds(this.value || '');
+  }
+
+  @action
+  onInput({ target: { value } }) {
+    const valToSet = value ? `${value}s` : value;
+    set(this, 'value', valToSet);
+  }
+}

@@ -10,24 +10,26 @@ describe('Acceptance: TpAliases.New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-aliases/new', () =>
     it('renders tp-alias form', async function () {
       await visit('/tariff-plans/1/tp-aliases/new');
       expect(findAll('form input').length).to.eq(11);
-    })
-  );
+    }));
 
   describe('go away without save', () =>
-    it('removes not saved tp-alias', async  function () {
+    it('removes not saved tp-alias', async function () {
       await visit('/tariff-plans/1/tp-aliases/new');
       await click('[data-test-tp-aliases-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('submit empty form', function () {
     beforeEach(async function () {
@@ -36,47 +38,65 @@ describe('Acceptance: TpAliases.New', function () {
     });
     it('displays tenant error', async function () {
       expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
-      expect(find('[data-test-tenant] .invalid-feedback')).to.have.class('d-block');
-    });
-    it('displays direction error', async function () {
-      expect(find('[data-test-direction] input')).to.have.class('is-invalid');
-      expect(find('[data-test-direction] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays category error', async function () {
       expect(find('[data-test-category] input')).to.have.class('is-invalid');
-      expect(find('[data-test-category] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-category] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays account error', async function () {
       expect(find('[data-test-account] input')).to.have.class('is-invalid');
-      expect(find('[data-test-account] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-account] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays subject error', async function () {
       expect(find('[data-test-subject] input')).to.have.class('is-invalid');
-      expect(find('[data-test-subject] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-subject] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays destination-id error', async function () {
-      expect(find('[data-test-destination-id] input')).to.have.class('is-invalid');
-      expect(find('[data-test-destination-id] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-destination-id] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(
+        find('[data-test-destination-id] .invalid-feedback')
+      ).to.have.class('d-block');
     });
     it('displays context error', async function () {
       expect(find('[data-test-context] input')).to.have.class('is-invalid');
-      expect(find('[data-test-context] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-context] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays target error', async function () {
       expect(find('[data-test-target] input')).to.have.class('is-invalid');
-      expect(find('[data-test-target] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-target] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays original error', async function () {
       expect(find('[data-test-original] input')).to.have.class('is-invalid');
-      expect(find('[data-test-original] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-original] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays alias error', async function () {
       expect(find('[data-test-alias] input')).to.have.class('is-invalid');
-      expect(find('[data-test-alias] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-alias] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays weight error', async function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
-      expect(find('[data-test-weight] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
   });
 
@@ -91,14 +111,16 @@ describe('Acceptance: TpAliases.New', function () {
           expect(params.data.attributes['category']).to.eq('category');
           expect(params.data.attributes['account']).to.eq('account');
           expect(params.data.attributes['subject']).to.eq('subject');
-          expect(params.data.attributes['destination-id']).to.eq('destination_id');
+          expect(params.data.attributes['destination-id']).to.eq(
+            'destination_id'
+          );
           expect(params.data.attributes['context']).to.eq('context');
           expect(params.data.attributes['target']).to.eq('target');
           expect(params.data.attributes['original']).to.eq('original');
           expect(params.data.attributes['alias']).to.eq('alias');
           expect(params.data.attributes['weight']).to.eq(10);
         };
-        return { data: {id: '1', type: 'tp-alias'} };
+        return { data: { id: '1', type: 'tp-alias' } };
       });
 
       await visit('/tariff-plans/1/tp-aliases/new');
@@ -115,6 +137,5 @@ describe('Acceptance: TpAliases.New', function () {
       await fillIn('[data-test-weight] input', 10);
       await click('[data-test-submit-button]');
       expectCorrectRequest();
-    })
-  );
+    }));
 });

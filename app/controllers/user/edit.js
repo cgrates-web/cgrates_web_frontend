@@ -6,7 +6,7 @@ export default Controller.extend({
 
   actions: {
     save() {
-      return this.model.save().then(() => this.get('router').transitionTo('users'));
-    }
-  }
+      return this.model.save().then(() => this.router.transitionTo('users'));
+    },
+  },
 });

@@ -6,23 +6,23 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>{{model.email}}</h2>
+      <h2>{{this.model.email}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "user.edit"}}
+          <LinkTo @route="user.edit">
             <i class="material-icons circle btn btn-primary" data-test-user-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>
     <div class="row">
       <div class="col-12 col-md-3">
         <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <p>{{this.model.id}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Email</h5>
-        <p>{{model.email}}</p>
+        <p>{{this.model.email}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Inserted at</h5>

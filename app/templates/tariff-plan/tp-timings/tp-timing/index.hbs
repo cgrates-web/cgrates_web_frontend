@@ -1,12 +1,12 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>Timing: {{model.tag}}</h2>
+      <h2>Timing: {{this.model.tag}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-timings.tp-timing.edit" model}}
+          <LinkTo @route="tariff-plan.tp-timings.tp-timing.edit" @model={{this.model}}>
             <i class="material-icons circle btn btn-primary" data-test-tp-timing>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>
@@ -14,31 +14,31 @@
     <div class="row">
       <div class="col-12 col-md-3">
         <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <p>{{this.model.id}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Tag</h5>
-        <p>{{model.tag}}</p>
+        <p>{{this.model.tag}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Years</h5>
-        <p>{{model.years}}</p>
+        <p>{{this.model.years}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Months</h5>
-        <p>{{model.months}}</p>
+        <p>{{this.model.months}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Month Days</h5>
-        <p>{{model.monthDays}}</p>
+        <p>{{this.model.monthDays}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Week Days</h5>
-        <p>{{model.weekDays}}</p>
+        <p>{{this.model.weekDays}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Time</h5>
-        <p>{{model.time}}</p>
+        <p>{{this.model.time}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Created at</h5>

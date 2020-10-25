@@ -2,6 +2,6 @@
   <div class="container">
     <h2>Edit TpSharedGroup</h2>
     <hr>
-    {{forms/tp-shared-group-form model=model save=save}}
+    <Forms::TpSharedGroupForm @model={{this.model}} @save={{save}} />
   </div>
 </main>

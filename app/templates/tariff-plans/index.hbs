@@ -9,29 +9,37 @@
       {{#each model as |tp|}}
         <div class="col-md-6 col-lg-4 col-xl-3 mb-4" data-test-tarif-plan-card>
           <div class="card bg-light h-100">
-            <div class="card-header">{{tp.name}}</div>
+            <div class="card-header">
+              {{tp.name}}
+            </div>
             <div class="card-body d-flex flex-column">
               <div class="card-text pb-2">
                 {{tp.description}}
               </div>
               <div class="btn-group mt-auto mr-auto ml-auto">
-                {{#link-to
-                  "tariff-plan"
-                  tp
+                <LinkTo
+                  @route="tariff-plan"
+                  @model={{tp}}
                   class="btn btn-primary m-1"
-                  data-test-select-tp-plan=true
-                }}
+                  data-test-select-tp-plan={{true}}
+                >
                   Select
-                {{/link-to}}
-                {{#link-to
-                  "tariff-plan.edit"
-                  tp
+                </LinkTo>
+                <LinkTo
+                  @route="tariff-plan.edit"
+                  @model={{tp}}
                   class="btn btn-primary m-1"
-                  data-test-edit-tp-plan=true
-                }}
+                  data-test-edit-tp-plan={{true}}
+                >
                   Edit
-                {{/link-to}}
-                <button {{action (perform remove) tp}} class="btn btn-danger m-1" data-test-tp-remove>Delete</button>
+                </LinkTo>
+                <button
+                  class="btn btn-danger m-1"
+                  data-test-tp-remove
+                  {{action (perform remove) tp}}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </div>
@@ -39,9 +47,11 @@
       {{/each}}
     </div>
   </div>
-  <div  class="fixed-action-btn">
-    {{#link-to "tariff-plans.new"}}
-      <i class="material-icons circle btn-success" data-test-add-tp-plan>add</i>
-    {{/link-to}}
+  <div class="fixed-action-btn">
+    <LinkTo @route="tariff-plans.new">
+      <i class="material-icons circle btn-success" data-test-add-tp-plan>
+        add
+      </i>
+    </LinkTo>
   </div>
 </main>

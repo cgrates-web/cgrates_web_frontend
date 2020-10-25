@@ -1,12 +1,12 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpCharger: {{model.customId}}</h2>
+      <h2>TpCharger: {{this.model.customId}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-chargers.tp-charger.edit" model}}
+          <LinkTo @route="tariff-plan.tp-chargers.tp-charger.edit" @model={{this.model}}>
             <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>
@@ -14,35 +14,35 @@
     <div class="row">
       <div class="col-12 col-md-3">
         <h5>ID</h5>
-        <p>{{model.id}}</p>
+        <p>{{this.model.id}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Tenant</h5>
-        <p>{{model.tenant}}</p>
+        <p>{{this.model.tenant}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Custom ID</h5>
-        <p>{{model.customId}}</p>
+        <p>{{this.model.customId}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Filter IDs</h5>
-        <p>{{model.filterIds}}</p>
+        <p>{{this.model.filterIds}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Attribute IDs</h5>
-        <p>{{model.attributeIds }}</p>
+        <p>{{this.model.attributeIds }}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Activation interval</h5>
-        <p>{{model.activationInterval}}</p>
+        <p>{{this.model.activationInterval}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Run ID</h5>
-        <p>{{model.runId}}</p>
+        <p>{{this.model.runId}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Weight</h5>
-        <p>{{model.weight}}</p>
+        <p>{{this.model.weight}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Created at</h5>

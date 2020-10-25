@@ -1,0 +1,76 @@
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  novalidate={{true}} as |form|
+>
+  <div class="form-row">
+    <form.element
+      @label="Load ID"
+      @property="loadid"
+      @class="col-md-6"
+      data-test-loadid={{true}}
+    />
+    <form.element
+      @label="Tenant"
+      @property="tenant"
+      @class="col-md-6"
+      data-test-tenant={{true}}
+    />
+    <form.element
+      @label="Account"
+      @property="account"
+      @class="col-md-6"
+      data-test-account={{true}}
+    />
+    <InputSelectSearchToString
+      @label="Action plan tag"
+      @value={{@model.actionPlanTag}}
+      @searchModel="tp-action-plan"
+      @searchField="tag"
+      @phName="tag"
+      @tpid={{@model.tpid}}
+      @property="actionPlanTag"
+      @form={{form}}
+      @allowClear={{true}}
+      @class="col-md-3"
+      @dataTest="action-plan-tag"
+    />
+    <InputSelectSearchToString
+      @label="Action triggers tag"
+      @value={{@model.actionTriggersTag}}
+      @searchModel="tp-action-trigger"
+      @searchField="tag"
+      @phName="tag"
+      @tpid={{@model.tpid}}
+      @property="actionTriggersTag"
+      @form={{form}}
+      @allowClear={{true}}
+      @class="col-md-3"
+      @dataTest="action-trigger-tag"
+    />
+    <div class="col-12 mb-2">
+      <form.element
+        @label="Allow negative"
+        @property="allowNegative"
+        @class="form-check-inline"
+        @controlType="checkbox"
+        data-test-allow-negative={{true}}
+      />
+      <form.element
+        @label="Disabled"
+        @property="disabled"
+        @class="form-check-inline"
+        @controlType="checkbox"
+        data-test-disabled={{true}}
+      />
+    </div>
+  </div>
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    disabled={{@save.isRunning}}
+    data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

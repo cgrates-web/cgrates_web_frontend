@@ -10,9 +10,16 @@ describe('Acceptance: TpRate.Edit', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpRate = server.create('tp-rate', {id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpRate = server.create('tp-rate', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -29,7 +36,7 @@ describe('Acceptance: TpRate.Edit', function () {
         expect(params.data.attributes['rate']).to.eq(0.01);
         expect(params.data.attributes['group-interval-start']).to.eq('60s');
         expect(params.data.attributes['connect-fee']).to.eq(0.01);
-        return { data: {id: this.tpRate.id, type: 'tp-rate'} };
+        return { data: { id: this.tpRate.id, type: 'tp-rate' } };
       });
 
       await visit('/tariff-plans/1/tp-rates/1/edit');
@@ -41,6 +48,5 @@ describe('Acceptance: TpRate.Edit', function () {
       await fillIn('[data-test-connect-fee] input', '0.01');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

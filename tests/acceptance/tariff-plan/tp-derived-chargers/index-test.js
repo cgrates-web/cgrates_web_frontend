@@ -3,8 +3,19 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
-import { selectChoose, selectSearch } from 'ember-power-select/test-support/helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
+import {
+  selectChoose,
+  selectSearch,
+} from 'ember-power-select/test-support/helpers';
 import { isBlank } from '@ember/utils';
 
 describe('Acceptance: TpDerivedChargers.Index', function () {
@@ -12,20 +23,26 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
     server.createList('tp-derived-charger', 2, { tpid: this.tariffPlan.alias });
-    server.createList('tp-derived-charger', 2, {tpid: 'other'});
-    server.create('tp-destination', { tpid: this.tariffPlan.alias, tag: 'tag-1' });
-    await authenticateSession({email: 'user@example.com'});
+    server.createList('tp-derived-charger', 2, { tpid: 'other' });
+    server.create('tp-destination', {
+      tpid: this.tariffPlan.alias,
+      tag: 'tag-1',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-derived-chargers', () =>
     it('renders table with tp-derived-chargers', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers');
-      expect(find('main h2').textContent).to.eq('TpDerivedChargers list');
+      expect(find('main h2')).to.have.trimmed.text('TpDerivedChargers list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server response with meta: total_records', function () {
     it('displays total records', async function () {
@@ -41,33 +58,35 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
     it('reditects to tp-derived-charger page', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-derived-chargers.tp-derived-charger.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-derived-chargers.tp-derived-charger.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-derived-charger page', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers');
       await click('[data-test-tp-derived-charger-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-derived-chargers.tp-derived-charger.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-derived-chargers.tp-derived-charger.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-derived-charger', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers');
       await click('[data-test-tp-derived-charger-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-derived-charger page', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers');
       await click('[data-test-add]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-derived-chargers.new');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-derived-chargers.new'
+      );
+    }));
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-loadid] input', 'loadid');
@@ -99,34 +118,42 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
         switch (counter) {
           case 1:
             expect(isBlank(request.queryParams['filter[loadid]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[direction]'])).to.eq(true);
+            expect(isBlank(request.queryParams['filter[direction]'])).to.eq(
+              true
+            );
             expect(isBlank(request.queryParams['filter[tenant]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[category]'])).to.eq(true);
+            expect(isBlank(request.queryParams['filter[category]'])).to.eq(
+              true
+            );
             expect(isBlank(request.queryParams['filter[account]'])).to.eq(true);
             expect(isBlank(request.queryParams['filter[subject]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[destination_ids]'])).to.eq(true);
+            expect(
+              isBlank(request.queryParams['filter[destination_ids]'])
+            ).to.eq(true);
             break;
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-derived-charger'}] };
+        return { data: [{ id: '1', type: 'tp-derived-charger' }] };
       });
 
       await visit('/tariff-plans/1/tp-derived-chargers');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('set filters and click download csv button', function () {
     it('sends request to the server with filters', async function () {
       let expectRequestToBeCorrect = () => expect(false).to.eq(true);
-      server.get('/tp-derived-chargers/export-to-csv/', function (_schema, request) {
+      server.get('/tp-derived-chargers/export-to-csv/', function (
+        _schema,
+        request
+      ) {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-derived-charger'}] };
+        return { data: [{ id: '1', type: 'tp-derived-charger' }] };
       });
       await visit('/tariff-plans/1/tp-derived-chargers');
       await setFilters();
@@ -140,7 +167,9 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
     it('redirects to upload csv page', async function () {
       await visit('/tariff-plans/1/tp-derived-chargers');
       await click('[data-test-upload]');
-      expect(currentURL()).to.eq('/tariff-plans/1/tp-derived-chargers/csv-import');
+      expect(currentURL()).to.eq(
+        '/tariff-plans/1/tp-derived-chargers/csv-import'
+      );
     });
   });
 
@@ -151,7 +180,7 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-derived-charger'}] };
+        return { data: [{ id: '1', type: 'tp-derived-charger' }] };
       });
       await visit('/tariff-plans/1/tp-derived-chargers');
       await setFilters();
@@ -164,7 +193,10 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
   describe('set filters and click delete all button', function () {
     let expectRequestToBeCorrect = () => expect(false).to.eq(true);
     beforeEach(async function () {
-      server.post('/tp-derived-chargers/delete-all', function (_schema, request) {
+      server.post('/tp-derived-chargers/delete-all', function (
+        _schema,
+        request
+      ) {
         expectRequestToBeCorrect = () => {
           const params = JSON.parse(request.requestBody);
           expect(params.tpid).to.eq('tptest');
@@ -208,15 +240,14 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
           default:
             expect(sort).to.eq('-tenant');
         }
-        return { data: [{id: '1', type: 'tp-derived-charger'}] };
+        return { data: [{ id: '1', type: 'tp-derived-charger' }] };
       });
 
       await visit('/tariff-plans/1/tp-derived-chargers');
       await click('[data-test-sort-tenant] a');
       await click('[data-test-sort-tenant] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -235,12 +266,14 @@ describe('Acceptance: TpDerivedChargers.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-derived-charger'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-derived-charger' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-derived-chargers');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

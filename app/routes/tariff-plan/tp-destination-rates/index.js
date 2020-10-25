@@ -4,43 +4,49 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     tag: {
-      refreshModel: true
+      refreshModel: true,
     },
     roundingMethod: {
-      refreshModel: true
+      refreshModel: true,
     },
     roundingDecimals: {
-      refreshModel: true
+      refreshModel: true,
     },
     ratesTag: {
-      refreshModel: true
+      refreshModel: true,
     },
     maxCostStrategy: {
-      refreshModel: true
+      refreshModel: true,
     },
     maxCost: {
-      refreshModel: true
+      refreshModel: true,
     },
     destinationsTag: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
-  filterParams: ['tag', 'roundingMethod', 'roundingDecimals', 'ratesTag',
-    'maxCostStrategy', 'maxCost', 'destinationsTag'],
+  filterParams: Object.freeze([
+    'tag',
+    'roundingMethod',
+    'roundingDecimals',
+    'ratesTag',
+    'maxCostStrategy',
+    'maxCost',
+    'destinationsTag',
+  ]),
 
-  modelName: 'tp-destination-rate'
-}
-);
+  modelName: 'tp-destination-rate',
+});

@@ -10,24 +10,26 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/raw-supplier-rates/new', () =>
     it('renders raw-supplier-rate form', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates/new');
       expect(findAll('form input').length).to.eq(4);
-    })
-  );
+    }));
 
   describe('go away without save', () =>
     it('removes not saved raw-supplier-rate', async function () {
       await visit('/tariff-plans/1/raw-supplier-rates/new');
       await click('[data-test-supplier-rates-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('submit empty form', function () {
     beforeEach(async function () {
@@ -36,18 +38,28 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | New', function () {
     });
     it('displays rate error', function () {
       expect(find('[data-test-rate] input')).to.have.class('is-invalid');
-      expect(find('[data-test-rate] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-rate] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays supplier-name error', function () {
-      expect(find('[data-test-supplier-name] input')).to.have.class('is-invalid');
-      expect(find('[data-test-supplier-name] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-supplier-name] input')).to.have.class(
+        'is-invalid'
+      );
+      expect(find('[data-test-supplier-name] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('displays prefix error', function () {
       expect(find('[data-test-prefix] input')).to.have.class('is-invalid');
-      expect(find('[data-test-prefix] .invalid-feedback')).to.have.class('d-block');
+      expect(find('[data-test-prefix] .invalid-feedback')).to.have.class(
+        'd-block'
+      );
     });
     it('does not displays description error', function () {
-      expect(find('[data-test-description] input')).not.to.have.class('is-invalid');
+      expect(find('[data-test-description] input')).not.to.have.class(
+        'is-invalid'
+      );
       expect(find('[data-test-description] .invalid-feedback')).not.to.exist;
     });
   });
@@ -63,7 +75,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | New', function () {
         expect(params.data.attributes['supplier-name']).to.eq('supplier-name');
         expect(params.data.attributes['prefix']).to.eq('prefix');
         expect(params.data.attributes['description']).to.eq('description');
-        return { data: {id: '1', type: 'raw-supplier-rate'} };
+        return { data: { id: '1', type: 'raw-supplier-rate' } };
       });
 
       await visit('/tariff-plans/1/raw-supplier-rates/new');
@@ -73,6 +85,5 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | New', function () {
       await fillIn('[data-test-description] input', 'description');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

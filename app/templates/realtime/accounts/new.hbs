@@ -1,30 +1,36 @@
-<h2>New account</h2>
+<h2>
+  New account
+</h2>
 <hr>
-{{#bs-form model=model onSubmit=(action "save") novalidate=true as |form|}}
-  {{form.element
-    label="ID"
-    property="id"
-    class="col-md-6"
-    data-test-id=true
-  }}
+<BsForm
+  @model={{this.model}}
+  @onSubmit={{action "save"}}
+  novalidate={{true}} as |form|
+>
+  <form.element
+    @label="ID"
+    @property="id"
+    @class="col-md-6"
+    data-test-id={{true}}
+  />
   <div class="ml-3 mb-2">
-    {{form.element
-      label="Prefixes"
-      property="disabled"
-      controlType="checkbox"
-      data-test-disabled=true
-    }}
-    {{form.element
-      label="Allow negative"
-      property="allowNegative"
-      controlType="checkbox"
-      data-test-allow-negative=true
-    }}
+    <form.element
+      @label="Prefixes"
+      @property="disabled"
+      @controlType="checkbox"
+      data-test-disabled={{true}}
+    />
+    <form.element
+      @label="Allow negative"
+      @property="allowNegative"
+      @controlType="checkbox"
+      data-test-allow-negative={{true}}
+    />
   </div>
-  {{bs-button
-    defaultText="Save"
-    type="primary"
-    buttonType="submit"
-    data-test-submit-button=true
-  }}
-{{/bs-form}}
+  <BsButton
+    @defaultText="Save"
+    @type="primary"
+    @buttonType="submit"
+    data-test-submit-button={{true}}
+  />
+</BsForm>

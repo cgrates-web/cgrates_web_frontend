@@ -10,9 +10,16 @@ describe('Acceptance: TpDestination.Edit', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpDestination = server.create('tp-destination', {id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpDestination = server.create('tp-destination', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -25,7 +32,7 @@ describe('Acceptance: TpDestination.Edit', function () {
         expect(params.data.attributes.tpid).to.eq('tptest');
         expect(params.data.attributes.tag).to.eq('edited');
         expect(params.data.attributes.prefix).to.eq('+44');
-        return { data: {id: this.tpDestination.id, type: 'tp-destination'} };
+        return { data: { id: this.tpDestination.id, type: 'tp-destination' } };
       });
 
       await visit('/tariff-plans/1/tp-destinations/1/edit');
@@ -33,6 +40,5 @@ describe('Acceptance: TpDestination.Edit', function () {
       await fillIn('[data-test-prefix] input', '+44');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

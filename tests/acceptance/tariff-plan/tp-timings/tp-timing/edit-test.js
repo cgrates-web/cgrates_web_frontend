@@ -10,9 +10,16 @@ describe('Acceptance: TpTiming.Edit', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpTiming = server.create('tp-timing', {id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpTiming = server.create('tp-timing', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -29,7 +36,7 @@ describe('Acceptance: TpTiming.Edit', function () {
         expect(params.data.attributes.time).to.eq('14');
         expect(params.data.attributes['month-days']).to.eq('30');
         expect(params.data.attributes['week-days']).to.eq('14');
-        return { data: {id: '1', type: 'tp-timing'} };
+        return { data: { id: '1', type: 'tp-timing' } };
       });
 
       await visit('/tariff-plans/1/tp-timings/1/edit');
@@ -41,6 +48,5 @@ describe('Acceptance: TpTiming.Edit', function () {
       await fillIn('[data-test-time] input', '14');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

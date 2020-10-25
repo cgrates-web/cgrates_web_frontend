@@ -11,24 +11,26 @@ describe('Acceptance: TpFilter.New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-filters/new', () =>
     it('renders tp-filter form', async function () {
       await visit('/tariff-plans/1/tp-filters/new');
       expect(findAll('form input').length).to.eq(5);
-    })
-  );
+    }));
 
   describe('go away without save', () =>
     it('removes not saved tp-filter', async function () {
       await visit('/tariff-plans/1/tp-filters/new');
       await click('[ data-test-filters-link]');
       expect(findAll('table tbody tr').length).to.eq(0);
-    })
-  );
+    }));
 
   describe('submit empty form', function () {
     context('request', function () {
@@ -50,31 +52,47 @@ describe('Acceptance: TpFilter.New', function () {
       });
       it('displays tenant error', function () {
         expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
-        expect(find('[data-test-tenant] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(
+          'd-block'
+        );
       });
       it('displays custom-id error', function () {
         expect(find('[data-test-custom-id] input')).to.have.class('is-invalid');
-        expect(find('[data-test-custom-id] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-custom-id] .invalid-feedback')).to.have.class(
+          'd-block'
+        );
       });
       it('does not displays filter-field-name error', function () {
-        expect(find('[data-test-filter-field-name] input')).not.to.have.class('is-invalid');
-        expect(find('[data-test-filter-field-name] .invalid-feedback')).not.to.exist;
+        expect(find('[data-test-filter-field-name] input')).not.to.have.class(
+          'is-invalid'
+        );
+        expect(
+          find('[data-test-filter-field-name] .invalid-feedback')
+        ).not.to.exist;
       });
       it('displays filter-field-values error', function () {
-        expect(find('[data-test-filter-field-values] input')).to.have.class('is-invalid');
-        expect(find('[data-test-filter-field-values] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-filter-field-values] input')).to.have.class(
+          'is-invalid'
+        );
+        expect(
+          find('[data-test-filter-field-values] .invalid-feedback')
+        ).to.have.class('d-block');
       });
       it('displays filter-field-values error', function () {
-        expect(find('[data-test-filter-field-values] input')).to.have.class('is-invalid');
-        expect(find('[data-test-filter-field-values] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-filter-field-values] input')).to.have.class(
+          'is-invalid'
+        );
+        expect(
+          find('[data-test-filter-field-values] .invalid-feedback')
+        ).to.have.class('d-block');
       });
       it('does not displays activation-interval error', function () {
-        expect(find('[data-test-activation-interval] input')).not.to.have.class('is-invalid');
-        expect(find('[data-test-activation-interval] .invalid-feedback')).not.to.exist;
-      });
-      it('displays filter-type error', async function () {
-        expect(find('[data-test-select="filter-type"] div')).to.have.class('is-invalid');
-        expect(find('[data-test-select="filter-type"] .invalid-feedback')).to.have.class('d-block');
+        expect(find('[data-test-activation-interval] input')).not.to.have.class(
+          'is-invalid'
+        );
+        expect(
+          find('[data-test-activation-interval] .invalid-feedback')
+        ).not.to.exist;
       });
     });
   });
@@ -93,7 +111,7 @@ describe('Acceptance: TpFilter.New', function () {
         expect(params.data.attributes['filter-field-name']).to.eq('Test');
         expect(params.data.attributes['filter-field-values']).to.eq('Test');
         expect(params.data.attributes['activation-interval']).to.eq('Test');
-        return { data: {id: '1', type: 'tp-filter'} };
+        return { data: { id: '1', type: 'tp-filter' } };
       });
 
       await visit('/tariff-plans/1/tp-filters/new');
@@ -105,6 +123,5 @@ describe('Acceptance: TpFilter.New', function () {
       await fillIn('[data-test-activation-interval] input', 'Test');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

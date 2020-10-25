@@ -4,22 +4,35 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
-import { selectSearch, selectChoose } from 'ember-power-select/test-support/helpers';
+import {
+  selectSearch,
+  selectChoose,
+} from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpActionPlan.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpAction1 = server.create('tp-action', {tpid: this.tariffPlan.alias, tag: 'actiontest1'});
-    this.tpAction2 = server.create('tp-action', {tpid: this.tariffPlan.alias, tag: 'actiontest2'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpAction1 = server.create('tp-action', {
+      tpid: this.tariffPlan.alias,
+      tag: 'actiontest1',
+    });
+    this.tpAction2 = server.create('tp-action', {
+      tpid: this.tariffPlan.alias,
+      tag: 'actiontest2',
+    });
     this.tpActionPlan = server.create('tp-action-plan', {
       id: 'tp_action_plan_id',
       tpid: this.tariffPlan.alias,
-      actions_tag: this.tpAction1.tag
+      actions_tag: this.tpAction1.tag,
     });
-    await authenticateSession({email: 'user@example.com'});
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   return describe('fill form with correct data and submit', () =>
@@ -34,7 +47,7 @@ describe('Acceptance: TpActionPlan.Edit', function () {
         expect(params.data.attributes['actions-tag']).to.eq('actiontest2');
         expect(params.data.attributes['timing-tag']).to.eq('*asap');
         expect(params.data.attributes['weight']).to.eq(10);
-        return { data: {id: this.tpActionPlan.id, type: 'tp-action-plan'} };
+        return { data: { id: this.tpActionPlan.id, type: 'tp-action-plan' } };
       });
 
       await visit('/tariff-plans/1/tp-action-plans/tp_action_plan_id/edit');
@@ -45,6 +58,5 @@ describe('Acceptance: TpActionPlan.Edit', function () {
       await fillIn('[data-test-weight] input', '10');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

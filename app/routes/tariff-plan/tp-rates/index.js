@@ -4,39 +4,45 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     tag: {
-      refreshModel: true
+      refreshModel: true,
     },
     rateUnit: {
-      refreshModel: true
+      refreshModel: true,
     },
     rateIncrement: {
-      refreshModel: true
+      refreshModel: true,
     },
     rate: {
-      refreshModel: true
+      refreshModel: true,
     },
     groupIntervalStart: {
-      refreshModel: true
+      refreshModel: true,
     },
     connectFee: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
-  filterParams: ['tag', 'rateUnit', 'rateIncrement', 'rate', 'groupIntervalStart', 'connectFee'],
+  filterParams: Object.freeze([
+    'tag',
+    'rateUnit',
+    'rateIncrement',
+    'rate',
+    'groupIntervalStart',
+    'connectFee',
+  ]),
 
-  modelName: 'tp-rate'
-}
-);
+  modelName: 'tp-rate',
+});

@@ -21,12 +21,16 @@ describe('Integration: Filter C=collapse button', function () {
       expect(find('[data-test-label]').textContent.trim()).to.eq('Test');
     });
     it('renders down arrow icon', function () {
-      expect(find('i.material-icons').textContent.trim()).to.eq('arrow_drop_down');
+      expect(find('i.material-icons').textContent.trim()).to.eq(
+        'arrow_drop_down'
+      );
     });
     context('click on button', function () {
       it('change arrow icon', async function () {
         await click('.filter-collapse-btn');
-        expect(find('i.material-icons').textContent.trim()).to.eq('arrow_drop_up');
+        expect(find('i.material-icons').textContent.trim()).to.eq(
+          'arrow_drop_up'
+        );
       });
     });
   });

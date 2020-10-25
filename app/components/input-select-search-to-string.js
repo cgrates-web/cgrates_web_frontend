@@ -6,12 +6,12 @@ import { pluralize } from 'ember-inflector';
 import strToArray from 'cgrates-web-frontend/utils/str-to-array';
 
 export default Component.extend({
-  tagName:      '',
-  store:        service(),
+  tagName: '',
+  store: service(),
   searchField: 'customId',
-  phName:      'id',
-  multiple:     false,
-  allowClear:   false,
+  phName: 'id',
+  multiple: false,
+  allowClear: false,
 
   init() {
     this._super(...arguments);
@@ -31,12 +31,12 @@ export default Component.extend({
     this.set('valueWrapper', strToArray(this.value));
   },
 
-  searchTask: task(function * (term) {
-    const response = yield this.get('store').query(this.searchModel, {
+  searchTask: task(function* (term) {
+    const response = yield this.store.query(this.searchModel, {
       tpid: this.tpid,
       filter: {
         [this.searchField.underscore()]: term,
-      }
+      },
     });
     let result = response.mapBy(this.searchField);
     result.push('*any');
@@ -51,6 +51,6 @@ export default Component.extend({
       this.set('value', newValue);
 
       this.set('showOwnValidation', true);
-    }
+    },
   },
 });

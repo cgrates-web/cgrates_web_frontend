@@ -1,0 +1,50 @@
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  novalidate={{true}} as |form|
+>
+  <div class="form-row">
+    <form.element
+      @label="Tag"
+      @property="tag"
+      @class="col-md-6"
+      data-test-tag={{true}}
+    />
+    <form.element
+      @label="Weight (decimal)"
+      @property="weight"
+      @controlType="number"
+      @step="0.1"
+      @min="0"
+      @class="col-md-6"
+      data-test-weight={{true}}
+    />
+    <InputTags
+      @property="destratesTag"
+      @form={{form}}
+      @label="Destination rates tag"
+      @modelName="tp-destination-rate"
+      @tpid={{@model.tpid}}
+      @class="col-md-6"
+      @dataTest="destination-rates"
+    />
+    <InputTags
+      @property="timingTag"
+      @form={{form}}
+      @label="Timing tag"
+      @modelName="tp-timing"
+      @tpid={{@model.tpid}}
+      @allowAny={{true}}
+      @class="col-md-6"
+      @dataTest="timing"
+    />
+  </div>
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    disabled={{@save.isRunning}}
+    data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

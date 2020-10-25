@@ -1,0 +1,101 @@
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  novalidate={{true}} as |form|
+>
+  <div class="form-row">
+    <form.element
+      @label="Tenant"
+      @property="tenant"
+      @class="col-md-6"
+      data-test-tenant={{true}}
+    />
+    <form.element
+      @label="Custom ID"
+      @property="customId"
+      @class="col-md-6"
+      data-test-customid={{true}}
+    />
+    <InputSelectSearchToString
+      @label="Filter IDs"
+      @value={{@model.filterIds}}
+      @searchModel="tp-filter"
+      @searchField="customId"
+      @tpid={{@model.tpid}}
+      @multiple={{true}}
+      @property="filterIds"
+      @form={{form}}
+      @class="col-md-6"
+      @dataTest="filter-ids"
+    />
+    <InputSelectSearchToString
+      @label="Threshold ids"
+      @value={{@model.thresholdIds}}
+      @searchModel="tp-threshold"
+      @searchField="customId"
+      @tpid={{@model.tpid}}
+      @multiple={{true}}
+      @property="thresholdIds"
+      @form={{form}}
+      @class="col-md-6"
+      @dataTest="threshold-ids"
+    />
+    <form.element
+      @label="Activation interval"
+      @property="activationInterval"
+      @class="col-md-6"
+      data-test-activation-interval={{true}}
+    />
+    <form.element
+      @label="Usage ttl"
+      @property="usageTtl"
+      @class="col-md-6"
+      data-test-usage-ttl={{true}}
+    />
+    <form.element
+      @label="Limit"
+      @property="limit"
+      @class="col-md-6"
+      data-test-limit={{true}}
+    />
+    <form.element
+      @label="Allocation message"
+      @property="allocationMessage"
+      @class="col-md-6"
+      data-test-allocation-message={{true}}
+    />
+    <form.element
+      @label="Weight"
+      @property="weight"
+      @controlType="number"
+      @step="0.1"
+      @min="0"
+      @class="col-md-6"
+      data-test-weight={{true}}
+    />
+    <div class="col-12 mb-2">
+      <form.element
+        @label="Blocker"
+        @property="blocker"
+        @class="form-check-inline"
+        @controlType="checkbox"
+        data-test-blocker={{true}}
+      />
+      <form.element
+        @label="Stored"
+        @property="stored"
+        @class="form-check-inline"
+        @controlType="checkbox"
+        data-test-stored={{true}}
+      />
+    </div>
+  </div>
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    disabled={{@save.isRunning}}
+    data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

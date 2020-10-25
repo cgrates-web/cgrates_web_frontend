@@ -12,27 +12,33 @@ describe('Integration: InputSelect', function () {
   describe('basic rendering', function () {
     beforeEach(async function () {
       this.set('content', ['test1', 'test2']);
-      this.set('model', EmberObject.create({inputSelect: 'test1'}));
+      this.set('model', EmberObject.create({ inputSelect: 'test1' }));
       await render(hbs`('
         {{#bs-form model=model as |form|}}
           {{input-select
-            property='inputSelect'
+            property="inputSelect"
             form=form
-            label='Test'
+            label="Test"
             content=content
-            class='test-class'
-            dataTest='test'
+            class="test-class"
+            dataTest="test"
           }}
         {{/bs-form}}
       ')`);
     });
     it('displays selected item', function () {
-      expect(find('.ember-power-select-selected-item').textContent.trim()).to.eq('test1');
+      expect(
+        find('.ember-power-select-selected-item').textContent.trim()
+      ).to.eq('test1');
     });
     it('displays options', async function () {
       await click('.ember-power-select-trigger');
-      expect(find('.ember-power-select-option:nth-child(1)').textContent.trim()).to.eq('test1');
-      expect(find('.ember-power-select-option:nth-child(2)').textContent.trim()).to.eq('test2');
+      expect(
+        find('.ember-power-select-option:nth-child(1)').textContent.trim()
+      ).to.eq('test1');
+      expect(
+        find('.ember-power-select-option:nth-child(2)').textContent.trim()
+      ).to.eq('test2');
     });
     it('displays label', function () {
       expect(find('label').textContent.trim()).to.eq('Test');
@@ -45,19 +51,18 @@ describe('Integration: InputSelect', function () {
   return describe('selecting an item', () =>
     it('changes value', async function () {
       this.set('content', ['test1', 'test2']);
-      this.set('model', EmberObject.create({inputSelect: 'test1'}));
+      this.set('model', EmberObject.create({ inputSelect: 'test1' }));
       await render(hbs`('
         {{#bs-form model=model as |form|}}
           {{input-select
-            property='inputSelect'
+            property="inputSelect"
             form=form
-            label='Test'
+            label="Test"
             content=content
           }}
         {{/bs-form}}
       ')`);
       await selectChoose('.ember-power-select-trigger', 'test2');
-      expect(this.get('model.inputSelect')).to.eq('test2');
-    })
-  );
+      expect(this.model.inputSelect).to.eq('test2');
+    }));
 });

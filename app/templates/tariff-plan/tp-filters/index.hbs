@@ -1,107 +1,159 @@
 <main class="page-content">
   <div class="container xl">
     <div class="actions-subtitle">
-      <h2>TpFilters list</h2>
+      <h2>
+        TpFilters list
+      </h2>
       <ul class="actions">
-        {{tp-index-buttons
-          model=model
-          tariffPlanId=tariffPlanId
-          permittedFilters=permittedFilters
-          refresh="refresh"
-          controller=this
-        }}
+        <TpIndexButtons
+          @model={{this.model}}
+          @tariffPlanId={{this.tariffPlanId}}
+          @permittedFilters={{permittedFilters}}
+          @refresh={{route-action "refresh"}}
+          @controller={{this}}
+        />
       </ul>
     </div>
-    {{total-records totalRecords=meta.total_records}}
+    <TotalRecords @totalRecords={{meta.total_records}} />
     <div class="row">
-      <div class=" col-md-9">
+      <div class="col-md-9">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
-                {{sort-header
-                  label="PK"
-                  key="id"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="ID"
-                  key="customId"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Tenant"
-                  key="tenant"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                  data-test-sort-tenant=true
-                }}
-                {{sort-header
-                  label="Filter type"
-                  key="filterType"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Filter field name"
-                  key="filterFieldName"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Activation interval"
-                  key="activationInterval"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Created at"
-                  key="createdAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                <td>Actions</td>
+                <SortHeader
+                  @label="PK"
+                  @key="id"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="ID"
+                  @key="customId"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Tenant"
+                  @key="tenant"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                  data-test-sort-tenant={{true}}
+                />
+                <SortHeader
+                  @label="Filter type"
+                  @key="filterType"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Filter field name"
+                  @key="filterFieldName"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Activation interval"
+                  @key="activationInterval"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Created at"
+                  @key="createdAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <td>
+                  Actions
+                </td>
               </tr>
             </thead>
             <tbody>
               {{#each model as |tpFilter|}}
                 <tr>
                   <td>
-                    {{#link-to "tariff-plan.tp-filters.tp-filter" tpFilter}}{{tpFilter.id}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.id}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-filters.tp-filter" tpFilter}}{{tpFilter.customId}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.customId}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-filters.tp-filter" tpFilter}}{{tpFilter.tenant}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.tenant}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-filters.tp-filter" tpFilter}}{{tpFilter.filterType}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.filterType}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-filters.tp-filter" tpFilter}}{{tpFilter.filterFieldName}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.filterFieldName}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-filters.tp-filter" tpFilter}}{{tpFilter.activationInterval}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.activationInterval}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-filters.tp-filter" tpFilter}}{{moment-format tpFilter.createdAt}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{moment-format tpFilter.createdAt}}
+                    </LinkTo>
                   </td>
                   <td class="actions">
-                    {{#link-to "tariff-plan.tp-filters.tp-filter.edit" tpFilter}}
-                      <i class="material-icons circle btn btn-primary" data-test-tp-filter-edit>edit</i>
-                    {{/link-to}}
-                    <a {{action "remove" tpFilter}} class="ml-1" role="button">
-                      <i class="material-icons circle btn btn-danger" data-test-tp-filter-remove>remove</i>
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter.edit"
+                      @model={{tpFilter}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-primary"
+                        data-test-tp-filter-edit
+                      >
+                        edit
+                      </i>
+                    </LinkTo>
+                    <a class="ml-1" role="button" {{action "remove" tpFilter}}>
+                      <i
+                        class="material-icons circle btn btn-danger"
+                        data-test-tp-filter-remove
+                      >
+                        remove
+                      </i>
                     </a>
                   </td>
                 </tr>
@@ -109,52 +161,49 @@
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
+        <PageNumbers
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
+          @numPagesToShow={{4}}
+        />
       </div>
       <div class="col-md-3">
-        {{#filters-block search=(action "search") as |filtersBlock|}}
-          {{#filter-text
-            label="ID"
-            key="customId"
-            value=customId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-customid=true
-          }}{{/filter-text}}
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
+          <FilterText
+            @label="ID"
+            @value={{filtersBlock.activeFilters.customId}}
+            data-test-filter-customid
+          />
 
-          {{#filter-text
-            label="Tenant"
-            key="tenant"
-            value=tenant
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-tenant=true
-          }}{{/filter-text}}
+          <FilterText
+            @label="Tenant"
+            @value={{filtersBlock.activeFilters.tenant}}
+            data-test-filter-tenant
+          />
 
-          {{#filter-select
-            label="Filter type"
-            key="filterType"
-            value=filterType
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.filterTypes
-            class="fiter-type-select"
-            data-test-filter-fitertype=true
-          }}{{/filter-select}}
+          <FilterSelect
+            @label="Filter type"
+            @value={{filtersBlock.activeFilters.filterType}}
+            @content={{selectValues.filterTypes}}
+            @class="fiter-type-select"
+            data-test-filter-fitertype={{true}}
+          />
 
-          {{#filter-text
-            label="Filter field name"
-            key="filterFieldName"
-            value=filterFieldName
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-field-name=true
-          }}{{/filter-text}}
+          <FilterText
+            @label="Filter field name"
+            @value={{filtersBlock.activeFilters.filterFieldName}}
+            data-test-filter-field-name
+          />
 
-          {{#filter-text
-            label="Activation interval"
-            key="activationInterval"
-            value=activationInterval
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-activation-interval=true
-          }}{{/filter-text}}
-        {{/filters-block}}
+          <FilterText
+            @label="Activation interval"
+            @value={{filtersBlock.activeFilters.activationInterval}}
+            data-test-filter-activation-interval
+          />
+        </FiltersBlock>
       </div>
     </div>
   </div>

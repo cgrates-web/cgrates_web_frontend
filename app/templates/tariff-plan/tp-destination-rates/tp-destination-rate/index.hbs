@@ -1,52 +1,95 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpDestinationRate: {{model.tag}}</h2>
+      <h2>
+        TpDestinationRate: {{this.model.tag}}
+      </h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-destination-rates.tp-destination-rate.edit" model}}
-            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          <LinkTo
+            @route="tariff-plan.tp-destination-rates.tp-destination-rate.edit"
+            @model={{this.model}}
+          >
+            <i class="material-icons circle btn btn-primary" data-test-edit>
+              edit
+            </i>
+          </LinkTo>
         </li>
       </ul>
     </div>
     <hr>
     <div class="row">
       <div class="col-12 col-md-3">
-        <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <h5>
+          Id
+        </h5>
+        <p>
+          {{this.model.id}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Tag</h5>
-        <p>{{model.tag}}</p>
+        <h5>
+          Tag
+        </h5>
+        <p>
+          {{this.model.tag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Rates tag</h5>
-        <p>{{model.ratesTag}}</p>
+        <h5>
+          Rates tag
+        </h5>
+        <p>
+          {{this.model.ratesTag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Destinations tag</h5>
-        <p>{{model.destinationsTag}}</p>
+        <h5>
+          Destinations tag
+        </h5>
+        <p>
+          {{this.model.destinationsTag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Rounding decimals</h5>
-        <p>{{model.roundingDecimals}}</p>
+        <h5>
+          Rounding decimals
+        </h5>
+        <p>
+          {{this.model.roundingDecimals}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Max cost</h5>
-        <p>{{model.roundingDecimals}}</p>
+        <h5>
+          Max cost
+        </h5>
+        <p>
+          {{this.model.roundingDecimals}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Rounding method</h5>
-        <p>{{model.roundingMethod}}</p>
+        <h5>
+          Rounding method
+        </h5>
+        <p>
+          {{this.model.roundingMethod}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Max cost strategy</h5>
-        <p>{{model.maxCostStrategy}}</p>
+        <h5>
+          Max cost strategy
+        </h5>
+        <p>
+          {{this.model.maxCostStrategy}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Created at</h5>
-        <p>{{moment-format model.createdAt}}</p>
+        <h5>
+          Created at
+        </h5>
+        <p>
+          {{moment-format model.createdAt}}
+        </p>
       </div>
     </div>
   </div>

@@ -1,0 +1,15 @@
+<@form.element
+  @controlType="power-select"
+  @property={{@property}}
+  @label={{@label}}
+  @searchEnabled={{false}}
+  @options={{@content}}
+  @showValidationOn="change"
+  @class={{@class}}
+  data-test-select={{@dataTest}} as |el|
+>
+  <el.control
+    class={{bs-element-validation el.validation}}
+    placeholder="Select item..."
+  />
+</@form.element>

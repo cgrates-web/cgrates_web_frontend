@@ -1,12 +1,12 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpRate: {{model.tag}}</h2>
+      <h2>TpRate: {{this.model.tag}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-rates.tp-rate.edit"}}
+          <LinkTo @route="tariff-plan.tp-rates.tp-rate.edit">
             <i class="material-icons circle btn btn-primary" data-test-tp-rate-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>
@@ -14,31 +14,31 @@
     <div class="row">
       <div class="col-12 col-md-3">
         <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <p>{{this.model.id}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Tag</h5>
-        <p>{{model.tag}}</p>
+        <p>{{this.model.tag}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Rate unit</h5>
-        <p>{{model.rateUnit}}</p>
+        <p>{{this.model.rateUnit}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Rate increment</h5>
-        <p>{{model.rateIncrement}}</p>
+        <p>{{this.model.rateIncrement}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Rate</h5>
-        <p>{{model.rate}}</p>
+        <p>{{this.model.rate}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Group interval start</h5>
-        <p>{{model.groupIntervalStart}}</p>
+        <p>{{this.model.groupIntervalStart}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Connect fee</h5>
-        <p>{{model.connectFee}}</p>
+        <p>{{this.model.connectFee}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Created at</h5>

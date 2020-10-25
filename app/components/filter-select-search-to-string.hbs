@@ -1,0 +1,28 @@
+<div ...attributes class="form-group">
+  <label>
+    {{@label}}
+  </label>
+  {{#if this.multiple}}
+    <PowerSelectMultiple
+      @placeholder={{this.placeholder}}
+      @searchEnabled={{true}}
+      @allowClear={{true}}
+      @selected={{this.selected}}
+      @search={{perform this.searchTask}}
+      @onChange={{this.onChange}} as |item|
+    >
+      {{item}}
+    </PowerSelectMultiple>
+  {{else}}
+    <PowerSelect
+      @placeholder={{placeholder}}
+      @searchEnabled={{true}}
+      @allowClear={{true}}
+      @selected={{this.selected}}
+      @search={{perform searchTask}}
+      @onChange={{this.onChange}} as |item|
+    >
+      {{item}}
+    </PowerSelect>
+  {{/if}}
+</div>

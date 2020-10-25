@@ -11,7 +11,8 @@ describe('Integration: Csv-uploader', function () {
   let hooks = setupRenderingTest();
   setupMirage(hooks);
 
-  const urlTxt = 'data:text/plain;base64,SSBjYW4gZmVlbCB0aGUgbW9uZXkgbGVhdmluZyBteSBib2R5';
+  const urlTxt =
+    'data:text/plain;base64,SSBjYW4gZmVlbCB0aGUgbW9uZXkgbGVhdmluZyBteSBib2R5';
 
   function uploadFile(selector, file, filename) {
     let input = find(selector);
@@ -32,8 +33,9 @@ describe('Integration: Csv-uploader', function () {
           parentModelName=parentModelName
         }}
       ')`);
-      expect(find('[data-test-example-url]')
-        .getAttribute('href')).to.eq(`${config.API_HOST}/csv-example/test-model-name.csv`);
+      expect(find('[data-test-example-url]').getAttribute('href')).to.eq(
+        `${config.API_HOST}/csv-example/test-model-name.csv`
+      );
     });
   });
 
@@ -48,15 +50,17 @@ describe('Integration: Csv-uploader', function () {
         {{csv-uploader
           file=file
           model=baseImportJob
+          redirectAfterSave=false
         }}
       ')`);
-      await uploadFile('[data-test-file-uploader] input', file.blob, 'test.csv');
+      await uploadFile(
+        '[data-test-file-uploader] input',
+        file.blob,
+        'test.csv'
+      );
     });
     it('displays file name', async function () {
-      expect(find('.file-name').textContent).to.eq('test.csv');
-    });
-    it('set file', async function () {
-      expect(this.get('file')).to.exist;
+      expect(find('.file-name')).to.have.trimmed.text('test.csv');
     });
 
     context('click upload file', function () {
@@ -68,7 +72,7 @@ describe('Integration: Csv-uploader', function () {
           expectRequestToBeCorrect = () => {
             expect(params.data.attributes.csv.name).to.eq('test.csv');
           };
-          return { data: {id: '1', type: 'base-import-job'} };
+          return { data: { id: '1', type: 'base-import-job' } };
         });
         await click('[data-test-upload-button]');
         expectRequestToBeCorrect();

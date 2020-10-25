@@ -1,116 +1,223 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpDerivedCharger: {{model.id}}</h2>
+      <h2>
+        TpDerivedCharger: {{this.model.id}}
+      </h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-derived-chargers.tp-derived-charger.edit" model}}
-            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          <LinkTo
+            @route="tariff-plan.tp-derived-chargers.tp-derived-charger.edit"
+            @model={{this.model}}
+          >
+            <i class="material-icons circle btn btn-primary" data-test-edit>
+              edit
+            </i>
+          </LinkTo>
         </li>
       </ul>
     </div>
     <hr>
     <div class="row">
       <div class="col-12 col-md-3">
-        <h5>ID</h5>
-        <p>{{model.id}}</p>
+        <h5>
+          ID
+        </h5>
+        <p>
+          {{this.model.id}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Load ID</h5>
-        <p>{{model.loadid}}</p>
+        <h5>
+          Load ID
+        </h5>
+        <p>
+          {{this.model.loadid}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Direction</h5>
-        <p>{{model.direction}}</p>
+        <h5>
+          Direction
+        </h5>
+        <p>
+          {{this.model.direction}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Tenant</h5>
-        <p>{{model.tenant}}</p>
+        <h5>
+          Tenant
+        </h5>
+        <p>
+          {{this.model.tenant}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Category</h5>
-        <p>{{model.category}}</p>
+        <h5>
+          Category
+        </h5>
+        <p>
+          {{this.model.category}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Subject</h5>
-        <p>{{model.subject}}</p>
+        <h5>
+          Subject
+        </h5>
+        <p>
+          {{this.model.subject}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Destination tags</h5>
-        <p>{{model.destinationIds}}</p>
+        <h5>
+          Destination tags
+        </h5>
+        <p>
+          {{this.model.destinationIds}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Run ID</h5>
-        <p>{{model.runid}}</p>
+        <h5>
+          Run ID
+        </h5>
+        <p>
+          {{this.model.runid}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Run filters</h5>
-        <p>{{model.runFilters}}</p>
+        <h5>
+          Run filters
+        </h5>
+        <p>
+          {{this.model.runFilters}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Req type field</h5>
-        <p>{{model.reqTypeField}}</p>
+        <h5>
+          Req type field
+        </h5>
+        <p>
+          {{this.model.reqTypeField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Direction field</h5>
-        <p>{{model.directionField}}</p>
+        <h5>
+          Direction field
+        </h5>
+        <p>
+          {{this.model.directionField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Tenant field</h5>
-        <p>{{model.tenantField}}</p>
+        <h5>
+          Tenant field
+        </h5>
+        <p>
+          {{this.model.tenantField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Category field</h5>
-        <p>{{model.categoryField}}</p>
+        <h5>
+          Category field
+        </h5>
+        <p>
+          {{this.model.categoryField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Account field</h5>
-        <p>{{model.accountField}}</p>
+        <h5>
+          Account field
+        </h5>
+        <p>
+          {{this.model.accountField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Subject field</h5>
-        <p>{{model.subjectField}}</p>
+        <h5>
+          Subject field
+        </h5>
+        <p>
+          {{this.model.subjectField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Destination field</h5>
-        <p>{{model.destinationField}}</p>
+        <h5>
+          Destination field
+        </h5>
+        <p>
+          {{this.model.destinationField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Setup time field</h5>
-        <p>{{model.setupTimeField}}</p>
+        <h5>
+          Setup time field
+        </h5>
+        <p>
+          {{this.model.setupTimeField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Pdd field</h5>
-        <p>{{model.pddField}}</p>
+        <h5>
+          Pdd field
+        </h5>
+        <p>
+          {{this.model.pddField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Answer time field</h5>
-        <p>{{model.answerTimeField}}</p>
+        <h5>
+          Answer time field
+        </h5>
+        <p>
+          {{this.model.answerTimeField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Usage field</h5>
-        <p>{{model.usageField}}</p>
+        <h5>
+          Usage field
+        </h5>
+        <p>
+          {{this.model.usageField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Supplier field</h5>
-        <p>{{model.supplierField}}</p>
+        <h5>
+          Supplier field
+        </h5>
+        <p>
+          {{this.model.supplierField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Disconnect cause field</h5>
-        <p>{{model.disconnectCauseField}}</p>
+        <h5>
+          Disconnect cause field
+        </h5>
+        <p>
+          {{this.model.disconnectCauseField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Rated field</h5>
-        <p>{{model.ratedField}}</p>
+        <h5>
+          Rated field
+        </h5>
+        <p>
+          {{this.model.ratedField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Cost field</h5>
-        <p>{{model.costField}}</p>
+        <h5>
+          Cost field
+        </h5>
+        <p>
+          {{this.model.costField}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Created at</h5>
-        <p>{{moment-format model.createdAt}}</p>
+        <h5>
+          Created at
+        </h5>
+        <p>
+          {{moment-format model.createdAt}}
+        </p>
       </div>
     </div>
   </div>

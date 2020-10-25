@@ -10,15 +10,23 @@ describe('Acceptance: TpAction.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpAction = server.create('tp-action', {id: '1', tpid: this.tariffPlan.alias, tag: 'test'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpAction = server.create('tp-action', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+      tag: 'test',
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', function () {
-    it('renders specific header', async  function () {
+    it('renders specific header', async function () {
       await visit('/tariff-plans/1/tp-actions/1');
-      expect(find('main h2').textContent).to.eq('TpAction: test');
+      expect(find('main h2')).to.have.trimmed.text('TpAction: test');
     });
   });
 
@@ -26,7 +34,8 @@ describe('Acceptance: TpAction.Index', function () {
     it('redirects to tp-action edit page', async function () {
       await visit('/tariff-plans/1/tp-actions/1');
       await click('[data-test-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-actions.tp-action.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-actions.tp-action.edit'
+      );
+    }));
 });

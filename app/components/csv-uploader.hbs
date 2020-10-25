@@ -1,0 +1,41 @@
+<div class="csv-uploader">
+  <h2>
+    Upload csv
+  </h2>
+  {{#if this.exampleUrl}}
+    <a
+      href={{this.exampleUrl}}
+      target="_blank"
+      rel="noopener"
+      class="csv-example"
+      data-test-example-url
+    >
+      Example
+    </a>
+  {{/if}}
+  <div class="uploader">
+    <FileUpload
+      @name="csv"
+      @accept=".csv"
+      @multiple={{false}}
+      @onfileadd={{this.attachFile}}
+      data-test-file-uploader
+    >
+      <a class="btn btn-outline-secondary">
+        Select CSV from disk
+      </a>
+    </FileUpload>
+    {{#if this.file.name}}
+      <span class="file-name">
+        {{this.file.name}}
+      </span>
+    {{/if}}
+  </div>
+  <button
+    class="btn btn-primary"
+    data-test-upload-button
+    {{on "click" this.save}}
+  >
+    Upload
+  </button>
+</div>

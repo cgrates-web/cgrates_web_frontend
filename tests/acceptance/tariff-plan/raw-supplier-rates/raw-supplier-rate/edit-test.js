@@ -10,9 +10,13 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Edit', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    server.create('raw-supplier-rate', { id: '1'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    server.create('raw-supplier-rate', { id: '1' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -26,7 +30,7 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Edit', function () {
         expect(params.data.attributes['supplier-name']).to.eq('supplier-name');
         expect(params.data.attributes['prefix']).to.eq('prefix');
         expect(params.data.attributes['description']).to.eq('description');
-        return { data: {id: '1', type: 'raw-supplier-rate'} };
+        return { data: { id: '1', type: 'raw-supplier-rate' } };
       });
 
       await visit('/tariff-plans/1/raw-supplier-rates/1/edit');
@@ -36,6 +40,5 @@ describe('Acceptance | Tariff Plan | Raw Supplier Rates | Edit', function () {
       await fillIn('[data-test-description] input', 'description');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

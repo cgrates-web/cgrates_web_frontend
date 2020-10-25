@@ -12,44 +12,49 @@ describe('Acceptance: Cdr.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    await authenticateSession({email: 'user@example.com'});
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('basic rendering', function () {
     it('renders specific header', async function () {
-      server.create('cdr', {id: 777});
+      server.create('cdr', { id: 777 });
       await visit('/cdrs/777');
       expect(find('.page-header h1').textContent.trim()).to.eq('CDR: 777');
     });
     describe('deleted at', function () {
       context('when deleted at == null', function () {
         it('shows minus icon', async function () {
-          server.create('cdr', {id: 777, deletedAt: null});
+          server.create('cdr', { id: 777, deletedAt: null });
           await visit('/cdrs/777');
-          expect(find('[data-test-deleted-at] i').textContent).to.eq('remove');
+          expect(find('[data-test-deleted-at] i')).to.have.trimmed.text(
+            'remove'
+          );
         });
       });
       context('when deleted at != null', function () {
         it('shows date', async function () {
           const date = new Date();
-          server.create('cdr', {id: 777, deletedAt: date});
+          server.create('cdr', { id: 777, deletedAt: date });
           await visit('/cdrs/777');
-          expect(find('[data-test-deleted-at]').textContent.trim())
-            .to.eq(moment(date).format(config.moment.outputFormat));
+          expect(find('[data-test-deleted-at]').textContent.trim()).to.eq(
+            moment(date).format(config.moment.outputFormat)
+          );
         });
       });
     });
     describe('extraFields', function () {
       context('when extraFields == null', function () {
         it('shows not present', async function () {
-          server.create('cdr', {id: 777, extraFields: null});
+          server.create('cdr', { id: 777, extraFields: null });
           await visit('/cdrs/777');
-          expect(find('[data-test-extra-fields]').textContent.trim()).to.eq('Not present');
+          expect(find('[data-test-extra-fields]').textContent.trim()).to.eq(
+            'Not present'
+          );
         });
       });
       context('when extraFields != null', function () {
         it('shows json', async function () {
-          server.create('cdr', {id: 777, extraFields: '{}'});
+          server.create('cdr', { id: 777, extraFields: '{}' });
           await visit('/cdrs/777');
           expect(find('[data-test-extra-fields] pre')).to.exist;
         });

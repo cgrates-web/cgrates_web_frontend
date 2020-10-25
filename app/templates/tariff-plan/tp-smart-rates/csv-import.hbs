@@ -1,9 +1,9 @@
 <main class="page-content">
   <div class="container">
-    {{csv-uploader
-      model=model
-      parentModelName=parentModelName
-      redirectAfterSave=false
-    }}
+    <CsvUploader
+      @model={{this.model}}
+      @parentModelName={{parentModelName}}
+      @redirectAfterSave={{false}}
+    />
   </div>
 </main>

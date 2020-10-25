@@ -1,60 +1,114 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpRatingProfile: {{model.id}}</h2>
+      <h2>
+        TpRatingProfile: {{this.model.id}}
+      </h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-rating-profiles.tp-rating-profile.edit" model}}
-            <i class="material-icons circle btn btn-primary" data-test-rating-profile-edit>edit</i>
-          {{/link-to}}
+          <LinkTo
+            @route="tariff-plan.tp-rating-profiles.tp-rating-profile.edit"
+            @model={{this.model}}
+          >
+            <i
+              class="material-icons circle btn btn-primary"
+              data-test-rating-profile-edit
+            >
+              edit
+            </i>
+          </LinkTo>
         </li>
       </ul>
     </div>
     <hr>
     <div class="row">
       <div class="col-12 col-md-3">
-        <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <h5>
+          Id
+        </h5>
+        <p>
+          {{this.model.id}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Load ID</h5>
-        <p>{{model.loadid}}</p>
+        <h5>
+          Load ID
+        </h5>
+        <p>
+          {{this.model.loadid}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Direction</h5>
-        <p>{{model.direction}}</p>
+        <h5>
+          Direction
+        </h5>
+        <p>
+          {{this.model.direction}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Tenant</h5>
-        <p>{{model.tenant}}</p>
+        <h5>
+          Tenant
+        </h5>
+        <p>
+          {{this.model.tenant}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Category</h5>
-        <p>{{model.category}}</p>
+        <h5>
+          Category
+        </h5>
+        <p>
+          {{this.model.category}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Subject</h5>
-        <p>{{model.subject}}</p>
+        <h5>
+          Subject
+        </h5>
+        <p>
+          {{this.model.subject}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Fallback subjects</h5>
-        <p>{{model.fallbackSubjects}}</p>
+        <h5>
+          Fallback subjects
+        </h5>
+        <p>
+          {{this.model.fallbackSubjects}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Activation time</h5>
-        <p>{{model.activationTime}}</p>
+        <h5>
+          Activation time
+        </h5>
+        <p>
+          {{this.model.activationTime}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>CDR stat queue IDs</h5>
-        <p>{{model.cdrStatQueueIds}}</p>
+        <h5>
+          CDR stat queue IDs
+        </h5>
+        <p>
+          {{this.model.cdrStatQueueIds}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Rating plan tag</h5>
-        <p>{{model.ratingPlanTag}}</p>
+        <h5>
+          Rating plan tag
+        </h5>
+        <p>
+          {{this.model.ratingPlanTag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Created at</h5>
-        <p>{{moment-format model.createdAt}}</p>
+        <h5>
+          Created at
+        </h5>
+        <p>
+          {{moment-format model.createdAt}}
+        </p>
       </div>
     </div>
   </div>

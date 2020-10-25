@@ -4,36 +4,41 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     tenant: {
-      refreshModel: true
+      refreshModel: true,
     },
     customId: {
-      refreshModel: true
+      refreshModel: true,
     },
     filterType: {
-      refreshModel: true
+      refreshModel: true,
     },
     filterFieldName: {
-      refreshModel: true
+      refreshModel: true,
     },
     activationInterval: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
-  filterParams: ['tenant', 'customId', 'filterType', 'filterFieldName', 'activationInterval'],
+  filterParams: Object.freeze([
+    'tenant',
+    'customId',
+    'filterType',
+    'filterFieldName',
+    'activationInterval',
+  ]),
 
-  modelName: 'tp-filter'
-}
-);
+  modelName: 'tp-filter',
+});

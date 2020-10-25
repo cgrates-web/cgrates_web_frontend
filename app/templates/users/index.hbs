@@ -8,9 +8,9 @@
     <div class="actions-subtitle">
       <ul class="actions">
         <li>
-          {{#link-to "users.new"}}
+          <LinkTo @route="users.new">
             <i class="material-icons circle btn btn-success" data-test-user-add>add</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>
@@ -29,21 +29,21 @@
           {{#each sortedUsers as |user|}}
             <tr>
               <td>
-                {{#link-to "user.index" user}}{{user.id}}{{/link-to}}
+                <LinkTo @route="user.index" @model={{user}}>{{user.id}}</LinkTo>
               </td>
               <td>
-                {{#link-to "user.index" user}}{{user.email}}{{/link-to}}
+                <LinkTo @route="user.index" @model={{user}}>{{user.email}}</LinkTo>
               </td>
               <td>
-                {{#link-to "user.index" user}}{{moment-format user.insertedAt}}{{/link-to}}
+                <LinkTo @route="user.index" @model={{user}}>{{moment-format user.insertedAt}}</LinkTo>
               </td>
               <td>
-                {{#link-to "user.index" user}}{{moment-format user.updatedAt}}{{/link-to}}
+                <LinkTo @route="user.index" @model={{user}}>{{moment-format user.updatedAt}}</LinkTo>
               </td>
               <td class="actions">
-                {{#link-to "user.edit" user}}
+                <LinkTo @route="user.edit" @model={{user}}>
                   <i class="material-icons circle btn btn-primary" data-test-user-edit>edit</i>
-                {{/link-to}}
+                </LinkTo>
                 <a {{action "remove" user}} role="button">
                   <i class="material-icons circle btn btn-danger" data-test-user-remove>remove</i>
                 </a>

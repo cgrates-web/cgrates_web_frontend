@@ -1,0 +1,16 @@
+<@form.element
+  @label={{@label}}
+  @property={{@property}}
+  @class={{@class}}
+  data-test-second={{@dataTest}} as |el|
+>
+  <el.control
+    @value={{this.valueNumber}}
+    @change={{action "change"}}
+    @input={{action "input"}}
+    @type="number"
+    @step="1"
+    @min="0"
+    placeholder={{@placeholder}}
+  />
+</@form.element>

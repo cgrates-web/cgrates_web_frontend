@@ -4,7 +4,14 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { isBlank } from '@ember/utils';
-import { visit, click, find, findAll, currentRouteName, fillIn } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+} from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: Cdrs.Index', function () {
@@ -13,7 +20,7 @@ describe('Acceptance: Cdrs.Index', function () {
 
   beforeEach(async function () {
     this.cdrs = server.createList('cdr', 2);
-    await authenticateSession({email: 'user@example.com'});
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /cdrs', () =>
@@ -21,16 +28,14 @@ describe('Acceptance: Cdrs.Index', function () {
       await visit('/cdrs');
       expect(find('.page-header h1').textContent.trim()).to.eq('CDRs');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('select CDR', () =>
-    it('reditects to CDR page', async  function () {
+    it('reditects to CDR page', async function () {
       await visit('/cdrs');
       await click('table tbody tr:first-child td:first-child a');
       expect(currentRouteName()).to.equal('cdrs.cdr');
-    })
-  );
+    }));
 
   describe('set filters and click search button', () =>
     it('makes a correct filter query', async function () {
@@ -75,7 +80,7 @@ describe('Acceptance: Cdrs.Index', function () {
             expect(filterAccount).to.eq('accounttest');
             expect(filterDestination).to.eq('+3334445555');
         }
-        return { data: [{id: '1', type: 'cdr'}] };
+        return { data: [{ id: '1', type: 'cdr' }] };
       });
 
       await visit('/cdrs');
@@ -91,8 +96,7 @@ describe('Acceptance: Cdrs.Index', function () {
       await fillIn('[data-test-destination] input', '+3334445555');
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('click column header', () =>
     it('makes a correct sort query', async function () {
@@ -111,17 +115,16 @@ describe('Acceptance: Cdrs.Index', function () {
           default:
             expect(sort).to.eq('-cgrid');
         }
-        return { data: [{id: '1', type: 'cdr'}] };
+        return { data: [{ id: '1', type: 'cdr' }] };
       });
 
       await visit('/cdrs');
       await click('[data-test-sort-cgrid] a');
       await click('[data-test-sort-cgrid] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
-  return describe('click pagination link', () =>
+  describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
       let counter = 0;
 
@@ -138,12 +141,11 @@ describe('Acceptance: Cdrs.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'cdr'}], meta: {total_pages: 2} };
+        return { data: [{ id: '1', type: 'cdr' }], meta: { total_pages: 2 } };
       });
 
       await visit('/cdrs');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

@@ -1,12 +1,12 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpFilter: {{model.customId}}</h2>
+      <h2>TpFilter: {{this.model.customId}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-filters.tp-filter.edit"}}
+          <LinkTo @route="tariff-plan.tp-filters.tp-filter.edit">
             <i class="material-icons circle btn btn-primary" data-test-tp-filter-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>
@@ -14,31 +14,31 @@
     <div class="row">
       <div class="col-12 col-md-3">
         <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <p>{{this.model.id}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Custom id</h5>
-        <p>{{model.customId}}</p>
+        <p>{{this.model.customId}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Tenant</h5>
-        <p>{{model.tenant}}</p>
+        <p>{{this.model.tenant}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Filter type</h5>
-        <p>{{model.filterType}}</p>
+        <p>{{this.model.filterType}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Filter field name</h5>
-        <p>{{model.filterFieldName}}</p>
+        <p>{{this.model.filterFieldName}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Filter field values</h5>
-        <p>{{model.filterFieldValues}}</p>
+        <p>{{this.model.filterFieldValues}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Activation Interval</h5>
-        <p>{{model.activationInterval}}</p>
+        <p>{{this.model.activationInterval}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Created at</h5>

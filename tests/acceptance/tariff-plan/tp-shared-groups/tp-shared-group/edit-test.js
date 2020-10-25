@@ -9,9 +9,13 @@ describe('Acceptance: TpSharedGroups.Edit', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest' });
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
     server.create('tp-shared-group', { id: '1', tpid: this.tariffPlan.alias });
-    await authenticateSession({email: 'user@example.com'});
+    await authenticateSession({ email: 'user@example.com' });
   });
   describe('fill form with correct data and submit', () =>
     it('sends correct data to the backend', async function () {
@@ -23,9 +27,11 @@ describe('Acceptance: TpSharedGroups.Edit', function () {
           expect(params.data.attributes['tag']).to.eq('tag');
           expect(params.data.attributes['account']).to.eq('account');
           expect(params.data.attributes['strategy']).to.eq('strategy');
-          expect(params.data.attributes['rating-subject']).to.eq('rating_subject');
+          expect(params.data.attributes['rating-subject']).to.eq(
+            'rating_subject'
+          );
         };
-        return { data: {id: '1', type: 'tp-shared-group'} };
+        return { data: { id: '1', type: 'tp-shared-group' } };
       });
       await visit('/tariff-plans/1/tp-shared-groups/1/edit');
       await fillIn('[data-test-tag] input', 'tag');
@@ -34,6 +40,5 @@ describe('Acceptance: TpSharedGroups.Edit', function () {
       await fillIn('[data-test-rating-subject] input', 'rating_subject');
       await click('[data-test-submit-button]');
       expectCorrectRequest();
-    })
-  );
+    }));
 });

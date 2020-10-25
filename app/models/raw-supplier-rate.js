@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
@@ -6,19 +6,18 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('number', {
       allowString: true,
-      gte: 0
+      gte: 0,
     }),
   ],
   supplierName: validator('presence', true),
   prefix: validator('presence', true),
-
 });
-export default DS.Model.extend(Validations, {
-  rate:         DS.attr('number'),
-  description:  DS.attr('string'),
-  supplierName: DS.attr('string'),
-  prefix:       DS.attr('string'),
-  insertedAt:   DS.attr('date'),
+export default Model.extend(Validations, {
+  rate: attr('number'),
+  description: attr('string'),
+  supplierName: attr('string'),
+  prefix: attr('string'),
+  insertedAt: attr('date'),
 
-  tariffPlan: DS.belongsTo('tariff-plan')
+  tariffPlan: belongsTo('tariff-plan'),
 });

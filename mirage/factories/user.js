@@ -1,5 +1,8 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
+import faker from 'faker';
 
 export default Factory.extend({
-  email() { return faker.internet.email(); }
+  email() {
+    return faker.internet.email();
+  },
 });

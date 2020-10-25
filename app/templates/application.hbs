@@ -1,41 +1,42 @@
 {{#if session.isAuthenticated}}
   <header>
-    {{#bs-navbar
-      type=type
-      class="navbar-dark bg-dark navbar-expand-sm"
-      id="main-menu"
-      onCollapse=(action (mut collapsed) true)
-      onExpand=(action (mut collapsed) false)
-    as |navbar|}}
+    <BsNavbar
+      @type={{type}}
+      @class="navbar-dark bg-dark navbar-expand-sm"
+      @onCollapse={{action (mut collapsed) true}}
+      @onExpand={{action (mut collapsed) false}} as |navbar|
+    >
       <div class="navbar-header">
-        {{#link-to "realtime" class="navbar-brand"}}CGRates WEB{{/link-to}}
+        <LinkTo @route="realtime" class="navbar-brand">
+          CGRates WEB
+        </LinkTo>
       </div>
       {{navbar.toggle}}
-      {{#navbar.content}}
-        {{#navbar.nav class="ml-auto" as |nav|}}
-          {{#nav.item}}
-            {{#nav.link-to "realtime"}}
+      <navbar.content>
+        <navbar.nav @class="ml-auto" as |nav|>
+          <nav.item>
+            <nav.link-to @route="realtime">
               Realtime
-            {{/nav.link-to}}
-          {{/nav.item}}
-          {{#nav.item}}
-            {{#nav.link-to "tariff-plans" data-test-tariff-paln-link=true}}
+            </nav.link-to>
+          </nav.item>
+          <nav.item>
+            <nav.link-to @route="tariff-plans" data-test-tariff-plan-link>
               Tariff Plans
-            {{/nav.link-to}}
-          {{/nav.item}}
-          {{#nav.item}}
-            {{#nav.link-to "users" data-test-users-link=true}}
+            </nav.link-to>
+          </nav.item>
+          <nav.item>
+            <nav.link-to @route="users" data-test-users-link>
               Users
-            {{/nav.link-to}}
-          {{/nav.item}}
-          {{#nav.item}}
-            {{#nav.link-to "cdrs"}}
+            </nav.link-to>
+          </nav.item>
+          <nav.item>
+            <nav.link-to @route="cdrs">
               CDRs
-            {{/nav.link-to}}
-          {{/nav.item}}
-        {{/navbar.nav}}
-      {{/navbar.content}}
-    {{/bs-navbar}}
+            </nav.link-to>
+          </nav.item>
+        </navbar.nav>
+      </navbar.content>
+    </BsNavbar>
   </header>
 {{/if}}
 
@@ -43,13 +44,17 @@
 
 <div class="flash">
   {{#each flashMessages.queue as |flash|}}
-    {{#flash-message flash=flash as |flashComponent flash|}}
+    <FlashMessage @flash={{flash}} as |flashComponent flash|>
       {{#if flash.componentName}}
         {{component flash.componentName content=flash.content}}
       {{else}}
-        <h6>{{flashComponent.flashType}}</h6>
-        <p>{{flash.message}}</p>
+        <h6>
+          {{flashComponent.flashType}}
+        </h6>
+        <p>
+          {{flash.message}}
+        </p>
       {{/if}}
-    {{/flash-message}}
+    </FlashMessage>
   {{/each}}
 </div>

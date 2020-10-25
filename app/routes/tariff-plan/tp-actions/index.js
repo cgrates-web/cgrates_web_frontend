@@ -4,71 +4,85 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     tag: {
-      refreshModel: true
+      refreshModel: true,
     },
     action: {
-      refreshModel: true
+      refreshModel: true,
     },
     balanceTag: {
-      refreshModel: true
+      refreshModel: true,
     },
     balanceType: {
-      refreshModel: true
+      refreshModel: true,
     },
     directions: {
-      refreshModel: true
+      refreshModel: true,
     },
     units: {
-      refreshModel: true
+      refreshModel: true,
     },
     expiryTime: {
-      refreshModel: true
+      refreshModel: true,
     },
     timingTags: {
-      refreshModel: true
+      refreshModel: true,
     },
     destinationTags: {
-      refreshModel: true
+      refreshModel: true,
     },
     ratingSubject: {
-      refreshModel: true
+      refreshModel: true,
     },
     categories: {
-      refreshModel: true
+      refreshModel: true,
     },
     sharedGroups: {
-      refreshModel: true
+      refreshModel: true,
     },
     balanceWeight: {
-      refreshModel: true
+      refreshModel: true,
     },
     balanceBlocker: {
-      refreshModel: true
+      refreshModel: true,
     },
     balanceDisabled: {
-      refreshModel: true
+      refreshModel: true,
     },
     weight: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
-  filterParams: ['tag', 'action', 'balanceTag', 'balanceType', 'directions', 'units', 'expiryTime',
-    'timingTags', 'destinationTags', 'ratingSubject', 'categories', 'sharedGroups',
-    'balanceWeight', 'balanceBlocker', 'balanceDisabled', 'weight'],
+  filterParams: Object.freeze([
+    'tag',
+    'action',
+    'balanceTag',
+    'balanceType',
+    'directions',
+    'units',
+    'expiryTime',
+    'timingTags',
+    'destinationTags',
+    'ratingSubject',
+    'categories',
+    'sharedGroups',
+    'balanceWeight',
+    'balanceBlocker',
+    'balanceDisabled',
+    'weight',
+  ]),
 
-  modelName: 'tp-action'
-}
-);
+  modelName: 'tp-action',
+});

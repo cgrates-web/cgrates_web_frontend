@@ -8,7 +8,7 @@ describe('Acceptance: Index page', function () {
   setupApplicationTest();
 
   beforeEach(async function () {
-    await authenticateSession({email: 'user@exmple.com'});
+    await authenticateSession({ email: 'user@exmple.com' });
   });
 
   return it('redirects to /realtime', async function () {

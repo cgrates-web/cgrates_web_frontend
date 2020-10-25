@@ -1,31 +1,46 @@
-import Component from '@ember/component';
-import { computed } from '@ember/object';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import { isPresent } from '@ember/utils';
+import { last, includes, __ } from 'ramda';
 
-export default Component.extend({
-  tagName: '',
-  currentIntervalUnit: 's',
-  intervalUnits: Object.freeze(['s', 'm', 'h']),
+const INTERVAL_UNITS = Object.freeze(['s', 'm', 'h']);
 
-  valueNumber: computed('value', function () {
-    if (isPresent(this.get('value'))) {
-      const lastItem = this.get('value').substr(-1);
-      if (this.intervalUnits.indexOf(lastItem) !== -1) {
-        this.set('currentIntervalUnit', lastItem);
-        return this.get('value').replace(new RegExp(`${lastItem}$`, 'g'), '');
+const isCorrectInterval = includes(__, INTERVAL_UNITS);
+
+const DEFAULT_UNIT = 's';
+
+export default class InputIntervalComponent extends Component {
+  intervalUnits = Object.freeze(['s', 'm', 'h']);
+
+  get valueNumber() {
+    if (isPresent(this.args.value)) {
+      const lastItem = last(this.args.value);
+      if (isCorrectInterval(lastItem)) {
+        return this.args.value.replace(new RegExp(`${lastItem}$`, 'g'), '');
       }
     }
-    return null;
-  }),
-
-  actions: {
-    intervalChange(value) {
-      this.set('currentIntervalUnit', value);
-      this.set('value', `${this.valueNumber}${value}`);
-    },
-    change() {},
-    input(event) {
-      this.set('value', isPresent(event.target.value) ? `${ event.target.value}${this.currentIntervalUnit}` : null);
-    },
+    return '';
   }
-});
+
+  get currentIntervalUnit() {
+    if (isPresent(this.args.value)) {
+      const lastItem = last(this.args.value);
+      if (isCorrectInterval(lastItem)) {
+        return lastItem;
+      } else {
+        return DEFAULT_UNIT;
+      }
+    }
+    return DEFAULT_UNIT;
+  }
+
+  @action
+  intervalChange(unit) {
+    this.args.onChange(this.valueNumber + unit);
+  }
+
+  @action
+  onChange(value) {
+    this.args.onChange(value + this.currentIntervalUnit);
+  }
+}

@@ -5,13 +5,14 @@ import { task } from 'ember-concurrency';
 export default Controller.extend({
   flashMessages: service(),
 
-  remove: task(function * (record) {
+  remove: task(function* (record) {
     if (confirm('Are you sure?')) {
       try {
         yield record.destroyRecord();
-        this.get('flashMessages').success('Tariff plan have been deleted');
+        this.flashMessages.success('Tariff plan have been deleted');
       } catch (err) {
-        this.get('flashMessages').danger('Somethings went wrong');
+        this.flashMessages.danger('Somethings went wrong');
+        throw err;
       }
     }
   }),

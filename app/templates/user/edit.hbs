@@ -1,26 +1,30 @@
 <section class="page-header">
   <h1 class="page-title container">
-    Edit user {{model.email}}
+    Edit user {{this.model.email}}
   </h1>
 </section>
 <main class="page-content">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-4">
-        {{#bs-form model=model onSubmit=(action "save") novalidate=true as |form|}}
-          {{form.element
-            label="Email"
-            property="email"
-            controlType="email"
-            data-test-email=true
-          }}
-          {{bs-button
-            defaultText="Save"
-            type="primary"
-            buttonType="submit"
-            data-test-submit-button=true
-          }}
-        {{/bs-form}}
+        <BsForm
+          @model={{this.model}}
+          @onSubmit={{action "save"}}
+          novalidate={{true}} as |form|
+        >
+          <form.element
+            @label="Email"
+            @property="email"
+            @controlType="email"
+            data-test-email={{true}}
+          />
+          <BsButton
+            @defaultText="Save"
+            @type="primary"
+            @buttonType="submit"
+            data-test-submit-button={{true}}
+          />
+        </BsForm>
       </div>
     </div>
   </div>

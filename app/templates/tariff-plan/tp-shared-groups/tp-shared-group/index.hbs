@@ -1,12 +1,12 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpSharedGroup: {{model.tag}}</h2>
+      <h2>TpSharedGroup: {{this.model.tag}}</h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-shared-groups.tp-shared-group.edit"}}
+          <LinkTo @route="tariff-plan.tp-shared-groups.tp-shared-group.edit">
             <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          </LinkTo>
         </li>
       </ul>
     </div>
@@ -14,23 +14,23 @@
     <div class="row">
       <div class="col-12 col-md-3">
         <h5>ID</h5>
-        <p>{{model.id}}</p>
+        <p>{{this.model.id}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Tag</h5>
-        <p>{{model.tag}}</p>
+        <p>{{this.model.tag}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Account</h5>
-        <p>{{model.account}}</p>
+        <p>{{this.model.account}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Strategy</h5>
-        <p>{{model.strategy}}</p>
+        <p>{{this.model.strategy}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Rating subject</h5>
-        <p>{{model.ratingSubject}}</p>
+        <p>{{this.model.ratingSubject}}</p>
       </div>
       <div class="col-12 col-md-3">
         <h5>Created at</h5>

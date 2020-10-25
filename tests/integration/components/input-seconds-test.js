@@ -17,9 +17,9 @@ describe('Integration: InputSeconds', function () {
             {{input-seconds
               value=value
               form=form
-              label='Test'
-              class='test-class'
-              dataTest='test'
+              label="Test"
+              class="test-class"
+              dataTest="test"
             }}
           {{/bs-form}}
         ')`);
@@ -56,20 +56,19 @@ describe('Integration: InputSeconds', function () {
   describe('entering a number', () =>
     it('appends suffix', async function () {
       this.set('value', null);
-      this.set('model', EmberObject.create({test: null}));
+      this.set('model', EmberObject.create({ test: null }));
       await render(hbs`('
         {{#bs-form model=model as |form|}}
           {{input-seconds
             value=value
             form=form
-            label='Test'
-            property='test'
-            class='test-class'
+            label="Test"
+            property="test"
+            class="test-class"
           }}
         {{/bs-form}}
       ')`);
       await fillIn('input', '60');
-      expect(this.get('value')).to.eq('60s');
-    })
-  );
+      expect(this.value).to.eq('60s');
+    }));
 });

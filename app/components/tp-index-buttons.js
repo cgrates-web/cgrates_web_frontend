@@ -8,62 +8,67 @@ import { isBlank } from '@ember/utils';
 import { pluralize } from 'ember-inflector';
 
 export default Component.extend(FileSaverMixin, {
-  flashMessages:        service(),
-  ajax:                 service(),
+  flashMessages: service(),
+  ajax: service(),
 
   permittedFilters: null,
 
   init() {
     this._super(...arguments);
-    if (isBlank(this.get('permittedFilters')))
-      this.set('permittedFilters', []);
+    if (isBlank(this.permittedFilters)) this.set('permittedFilters', []);
   },
 
   csvImportRouteName: computed('model.modelName', function () {
-    return `tariff-plan.${pluralize(this.get('model.modelName'))}.csv-import`;
+    return `tariff-plan.${pluralize(this.model.modelName)}.csv-import`;
   }),
 
-  newRouteName: computed('model', function () {
-    return `tariff-plan.${pluralize(this.get('model.modelName'))}.new`;
+  newRouteName: computed('model.modelName', function () {
+    return `tariff-plan.${pluralize(this.model.modelName)}.new`;
   }),
 
   tagName: '',
 
-  exportToCsv: task(function * () {
+  exportToCsv: task(function* () {
     try {
-      const filter = normalizeFilters(this.get('controller'), this.get('permittedFilters'));
-      const response = yield this.get('ajax').request(`/api/${pluralize(this.get('model.modelName'))}/export-to-csv`, {
-        dataType: 'blob',
-        data: {
-          tpid: this.get('tariffPlanId'),
-          filter: filter
+      const filter = normalizeFilters(this.controller, this.permittedFilters);
+      const response = yield this.ajax.request(
+        `/api/${pluralize(this.model.modelName)}/export-to-csv`,
+        {
+          dataType: 'blob',
+          data: {
+            tpid: this.tariffPlanId,
+            filter: filter,
+          },
         }
-      });
+      );
       this.saveFileAs('export.csv', response, 'application/csv');
     } catch (err) {
-      this.get('flashMessages').danger('Somethings went wrong');
+      this.flashMessages.danger('Somethings went wrong');
     }
   }),
 
-  deleteAll: task(function * () {
+  deleteAll: task(function* () {
     try {
-      const filter = normalizeFilters(this.get('controller'), this.get('permittedFilters'));
-      yield this.get('ajax').request(`/api/${pluralize(this.get('model.modelName'))}/delete-all`, {
-        method: 'POST',
-        data: {
-          tpid: this.get('tariffPlanId'),
-          filter: filter
+      const filter = normalizeFilters(this.controller, this.permittedFilters);
+      yield this.ajax.request(
+        `/api/${pluralize(this.model.modelName)}/delete-all`,
+        {
+          method: 'POST',
+          data: {
+            tpid: this.tariffPlanId,
+            filter: filter,
+          },
         }
-      });
-      this.get('flashMessages').success('Records have been deleted');
+      );
+      this.flashMessages.success('Records have been deleted');
     } catch (err) {
-      this.get('flashMessages').danger('Somethings went wrong');
+      this.flashMessages.danger('Somethings went wrong');
     }
   }),
 
   actions: {
     refresh() {
-      this.sendAction('refresh');
-    }
-  }
+      this.refresh();
+    },
+  },
 });

@@ -4,69 +4,80 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     tenant: {
-      refreshModel: true
+      refreshModel: true,
     },
     customId: {
-      refreshModel: true
+      refreshModel: true,
     },
     filterIds: {
-      refreshModel: true
+      refreshModel: true,
     },
     sorting: {
-      refreshModel: true
+      refreshModel: true,
     },
     activationInterval: {
-      refreshModel: true
+      refreshModel: true,
     },
     supplierId: {
-      refreshModel: true
+      refreshModel: true,
     },
     supplierFilterIds: {
-      refreshModel: true
+      refreshModel: true,
     },
     supplierAccountIds: {
-      refreshModel: true
+      refreshModel: true,
     },
     supplierRatingplanIds: {
-      refreshModel: true
+      refreshModel: true,
     },
     supplierResourceIds: {
-      refreshModel: true
+      refreshModel: true,
     },
     supplierStatIds: {
-      refreshModel: true
+      refreshModel: true,
     },
     supplierWeight: {
-      refreshModel: true
+      refreshModel: true,
     },
     blocker: {
-      refreshModel: true
+      refreshModel: true,
     },
     weight: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortingParameters: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
   filterParams: Object.freeze([
-    'tenant', 'customId', 'filterIds', 'sorting', 'activationInterval', 'supplierId', 'supplierFilterIds',
-    'supplierAccountIds', 'supplierRatingplanIds', 'supplierResourceIds', 'supplierStatIds', 'supplierWeight',
-    'blocker', 'weight', 'sortingParameters'
+    'tenant',
+    'customId',
+    'filterIds',
+    'sorting',
+    'activationInterval',
+    'supplierId',
+    'supplierFilterIds',
+    'supplierAccountIds',
+    'supplierRatingplanIds',
+    'supplierResourceIds',
+    'supplierStatIds',
+    'supplierWeight',
+    'blocker',
+    'weight',
+    'sortingParameters',
   ]),
-  modelName: 'tp-supplier'
-}
-);
+  modelName: 'tp-supplier',
+});

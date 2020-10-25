@@ -3,7 +3,15 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
 
 describe('Acceptance: TpTimings.Index', function () {
@@ -11,19 +19,24 @@ describe('Acceptance: TpTimings.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpTiming = server.createList('tp-timing', 2, {tpid: this.tariffPlan.alias});
-    this.other = server.createList('tp-destination', 2, {tpid: 'other'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpTiming = server.createList('tp-timing', 2, {
+      tpid: this.tariffPlan.alias,
+    });
+    this.other = server.createList('tp-destination', 2, { tpid: 'other' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-timings', () =>
     it('renders table with tp-timings', async function () {
       await visit('/tariff-plans/1/tp-timings');
-      expect(find('main h2').textContent).to.eq('Timings list');
+      expect(find('main h2')).to.have.trimmed.text('Timings list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server responsed with meta: total_records', function () {
     it('displays total records', async function () {
@@ -39,33 +52,33 @@ describe('Acceptance: TpTimings.Index', function () {
     it('reditects to tp-timings page', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-timings.tp-timing.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-timings.tp-timing.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-timing page', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-tp-timing-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-timings.tp-timing.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-timings.tp-timing.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-timing', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-tp-timing-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-timings page', async function () {
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-timings.new');
-    })
-  );
+    }));
 
   describe('set filters and click search button', () =>
     it('makes a correct filter query', async function () {
@@ -82,15 +95,14 @@ describe('Acceptance: TpTimings.Index', function () {
             expect(request.queryParams['tpid']).to.eq('tptest');
             expect(request.queryParams['filter[tag]']).to.eq('tagtest');
         }
-        return { data: [{id: '1', type: 'tp-timing'}] };
+        return { data: [{ id: '1', type: 'tp-timing' }] };
       });
 
       await visit('/tariff-plans/1/tp-timings');
       await fillIn('[data-test-filter-tag] input', 'tagtest');
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('filter and click download csv', function () {
     it('sends request to the server with filters', async function () {
@@ -100,7 +112,7 @@ describe('Acceptance: TpTimings.Index', function () {
           expect(request.queryParams['tpid']).to.eq('tptest');
           expect(request.queryParams['filter[tag]']).to.eq('tagtest');
         };
-        return { data: [{id: '1', type: 'tp-timing'}] };
+        return { data: [{ id: '1', type: 'tp-timing' }] };
       });
       await visit('/tariff-plans/1/tp-timings');
       await fillIn('[data-test-filter-tag] input', 'tagtest');
@@ -126,7 +138,7 @@ describe('Acceptance: TpTimings.Index', function () {
           expect(request.queryParams['tpid']).to.eq('tptest');
           expect(request.queryParams['filter[tag]']).to.eq('tagtest');
         };
-        return { data: [{id: '1', type: 'tp-timing'}] };
+        return { data: [{ id: '1', type: 'tp-timing' }] };
       });
       await visit('/tariff-plans/1/tp-timings');
       await fillIn('[data-test-filter-tag] input', 'tagtest');
@@ -177,15 +189,14 @@ describe('Acceptance: TpTimings.Index', function () {
           default:
             expect(sort).to.eq('-tag');
         }
-        return { data: [{id: '1', type: 'tp-timing'}] };
+        return { data: [{ id: '1', type: 'tp-timing' }] };
       });
 
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-sort-tag] a');
       await click('[data-test-sort-tag] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   return describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -204,12 +215,14 @@ describe('Acceptance: TpTimings.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-timings'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-timings' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-timings');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

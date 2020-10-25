@@ -6,7 +6,7 @@ export default function normalizeFilters(params, permittedFilters) {
   permittedFilters.forEach(function (key) {
     const value = get(params, key);
     if (!isBlank(value)) {
-      return query[key.underscore()] = value;
+      return (query[key.underscore()] = value);
     }
   });
   return query;

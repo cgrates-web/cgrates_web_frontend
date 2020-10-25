@@ -1,8 +1,7 @@
-import Ember from 'ember';
-import ApplicationAdapter from 'cgrates-web-frontend/adapters/application';
+import ApplicationAdapter from './application';
 
-export default ApplicationAdapter.extend({
-  pathForType: function (modelName) {
-    return Ember.String.dasherize(modelName);
+export default class AddBalanceAdapter extends ApplicationAdapter {
+  pathForType() {
+    return 'add-balance';
   }
-});
+}

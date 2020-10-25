@@ -1,132 +1,193 @@
 <main class="page-content">
   <div class="container xl">
     <div class="actions-subtitle">
-      <h2>TpAccountActions list</h2>
+      <h2>
+        TpAccountActions list
+      </h2>
       <ul class="actions">
-        {{tp-index-buttons
-          model=model
-          tariffPlanId=tariffPlanId
-          permittedFilters=permittedFilters
-          refresh="refresh"
-          controller=this
-        }}
+        <TpIndexButtons
+          @model={{this.model}}
+          @tariffPlanId={{this.tariffPlanId}}
+          @permittedFilters={{permittedFilters}}
+          @refresh={{route-action "refresh"}}
+          @controller={{this}}
+        />
       </ul>
     </div>
-    {{total-records totalRecords=meta.total_records}}
+    <TotalRecords @totalRecords={{meta.total_records}} />
     <div class="row">
-      <div class=" col-md-9">
+      <div class="col-md-9">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
-                {{sort-header
-                  label="ID"
-                  key="id"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Load ID"
-                  key="loadid"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Tenant"
-                  key="tenant"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                  data-test-sort-tenant=true
-                }}
-                {{sort-header
-                  label="Account"
-                  key="account"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Action plan tag"
-                  key="actionPlanTag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Action triggers tag"
-                  key="actionTriggersTag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Allow negative"
-                  key="allowNegative"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Disabled"
-                  key="disabled"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Created at"
-                  key="createdAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                <td>Actions</td>
+                <SortHeader
+                  @label="ID"
+                  @key="id"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Load ID"
+                  @key="loadid"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Tenant"
+                  @key="tenant"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                  data-test-sort-tenant={{true}}
+                />
+                <SortHeader
+                  @label="Account"
+                  @key="account"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Action plan tag"
+                  @key="actionPlanTag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Action triggers tag"
+                  @key="actionTriggersTag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Allow negative"
+                  @key="allowNegative"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Disabled"
+                  @key="disabled"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Created at"
+                  @key="createdAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <td>
+                  Actions
+                </td>
               </tr>
             </thead>
             <tbody>
               {{#each model as |tpAccountAction|}}
                 <tr>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.id}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.id}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.loadid}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.loadid}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.tenant}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.tenant}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.account}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.account}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.actionPlanTag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.actionPlanTag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.actionTriggersTag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.actionTriggersTag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.allowNegative}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.allowNegative}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}{{tpAccountAction.disabled}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
+                      {{tpAccountAction.disabled}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-account-actions.tp-account-action" tpAccountAction}}
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action"
+                      @model={{tpAccountAction}}
+                    >
                       {{moment-format tpAccountAction.createdAt}}
-                    {{/link-to}}
+                    </LinkTo>
                   </td>
                   <td class="actions">
-                    {{#link-to
-                      "tariff-plan.tp-account-actions.tp-account-action.edit"
-                      tpAccountAction
-                    }}
-                      <i class="material-icons circle btn btn-primary" data-test-tp-account-action-edit>edit</i>
-                    {{/link-to}}
-                    <a {{action "remove" tpAccountAction}} class="ml-1" role="button">
-                      <i class="material-icons circle btn btn-danger" data-test-tp-account-action-remove>remove</i>
+                    <LinkTo
+                      @route="tariff-plan.tp-account-actions.tp-account-action.edit"
+                      @model={{tpAccountAction}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-primary"
+                        data-test-tp-account-action-edit
+                      >
+                        edit
+                      </i>
+                    </LinkTo>
+                    <a
+                      class="ml-1"
+                      role="button"
+                      {{action "remove" tpAccountAction}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-danger"
+                        data-test-tp-account-action-remove
+                      >
+                        remove
+                      </i>
                     </a>
                   </td>
                 </tr>
@@ -134,68 +195,61 @@
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
+        <PageNumbers
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
+          @numPagesToShow={{4}}
+        />
       </div>
       <div class="col-md-3">
-        {{#filters-block search=(action "search") as |filtersBlock|}}
-          {{filter-text
-            label="Load ID"
-            key="loadid"
-            value=loadid
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-loadid=true
-          }}
-          {{filter-text
-            label="Tenant"
-            key="tenant"
-            value=tenant
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-tenant=true
-          }}
-          {{filter-text
-            label="Account"
-            key="account"
-            value=account
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-account=true
-          }}
-          {{filter-select-search-to-string
-            label="Action plan tag"
-            key="actionPlanTag"
-            value=actionPlanTag
-            searchModel="tp-action-plan"
-            searchField="tag"
-            tpid=tariffPlanId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-action-plan-tag=true
-          }}
-          {{filter-select-search-to-string
-            label="Action triggers tag"
-            key="actionTriggersTag"
-            value=actionTriggersTag
-            searchModel="tp-action-trigger"
-            searchField="tag"
-            tpid=tariffPlanId
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-action-triggers-tag=true
-          }}
-          {{filter-select
-            label="Allow negative"
-            key="allowNegative"
-            value=allowNegative
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.boolean
-            data-test-filter-allow-negative=true
-          }}
-          {{filter-select
-            label="Disabled"
-            key="disabled"
-            value=disabled
-            onValueChange=(action "pushValue" target=filtersBlock)
-            content=selectValues.boolean
-            data-test-filter-disabled=true
-          }}
-        {{/filters-block}}
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
+          <FilterText
+            @label="Load ID"
+            @value={{filtersBlock.activeFilters.loadid}}
+            data-test-filter-loadid
+          />
+          <FilterText
+            @label="Tenant"
+            @value={{filtersBlock.activeFilters.tenant}}
+            data-test-filter-tenant
+          />
+          <FilterText
+            @label="Account"
+            @value={{filtersBlock.activeFilters.account}}
+            data-test-filter-account
+          />
+          <FilterSelectSearchToString
+            @label="Action plan tag"
+            @value={{filtersBlock.activeFilters.actionPlanTag}}
+            @searchModel="tp-action-plan"
+            @searchField="tag"
+            @tpid={{this.tariffPlanId}}
+            data-test-filter-action-plan-tag={{true}}
+          />
+          <FilterSelectSearchToString
+            @label="Action triggers tag"
+            @value={{filtersBlock.activeFilters.actionTriggersTag}}
+            @searchModel="tp-action-trigger"
+            @searchField="tag"
+            @tpid={{this.tariffPlanId}}
+            data-test-filter-action-triggers-tag={{true}}
+          />
+          <FilterSelect
+            @label="Allow negative"
+            @value={{filtersBlock.activeFilters.allowNegative}}
+            @content={{selectValues.boolean}}
+            data-test-filter-allow-negative
+          />
+          <FilterSelect
+            @label="Disabled"
+            @value={{filtersBlock.activeFilters.disabled}}
+            @content={{selectValues.boolean}}
+            data-test-filter-disabled
+          />
+        </FiltersBlock>
       </div>
     </div>
   </div>

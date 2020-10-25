@@ -3,25 +3,38 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, findAll, currentRouteName, fillIn, currentURL, find  } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+  find,
+} from '@ember/test-helpers';
 
 describe('Acceptance: TpActionPlans.Index', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', { id: '1', name: 'Test', alias: 'tptest'});
-    this.tpActionPlans = server.createList('tp-action-plan', 2, {tpid: this.tariffPlan.alias});
-    this.other = server.createList('tp-action-plan', 2, {tpid: 'other'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpActionPlans = server.createList('tp-action-plan', 2, {
+      tpid: this.tariffPlan.alias,
+    });
+    this.other = server.createList('tp-action-plan', 2, { tpid: 'other' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-action-plans', () =>
     it('renders table with tp-action-plans', async function () {
       await visit('/tariff-plans/1/tp-action-plans');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server responsed with meta: total_records', function () {
     it('displays total records', async function () {
@@ -37,33 +50,33 @@ describe('Acceptance: TpActionPlans.Index', function () {
     it('reditects to tp-action-plan page', async function () {
       await visit('/tariff-plans/1/tp-action-plans');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-action-plans.tp-action-plan.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-action-plans.tp-action-plan.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-action-plan page', async function () {
       await visit('/tariff-plans/1/tp-action-plans');
       await click('[data-test-tp-action-plan-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-action-plans.tp-action-plan.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-action-plans.tp-action-plan.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-action-plan', async function () {
       await visit('/tariff-plans/1/tp-action-plans');
       await click('[data-test-tp-action-plan-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-action-plan page', async function () {
       await visit('/tariff-plans/1/tp-action-plans');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-action-plans.new');
-    })
-  );
+    }));
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-tag] input', 'tagtest');
@@ -86,14 +99,13 @@ describe('Acceptance: TpActionPlans.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-action-plan'}] };
+        return { data: [{ id: '1', type: 'tp-action-plan' }] };
       });
       await visit('/tariff-plans/1/tp-action-plans');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expectRequestToBeCorrect();
-    })
-  );
+    }));
 
   describe('filter and click download csv', function () {
     it('sends request to the server with filters', async function () {
@@ -102,7 +114,7 @@ describe('Acceptance: TpActionPlans.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-action-plan'}] };
+        return { data: [{ id: '1', type: 'tp-action-plan' }] };
       });
       await visit('/tariff-plans/1/tp-action-plans');
       await setFilters();
@@ -127,7 +139,7 @@ describe('Acceptance: TpActionPlans.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-action-plan'}] };
+        return { data: [{ id: '1', type: 'tp-action-plan' }] };
       });
       await visit('/tariff-plans/1/tp-action-plans');
       await setFilters();
@@ -180,15 +192,14 @@ describe('Acceptance: TpActionPlans.Index', function () {
           default:
             expect(sort).to.eq('-tag');
         }
-        return { data: [{id: '1', type: 'tp-action-plan'}] };
+        return { data: [{ id: '1', type: 'tp-action-plan' }] };
       });
 
       await visit('/tariff-plans/1/tp-action-plans');
       await click('[data-test-sort-tag] a');
       await click('[data-test-sort-tag] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -206,12 +217,14 @@ describe('Acceptance: TpActionPlans.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-action-plan'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-action-plan' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-action-plans');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

@@ -3,7 +3,15 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import { visit, click, find, findAll, currentRouteName, fillIn, currentURL } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  find,
+  findAll,
+  currentRouteName,
+  fillIn,
+  currentURL,
+} from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
@@ -12,19 +20,24 @@ describe('Acceptance: TpLcrRules.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpLcrRules = server.createList('tp-lcr-rule', 2, {tpid: this.tariffPlan.alias});
-    this.other = server.createList('tp-lcr-rule', 2, {tpid: 'other'});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpLcrRules = server.createList('tp-lcr-rule', 2, {
+      tpid: this.tariffPlan.alias,
+    });
+    this.other = server.createList('tp-lcr-rule', 2, { tpid: 'other' });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('visit /tariff-plans/1/tp-lcr-rules', () =>
-    it('renders table with tp-lcr-rules', async  function () {
+    it('renders table with tp-lcr-rules', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
-      expect(find('main h2').textContent).to.eq('TpLcrRules list');
+      expect(find('main h2')).to.have.trimmed.text('TpLcrRules list');
       expect(findAll('table tbody tr').length).to.eq(2);
-    })
-  );
+    }));
 
   describe('server responsed with meta: total_records', function () {
     it('displays total records', async function () {
@@ -40,33 +53,33 @@ describe('Acceptance: TpLcrRules.Index', function () {
     it('reditects to tp-lcr-rule page', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('table tbody tr:first-child td:first-child a');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-lcr-rules.tp-lcr-rule.index');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-lcr-rules.tp-lcr-rule.index'
+      );
+    }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-lcr-rule page', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-tp-lcr-rule-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-lcr-rules.tp-lcr-rule.edit');
-    })
-  );
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-lcr-rules.tp-lcr-rule.edit'
+      );
+    }));
 
   describe('click remove button', () =>
     it('removes tp-lcr-rule', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-tp-lcr-rule-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    })
-  );
+    }));
 
   describe('click add button', () =>
     it('redirects to new tp-lcr-rule page', async function () {
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-add]');
       expect(currentRouteName()).to.equal('tariff-plan.tp-lcr-rules.new');
-    })
-  );
+    }));
 
   const setFilters = async () => {
     await selectChoose('[data-test-filter-direction]', '*out');
@@ -101,7 +114,8 @@ describe('Acceptance: TpLcrRules.Index', function () {
         const filterCategory = request.queryParams['filter[category]'];
         const filterAccount = request.queryParams['filter[account]'];
         const filterSubject = request.queryParams['filter[subject]'];
-        const filterDestinationTag = request.queryParams['filter[destination_tag]'];
+        const filterDestinationTag =
+          request.queryParams['filter[destination_tag]'];
         const filterRpCategory = request.queryParams['filter[rp_category]'];
         const filterStrategy = request.queryParams['filter[strategy]'];
         switch (counter) {
@@ -118,15 +132,14 @@ describe('Acceptance: TpLcrRules.Index', function () {
           default:
             expectFiltersQueryParams(request);
         }
-        return { data: [{id: '1', type: 'tp-lcr-rule'}] };
+        return { data: [{ id: '1', type: 'tp-lcr-rule' }] };
       });
 
       await visit('/tariff-plans/1/tp-lcr-rules');
       await setFilters();
       await click('[data-test-filter-search-btn]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 
   describe('filter and click download csv', function () {
     it('sends request to the server with filters', async function () {
@@ -135,7 +148,7 @@ describe('Acceptance: TpLcrRules.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-lcr-rule'}] };
+        return { data: [{ id: '1', type: 'tp-lcr-rule' }] };
       });
       await visit('/tariff-plans/1/tp-lcr-rules');
       await setFilters();
@@ -160,7 +173,7 @@ describe('Acceptance: TpLcrRules.Index', function () {
         expectRequestToBeCorrect = () => {
           expectFiltersQueryParams(request);
         };
-        return { data: [{id: '1', type: 'tp-lcr-rule'}] };
+        return { data: [{ id: '1', type: 'tp-lcr-rule' }] };
       });
       await visit('/tariff-plans/1/tp-lcr-rules');
       await setFilters();
@@ -218,15 +231,14 @@ describe('Acceptance: TpLcrRules.Index', function () {
           default:
             expect(sort).to.eq('-destination_tag');
         }
-        return { data: [{id: '1', type: 'tp-lcr-rule'}] };
+        return { data: [{ id: '1', type: 'tp-lcr-rule' }] };
       });
 
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-sort-destination-tag] a');
       await click('[data-test-sort-destination-tag] a');
       expect(counter).to.eq(3);
-    })
-  );
+    }));
 
   describe('click pagination link', () =>
     it('makes a correct pagination query', async function () {
@@ -245,12 +257,14 @@ describe('Acceptance: TpLcrRules.Index', function () {
             expect(pagePage).to.eq('2');
             expect(pagePageSize).to.eq('10');
         }
-        return { data: [{id: '1', type: 'tp-lcr-rule'}], meta: {total_pages: 2} };
+        return {
+          data: [{ id: '1', type: 'tp-lcr-rule' }],
+          meta: { total_pages: 2 },
+        };
       });
 
       await visit('/tariff-plans/1/tp-lcr-rules');
       await click('[data-test-pagination-forward]');
       expect(counter).to.eq(2);
-    })
-  );
+    }));
 });

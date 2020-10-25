@@ -1,97 +1,144 @@
 <main class="page-content">
   <div class="container xl">
     <div class="actions-subtitle">
-      <h2>TpActionPlans list</h2>
+      <h2>
+        TpActionPlans list
+      </h2>
       <ul class="actions">
-        {{tp-index-buttons
-          model=model
-          tariffPlanId=tariffPlanId
-          permittedFilters=permittedFilters
-          refresh="refresh"
-          controller=this
-        }}
+        <TpIndexButtons
+          @model={{this.model}}
+          @tariffPlanId={{this.tariffPlanId}}
+          @permittedFilters={{permittedFilters}}
+          @refresh={{route-action "refresh"}}
+          @controller={{this}}
+        />
       </ul>
     </div>
-    {{total-records totalRecords=meta.total_records}}
+    <TotalRecords @totalRecords={{meta.total_records}} />
     <div class="row">
-      <div class=" col-md-9">
+      <div class="col-md-9">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
-                {{sort-header
-                  label="ID"
-                  key="id"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Tag"
-                  key="tag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                  data-test-sort-tag=true
-                }}
-                {{sort-header
-                  label="Actions tag"
-                  key="actionsTag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Timing tag"
-                  key="timingTag"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Weight"
-                  key="weight"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                {{sort-header
-                  label="Created at"
-                  key="createdAt"
-                  sortColumn=sortColumn
-                  sortOrder=sortOrder
-                  sortAction="sortBy"
-                }}
-                <td>Actions</td>
+                <SortHeader
+                  @label="ID"
+                  @key="id"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Tag"
+                  @key="tag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                  data-test-sort-tag={{true}}
+                />
+                <SortHeader
+                  @label="Actions tag"
+                  @key="actionsTag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Timing tag"
+                  @key="timingTag"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Weight"
+                  @key="weight"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Created at"
+                  @key="createdAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <td>
+                  Actions
+                </td>
               </tr>
             </thead>
             <tbody>
               {{#each model as |tpActionPlan|}}
                 <tr>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-plans.tp-action-plan" tpActionPlan}}{{tpActionPlan.id}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-plans.tp-action-plan"
+                      @model={{tpActionPlan}}
+                    >
+                      {{tpActionPlan.id}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-plans.tp-action-plan" tpActionPlan}}{{tpActionPlan.tag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-plans.tp-action-plan"
+                      @model={{tpActionPlan}}
+                    >
+                      {{tpActionPlan.tag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-plans.tp-action-plan" tpActionPlan}}{{tpActionPlan.actionsTag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-plans.tp-action-plan"
+                      @model={{tpActionPlan}}
+                    >
+                      {{tpActionPlan.actionsTag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-plans.tp-action-plan" tpActionPlan}}{{tpActionPlan.timingTag}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-plans.tp-action-plan"
+                      @model={{tpActionPlan}}
+                    >
+                      {{tpActionPlan.timingTag}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-plans.tp-action-plan" tpActionPlan}}{{tpActionPlan.weight}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-plans.tp-action-plan"
+                      @model={{tpActionPlan}}
+                    >
+                      {{tpActionPlan.weight}}
+                    </LinkTo>
                   </td>
                   <td>
-                    {{#link-to "tariff-plan.tp-action-plans.tp-action-plan" tpActionPlan}}{{moment-format tpActionPlan.createdAt}}{{/link-to}}
+                    <LinkTo
+                      @route="tariff-plan.tp-action-plans.tp-action-plan"
+                      @model={{tpActionPlan}}
+                    >
+                      {{moment-format tpActionPlan.createdAt}}
+                    </LinkTo>
                   </td>
                   <td class="actions">
-                    {{#link-to "tariff-plan.tp-action-plans.tp-action-plan.edit" tpActionPlan}}
-                      <i class="material-icons circle btn btn-primary" data-test-tp-action-plan-edit>edit</i>
-                    {{/link-to}}
-                    <a {{action "remove" tpActionPlan}} role="button">
-                      <i class="material-icons circle btn btn-danger" data-test-tp-action-plan-remove>remove</i>
+                    <LinkTo
+                      @route="tariff-plan.tp-action-plans.tp-action-plan.edit"
+                      @model={{tpActionPlan}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-primary"
+                        data-test-tp-action-plan-edit
+                      >
+                        edit
+                      </i>
+                    </LinkTo>
+                    <a role="button" {{action "remove" tpActionPlan}}>
+                      <i
+                        class="material-icons circle btn btn-danger"
+                        data-test-tp-action-plan-remove
+                      >
+                        remove
+                      </i>
                     </a>
                   </td>
                 </tr>
@@ -99,41 +146,41 @@
             </tbody>
           </table>
         </div>
-        {{page-numbers content=pagination action="toPage" showFL=true numPagesToShow=4}}
+        <PageNumbers
+          @content={{this.pagination}}
+          @action={{action "toPage"}}
+          @numPagesToShow={{4}}
+        />
       </div>
       <div class="col-md-3">
-        {{#filters-block search=(action "search") as |filtersBlock|}}
-          {{filter-text
-            label="Tag"
-            key="tag"
-            value=tag
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-tag=true
-          }}{
-          {{filter-text
-            label="Actions tag"
-            key="actionsTag"
-            value=actionsTag
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-actions-tag=true
-          }}
-          {{filter-text
-            label="Timing tag"
-            key="timingTag"
-            value=timingTag
-            onValueChange=(action "pushValue" target=filtersBlock)
-            data-test-filter-timing-tag=true
-          }}
-          {{filter-number
-            label="Weight"
-            key="weight"
-            value=weight
-            onValueChange=(action "pushValue" target=filtersBlock)
-            step="0.1"
-            min="0"
-            data-test-filter-weight=true
-          }}
-        {{/filters-block}}
+        <FiltersBlock
+          @search={{action "search"}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
+          <FilterText
+            @label="Tag"
+            @value={{filtersBlock.activeFilters.tag}}
+            data-test-filter-tag
+          />
+          {
+          <FilterText
+            @label="Actions tag"
+            @value={{filtersBlock.activeFilters.actionsTag}}
+            data-test-filter-actions-tag
+          />
+          <FilterText
+            @label="Timing tag"
+            @value={{filtersBlock.activeFilters.timingTag}}
+            data-test-filter-timing-tag
+          />
+          <FilterNumber
+            @label="Weight"
+            @value={{filtersBlock.activeFilters.weight}}
+            @step="0.1"
+            @min="0"
+            data-test-filter-weight
+          />
+        </FiltersBlock>
       </div>
     </div>
   </div>

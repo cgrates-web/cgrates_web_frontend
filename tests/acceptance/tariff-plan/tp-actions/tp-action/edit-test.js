@@ -11,9 +11,16 @@ describe('Acceptance: TpAction.Edit', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tariffPlan = server.create('tariff-plan', {id: '1', name: 'Test', alias: 'tptest'});
-    this.tpAction = server.create('tp-action', {id: '1', tpid: this.tariffPlan.alias});
-    await authenticateSession({email: 'user@example.com'});
+    this.tariffPlan = server.create('tariff-plan', {
+      id: '1',
+      name: 'Test',
+      alias: 'tptest',
+    });
+    this.tpAction = server.create('tp-action', {
+      id: '1',
+      tpid: this.tariffPlan.alias,
+    });
+    await authenticateSession({ email: 'user@example.com' });
   });
 
   describe('fill form with correct data and submit', () =>
@@ -39,10 +46,12 @@ describe('Acceptance: TpAction.Edit', function () {
         expect(params.data.attributes['balance-weight']).to.eq('20');
         expect(params.data.attributes['balance-blocker']).to.eq('false');
         expect(params.data.attributes['balance-disabled']).to.eq('false');
-        expect(params.data.attributes['extra-parameters']).to.eq('parameterstest');
+        expect(params.data.attributes['extra-parameters']).to.eq(
+          'parameterstest'
+        );
         expect(params.data.attributes['filter']).to.eq('filtertest');
         expect(params.data.attributes['weight']).to.eq(10);
-        return { data: {id: this.tpAction.id, type: 'tp-action'} };
+        return { data: { id: this.tpAction.id, type: 'tp-action' } };
       });
 
       await visit('/tariff-plans/1/tp-actions/1/edit');
@@ -66,6 +75,5 @@ describe('Acceptance: TpAction.Edit', function () {
       await fillIn('[data-test-weight] input', '10');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
-    })
-  );
+    }));
 });

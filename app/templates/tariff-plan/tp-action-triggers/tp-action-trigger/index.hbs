@@ -1,112 +1,215 @@
 <main class="page-content">
   <div class="container">
     <div class="actions-subtitle">
-      <h2>TpActionTrigger: {{model.tag}}</h2>
+      <h2>
+        TpActionTrigger: {{this.model.tag}}
+      </h2>
       <ul class="actions">
         <li>
-          {{#link-to "tariff-plan.tp-action-triggers.tp-action-trigger.edit" model}}
-            <i class="material-icons circle btn btn-primary" data-test-edit>edit</i>
-          {{/link-to}}
+          <LinkTo
+            @route="tariff-plan.tp-action-triggers.tp-action-trigger.edit"
+            @model={{this.model}}
+          >
+            <i class="material-icons circle btn btn-primary" data-test-edit>
+              edit
+            </i>
+          </LinkTo>
         </li>
       </ul>
     </div>
     <hr>
     <div class="row">
       <div class="col-12 col-md-3">
-        <h5>Id</h5>
-        <p>{{model.id}}</p>
+        <h5>
+          Id
+        </h5>
+        <p>
+          {{this.model.id}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Tag</h5>
-        <p>{{model.tag}}</p>
+        <h5>
+          Tag
+        </h5>
+        <p>
+          {{this.model.tag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Unique ID</h5>
-        <p>{{model.uniqueId}}</p>
+        <h5>
+          Unique ID
+        </h5>
+        <p>
+          {{this.model.uniqueId}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Threshold type</h5>
-        <p>{{model.thresholdType}}</p>
+        <h5>
+          Threshold type
+        </h5>
+        <p>
+          {{this.model.thresholdType}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Threshold value</h5>
-        <p>{{model.thresholdValue}}</p>
+        <h5>
+          Threshold value
+        </h5>
+        <p>
+          {{this.model.thresholdValue}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Recurrent</h5>
-        <p>{{model.recurrent}}</p>
+        <h5>
+          Recurrent
+        </h5>
+        <p>
+          {{this.model.recurrent}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Expiry time</h5>
-        <p>{{model.expiryTime}}</p>
+        <h5>
+          Expiry time
+        </h5>
+        <p>
+          {{this.model.expiryTime}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Activation time</h5>
-        <p>{{model.activationTime}}</p>
+        <h5>
+          Activation time
+        </h5>
+        <p>
+          {{this.model.activationTime}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance tag</h5>
-        <p>{{model.balanceTag}}</p>
+        <h5>
+          Balance tag
+        </h5>
+        <p>
+          {{this.model.balanceTag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance type</h5>
-        <p>{{model.balanceType}}</p>
+        <h5>
+          Balance type
+        </h5>
+        <p>
+          {{this.model.balanceType}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance directions</h5>
-        <p>{{model.balanceDirections}}</p>
+        <h5>
+          Balance directions
+        </h5>
+        <p>
+          {{this.model.balanceDirections}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance categories</h5>
-        <p>{{model.balanceCategories}}</p>
+        <h5>
+          Balance categories
+        </h5>
+        <p>
+          {{this.model.balanceCategories}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance destination tags</h5>
-        <p>{{model.balanceDestinationTags}}</p>
+        <h5>
+          Balance destination tags
+        </h5>
+        <p>
+          {{this.model.balanceDestinationTags}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance rating subject</h5>
-        <p>{{model.balanceRatingSubject}}</p>
+        <h5>
+          Balance rating subject
+        </h5>
+        <p>
+          {{this.model.balanceRatingSubject}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance shared groups</h5>
-        <p>{{model.balanceSharedGroups}}</p>
+        <h5>
+          Balance shared groups
+        </h5>
+        <p>
+          {{this.model.balanceSharedGroups}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance expiry time</h5>
-        <p>{{model.balanceExpiryTime}}</p>
+        <h5>
+          Balance expiry time
+        </h5>
+        <p>
+          {{this.model.balanceExpiryTime}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance timing tags</h5>
-        <p>{{model.balanceTimingTags}}</p>
+        <h5>
+          Balance timing tags
+        </h5>
+        <p>
+          {{this.model.balanceTimingTags}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance weight</h5>
-        <p>{{model.balanceWeight}}</p>
+        <h5>
+          Balance weight
+        </h5>
+        <p>
+          {{this.model.balanceWeight}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance blocker</h5>
-        <p>{{model.balanceBlocker}}</p>
+        <h5>
+          Balance blocker
+        </h5>
+        <p>
+          {{this.model.balanceBlocker}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Balance disabled</h5>
-        <p>{{model.balanceDisabled}}</p>
+        <h5>
+          Balance disabled
+        </h5>
+        <p>
+          {{this.model.balanceDisabled}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Min queued items</h5>
-        <p>{{model.minQueuedItems}}</p>
+        <h5>
+          Min queued items
+        </h5>
+        <p>
+          {{this.model.minQueuedItems}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Actions tag</h5>
-        <p>{{model.actionsTag}}</p>
+        <h5>
+          Actions tag
+        </h5>
+        <p>
+          {{this.model.actionsTag}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Weight</h5>
-        <p>{{model.weight}}</p>
+        <h5>
+          Weight
+        </h5>
+        <p>
+          {{this.model.weight}}
+        </p>
       </div>
       <div class="col-12 col-md-3">
-        <h5>Created at</h5>
-        <p>{{moment-format model.createdAt}}</p>
+        <h5>
+          Created at
+        </h5>
+        <p>
+          {{moment-format model.createdAt}}
+        </p>
       </div>
     </div>
   </div>

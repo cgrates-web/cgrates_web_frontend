@@ -4,55 +4,63 @@ import QueryRouteMixin from 'cgrates-web-frontend/mixins/query-route-mixin';
 export default Route.extend(QueryRouteMixin, {
   queryParams: {
     cgrid: {
-      refreshModel: true
+      refreshModel: true,
     },
     runId: {
-      refreshModel: true
+      refreshModel: true,
     },
     originHost: {
-      refreshModel: true
+      refreshModel: true,
     },
     source: {
-      refreshModel: true
+      refreshModel: true,
     },
     originId: {
-      refreshModel: true
+      refreshModel: true,
     },
     tor: {
-      refreshModel: true
+      refreshModel: true,
     },
     tenant: {
-      refreshModel: true
+      refreshModel: true,
     },
     category: {
-      refreshModel: true
+      refreshModel: true,
     },
     account: {
-      refreshModel: true
+      refreshModel: true,
     },
     destination: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortColumn: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
     page: {
-      refreshModel: true
+      refreshModel: true,
     },
     pageSize: {
-      refreshModel: true
-    }
+      refreshModel: true,
+    },
   },
 
-  filterParams: [
-    'cgrid', 'runId', 'originHost', 'source', 'originId', 'tor',
-    'tenant', 'category', 'account', 'destination'
-  ],
+  filterParams: Object.freeze([
+    'cgrid',
+    'runId',
+    'originHost',
+    'source',
+    'originId',
+    'tor',
+    'tenant',
+    'category',
+    'account',
+    'destination',
+  ]),
 
   modelName: 'cdr',
 
-  notInTariffPlan: true
+  notInTariffPlan: true,
 });

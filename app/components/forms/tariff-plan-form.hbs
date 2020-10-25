@@ -1,0 +1,21 @@
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  novalidate={{true}} as |form|
+>
+  <form.element @label="Name" @property="name" data-test-name={{true}} />
+  <form.element @label="Alias" @property="alias" data-test-alias={{true}} />
+  <form.element
+    @label="Description"
+    @property="description"
+    data-test-description={{true}}
+  />
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    disabled={{@save.isRunning}}
+    data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

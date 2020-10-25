@@ -1,0 +1,27 @@
+<@form.element
+  @label={{@label}}
+  @property={{@property}}
+  @class={{@class}}
+  @onChange={{this.onChange}}
+  data-test-input-interval={{@dataTest}} as |el|
+>
+  <div class="input-interval">
+    <el.control
+      @value={{this.valueNumber}}
+      @type="number"
+      @step="1"
+      @min="0"
+    />
+    <PowerSelect
+      @placeholder="..."
+      @searchEnabled={{false}}
+      @allowClear={{false}}
+      @options={{this.intervalUnits}}
+      @selected={{this.currentIntervalUnit}}
+      @class="ml-1"
+      @onChange={{this.intervalChange}} as |item|
+    >
+      {{item}}
+    </PowerSelect>
+  </div>
+</@form.element>

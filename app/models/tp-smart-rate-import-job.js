@@ -1,6 +1,6 @@
-import DS from 'ember-data';
+import Model, { attr } from '@ember-data/model';
 
-export default DS.Model.extend({
-  tpid: DS.attr('string'),
-  csv:  DS.attr()
+export default Model.extend({
+  tpid: attr('string'),
+  csv: attr(),
 });

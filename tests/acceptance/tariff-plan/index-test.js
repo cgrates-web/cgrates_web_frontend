@@ -10,8 +10,8 @@ describe('Acceptance: TariffPlan.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    this.tpPlan = server.create('tariff-plan', {name: 'Test TpPlan'});
-    await authenticateSession({email: 'user@exmple.com'});
+    this.tpPlan = server.create('tariff-plan', { name: 'Test TpPlan' });
+    await authenticateSession({ email: 'user@exmple.com' });
     await visit('tariff-plans');
     await click('[data-test-select-tp-plan]');
   });
@@ -19,7 +19,9 @@ describe('Acceptance: TariffPlan.Index', function () {
   it('has correct url', async function () {
     expect(currentURL()).to.equal(`/tariff-plans/${this.tpPlan.id}`);
   });
-  it('renders specic header', async function () {
-    expect(find('h1.page-title').textContent.trim()).to.eq('Tariff plan: Test TpPlan');
+  it('renders specific header', async function () {
+    expect(find('h1.page-title').textContent.trim()).to.eq(
+      'Tariff plan: Test TpPlan'
+    );
   });
 });

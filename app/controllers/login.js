@@ -10,18 +10,20 @@ const Validations = buildValidations({
     }),
   ],
   password: validator('presence', true),
-
 });
 export default Controller.extend(Validations, {
-  session:        service(),
-  router:         service(),
-  flashMessages:  service(),
+  session: service(),
+  router: service(),
+  flashMessages: service(),
 
   actions: {
     signIn() {
-      return this.get('session').authenticate('authenticator:jwt', this.getProperties('email', 'password')).then(() => {
-        return this.get('router').transitionTo('realtime');
-      }).catch(() => this.get('flashMessages').danger('Something went wrong'));
-    }
-  }
+      return this.session
+        .authenticate('authenticator:oauth2', this.email, this.password)
+        .then(() => {
+          return this.router.transitionTo('realtime');
+        });
+      //.catch(() => this.flashMessages.danger('Something went wrong'));
+    },
+  },
 });

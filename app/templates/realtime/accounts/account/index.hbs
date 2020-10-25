@@ -1,60 +1,89 @@
 <div class="actions-subtitle">
-  <h2>Account: {{model.id}}</h2>
+  <h2>
+    Account: {{this.model.id}}
+  </h2>
   <ul class="actions">
     <li>
-      {{#link-to
-        "realtime.accounts.account.add-balance"
-        model
-        title="Add balance"
-      }}
-        <i class="material-icons circle btn btn-primary" data-test-account-blabce-add>account_balance_wallet</i>
-      {{/link-to}}
+      <LinkTo
+        @route="realtime.accounts.account.add-balance"
+        @model={{this.model}}
+        @title="Add balance"
+      >
+        <i
+          class="material-icons circle btn btn-primary"
+          data-test-account-blabce-add
+        >
+          account_balance_wallet
+        </i>
+      </LinkTo>
     </li>
   </ul>
 </div>
 <hr>
 <div class="row">
   <div class="col-12 col-md-3">
-    <h5>Id</h5>
-    <p>{{model.id}}</p>
+    <h5>
+      Id
+    </h5>
+    <p>
+      {{this.model.id}}
+    </p>
   </div>
   <div class="col-12 col-md-3">
-    <h5>Balance</h5>
-    <p>{{model.balance}}</p>
+    <h5>
+      Balance
+    </h5>
+    <p>
+      {{this.model.balance}}
+    </p>
   </div>
   <div class="col-12 col-md-3">
-    <h5>Allow negative</h5>
-    <p>{{model.allowNegative}}</p>
+    <h5>
+      Allow negative
+    </h5>
+    <p>
+      {{this.model.allowNegative}}
+    </p>
   </div>
   <div class="col-12 col-md-3">
-    <h5>Disabled</h5>
-    <p>{{model.disabled}}</p>
+    <h5>
+      Disabled
+    </h5>
+    <p>
+      {{this.model.disabled}}
+    </p>
   </div>
   <div class="col-12">
-    <h5>Balance map (json)</h5>
+    <h5>
+      Balance map (json)
+    </h5>
     <p>
       {{#if model.balanceMap}}
-        {{json-pretty obj=model.balanceMap}}
+        <JsonPretty @obj={{this.model.balanceMap}} />
       {{else}}
         Not present
       {{/if}}
     </p>
   </div>
   <div class="col-12">
-    <h5>Action triggers (json)</h5>
+    <h5>
+      Action triggers (json)
+    </h5>
     <p>
       {{#if model.unitCounters}}
-        {{json-pretty obj=model.unitCounters}}
+        <JsonPretty @obj={{this.model.unitCounters}} />
       {{else}}
         Not present
       {{/if}}
     </p>
   </div>
   <div class="col-12">
-    <h5>Unit counters (json)</h5>
+    <h5>
+      Unit counters (json)
+    </h5>
     <p>
       {{#if model.actionTriggers}}
-        {{json-pretty obj=model.actionTriggers}}
+        <JsonPretty @obj={{this.model.actionTriggers}} />
       {{else}}
         Not present
       {{/if}}

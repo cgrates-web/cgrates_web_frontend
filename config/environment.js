@@ -14,8 +14,8 @@ module.exports = function (environment) {
       },
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
+        Date: false,
+      },
     },
 
     APP: {
@@ -25,12 +25,12 @@ module.exports = function (environment) {
 
     moment: {
       outputFormat: 'DD/MM/YYYY HH:mm:ss',
-      allowEmpty: true
+      allowEmpty: true,
     },
 
     flashMessageDefaults: {
-      extendedTimeout: 2000
-    }
+      extendedTimeout: 2000,
+    },
   };
 
   if (environment === 'development') {
@@ -40,14 +40,11 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    // ENV.API_HOST = "http://cgrates-web.staging.yufuphone.com:4000";
-    // ENV['ember-cli-mirage'] = { enabled: false };
+    ENV.API_HOST = 'http://localhost:4000';
+    ENV['ember-cli-mirage'] = { enabled: false };
 
-    // ENV.API_HOST = 'http://localhost:4000';
-    // ENV['ember-cli-mirage'] = { enabled: false };
-
-    ENV.API_HOST = 'http://localhost:4200';
-    ENV['ember-cli-mirage'] = { enabled: true };
+    // ENV.API_HOST = 'http://localhost:4200';
+    // ENV['ember-cli-mirage'] = { enabled: true };
   }
 
   if (environment === 'test') {
@@ -63,22 +60,12 @@ module.exports = function (environment) {
     ENV.API_HOST = 'http://localhost:7357';
 
     ENV.APP.rootElement = '#ember-testing';
+
+    ENV.APP.autoboot = false;
   }
 
-  if (environment === 'production') {
-
-  }
-
-  ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: `${ENV.API_HOST}/sessions`,
-    identificationField: 'email',
-    passwordField: 'password',
-    tokenPropertyName: 'token',
-    refreshTokenPropertyName: 'token',
-    authorizationPrefix: 'Bearer ',
-    authorizationHeaderName: 'Authorization',
-    headers: {'Accept': 'application/vnd.api+json', 'Content-Type': 'application/vnd.api+json'},
-  };
+  // if (environment === 'production') {
+  // }
 
   return ENV;
 };

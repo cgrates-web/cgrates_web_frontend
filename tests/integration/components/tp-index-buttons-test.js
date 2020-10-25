@@ -12,7 +12,10 @@ describe('Integration: Tp index buttons', function () {
 
   describe('click on download csv button', function () {
     it('makes correct query', async function () {
-      this.tariffPlan = server.create('tariff-plan', {id: '1', alias: 'tptest'});
+      this.tariffPlan = server.create('tariff-plan', {
+        id: '1',
+        alias: 'tptest',
+      });
       let expectRequestToBeCorrect = () => expect(false).to.be.true;
       server.namespace = '/api';
       server.get('/tp-destinations/export-to-csv', (schema, request) => {
@@ -21,13 +24,16 @@ describe('Integration: Tp index buttons', function () {
           expect(request.queryParams['filter[filter1]']).to.eq('test1');
           expect(request.queryParams['filter[filter2]']).to.eq('test2');
         };
-        return {result: 'OK'};
+        return { result: 'OK' };
       });
 
       this.set('model', EmberObject.create({ modelName: 'tp-destination' }));
       this.set('tariffPlanId', this.tariffPlan.alias);
       this.set('permittedFilters', ['filter1', 'filter2']);
-      this.set('controller', EmberObject.create({ filter1: 'test1', filter2: 'test2' }));
+      this.set(
+        'controller',
+        EmberObject.create({ filter1: 'test1', filter2: 'test2' })
+      );
       await render(hbs`('
         {{tp-index-buttons
           model=model
@@ -43,7 +49,10 @@ describe('Integration: Tp index buttons', function () {
 
   describe('click on delete all button', function () {
     it('makes correct query', async function () {
-      this.tariffPlan = server.create('tariff-plan', {id: '1', alias: 'tptest'});
+      this.tariffPlan = server.create('tariff-plan', {
+        id: '1',
+        alias: 'tptest',
+      });
       let expectRequestToBeCorrect = () => expect(false).to.be.true;
       server.namespace = '/api';
       server.post('/tp-destinations/delete-all', (schema, request) => {
@@ -53,13 +62,16 @@ describe('Integration: Tp index buttons', function () {
           expect(params.filter.filter1).to.eq('test1');
           expect(params.filter.filter2).to.eq('test2');
         };
-        return {result: 'OK'};
+        return { result: 'OK' };
       });
 
       this.set('model', EmberObject.create({ modelName: 'tp-destination' }));
       this.set('tariffPlanId', this.tariffPlan.alias);
       this.set('permittedFilters', ['filter1', 'filter2']);
-      this.set('controller', EmberObject.create({ filter1: 'test1', filter2: 'test2' }));
+      this.set(
+        'controller',
+        EmberObject.create({ filter1: 'test1', filter2: 'test2' })
+      );
       await render(hbs`('
         {{tp-index-buttons
           model=model
@@ -76,12 +88,16 @@ describe('Integration: Tp index buttons', function () {
   describe('click on refresh button', function () {
     it('call refresh action', async function () {
       let refreshIsCalled = false;
-      this.set('refresh', function () { refreshIsCalled = true; });
-      await render(hbs`('
+      this.set('refresh', function () {
+        refreshIsCalled = true;
+      });
+      this.set('model', EmberObject.create({ modelName: 'tp-destination' }));
+      await render(hbs`
         {{tp-index-buttons
           refresh=refresh
+          model=model
         }}
-      ')`);
+      `);
       await click('[data-test-refresh]');
       expect(refreshIsCalled).to.be.true;
     });
