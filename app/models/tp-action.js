@@ -1,5 +1,6 @@
 import Model, { attr } from '@ember-data/model';
 import { validator, buildValidations } from 'ember-cp-validations';
+
 const Validations = buildValidations({
   tag: [
     validator('presence', true),
@@ -24,12 +25,6 @@ const Validations = buildValidations({
     validator('presence', true),
     validator('length', {
       max: 24,
-    }),
-  ],
-  directions: [
-    validator('presence', true),
-    validator('length', {
-      max: 8,
     }),
   ],
   units: [
@@ -107,25 +102,25 @@ const Validations = buildValidations({
     }),
   ],
 });
-export default Model.extend(Validations, {
-  tpid: attr('string'),
-  tag: attr('string'),
-  action: attr('string'),
-  balanceTag: attr('string'),
-  balanceType: attr('string'),
-  directions: attr('string'),
-  units: attr('string'),
-  expiryTime: attr('string'),
-  timingTags: attr('string'),
-  destinationTags: attr('string'),
-  ratingSubject: attr('string'),
-  categories: attr('string'),
-  sharedGroups: attr('string'),
-  balanceWeight: attr('string'),
-  balanceBlocker: attr('string'),
-  balanceDisabled: attr('string'),
-  extraParameters: attr('string'),
-  filter: attr('string'),
-  weight: attr('number'),
-  createdAt: attr('date'),
-});
+export default class TpActionModel extends Model.extend(Validations) {
+  @attr('string') tpid;
+  @attr('string') tag;
+  @attr('string') action;
+  @attr('string') balanceTag;
+  @attr('string') balanceType;
+  @attr('string') directions;
+  @attr('string') units;
+  @attr('string') expiryTime;
+  @attr('string') timingTags;
+  @attr('string') destinationTags;
+  @attr('string') ratingSubject;
+  @attr('string') categories;
+  @attr('string') sharedGroups;
+  @attr('string') balanceWeight;
+  @attr('string') balanceBlocker;
+  @attr('string') balanceDisabled;
+  @attr('string') extraParameters;
+  @attr('string') filter;
+  @attr('number') weight;
+  @attr('date') createdAt;
+};
