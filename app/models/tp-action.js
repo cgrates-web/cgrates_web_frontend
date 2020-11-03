@@ -123,4 +123,4 @@ export default class TpActionModel extends Model.extend(Validations) {
   @attr('string') filter;
   @attr('number') weight;
   @attr('date') createdAt;
-};
+}
