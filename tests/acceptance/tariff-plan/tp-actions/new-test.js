@@ -23,7 +23,7 @@ describe('Acceptance: TpActions.New', function () {
     it('renders tp-action form', async function () {
       await visit('/tariff-plans/1/tp-actions/new');
       expect(findAll('form input').length).to.eq(12);
-      expect(findAll('form .ember-power-select-trigger').length).to.eq(6);
+      expect(findAll('form .ember-power-select-trigger').length).to.eq(5);
     }));
 
   describe('go away without save', () =>
@@ -127,7 +127,6 @@ describe('Acceptance: TpActions.New', function () {
         expect(params.data.attributes['action']).to.eq('*log');
         expect(params.data.attributes['balance-tag']).to.eq('balancetest');
         expect(params.data.attributes['balance-type']).to.eq('*monetary');
-        expect(params.data.attributes['directions']).to.eq('*out');
         expect(params.data.attributes['units']).to.eq('120');
         expect(params.data.attributes['expiry-time']).to.eq('*unlimited');
         expect(params.data.attributes['timing-tags']).to.eq('timingtest');
@@ -151,7 +150,6 @@ describe('Acceptance: TpActions.New', function () {
       await selectChoose('[data-test-select="action"]', '*log');
       await fillIn('[data-test-balance-tag] input', 'balancetest');
       await selectChoose('[data-test-select="balance-type"]', '*monetary');
-      await selectChoose('[data-test-select="directions"]', '*out');
       await fillIn('[data-test-units] input', '120');
       await fillIn('[data-test-expiry-time] input', '*unlimited');
       await fillIn('[data-test-timing-tags] input', 'timingtest');
