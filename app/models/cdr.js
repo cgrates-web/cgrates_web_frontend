@@ -22,7 +22,7 @@ export default class CDRModel extends Model {
   @attr({ defaultValue: null }) costDetails;
   @attr('string') extraInfo;
 
-  @attr('date') createdAt
-  @attr('date') updatedAt
-  @attr('date') deletedAt
-};
+  @attr('date') createdAt;
+  @attr('date') updatedAt;
+  @attr('date') deletedAt;
+}
