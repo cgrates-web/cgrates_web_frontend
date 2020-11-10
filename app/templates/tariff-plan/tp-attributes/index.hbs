@@ -65,27 +65,6 @@
                   @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
-                  @label="Field name"
-                  @key="fieldName"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
-                  @label="Initial"
-                  @key="initial"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
-                  @label="Substitute"
-                  @key="substitute"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
                   @label="Weight"
                   @key="weight"
                   @sortColumn={{sortColumn}}
@@ -153,30 +132,6 @@
                       @model={{tpAttribute}}
                     >
                       {{tpAttribute.activationInterval}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-attributes.tp-attribute"
-                      @model={{tpAttribute}}
-                    >
-                      {{tpAttribute.fieldName}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-attributes.tp-attribute"
-                      @model={{tpAttribute}}
-                    >
-                      {{tpAttribute.initial}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-attributes.tp-attribute"
-                      @model={{tpAttribute}}
-                    >
-                      {{tpAttribute.substitute}}
                     </LinkTo>
                   </td>
                   <td>
@@ -260,27 +215,6 @@
             @label="Activation interval"
             @value={{filtersBlock.activeFilters.activationInterval}}
             data-test-filter-activation-interval={{true}}
-          />
-          <FilterText
-            @label="Field name"
-            @value={{filtersBlock.activeFilters.fieldName}}
-            data-test-filter-field-name={{true}}
-          />
-          <FilterText
-            @label="Initial"
-            @value={{filtersBlock.activeFilters.initial}}
-            data-test-filter-initial={{true}}
-          />
-          <FilterText
-            @label="Substitute"
-            @value={{filtersBlock.activeFilters.substitute}}
-            data-test-filter-substitute={{true}}
-          />
-          <FilterSelect
-            @label="Append"
-            @value={{filtersBlock.activeFilters.append}}
-            @content={{this.selectValues.boolean}}
-            data-test-filter-append={{true}}
           />
           <FilterSelect
             @label="Blocker"
