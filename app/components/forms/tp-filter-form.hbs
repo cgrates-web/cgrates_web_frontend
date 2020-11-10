@@ -16,26 +16,6 @@
       @class="col-md-6"
       data-test-custom-id={{true}}
     />
-    <InputSelect
-      @property="filterType"
-      @form={{form}}
-      @label="Filter type"
-      @content={{this.selectValues.filterTypes}}
-      @class="col-md-6"
-      @dataTest="filter-type"
-    />
-    <form.element
-      @label="Filter field name"
-      @property="filterFieldName"
-      @class="col-md-6"
-      data-test-filter-field-name={{true}}
-    />
-    <form.element
-      @label="Filter field values"
-      @property="filterFieldValues"
-      @class="col-md-6"
-      data-test-filter-field-values={{true}}
-    />
     <form.element
       @label="Activation interval"
       @property="activationInterval"

@@ -44,20 +44,6 @@
                   data-test-sort-tenant={{true}}
                 />
                 <SortHeader
-                  @label="Filter type"
-                  @key="filterType"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
-                  @label="Filter field name"
-                  @key="filterFieldName"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
                   @label="Activation interval"
                   @key="activationInterval"
                   @sortColumn={{sortColumn}}
@@ -101,22 +87,6 @@
                       @model={{tpFilter}}
                     >
                       {{tpFilter.tenant}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-filters.tp-filter"
-                      @model={{tpFilter}}
-                    >
-                      {{tpFilter.filterType}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-filters.tp-filter"
-                      @model={{tpFilter}}
-                    >
-                      {{tpFilter.filterFieldName}}
                     </LinkTo>
                   </td>
                   <td>
@@ -182,20 +152,6 @@
             @label="Tenant"
             @value={{filtersBlock.activeFilters.tenant}}
             data-test-filter-tenant
-          />
-
-          <FilterSelect
-            @label="Filter type"
-            @value={{filtersBlock.activeFilters.filterType}}
-            @content={{selectValues.filterTypes}}
-            @class="fiter-type-select"
-            data-test-filter-fitertype={{true}}
-          />
-
-          <FilterText
-            @label="Filter field name"
-            @value={{filtersBlock.activeFilters.filterFieldName}}
-            data-test-filter-field-name
           />
 
           <FilterText

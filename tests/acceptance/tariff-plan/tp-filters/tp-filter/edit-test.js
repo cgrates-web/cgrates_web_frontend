@@ -33,19 +33,13 @@ describe('Acceptance: TpFilter.Edit', function () {
         expect(params.data.attributes['tpid']).to.eq('tptest');
         expect(params.data.attributes['tenant']).to.eq('Test');
         expect(params.data.attributes['custom-id']).to.eq('Test');
-        expect(params.data.attributes['filter-type']).to.eq('*gt');
-        expect(params.data.attributes['filter-field-name']).to.eq('Test');
-        expect(params.data.attributes['filter-field-values']).to.eq('Test');
         expect(params.data.attributes['activation-interval']).to.eq('Test');
         return { data: { id: '1', type: 'tp-filter' } };
       });
 
       await visit('/tariff-plans/1/tp-filters/1/edit');
-      await selectChoose('[data-test-select="filter-type"]', '*gt');
       await fillIn('[data-test-tenant] input', 'Test');
       await fillIn('[data-test-custom-id] input', 'Test');
-      await fillIn('[data-test-filter-field-name] input', 'Test');
-      await fillIn('[data-test-filter-field-values] input', 'Test');
       await fillIn('[data-test-activation-interval] input', 'Test');
       await click('[data-test-submit-button]');
       expect(counter).to.eq(1);
