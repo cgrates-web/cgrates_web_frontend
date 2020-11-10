@@ -8,9 +8,6 @@ export default Factory.extend({
   loadid() {
     faker.lorem.word();
   },
-  direction() {
-    '*in';
-  },
   tenant() {
     faker.lorem.word();
   },
@@ -25,9 +22,6 @@ export default Factory.extend({
   },
   activation_time() {
     faker.date.future();
-  },
-  cdr_stat_queue_ids() {
-    faker.lorem.word();
   },
   rating_plan_tag() {
     'ratingplantest';

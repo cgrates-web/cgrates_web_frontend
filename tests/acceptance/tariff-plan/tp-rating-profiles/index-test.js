@@ -83,28 +83,22 @@ describe('Acceptance: TpRatingProfiles.Index', function () {
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-loadid] input', 'loadtest');
-    await selectChoose('[data-test-filter-direction]', '*in');
     await fillIn('[data-test-filter-tenant] input', 'tenanttest');
     await fillIn('[data-test-filter-category] input', 'categorytest');
     await fillIn('[data-test-filter-subject] input', 'subject1');
     await fillIn('[data-test-filter-fallback-subjects] input', 'subject2');
     await fillIn('[data-test-filter-activation-time] input', 'activationtime');
-    await fillIn('[data-test-filter-cdr-stat-queue-ids] input', 'queuetest');
     await fillIn('[data-test-filter-rating-plan-tags] input', 'ratingplan');
   };
   const expectFiltersQueryParams = (request) => {
     expect(request.queryParams['tpid']).to.eq('tptest');
     expect(request.queryParams['filter[loadid]']).to.eq('loadtest');
-    expect(request.queryParams['filter[direction]']).to.eq('*in');
     expect(request.queryParams['filter[tenant]']).to.eq('tenanttest');
     expect(request.queryParams['filter[category]']).to.eq('categorytest');
     expect(request.queryParams['filter[subject]']).to.eq('subject1');
     expect(request.queryParams['filter[fallback_subjects]']).to.eq('subject2');
     expect(request.queryParams['filter[activation_time]']).to.eq(
       'activationtime'
-    );
-    expect(request.queryParams['filter[cdr_stat_queue_ids]']).to.eq(
-      'queuetest'
     );
     expect(request.queryParams['filter[rating_plan_tag]']).to.eq('ratingplan');
   };
@@ -116,7 +110,6 @@ describe('Acceptance: TpRatingProfiles.Index', function () {
       server.get('/tp-rating-profiles/', function (schema, request) {
         counter = counter + 1;
         const filterLoadid = request.queryParams['filter[loadid]'];
-        const filterDirection = request.queryParams['filter[direction]'];
         const filterTenant = request.queryParams['filter[tenant]'];
         const filterCategory = request.queryParams['filter[category]'];
         const filterSubject = request.queryParams['filter[subject]'];
@@ -124,20 +117,16 @@ describe('Acceptance: TpRatingProfiles.Index', function () {
           request.queryParams['filter[fallback_subjects]'];
         const filterActivationTime =
           request.queryParams['filter[activation_time]'];
-        const filterCdrStatQueueIds =
-          request.queryParams['filter[cdr_stat_queue_ids]'];
         const filterRatingPlanTag =
           request.queryParams['filter[rating_plan_tag]'];
         switch (counter) {
           case 1:
             expect(isBlank(filterLoadid)).to.eq(true);
-            expect(isBlank(filterDirection)).to.eq(true);
             expect(isBlank(filterTenant)).to.eq(true);
             expect(isBlank(filterCategory)).to.eq(true);
             expect(isBlank(filterSubject)).to.eq(true);
             expect(isBlank(filterFallbackSubjects)).to.eq(true);
             expect(isBlank(filterActivationTime)).to.eq(true);
-            expect(isBlank(filterCdrStatQueueIds)).to.eq(true);
             expect(isBlank(filterRatingPlanTag)).to.eq(true);
             break;
           default:
@@ -210,13 +199,11 @@ describe('Acceptance: TpRatingProfiles.Index', function () {
           const params = JSON.parse(request.requestBody);
           expect(params.tpid).to.eq('tptest');
           expect(params.filter.loadid).to.eq('loadtest');
-          expect(params.filter.direction).to.eq('*in');
           expect(params.filter.tenant).to.eq('tenanttest');
           expect(params.filter.category).to.eq('categorytest');
           expect(params.filter.subject).to.eq('subject1');
           expect(params.filter.fallback_subjects).to.eq('subject2');
           expect(params.filter.activation_time).to.eq('activationtime');
-          expect(params.filter.cdr_stat_queue_ids).to.eq('queuetest');
           expect(params.filter.rating_plan_tag).to.eq('ratingplan');
         };
         return { tp_rating_profile: { id: '0' } };
