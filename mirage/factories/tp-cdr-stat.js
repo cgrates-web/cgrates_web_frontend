@@ -1,6 +1,5 @@
 import { Factory } from 'ember-cli-mirage';
 import faker from 'faker';
-const metrics = ['ACC', 'ACD', 'ASR', 'PDD', 'TCC', 'TCD'];
 export default Factory.extend({
   tpid() {
     return faker.lorem.word();
@@ -16,9 +15,6 @@ export default Factory.extend({
   },
   saveInterval() {
     return `${faker.random.number(60)}s`;
-  },
-  metrics() {
-    return faker.random.arrayElement(metrics);
   },
   setupInterval() {
     return faker.lorem.word();
