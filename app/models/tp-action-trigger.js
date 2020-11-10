@@ -43,7 +43,6 @@ const Validations = buildValidations({
   ],
   balanceTag: validator('presence', true),
   balanceType: validator('presence', true),
-  balanceDirections: validator('presence', true),
   balanceCategories: [
     validator('presence', true),
     validator('length', {
@@ -83,13 +82,6 @@ const Validations = buildValidations({
   ],
   balanceBlocker: validator('presence', true),
   balanceDisabled: validator('presence', true),
-  minQueuedItems: [
-    validator('presence', true),
-    validator('number', {
-      allowString: true,
-      gte: 0,
-    }),
-  ],
   actionsTag: validator('presence', true),
   weight: [
     validator('presence', true),
@@ -111,7 +103,6 @@ export default Model.extend(Validations, {
   activationTime: attr('string'),
   balanceTag: attr('string'),
   balanceType: attr('string'),
-  balanceDirections: attr('string'),
   balanceCategories: attr('string'),
   balanceDestinationTags: attr('string'),
   balanceRatingSubject: attr('string'),
@@ -121,7 +112,6 @@ export default Model.extend(Validations, {
   balanceWeight: attr('string'),
   balanceBlocker: attr('boolean', { defaultValue: false }),
   balanceDisabled: attr('boolean', { defaultValue: false }),
-  minQueuedItems: attr('number'),
   actionsTag: attr('string'),
   weight: attr('number'),
   createdAt: attr('date'),

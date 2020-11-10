@@ -16,7 +16,6 @@ export default Controller.extend(QueryControllerMixin, {
     'activationTime',
     'balanceTag',
     'balanceType',
-    'minQueuedItems',
     'actionsTag',
     'weight',
     'sortColumn',
@@ -35,7 +34,6 @@ export default Controller.extend(QueryControllerMixin, {
   activationTime: null,
   balanceTag: null,
   balanceType: null,
-  minQueuedItems: null,
   actionsTag: null,
   weight: null,
 
@@ -50,7 +48,6 @@ export default Controller.extend(QueryControllerMixin, {
     'activationTime',
     'balanceTag',
     'balanceType',
-    'minQueuedItems',
     'actionsTag',
     'weight',
   ]),

@@ -100,13 +100,6 @@
                   @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
-                  @label="Min queued items"
-                  @key="minQueuedItems"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
                   @label="Actions tag"
                   @key="actionsTag"
                   @sortColumn={{sortColumn}}
@@ -228,14 +221,6 @@
                       @route="tariff-plan.tp-action-triggers.tp-action-trigger"
                       @model={{tpActionTrigger}}
                     >
-                      {{tpActionTrigger.minQueuedItems}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-action-triggers.tp-action-trigger"
-                      @model={{tpActionTrigger}}
-                    >
                       {{tpActionTrigger.actionsTag}}
                     </LinkTo>
                   </td>
@@ -350,13 +335,6 @@
             @value={{filtersBlock.activeFilters.balanceType}}
             @content={{selectValues.balanceType}}
             data-test-filter-balance-type={{true}}
-          />
-          <FilterNumber
-            @label="Min queued items"
-            @value={{filtersBlock.activeFilters.minQueuedItems}}
-            @step="0.1"
-            @min="0"
-            data-test-filter-min-queued-items
           />
           <FilterSelectSearchToString
             @label="Actions tag"
