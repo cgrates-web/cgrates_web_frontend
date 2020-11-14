@@ -9,7 +9,6 @@ const thresholdType = [
 ];
 const balanceTag = ['MONETARY', 'SMS', 'INTERNET', 'INTERNET_TIME', 'MINUTES'];
 const balanceType = ['*monetary', '*data', '*sms', '*voice'];
-const balanceDirections = ['*in', '*out'];
 export default Factory.extend({
   tpid() {
     return faker.lorem.word();
@@ -44,9 +43,6 @@ export default Factory.extend({
   balanceType() {
     return faker.random.arrayElement(balanceType);
   },
-  balanceDirections() {
-    return faker.random.arrayElement(balanceDirections);
-  },
   balanceCategories() {
     return faker.lorem.word();
   },
@@ -73,9 +69,6 @@ export default Factory.extend({
   },
   balanceDisabled() {
     return faker.random.boolean().toString();
-  },
-  minQueuedItems() {
-    return faker.random.number(15);
   },
   actionsTag() {
     return `action-tag-${faker.random.number(100)}`;
