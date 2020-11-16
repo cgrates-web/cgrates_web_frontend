@@ -33,8 +33,8 @@ describe('Acceptance: TpRatingProfiles.New', function () {
   describe('visit /tariff-plans/1/tp-rating-profiles/new', () =>
     it('renders tp-rating-profile form', async function () {
       await visit('/tariff-plans/1/tp-rating-profiles/new');
-      expect(findAll('form input').length).to.eq(7);
-      expect(findAll('form .ember-power-select-trigger').length).to.eq(2);
+      expect(findAll('form input').length).to.eq(6);
+      expect(findAll('form .ember-power-select-trigger').length).to.eq(1);
     }));
 
   describe('go away without save', () =>
