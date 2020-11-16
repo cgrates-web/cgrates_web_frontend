@@ -22,7 +22,7 @@ describe('Acceptance: TpFilter.New', function () {
   describe('visit /tariff-plans/1/tp-filters/new', () =>
     it('renders tp-filter form', async function () {
       await visit('/tariff-plans/1/tp-filters/new');
-      expect(findAll('form input').length).to.eq(5);
+      expect(findAll('form input').length).to.eq(3);
     }));
 
   describe('go away without save', () =>

@@ -83,7 +83,6 @@ describe('Acceptance: TpFilters.Index', function () {
     await fillIn('[data-test-filter-tenant] input', 'tagtest');
     await fillIn('[data-test-filter-customid] input', '60');
     await fillIn('[data-test-filter-activation-interval] input', '0.01');
-    await selectChoose('[data-test-filter-fitertype]', '*string');
   };
   const expectFiltersQueryParams = (request) => {
     expect(request.queryParams['tpid']).to.eq('tptest');

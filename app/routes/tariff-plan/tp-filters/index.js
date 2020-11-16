@@ -9,12 +9,6 @@ export default Route.extend(QueryRouteMixin, {
     customId: {
       refreshModel: true,
     },
-    filterType: {
-      refreshModel: true,
-    },
-    filterFieldName: {
-      refreshModel: true,
-    },
     activationInterval: {
       refreshModel: true,
     },
@@ -35,8 +29,6 @@ export default Route.extend(QueryRouteMixin, {
   filterParams: Object.freeze([
     'tenant',
     'customId',
-    'filterType',
-    'filterFieldName',
     'activationInterval',
   ]),
 
