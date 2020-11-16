@@ -33,7 +33,7 @@ describe('Acceptance: TpAttributes.New', function () {
   describe('visit /tariff-plans/1/tp-attributes/new', () =>
     it('renders tp-attributes form', async function () {
       await visit('/tariff-plans/1/tp-attributes/new');
-      expect(findAll('form input').length).to.eq(11);
+      expect(findAll('form input').length).to.eq(7);
     }));
 
   describe('go away without save', () =>
