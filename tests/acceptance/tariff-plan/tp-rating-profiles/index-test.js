@@ -13,7 +13,6 @@ import {
   currentURL,
 } from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
-import { selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpRatingProfiles.Index', function () {
   let hooks = setupApplicationTest();
