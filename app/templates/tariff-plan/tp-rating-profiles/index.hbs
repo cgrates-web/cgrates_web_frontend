@@ -36,13 +36,6 @@
                   @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
-                  @label="Direction"
-                  @key="direction"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
                   @label="Tenant"
                   @key="tenant"
                   @sortColumn={{sortColumn}}
@@ -74,13 +67,6 @@
                 <SortHeader
                   @label="Activation time"
                   @key="activationTime"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
-                  @label="CDR stat queue IDs"
-                  @key="cdrStatQueueIds"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction={{action "sortBy"}}
@@ -128,14 +114,6 @@
                       @route="tariff-plan.tp-rating-profiles.tp-rating-profile"
                       @model={{tpRatingProfile}}
                     >
-                      {{tpRatingProfile.direction}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-rating-profiles.tp-rating-profile"
-                      @model={{tpRatingProfile}}
-                    >
                       {{tpRatingProfile.tenant}}
                     </LinkTo>
                   </td>
@@ -169,14 +147,6 @@
                       @model={{tpRatingProfile}}
                     >
                       {{tpRatingProfile.activationTime}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-rating-profiles.tp-rating-profile"
-                      @model={{tpRatingProfile}}
-                    >
-                      {{tpRatingProfile.cdrStatQueueIds}}
                     </LinkTo>
                   </td>
                   <td>
@@ -241,12 +211,6 @@
             @value={{filtersBlock.activeFilters.loadid}}
             data-test-filter-loadid
           />
-          <FilterSelect
-            @label="Direction"
-            @value={{filtersBlock.activeFilters.direction}}
-            @content={{selectValues.direction}}
-            data-test-filter-direction={{true}}
-          />
           <FilterText
             @label="Tenant"
             @value={{filtersBlock.activeFilters.tenant}}
@@ -272,11 +236,6 @@
             @label="Activation time"
             @value={{filtersBlock.activeFilters.activationTime}}
             data-test-filter-activation-time
-          />
-          <FilterText
-            @label="CDR stat queue IDs"
-            @value={{filtersBlock.activeFilters.cdrStatQueueIds}}
-            data-test-filter-cdr-stat-queue-ids
           />
           <FilterText
             @label="Rating plan tag"

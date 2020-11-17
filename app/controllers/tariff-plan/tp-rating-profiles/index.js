@@ -7,13 +7,11 @@ export default Controller.extend(QueryControllerMixin, {
 
   queryParams: [
     'loadid',
-    'direction',
     'tenant',
     'category',
     'subject',
     'fallbackSubjects',
     'activationTime',
-    'cdrStatQueueIds',
     'ratingPlanTag',
     'sortColumn',
     'sortOrder',
@@ -22,24 +20,20 @@ export default Controller.extend(QueryControllerMixin, {
   ],
 
   loadid: null,
-  direction: null,
   tenant: null,
   category: null,
   subject: null,
   fallbackSubjects: null,
   activationTime: null,
-  cdrStatQueueIds: null,
   ratingPlanTag: null,
 
   permittedFilters: Object.freeze([
     'loadid',
-    'direction',
     'tenant',
     'category',
     'subject',
     'fallbackSubjects',
     'activationTime',
-    'cdrStatQueueIds',
     'ratingPlanTag',
   ]),
 });
