@@ -12,7 +12,6 @@ import {
   fillIn,
 } from '@ember/test-helpers';
 import { isBlank } from '@ember/utils';
-import { selectChoose } from 'ember-power-select/test-support/helpers';
 import { currentURL } from '@ember/test-helpers/index';
 
 describe('Acceptance: TpFilters.Index', function () {

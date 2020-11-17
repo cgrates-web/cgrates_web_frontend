@@ -4,7 +4,6 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
-import { selectChoose } from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpFilter.Edit', function () {
   let hooks = setupApplicationTest();

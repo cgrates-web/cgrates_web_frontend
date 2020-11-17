@@ -26,11 +26,7 @@ export default Route.extend(QueryRouteMixin, {
     },
   },
 
-  filterParams: Object.freeze([
-    'tenant',
-    'customId',
-    'activationInterval',
-  ]),
+  filterParams: Object.freeze(['tenant', 'customId', 'activationInterval']),
 
   modelName: 'tp-filter',
 });
