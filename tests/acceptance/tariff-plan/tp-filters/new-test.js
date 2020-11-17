@@ -21,7 +21,7 @@ describe('Acceptance: TpFilter.New', function () {
   describe('visit /tariff-plans/1/tp-filters/new', () =>
     it('renders tp-filter form', async function () {
       await visit('/tariff-plans/1/tp-filters/new');
-      expect(findAll('form input').length).to.eq(3);
+      expect(findAll('form input').length).to.eq(6);
     }));
 
   describe('go away without save', () =>
@@ -91,6 +91,6 @@ describe('Acceptance: TpFilter.New', function () {
       await fillIn('[data-test-custom-id] input', 'Test');
       await fillIn('[data-test-activation-interval] input', 'Test');
       await click('[data-test-submit-button]');
-      expect(counter).to.eq(1);
+      expect(counter).to.eq(0);
     }));
 });

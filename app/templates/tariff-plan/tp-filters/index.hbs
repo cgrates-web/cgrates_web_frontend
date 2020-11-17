@@ -57,6 +57,27 @@
                   @sortOrder={{sortOrder}}
                   @sortAction={{action "sortBy"}}
                 />
+                <SortHeader
+                  @label="Type"
+                  @key="type"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Elements"
+                  @key="elements"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Values"
+                  @key="values"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
                 <td>
                   Actions
                 </td>
@@ -158,6 +179,24 @@
             @label="Activation interval"
             @value={{filtersBlock.activeFilters.activationInterval}}
             data-test-filter-activation-interval
+          />
+
+          <FilterText
+            @label="Type"
+            @value={{filtersBlock.activeFilters.type}}
+            data-test-filter-type
+          />
+
+          <FilterText
+            @label="Elements"
+            @value={{filtersBlock.activeFilters.elements}}
+            data-test-filter-elements
+          />
+
+          <FilterText
+            @label="Values"
+            @value={{filtersBlock.activeFilters.values}}
+            data-test-filter-values
           />
         </FiltersBlock>
       </div>

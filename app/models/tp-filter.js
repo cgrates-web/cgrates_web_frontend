@@ -13,6 +13,24 @@ const Validations = buildValidations({
       max: 64,
     }),
   ],
+  type: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
+  element: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
+  values: [
+    validator('presence', true),
+    validator('length', {
+      max: 256,
+    }),
+  ],
   activationInterval: validator('length', { max: 64 }),
 });
 export default Model.extend(Validations, {
@@ -21,4 +39,7 @@ export default Model.extend(Validations, {
   customId: attr('string'),
   activationInterval: attr('string'),
   createdAt: attr('date'),
+  type: attr('string'),
+  element: attr('string'),
+  values: attr('string'),
 });

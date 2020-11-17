@@ -14,4 +14,13 @@ export default Factory.extend({
   activationInterval() {
     return faker.lorem.word();
   },
+  type() {
+    return faker.lorem.word();
+  },
+  element() {
+    return faker.lorem.word();
+  },
+  values() {
+    return faker.lorem.word();
+  },
 });
