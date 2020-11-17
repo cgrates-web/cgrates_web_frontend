@@ -72,6 +72,27 @@
                   @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
+                  @label="Type"
+                  @key="type"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Path"
+                  @key="path"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Value"
+                  @key="Value"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
                   @label="Created at"
                   @key="createdAt"
                   @sortColumn={{sortColumn}}
@@ -221,6 +242,24 @@
             @value={{filtersBlock.activeFilters.blocker}}
             @content={{this.selectValues.boolean}}
             data-test-filter-blocker={{true}}
+          />
+          <FilterSelect
+            @label="Type"
+            @value={{filtersBlock.activeFilters.type}}
+            @content={{this.selectValues.boolean}}
+            data-test-filter-type={{true}}
+          />
+          <FilterSelect
+            @label="Path"
+            @value={{filtersBlock.activeFilters.path}}
+            @content={{this.selectValues.boolean}}
+            data-test-filter-path={{true}}
+          />
+          <FilterSelect
+            @label="Value"
+            @value={{filtersBlock.activeFilters.value}}
+            @content={{this.selectValues.boolean}}
+            data-test-filter-value={{true}}
           />
           <FilterNumber
             @label="Weight"

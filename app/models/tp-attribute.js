@@ -39,6 +39,24 @@ const Validations = buildValidations({
       gte: 0,
     }),
   ],
+  path: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
+  type: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
+  value: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
 });
 export default Model.extend(Validations, {
   tpid: attr('string'),
@@ -50,4 +68,7 @@ export default Model.extend(Validations, {
   blocker: attr('boolean', { defaultValue: false }),
   weight: attr('number'),
   createdAt: attr('date'),
+  path: attr('string'),
+  type: attr('string'),
+  value: attr('string'),
 });

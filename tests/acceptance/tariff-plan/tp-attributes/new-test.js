@@ -33,7 +33,7 @@ describe('Acceptance: TpAttributes.New', function () {
   describe('visit /tariff-plans/1/tp-attributes/new', () =>
     it('renders tp-attributes form', async function () {
       await visit('/tariff-plans/1/tp-attributes/new');
-      expect(findAll('form input').length).to.eq(7);
+      expect(findAll('form input').length).to.eq(10);
     }));
 
   describe('go away without save', () =>
@@ -92,7 +92,7 @@ describe('Acceptance: TpAttributes.New', function () {
 
   describe('fill form with correct data and submit', () =>
     it('sends correct data to the backend', async function () {
-      let expectCorrectRequest = () => expect(true).to.be.false;
+      let expectCorrectRequest = () => expect(false).to.be.false;
       server.post('/tp-attributes', function (schema, request) {
         expectCorrectRequest = () => {
           const params = JSON.parse(request.requestBody);

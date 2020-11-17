@@ -23,4 +23,13 @@ export default Factory.extend({
   weight() {
     return faker.random.number(1000) / 10;
   },
+  path() {
+    return faker.lorem.word();
+  },
+  type() {
+    return faker.lorem.word();
+  },
+  value() {
+    return faker.lorem.word();
+  },
 });
