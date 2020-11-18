@@ -14,7 +14,7 @@ export default Factory.extend({
   activationInterval() {
     return faker.lorem.word();
   },
-  type() {
+  cgType() {
     return faker.lorem.word();
   },
   element() {

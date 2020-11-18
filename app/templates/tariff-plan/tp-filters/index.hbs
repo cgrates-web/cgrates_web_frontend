@@ -59,7 +59,7 @@
                 />
                 <SortHeader
                   @label="Type"
-                  @key="type"
+                  @key="cgType"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction={{action "sortBy"}}
@@ -183,8 +183,8 @@
 
           <FilterText
             @label="Type"
-            @value={{filtersBlock.activeFilters.type}}
-            data-test-filter-type
+            @value={{filtersBlock.activeFilters.cgType}}
+            data-test-filter-cg-type
           />
 
           <FilterText
