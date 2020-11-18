@@ -92,7 +92,7 @@ describe('Acceptance: TpAttributes.New', function () {
 
   describe('fill form with correct data and submit', () =>
     it('sends correct data to the backend', async function () {
-      let expectCorrectRequest = () => expect(false).to.be.false;
+      let expectCorrectRequest = () => expect(true).to.be.false;
       server.post('/tp-attributes', function (schema, request) {
         expectCorrectRequest = () => {
           const params = JSON.parse(request.requestBody);
@@ -100,6 +100,9 @@ describe('Acceptance: TpAttributes.New', function () {
           expect(params.data.attributes['tenant']).to.eq('tenant');
           expect(params.data.attributes['custom-id']).to.eq('custom_id');
           expect(params.data.attributes['contexts']).to.eq('contexts');
+          expect(params.data.attributes['path']).to.eq('path');
+          expect(params.data.attributes['cg-type']).to.eq('cg-type');
+          expect(params.data.attributes['value']).to.eq('value');
           expect(params.data.attributes['filter-ids']).to.eq(
             'test_id1,test_id2'
           );
@@ -116,6 +119,9 @@ describe('Acceptance: TpAttributes.New', function () {
       await fillIn('[data-test-tenant] input', 'tenant');
       await fillIn('[data-test-customid] input', 'custom_id');
       await fillIn('[data-test-contexts] input', 'contexts');
+      await fillIn('[data-test-path] input', 'path');
+      await fillIn('[data-test-cg-type] input', 'cg-type');
+      await fillIn('[data-test-value] input', 'value');
       await selectSearch(
         '[data-test-select-search-to-str="filter-ids"]',
         'test_id1'

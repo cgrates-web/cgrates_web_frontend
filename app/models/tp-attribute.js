@@ -45,7 +45,7 @@ const Validations = buildValidations({
       max: 64,
     }),
   ],
-  type: [
+  cgType: [
     validator('presence', true),
     validator('length', {
       max: 64,
@@ -69,6 +69,6 @@ export default Model.extend(Validations, {
   weight: attr('number'),
   createdAt: attr('date'),
   path: attr('string'),
-  type: attr('string'),
+  cgType: attr('string'),
   value: attr('string'),
 });
