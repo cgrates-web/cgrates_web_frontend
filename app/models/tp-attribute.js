@@ -32,29 +32,29 @@ const Validations = buildValidations({
       max: 64,
     }),
   ],
-  fieldName: [
-    validator('presence', true),
-    validator('length', {
-      max: 64,
-    }),
-  ],
-  initial: [
-    validator('presence', true),
-    validator('length', {
-      max: 64,
-    }),
-  ],
-  substitute: [
-    validator('presence', true),
-    validator('length', {
-      max: 64,
-    }),
-  ],
   weight: [
     validator('presence', true),
     validator('number', {
       allowString: true,
       gte: 0,
+    }),
+  ],
+  path: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
+  cgType: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
+  value: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
     }),
   ],
 });
@@ -65,11 +65,10 @@ export default Model.extend(Validations, {
   contexts: attr('string'),
   filterIds: attr('string'),
   activationInterval: attr('string'),
-  fieldName: attr('string'),
-  initial: attr('string'),
-  substitute: attr('string'),
-  append: attr('boolean', { defaultValue: false }),
   blocker: attr('boolean', { defaultValue: false }),
   weight: attr('number'),
   createdAt: attr('date'),
+  path: attr('string'),
+  cgType: attr('string'),
+  value: attr('string'),
 });

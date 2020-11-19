@@ -33,7 +33,7 @@ describe('Acceptance: TpAttributes.New', function () {
   describe('visit /tariff-plans/1/tp-attributes/new', () =>
     it('renders tp-attributes form', async function () {
       await visit('/tariff-plans/1/tp-attributes/new');
-      expect(findAll('form input').length).to.eq(11);
+      expect(findAll('form input').length).to.eq(10);
     }));
 
   describe('go away without save', () =>
@@ -82,24 +82,6 @@ describe('Acceptance: TpAttributes.New', function () {
         find('[data-test-activation-interval] .invalid-feedback')
       ).to.have.class('d-block');
     });
-    it('displays field-name error', async function () {
-      expect(find('[data-test-field-name] input')).to.have.class('is-invalid');
-      expect(find('[data-test-field-name] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays initial error', async function () {
-      expect(find('[data-test-initial] input')).to.have.class('is-invalid');
-      expect(find('[data-test-initial] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays substitute error', async function () {
-      expect(find('[data-test-substitute] input')).to.have.class('is-invalid');
-      expect(find('[data-test-substitute] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
     it('displays weight error', async function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
       expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
@@ -118,17 +100,16 @@ describe('Acceptance: TpAttributes.New', function () {
           expect(params.data.attributes['tenant']).to.eq('tenant');
           expect(params.data.attributes['custom-id']).to.eq('custom_id');
           expect(params.data.attributes['contexts']).to.eq('contexts');
+          expect(params.data.attributes['path']).to.eq('path');
+          expect(params.data.attributes['cg-type']).to.eq('cg-type');
+          expect(params.data.attributes['value']).to.eq('value');
           expect(params.data.attributes['filter-ids']).to.eq(
             'test_id1,test_id2'
           );
           expect(params.data.attributes['activation-interval']).to.eq(
             'activation_interval'
           );
-          expect(params.data.attributes['field-name']).to.eq('field_name');
-          expect(params.data.attributes['initial']).to.eq('initial');
-          expect(params.data.attributes['substitute']).to.eq('substitute');
           expect(params.data.attributes['weight']).to.eq(10);
-          expect(params.data.attributes['append']).to.eq(true);
           expect(params.data.attributes['blocker']).to.eq(true);
         };
         return { data: { id: '1', type: 'tp-attribute' } };
@@ -138,6 +119,9 @@ describe('Acceptance: TpAttributes.New', function () {
       await fillIn('[data-test-tenant] input', 'tenant');
       await fillIn('[data-test-customid] input', 'custom_id');
       await fillIn('[data-test-contexts] input', 'contexts');
+      await fillIn('[data-test-path] input', 'path');
+      await fillIn('[data-test-cg-type] input', 'cg-type');
+      await fillIn('[data-test-value] input', 'value');
       await selectSearch(
         '[data-test-select-search-to-str="filter-ids"]',
         'test_id1'
@@ -158,11 +142,7 @@ describe('Acceptance: TpAttributes.New', function () {
         '[data-test-activation-interval] input',
         'activation_interval'
       );
-      await fillIn('[data-test-field-name] input', 'field_name');
-      await fillIn('[data-test-initial] input', 'initial');
-      await fillIn('[data-test-substitute] input', 'substitute');
       await fillIn('[data-test-weight] input', 10);
-      await click('[data-test-append] input');
       await click('[data-test-blocker] input');
       await click('[data-test-submit-button]');
       expectCorrectRequest();

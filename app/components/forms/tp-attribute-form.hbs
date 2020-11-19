@@ -41,24 +41,6 @@
       data-test-activation-interval={{true}}
     />
     <form.element
-      @label="Field name"
-      @property="fieldName"
-      @class="col-md-6"
-      data-test-field-name={{true}}
-    />
-    <form.element
-      @label="Initial"
-      @property="initial"
-      @class="col-md-6"
-      data-test-initial={{true}}
-    />
-    <form.element
-      @label="Substitute"
-      @property="substitute"
-      @class="col-md-6"
-      data-test-substitute={{true}}
-    />
-    <form.element
       @label="Weight"
       @property="weight"
       @controlType="number"
@@ -67,14 +49,25 @@
       @class="col-md-6"
       data-test-weight={{true}}
     />
+    <form.element
+      @label="Path"
+      @property="path"
+      @class="col-md-6"
+      data-test-path={{true}}
+    />
+    <form.element
+      @label="Type"
+      @property="cgType"
+      @class="col-md-6"
+      data-test-cg-type={{true}}
+    />
+    <form.element
+      @label="Value"
+      @property="value"
+      @class="col-md-6"
+      data-test-value={{true}}
+    />
     <div class="col-12 mb-2">
-      <form.element
-        @label="Append"
-        @property="append"
-        @class="form-check-inline"
-        @controlType="checkbox"
-        data-test-append={{true}}
-      />
       <form.element
         @label="Blocker"
         @property="blocker"
