@@ -25,17 +25,6 @@ export default Service.extend({
 
   balanceType: Object.freeze(['*monetary', '*data', '*sms', '*voice']),
   direction: Object.freeze(['*in', '*out']),
-  filterTypes: Object.freeze([
-    '*string',
-    '*string_prefix',
-    '*rsr_fields',
-    '*destinations',
-    '*gt',
-    '*gte',
-    '*lt',
-    '*lte',
-    '*cdr_stats',
-  ]),
 
   maxCostStrategy: Object.freeze(['*free', '*disconnect']),
   roundingMethod: Object.freeze(['*up', '*down', '*middle']),

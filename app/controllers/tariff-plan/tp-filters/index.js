@@ -6,8 +6,6 @@ export default Controller.extend(QueryControllerMixin, {
   queryParams: [
     'tenant',
     'customId',
-    'filterType',
-    'filterFieldName',
     'activationInterval',
     'sortColumn',
     'sortOrder',
@@ -19,15 +17,7 @@ export default Controller.extend(QueryControllerMixin, {
 
   tenant: null,
   id: null,
-  filterType: null,
-  filterFieldName: null,
   activationInterval: null,
 
-  permittedFilters: Object.freeze([
-    'tenant',
-    'customId',
-    'filterType',
-    'filterFieldName',
-    'activationInterval',
-  ]),
+  permittedFilters: Object.freeze(['tenant', 'customId', 'activationInterval']),
 });

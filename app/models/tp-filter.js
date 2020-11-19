@@ -13,15 +13,19 @@ const Validations = buildValidations({
       max: 64,
     }),
   ],
-  filterType: [
+  cgType: [
     validator('presence', true),
-    validator('ds-error'),
     validator('length', {
-      max: 16,
+      max: 64,
     }),
   ],
-  filterFieldName: validator('length', { max: 64 }),
-  filterFieldValues: [
+  element: [
+    validator('presence', true),
+    validator('length', {
+      max: 64,
+    }),
+  ],
+  values: [
     validator('presence', true),
     validator('length', {
       max: 256,
@@ -33,9 +37,9 @@ export default Model.extend(Validations, {
   tpid: attr('string'),
   tenant: attr('string'),
   customId: attr('string'),
-  filterType: attr('string'),
-  filterFieldName: attr('string'),
-  filterFieldValues: attr('string'),
   activationInterval: attr('string'),
   createdAt: attr('date'),
+  cgType: attr('string'),
+  element: attr('string'),
+  values: attr('string'),
 });
