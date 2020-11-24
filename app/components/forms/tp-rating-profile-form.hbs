@@ -10,14 +10,6 @@
       @class="col-md-6"
       data-test-loadid={{true}}
     />
-    <InputSelect
-      @property="direction"
-      @form={{form}}
-      @label="Direction"
-      @content={{this.selectValues.direction}}
-      @class="col-md-6"
-      @dataTest="direction"
-    />
     <form.element
       @label="Tenant"
       @property="tenant"
@@ -47,12 +39,6 @@
       @property="activationTime"
       @class="col-md-6"
       data-test-activation-time={{true}}
-    />
-    <form.element
-      @label="CDR stat queue IDs"
-      @property="cdrStatQueueIds"
-      @class="col-md-6"
-      data-test-cdr-stat-queue-ids={{true}}
     />
     <InputTags
       @property="ratingPlanTag"

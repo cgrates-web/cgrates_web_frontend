@@ -11,14 +11,16 @@ export default Factory.extend({
   customId() {
     return `id-${faker.random.number(100)}`;
   },
-  filterType: '*string',
-  filterFieldName() {
-    return faker.lorem.word();
-  },
-  filterFieldValues() {
-    return faker.lorem.word();
-  },
   activationInterval() {
+    return faker.lorem.word();
+  },
+  cgType() {
+    return faker.lorem.word();
+  },
+  element() {
+    return faker.lorem.word();
+  },
+  values() {
     return faker.lorem.word();
   },
 });

@@ -16,31 +16,29 @@
       @class="col-md-6"
       data-test-custom-id={{true}}
     />
-    <InputSelect
-      @property="filterType"
-      @form={{form}}
-      @label="Filter type"
-      @content={{this.selectValues.filterTypes}}
-      @class="col-md-6"
-      @dataTest="filter-type"
-    />
-    <form.element
-      @label="Filter field name"
-      @property="filterFieldName"
-      @class="col-md-6"
-      data-test-filter-field-name={{true}}
-    />
-    <form.element
-      @label="Filter field values"
-      @property="filterFieldValues"
-      @class="col-md-6"
-      data-test-filter-field-values={{true}}
-    />
     <form.element
       @label="Activation interval"
       @property="activationInterval"
       @class="col-md-6"
       data-test-activation-interval={{true}}
+    />
+    <form.element
+      @label="Type"
+      @property="cgType"
+      @class="col-md-6"
+      data-test-cg-type={{true}}
+    />
+    <form.element
+      @label="Elements"
+      @property="elements"
+      @class="col-md-6"
+      data-test-elements={{true}}
+    />
+    <form.element
+      @label="Values"
+      @property="values"
+      @class="col-md-6"
+      data-test-values={{true}}
     />
   </div>
   <BsButton

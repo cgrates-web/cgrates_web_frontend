@@ -13,7 +13,6 @@ export default Factory.extend({
     return faker.lorem.word();
   },
   balance_type: '*monetary',
-  directions: '*out',
   units() {
     return `${faker.random.number(1000)}`;
   },

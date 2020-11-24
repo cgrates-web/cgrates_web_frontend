@@ -44,20 +44,6 @@
                   data-test-sort-tenant={{true}}
                 />
                 <SortHeader
-                  @label="Filter type"
-                  @key="filterType"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
-                  @label="Filter field name"
-                  @key="filterFieldName"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
                   @label="Activation interval"
                   @key="activationInterval"
                   @sortColumn={{sortColumn}}
@@ -67,6 +53,27 @@
                 <SortHeader
                   @label="Created at"
                   @key="createdAt"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Type"
+                  @key="cgType"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Elements"
+                  @key="elements"
+                  @sortColumn={{sortColumn}}
+                  @sortOrder={{sortOrder}}
+                  @sortAction={{action "sortBy"}}
+                />
+                <SortHeader
+                  @label="Values"
+                  @key="values"
                   @sortColumn={{sortColumn}}
                   @sortOrder={{sortOrder}}
                   @sortAction={{action "sortBy"}}
@@ -101,22 +108,6 @@
                       @model={{tpFilter}}
                     >
                       {{tpFilter.tenant}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-filters.tp-filter"
-                      @model={{tpFilter}}
-                    >
-                      {{tpFilter.filterType}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-filters.tp-filter"
-                      @model={{tpFilter}}
-                    >
-                      {{tpFilter.filterFieldName}}
                     </LinkTo>
                   </td>
                   <td>
@@ -184,24 +175,28 @@
             data-test-filter-tenant
           />
 
-          <FilterSelect
-            @label="Filter type"
-            @value={{filtersBlock.activeFilters.filterType}}
-            @content={{selectValues.filterTypes}}
-            @class="fiter-type-select"
-            data-test-filter-fitertype={{true}}
-          />
-
-          <FilterText
-            @label="Filter field name"
-            @value={{filtersBlock.activeFilters.filterFieldName}}
-            data-test-filter-field-name
-          />
-
           <FilterText
             @label="Activation interval"
             @value={{filtersBlock.activeFilters.activationInterval}}
             data-test-filter-activation-interval
+          />
+
+          <FilterText
+            @label="Type"
+            @value={{filtersBlock.activeFilters.cgType}}
+            data-test-filter-cg-type
+          />
+
+          <FilterText
+            @label="Elements"
+            @value={{filtersBlock.activeFilters.elements}}
+            data-test-filter-elements
+          />
+
+          <FilterText
+            @label="Values"
+            @value={{filtersBlock.activeFilters.values}}
+            data-test-filter-values
           />
         </FiltersBlock>
       </div>

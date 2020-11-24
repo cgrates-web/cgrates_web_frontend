@@ -62,7 +62,6 @@ describe('Acceptance: TpActionTriggers.Edit', function () {
           expect(params.data.attributes['activation-time']).to.eq(
             'activation-time'
           );
-          expect(params.data.attributes['min-queued-items']).to.eq(33);
           expect(params.data.attributes['actions-tag']).to.eq('tag-1');
           expect(params.data.attributes['weight']).to.eq(10);
           expect(params.data.attributes['balance-tag']).to.eq('MONETARY');
@@ -70,7 +69,6 @@ describe('Acceptance: TpActionTriggers.Edit', function () {
           expect(params.data.attributes['balance-categories']).to.eq(
             'balance-categories'
           );
-          expect(params.data.attributes['balance-directions']).to.eq('*out');
           expect(params.data.attributes['balance-shared-groups']).to.eq(
             'balance-shared-groups'
           );
@@ -102,7 +100,6 @@ describe('Acceptance: TpActionTriggers.Edit', function () {
       await fillIn('[data-test-min-sleep] input', 'min-sleep');
       await fillIn('[data-test-expiry-time] input', 'expiry-time');
       await fillIn('[data-test-activation-time] input', 'activation-time');
-      await fillIn('[data-test-min-queued-items] input', 33);
       await selectSearch(
         '[data-test-select-search-to-str="actions-tag"]',
         'tag-1'
@@ -114,7 +111,6 @@ describe('Acceptance: TpActionTriggers.Edit', function () {
       await fillIn('[data-test-weight] input', 10);
       await selectChoose('[data-test-select="balance-tag"]', 'MONETARY');
       await selectChoose('[data-test-select="balance-type"]', '*monetary');
-      await selectChoose('[data-test-select="balance-directions"]', '*out');
       await fillIn(
         '[data-test-balance-categories] input',
         'balance-categories'

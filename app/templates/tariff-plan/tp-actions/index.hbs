@@ -58,13 +58,6 @@
                   @sortAction={{action "sortBy"}}
                 />
                 <SortHeader
-                  @label="Directions"
-                  @key="directions"
-                  @sortColumn={{sortColumn}}
-                  @sortOrder={{sortOrder}}
-                  @sortAction={{action "sortBy"}}
-                />
-                <SortHeader
                   @label="Units"
                   @key="units"
                   @sortColumn={{sortColumn}}
@@ -194,14 +187,6 @@
                       @model={{tpAction}}
                     >
                       {{tpAction.balanceType}}
-                    </LinkTo>
-                  </td>
-                  <td>
-                    <LinkTo
-                      @route="tariff-plan.tp-actions.tp-action"
-                      @model={{tpAction}}
-                    >
-                      {{tpAction.directions}}
                     </LinkTo>
                   </td>
                   <td>
@@ -361,13 +346,6 @@
             @value={{filtersBlock.activeFilters.balanceType}}
             @content={{selectValues.balanceType}}
             data-test-filter-balance-type={{true}}
-          />
-
-          <FilterSelect
-            @label="Directions"
-            @value={{filtersBlock.activeFilters.directions}}
-            @content={{selectValues.direction}}
-            data-test-filter-directions={{true}}
           />
 
           <FilterNumber

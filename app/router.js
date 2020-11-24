@@ -120,13 +120,6 @@ Router.map(function () {
             }
           );
         });
-        this.route('tp-lcr-rules', function () {
-          this.route('new');
-          this.route('csv-import');
-          this.route('tp-lcr-rule', { path: ':tp_lcr_rule_id' }, function () {
-            this.route('edit');
-          });
-        });
         this.route('tp-chargers', function () {
           this.route('new');
           this.route('csv-import');
@@ -139,20 +132,6 @@ Router.map(function () {
           this.route('csv-import');
           this.route('tp-filter', { path: ':tp_filter_id' }, function () {
             this.route('edit');
-          });
-        });
-        this.route('tp-suppliers', function () {
-          this.route('new');
-          this.route('csv-import');
-          this.route('tp-supplier', { path: ':tp_supplier_id' }, function () {
-            this.route('edit');
-          });
-        });
-        this.route('tp-aliases', function () {
-          this.route('new');
-          this.route('csv-import');
-          return this.route('tp-alias', { path: ':tp_alias_id' }, function () {
-            return this.route('edit');
           });
         });
         this.route('tp-resources', function () {
@@ -208,24 +187,6 @@ Router.map(function () {
               this.route('edit');
             }
           );
-        });
-        this.route('tp-derived-chargers', function () {
-          this.route('new');
-          this.route('csv-import');
-          this.route(
-            'tp-derived-charger',
-            { path: ':tp_derived_charger_id' },
-            function () {
-              this.route('edit');
-            }
-          );
-        });
-        this.route('tp-cdr-stats', function () {
-          this.route('new');
-          this.route('csv-import');
-          this.route('tp-cdr-stat', { path: ':tp_cdr_stat_id' }, function () {
-            this.route('edit');
-          });
         });
       }
     );

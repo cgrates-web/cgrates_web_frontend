@@ -88,10 +88,6 @@ describe('Acceptance: TpAttributes.Index', function () {
       '[data-test-filter-activation-interval] input',
       'activation_interval'
     );
-    await fillIn('[data-test-filter-field-name] input', 'field_name');
-    await fillIn('[data-test-filter-initial] input', 'initial');
-    await fillIn('[data-test-filter-substitute] input', 'substitute');
-    await selectChoose('[data-test-filter-append]', 'true');
     await selectChoose('[data-test-filter-blocker]', 'true');
     await fillIn('[data-test-filter-weight] input', 10);
   };
@@ -104,10 +100,6 @@ describe('Acceptance: TpAttributes.Index', function () {
     expect(request.queryParams['filter[activation_interval]']).to.eq(
       'activation_interval'
     );
-    expect(request.queryParams['filter[field_name]']).to.eq('field_name');
-    expect(request.queryParams['filter[initial]']).to.eq('initial');
-    expect(request.queryParams['filter[substitute]']).to.eq('substitute');
-    expect(request.queryParams['filter[append]']).to.eq('true');
     expect(request.queryParams['filter[blocker]']).to.eq('true');
     expect(request.queryParams['filter[weight]']).to.eq('10');
   };
@@ -133,14 +125,6 @@ describe('Acceptance: TpAttributes.Index', function () {
             expect(
               isBlank(request.queryParams['filter[activation_interval]'])
             ).to.eq(true);
-            expect(isBlank(request.queryParams['filter[field_name]'])).to.eq(
-              true
-            );
-            expect(isBlank(request.queryParams['filter[initial]'])).to.eq(true);
-            expect(isBlank(request.queryParams['filter[substitute]'])).to.eq(
-              true
-            );
-            expect(isBlank(request.queryParams['filter[append]'])).to.eq(true);
             expect(isBlank(request.queryParams['filter[blocker]'])).to.eq(true);
             expect(isBlank(request.queryParams['filter[weight]'])).to.eq(true);
             break;
@@ -212,10 +196,6 @@ describe('Acceptance: TpAttributes.Index', function () {
           expect(params.filter.activation_interval).to.eq(
             'activation_interval'
           );
-          expect(params.filter.field_name).to.eq('field_name');
-          expect(params.filter.initial).to.eq('initial');
-          expect(params.filter.substitute).to.eq('substitute');
-          expect(params.filter.append).to.eq('true');
           expect(params.filter.blocker).to.eq('true');
           expect(params.filter.weight).to.eq('10');
         };

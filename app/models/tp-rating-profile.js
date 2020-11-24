@@ -7,12 +7,6 @@ const Validations = buildValidations({
       max: 64,
     }),
   ],
-  direction: [
-    validator('presence', true),
-    validator('length', {
-      max: 8,
-    }),
-  ],
   tenant: [
     validator('presence', true),
     validator('length', {
@@ -49,22 +43,15 @@ const Validations = buildValidations({
       max: 64,
     }),
   ],
-  cdrStatQueueIds: [
-    validator('length', {
-      max: 64,
-    }),
-  ],
 });
 export default Model.extend(Validations, {
   tpid: attr('string'),
   loadid: attr('string'),
-  direction: attr('string'),
   tenant: attr('string'),
   category: attr('string'),
   subject: attr('string'),
   fallbackSubjects: attr('string'),
   activationTime: attr('string'),
-  cdrStatQueueIds: attr('string'),
   ratingPlanTag: attr('string'),
   createdAt: attr('date'),
 });

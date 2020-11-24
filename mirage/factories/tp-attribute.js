@@ -20,16 +20,16 @@ export default Factory.extend({
   activationInterval() {
     return faker.random.number(100);
   },
-  fieldName() {
-    return faker.lorem.word();
-  },
-  initial() {
-    return faker.lorem.word();
-  },
-  substitute() {
-    return faker.lorem.word();
-  },
   weight() {
     return faker.random.number(1000) / 10;
+  },
+  path() {
+    return faker.lorem.word();
+  },
+  type() {
+    return faker.lorem.word();
+  },
+  value() {
+    return faker.lorem.word();
   },
 });

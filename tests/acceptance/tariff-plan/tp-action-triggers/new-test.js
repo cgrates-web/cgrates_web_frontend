@@ -86,14 +86,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
         find('[data-test-activation-time] .invalid-feedback')
       ).to.have.class('d-block');
     });
-    it('displays min-queued-items error', async function () {
-      expect(find('[data-test-min-queued-items] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-min-queued-items] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays actions-tag error', function () {
       expect(
         find('[data-test-select-search-to-str="actions-tag"] div')
@@ -109,11 +101,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
       );
     });
 
-    it('displays balance-directions error', async function () {
-      expect(
-        find('[data-test-select="balance-directions"] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays balance-categories error', async function () {
       expect(find('[data-test-balance-categories] input')).to.have.class(
         'is-invalid'
@@ -194,7 +181,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
           expect(params.data.attributes['activation-time']).to.eq(
             'activation-time'
           );
-          expect(params.data.attributes['min-queued-items']).to.eq(33);
           expect(params.data.attributes['actions-tag']).to.eq('tag-1');
           expect(params.data.attributes['weight']).to.eq(10);
           expect(params.data.attributes['balance-tag']).to.eq('MONETARY');
@@ -202,7 +188,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
           expect(params.data.attributes['balance-categories']).to.eq(
             'balance-categories'
           );
-          expect(params.data.attributes['balance-directions']).to.eq('*out');
           expect(params.data.attributes['balance-shared-groups']).to.eq(
             'balance-shared-groups'
           );
@@ -234,7 +219,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
       await fillIn('[data-test-min-sleep] input', 'min-sleep');
       await fillIn('[data-test-expiry-time] input', 'expiry-time');
       await fillIn('[data-test-activation-time] input', 'activation-time');
-      await fillIn('[data-test-min-queued-items] input', 33);
       await selectSearch(
         '[data-test-select-search-to-str="actions-tag"]',
         'tag-1'
@@ -246,7 +230,6 @@ describe('Acceptance: TpActionTriggers.New', function () {
       await fillIn('[data-test-weight] input', 10);
       await selectChoose('[data-test-select="balance-tag"]', 'MONETARY');
       await selectChoose('[data-test-select="balance-type"]', '*monetary');
-      await selectChoose('[data-test-select="balance-directions"]', '*out');
       await fillIn(
         '[data-test-balance-categories] input',
         'balance-categories'

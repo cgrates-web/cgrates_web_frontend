@@ -97,7 +97,6 @@ describe('Acceptance: tpActionTriggers.Index', function () {
     await fillIn('[data-test-filter-activation-time] input', 'activation_time');
     await selectChoose('[data-test-filter-balance-tag]', 'SMS');
     await selectChoose('[data-test-filter-balance-type]', '*voice');
-    await fillIn('[data-test-filter-min-queued-items] input', 15);
     await selectSearch('[data-test-filter-actions-tag]', 'tag-1');
     await selectChoose('[data-test-filter-actions-tag]', 'tag-1');
     await fillIn('[data-test-filter-weight] input', 10);
@@ -116,7 +115,6 @@ describe('Acceptance: tpActionTriggers.Index', function () {
     );
     expect(request.queryParams['filter[balance_tag]']).to.eq('SMS');
     expect(request.queryParams['filter[balance_type]']).to.eq('*voice');
-    expect(request.queryParams['filter[min_queued_items]']).to.eq('15');
     expect(request.queryParams['filter[actions_tag]']).to.eq('tag-1');
     expect(request.queryParams['filter[weight]']).to.eq('10');
   };
@@ -157,9 +155,6 @@ describe('Acceptance: tpActionTriggers.Index', function () {
             expect(isBlank(request.queryParams['filter[balance_type]'])).to.eq(
               true
             );
-            expect(
-              isBlank(request.queryParams['filter[min_queued_items]'])
-            ).to.eq(true);
             expect(isBlank(request.queryParams['filter[actions_tag]'])).to.eq(
               true
             );
@@ -244,7 +239,6 @@ describe('Acceptance: tpActionTriggers.Index', function () {
           expect(params.filter.activation_time).to.eq('activation_time');
           expect(params.filter.balance_tag).to.eq('SMS');
           expect(params.filter.balance_type).to.eq('*voice');
-          expect(params.filter.min_queued_items).to.eq('15');
           expect(params.filter.actions_tag).to.eq('tag-1');
           expect(params.filter.weight).to.eq('10');
         };

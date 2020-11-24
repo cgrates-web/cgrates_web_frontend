@@ -44,7 +44,6 @@ describe('Acceptance: TpRatingProfile.Edit', function () {
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['tpid']).to.eq('tptest');
         expect(params.data.attributes['loadid']).to.eq('loadtest');
-        expect(params.data.attributes['direction']).to.eq('*out');
         expect(params.data.attributes['tenant']).to.eq('tenanttest');
         expect(params.data.attributes['category']).to.eq('categorytest');
         expect(params.data.attributes['subject']).to.eq('subject1');
@@ -52,7 +51,6 @@ describe('Acceptance: TpRatingProfile.Edit', function () {
         expect(params.data.attributes['activation-time']).to.eq(
           'activationtime'
         );
-        expect(params.data.attributes['cdr-stat-queue-ids']).to.eq('queuetest');
         expect(params.data.attributes['rating-plan-tag']).to.eq('ratingplan2');
         return {
           data: { id: this.tpRatingProfile.id, type: 'tp-rating-profile' },
@@ -61,13 +59,11 @@ describe('Acceptance: TpRatingProfile.Edit', function () {
 
       await visit('/tariff-plans/1/tp-rating-profiles/1/edit');
       await fillIn('[data-test-loadid] input', 'loadtest');
-      await selectChoose('[data-test-select="direction"]', '*out');
       await fillIn('[data-test-tenant] input', 'tenanttest');
       await fillIn('[data-test-category] input', 'categorytest');
       await fillIn('[data-test-subject] input', 'subject1');
       await fillIn('[data-test-fallback-subjects] input', 'subject2');
       await fillIn('[data-test-activation-time] input', 'activationtime');
-      await fillIn('[data-test-cdr-stat-queue-ids] input', 'queuetest');
       await selectSearch('[data-test-tag="tp-rating-plan"]', 'ratingplan');
       await selectChoose('[data-test-tag="tp-rating-plan"]', 'ratingplan2');
       await click('[data-test-submit-button]');
