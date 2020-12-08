@@ -22,6 +22,9 @@ export default class StatisticsIndex extends Controller.extend(statsQueryParams.
   @tracked
   group = 'daily';
 
+  @tracked
+  cdrStats;
+
   @(task(function* ({ ratingPlanTag, createdAtLte, createdAtGte, group }) {
     this.cdrStats = yield this.store.query('cdr-stat', {
       filter: prepareQueryParams({ ratingPlanTag, createdAtLte, createdAtGte }),
