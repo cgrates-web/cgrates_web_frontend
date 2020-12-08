@@ -19,6 +19,9 @@ Router.map(function () {
         this.route('add-balance');
       });
     });
+    this.route('statistics', function () {
+      this.route('detailed');
+    });
   });
 
   this.route('tariff-plans', function () {
