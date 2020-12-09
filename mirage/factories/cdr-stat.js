@@ -6,5 +6,5 @@ export default Factory.extend({
   },
   totalUsage: 6_000_000_000,
   usageAvg: 6_000_000_000,
-  totalCost: 0.6
+  totalCost: 0.6,
 });

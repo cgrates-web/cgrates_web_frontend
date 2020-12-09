@@ -19,7 +19,10 @@ export default class StatisticFiltersComponent extends Component {
 
   @action
   submit() {
-    const { filters, args: { onSubmit } } = this;
+    const {
+      filters,
+      args: { onSubmit },
+    } = this;
     onSubmit(filters);
   }
-};
+}

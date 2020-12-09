@@ -10,7 +10,7 @@ import { tracked } from '@glimmer/tracking';
 const statsQueryParams = new QueryParams({
   group: {
     refresh: true,
-  }
+  },
 });
 
 const prepareQueryParams = pipe(
@@ -18,7 +18,9 @@ const prepareQueryParams = pipe(
   renameKeysWith(underscore)
 );
 
-export default class StatisticsIndex extends Controller.extend(statsQueryParams.Mixin) {
+export default class StatisticsIndex extends Controller.extend(
+  statsQueryParams.Mixin
+) {
   @tracked
   group = 'daily';
 
@@ -44,10 +46,7 @@ export default class StatisticsIndex extends Controller.extend(statsQueryParams.
   }
 
   @action
-  setFilters({ ratingPlanTag, createdAtLte, createdAtGte, group }) {
-    // this.ratingPlanTag = ratingPlanTag;
-    // this.createdAtGte = createdAtGte;
-    // this.createdAtLte = createdAtLte;
+  setFilters({ group }) {
     this.group = group;
   }
 }

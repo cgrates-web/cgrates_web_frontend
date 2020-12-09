@@ -19,7 +19,7 @@ describe.only('Acceptance | Statistics page', function () {
       await visit('/realtime/statistics');
     });
 
-    it('renders a table with cdr-statistics entities', function() {
+    it('renders a table with cdr-statistics entities', function () {
       expect(findAll('[data-test-cdr-stat-row]')).to.have.length(10);
     });
   });

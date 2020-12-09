@@ -4,7 +4,10 @@ import { setupRenderingTest } from 'ember-mocha';
 import { render, click, findAll } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import sinon from 'sinon';
-import { selectChoose, clickTrigger } from 'ember-power-select/test-support/helpers';
+import {
+  selectChoose,
+  clickTrigger,
+} from 'ember-power-select/test-support/helpers';
 
 describe('Integration | Component | statistic-filters', function () {
   setupRenderingTest();
@@ -13,7 +16,7 @@ describe('Integration | Component | statistic-filters', function () {
     let onSubmit;
     beforeEach(async function () {
       onSubmit = sinon.stub();
-      this.set('onSubmit', onSubmit)
+      this.set('onSubmit', onSubmit);
       await render(hbs`<StatisticFilters @onSubmit={{this.onSubmit}} />`);
     });
     it('renders 3 elements in the "Group By" select', async function () {

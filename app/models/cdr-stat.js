@@ -5,4 +5,4 @@ export default class CdrStat extends Model {
   @attr('number') totalUsage;
   @attr('number') usageAvg;
   @attr('number') totalCost;
-};
+}
