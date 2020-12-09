@@ -1,0 +1,18 @@
+<div >
+  <BsForm
+    @formLayout="vertical"
+    @model={{this}}
+    @onSubmit={{this.submit}} as |form|
+  >
+    <InputSelect
+      @property="group"
+      @form={{form}}
+      @label="Group By"
+      @content={{this.groups}}
+      @dataTest="group-by"
+    />
+    <BsButton @type="primary" @buttonType="submit" data-test-submit-filters>
+      Show
+    </BsButton>
+  </BsForm>
+</div>

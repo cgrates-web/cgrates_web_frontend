@@ -1,0 +1,52 @@
+<main class="page-content">
+  <div class="container xl">
+    <h1>
+      General Statistic
+    </h1>
+
+    <h2>
+      Filters
+    </h2>
+
+    <StatisticFilters @group={{this.group}} @onSubmit={{this.setFilters}} />
+
+    <hr>
+
+    {{#if this.fetchData.isRunning}}
+      <i class="material-icons spinner">autorenew</i>
+    {{else}}
+      <h2>
+        Overview
+      </h2>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Avg. Duration (sec)</th>
+            <th>Total Duration (min)</th>
+            <th>Cost $</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.cdrStats as |stat|}}
+            <tr data-test-cdr-stat-row>
+              <td>
+                {{moment-format stat.date "YYYY-MM-DD"}}
+              </td>
+              <td>
+                {{timescale stat.usageAvg "ns" "s"}}
+              </td>
+              <td>
+                {{timescale stat.totalUsage "ns" "m"}}
+              </td>
+              <td>
+                {{stat.totalCost}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
+  </div>
+</main>

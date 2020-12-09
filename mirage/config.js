@@ -245,4 +245,6 @@ export default function () {
       ],
     };
   });
+
+  this.get('cdr-stats');
 }
