@@ -1,11 +1,12 @@
 import Controller from '@ember/controller';
 import QueryParams from 'ember-parachute';
 import { task } from 'ember-concurrency';
-import { pipe, filter, complement, isEmpty } from 'ramda';
+import { pipe, filter, complement, isEmpty, map, sum, prop } from 'ramda';
 import { renameKeysWith } from 'ramda-adjunct';
 import { underscore } from '@ember/string';
 import { action } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
+import { tracked, cached } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 const statsQueryParams = new QueryParams({
   group: {
@@ -13,19 +14,92 @@ const statsQueryParams = new QueryParams({
   },
 });
 
+const sumBy = (list, key) => pipe(map(prop(key)), sum)(list);
+
 const prepareQueryParams = pipe(
   filter(complement(isEmpty)),
   renameKeysWith(underscore)
 );
 
+const withoutTitle = {
+  title: {
+    text: null,
+  },
+};
+
 export default class StatisticsIndex extends Controller.extend(
   statsQueryParams.Mixin
 ) {
+  @service intl;
+
   @tracked
   group = 'daily';
 
   @tracked
   cdrStats;
+
+  @cached
+  get totalCalls() {
+    return sumBy(this.cdrStats, 'totalCount');
+  }
+
+  @cached
+  get totalUsage() {
+    return sumBy(this.cdrStats, 'totalUsage');
+  }
+
+  @cached
+  get totalErrors() {
+    return sumBy(this.cdrStats, 'totalErrors');
+  }
+
+  @cached
+  get totalAnswered() {
+    return sumBy(this.cdrStats, 'answeredCount');
+  }
+
+  @cached
+  get avgAsr() {
+    return sumBy(this.cdrStats, 'asr') / this.cdrStats.length;
+  }
+
+  @cached
+  get chartOptions() {
+    return {
+      chart: {
+        type: 'column',
+      },
+      ...withoutTitle,
+      xAxis: {
+        categories: this.cdrStats.map((s) => this.intl.formatDate(s.date)),
+        ...withoutTitle,
+      },
+      yAxis: {
+        min: 0,
+        ...withoutTitle,
+      },
+      legend: {
+        align: 'right',
+        x: -30,
+        verticalAlign: 'top',
+        y: 0,
+        floating: true,
+        backgroundColor: 'white',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        shadow: false,
+        rtl: true,
+      },
+      plotOptions: {
+        column: {
+          stacking: 'normal',
+          dataLabels: {
+            enabled: false,
+          },
+        },
+      },
+    };
+  }
 
   @(task(function* ({ ratingPlanTag, createdAtLte, createdAtGte, group }) {
     this.cdrStats = yield this.store.query('cdr-stat', {

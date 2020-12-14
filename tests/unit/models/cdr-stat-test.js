@@ -1,14 +1,33 @@
 import { expect } from 'chai';
-import { describe, it } from 'mocha';
+import { describe, it, beforeEach } from 'mocha';
 import { setupTest } from 'ember-mocha';
 
 describe('Unit | Model | cdr stat', function () {
   setupTest();
 
-  // Replace this with your real tests.
-  it('exists', function () {
-    let store = this.owner.lookup('service:store');
-    let model = store.createRecord('cdr-stat', {});
-    expect(model).to.be.ok;
+  let store;
+
+  beforeEach(function () {
+    store = this.owner.lookup('service:store');
+  });
+
+  describe('#answeredCount', function () {
+    it('returns a difference between totalCount and totalErrors', function () {
+      const model = store.createRecord('cdr-stat', {
+        totalCount: 10,
+        totalErrors: 7,
+      });
+      expect(model.answeredCount).to.eq(3);
+    });
+  });
+
+  describe('#asr', function () {
+    it('returns percents of answered call', function () {
+      const model = store.createRecord('cdr-stat', {
+        totalCount: 10,
+        totalErrors: 7,
+      });
+      expect(model.asr).to.eq(30);
+    });
   });
 });
