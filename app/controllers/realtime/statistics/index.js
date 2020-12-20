@@ -36,7 +36,7 @@ export default class StatisticsIndex extends Controller.extend(
   group = 'daily';
 
   @tracked
-  cdrStats;
+  cdrStats = [];
 
   @cached
   get totalCalls() {
@@ -49,8 +49,18 @@ export default class StatisticsIndex extends Controller.extend(
   }
 
   @cached
+  get totalRejected() {
+    return sumBy(this.cdrStats, 'totalRejectedDisconnects');
+  }
+
+  @cached
+  get totalNormalClearing() {
+    return sumBy(this.cdrStats, 'totalRejectedDisconnects');
+  }
+
+  @cached
   get totalErrors() {
-    return sumBy(this.cdrStats, 'totalErrors');
+    return sumBy(this.cdrStats, 'unknownDisconnectsCount');
   }
 
   @cached
@@ -61,6 +71,16 @@ export default class StatisticsIndex extends Controller.extend(
   @cached
   get avgAsr() {
     return sumBy(this.cdrStats, 'asr') / this.cdrStats.length;
+  }
+
+  @cached
+  get avgUsage() {
+    return this.totalUsage / this.totalCalls;
+  }
+
+  @cached
+  get totalCost() {
+    return sumBy(this.cdrStats, 'totalCost');
   }
 
   @cached
