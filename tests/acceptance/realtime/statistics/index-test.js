@@ -24,7 +24,7 @@ describe.only('Acceptance | Statistics page', function () {
         totalRejectedDisconnects: 1,
         totalUsage: 6_000_000_000,
         usageAvg: 1_000_000_000,
-        totalCost: 0.2
+        totalCost: 0.2,
       });
       server.create('cdr-stat', 5, {
         totalCount: 10,
@@ -34,7 +34,7 @@ describe.only('Acceptance | Statistics page', function () {
         totalRejectedDisconnects: 1,
         totalUsage: 5_000_000_000,
         usageAvg: 1_000_000_000,
-        totalCost: 0.3
+        totalCost: 0.3,
       });
       await visit('/realtime/statistics');
     });
@@ -52,8 +52,8 @@ describe.only('Acceptance | Statistics page', function () {
     it('renders total usage', function () {
       expect(find('[data-test-total-usage]')).to.have.trimmed.text('11 sec.');
     });
-    it('renders correct total stats in the footer of the table', function() {
-      const findFooterStat = part => find(`[data-test-table-footer-${part}]`);
+    it('renders correct total stats in the footer of the table', function () {
+      const findFooterStat = (part) => find(`[data-test-table-footer-${part}]`);
 
       expect(findFooterStat('total-answered')).to.have.trimmed.text('10');
       expect(findFooterStat('total-rejected')).to.have.trimmed.text('2');

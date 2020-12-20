@@ -12,15 +12,15 @@ export default Factory.extend({
     return faker.random.number(100);
   },
   totalErrors() {
-    return faker.random.number(10)
+    return faker.random.number(10);
   },
   totalUnspecifiedDisconnects() {
-    return faker.random.number(10)
+    return faker.random.number(10);
   },
   totalNormalClearingDisconnects() {
-    return faker.random.number(10)
+    return faker.random.number(10);
   },
   totalRejectedDisconnects() {
-    return faker.random.number(10)
-  }
+    return faker.random.number(10);
+  },
 });
