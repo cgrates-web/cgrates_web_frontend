@@ -7,9 +7,22 @@ export default class CdrStat extends Model {
   @attr('number') totalCost;
   @attr('number') totalCount;
   @attr('number') totalErrors;
+  @attr('number') totalCount;
+  @attr('number') totalUnspecifiedDisconnects;
+  @attr('number') totalNormalClearingDisconnects;
+  @attr('number') totalRejectedDisconnects;
+
+  get unknownDisconnectsCount() {
+    return this.totalErrors + this.totalUnspecifiedDisconnects;
+  }
 
   get answeredCount() {
-    return this.totalCount - this.totalErrors;
+    const totalDisconnects =
+      this.totalErrors +
+      this.totalNormalClearingDisconnects +
+      this.totalUnspecifiedDisconnects +
+      this.totalRejectedDisconnects;
+    return this.totalCount - totalDisconnects;
   }
 
   get asr() {

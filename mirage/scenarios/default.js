@@ -23,4 +23,6 @@ export default function (server) {
   server.createList('tp-account-action', 2, { tpid: 'tp_id' });
   server.createList('tp-derived-charger', 2, { tpid: 'tp_id' });
   server.createList('tp-cdr-stat', 2, { tpid: 'tp_id' });
+
+  server.createList('cdr-stat', 5);
 }

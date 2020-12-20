@@ -63,6 +63,8 @@
           <tr>
             <th>Date</th>
             <th>Answered</th>
+            <th>Rejected</th>
+            <th>Normal Clearing</th>
             <th>Errors</th>
             <th>ASR %</th>
             <th>Avg. Duration (sec)</th>
@@ -80,7 +82,13 @@
                 {{stat.answeredCount}}
               </td>
               <td>
-                {{stat.totalErrors}}
+                {{stat.totalRejectedDisconnects}}
+              </td>
+              <td>
+                {{stat.totalNormalClearingDisconnects}}
+              </td>
+              <td>
+                {{stat.unknownDisconnectsCount}}
               </td>
               <td>
                 {{format-number stat.asr}} %
