@@ -40,9 +40,11 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
+    // with real API server
     ENV.API_HOST = 'http://localhost:4000';
     ENV['ember-cli-mirage'] = { enabled: false };
 
+    // with mirage
     // ENV.API_HOST = 'http://localhost:4200';
     // ENV['ember-cli-mirage'] = { enabled: true };
   }

@@ -15,7 +15,10 @@ describe('Unit | Model | cdr stat', function () {
     it('returns a difference between totalCount and totalErrors', function () {
       const model = store.createRecord('cdr-stat', {
         totalCount: 10,
-        totalErrors: 7,
+        totalErrors: 2,
+        totalNormalClearingDisconnects: 1,
+        totalUnspecifiedDisconnects: 2,
+        totalRejectedDisconnects: 2,
       });
       expect(model.answeredCount).to.eq(3);
     });
@@ -25,7 +28,10 @@ describe('Unit | Model | cdr stat', function () {
     it('returns percents of answered call', function () {
       const model = store.createRecord('cdr-stat', {
         totalCount: 10,
-        totalErrors: 7,
+        totalErrors: 2,
+        totalNormalClearingDisconnects: 1,
+        totalUnspecifiedDisconnects: 2,
+        totalRejectedDisconnects: 2,
       });
       expect(model.asr).to.eq(30);
     });

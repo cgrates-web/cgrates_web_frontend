@@ -13,7 +13,7 @@
     <navbar.content @class="w-100">
       <navbar.nav @class="mb-auto" as |nav|>
         <nav.item>
-          <nav.link-to @route="realtime">
+          <nav.link-to @route="realtime.index">
             Dashboard
           </nav.link-to>
         </nav.item>
@@ -28,6 +28,11 @@
         <nav.item>
           <nav.link-to @route="realtime.accounts" data-test-accounts-link>
             Accounts
+          </nav.link-to>
+        </nav.item>
+        <nav.item>
+          <nav.link-to @route="realtime.statistics">
+            Statistics
           </nav.link-to>
         </nav.item>
       </navbar.nav>

@@ -63,6 +63,8 @@
           <tr>
             <th>Date</th>
             <th>Answered</th>
+            <th>Rejected</th>
+            <th>Normal Clearing</th>
             <th>Errors</th>
             <th>ASR %</th>
             <th>Avg. Duration (sec)</th>
@@ -80,7 +82,13 @@
                 {{stat.answeredCount}}
               </td>
               <td>
-                {{stat.totalErrors}}
+                {{stat.totalRejectedDisconnects}}
+              </td>
+              <td>
+                {{stat.totalNormalClearingDisconnects}}
+              </td>
+              <td>
+                {{stat.unknownDisconnectsCount}}
               </td>
               <td>
                 {{format-number stat.asr}} %
@@ -97,6 +105,37 @@
             </tr>
           {{/each}}
         </tbody>
+        {{#if this.cdrStats.length}}
+          <tfoot>
+            <tr>
+              <td><b>Total:</b></td>
+              <td data-test-table-footer-total-answered>
+                <b>{{this.totalAnswered}}</b>
+              </td>
+              <td data-test-table-footer-total-rejected>
+                <b>{{this.totalRejected}}</b>
+              </td>
+              <td data-test-table-footer-total-normal-clearing>
+                <b>{{this.totalNormalClearing}}</b>
+              </td>
+              <td data-test-table-footer-total-errors>
+                <b>{{this.totalErrors}}</b>
+              </td>
+              <td data-test-table-footer-avg-asr>
+                <b>{{format-number this.avgAsr}}</b>
+              </td>
+              <td data-test-table-footer-avg-usage>
+                <b>{{format-number (timescale this.avgUsage "ns" "s")}}</b>
+              </td>
+              <td data-test-table-footer-total-usage>
+                <b>{{format-number (timescale this.totalUsage "ns" "m")}}</b>
+              </td>
+              <td data-test-table-footer-total-cost>
+                <b>{{format-number this.totalCost}}</b>
+              </td>
+            </tr>
+          </tfoot>
+        {{/if}}
       </table>
     {{/if}}
   </div>
