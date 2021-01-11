@@ -71,12 +71,8 @@ describe('Acceptance: TpChargers.Edit', function () {
         '[data-test-select-search-to-str="filter-ids"]',
         'filter_id2'
       );
-      await selectSearch(
-        '[data-test-select-search-to-str="attribute-ids"]',
-        'attr_id2'
-      );
-      await selectChoose(
-        '[data-test-select-search-to-str="attribute-ids"]',
+      await fillIn(
+        '[data-test-attribute-ids]',
         'attr_id2'
       );
       await fillIn(

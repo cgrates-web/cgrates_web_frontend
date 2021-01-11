@@ -15,13 +15,11 @@ const Validations = buildValidations({
     }),
   ],
   filterIds: [
-    validator('presence', true),
     validator('length', {
       max: 64,
     }),
   ],
   activationInterval: [
-    validator('presence', true),
     validator('length', {
       max: 64,
     }),
@@ -33,7 +31,6 @@ const Validations = buildValidations({
     }),
   ],
   attributeIds: [
-    validator('presence', true),
     validator('length', {
       max: 64,
     }),
@@ -46,14 +43,15 @@ const Validations = buildValidations({
     }),
   ],
 });
-export default Model.extend(Validations, {
-  tpid: attr('string'),
-  tenant: attr('string'),
-  customId: attr('string'),
-  filterIds: attr('string'),
-  activationInterval: attr('string'),
-  runId: attr('string'),
-  attributeIds: attr('string'),
-  weight: attr('number'),
-  createdAt: attr('date'),
-});
+
+export default class TpChargerModel extends Model.extend(Validations) {
+  @attr('string') tpid;
+  @attr('string') tenant;
+  @attr('string') customId;
+  @attr('string', { defaultValue: '' }) filterIds;
+  @attr('string', { defaultValue: '' }) activationInterval;
+  @attr('string') runId;
+  @attr('string', { defaultValue: '' }) attributeIds;
+  @attr('number') weight;
+  @attr('date', ) createdAt
+}
