@@ -53,5 +53,5 @@ export default class TpChargerModel extends Model.extend(Validations) {
   @attr('string') runId;
   @attr('string', { defaultValue: '' }) attributeIds;
   @attr('number') weight;
-  @attr('date', ) createdAt
+  @attr('date') createdAt;
 }
