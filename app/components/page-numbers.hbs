@@ -3,7 +3,7 @@
     {{#if canStepBackward}}
       <li class="page-item">
         <a
-          href="#"
+          role="button"
           class="page-link"
           aria-label="Previous"
           {{on "click" (fn this.incrementPage -1)}}
@@ -18,11 +18,7 @@
       </li>
     {{else}}
       <li class="page-item disabled">
-        <a
-          href="#"
-          class="page-link"
-          aria-label="Previous"
-        >
+        <a href="#" class="page-link" aria-label="Previous">
           <span aria-hidden="true">
             &laquo;
           </span>
@@ -49,7 +45,11 @@
         </li>
       {{else}}
         <li class="page-item">
-          <a href="#" class="page-link" {{on "click" (fn this.pageClicked item.content)}}>
+          <a
+            role="button"
+            class="page-link"
+            {{on "click" (fn this.pageClicked item.content)}}
+          >
             {{item.content}}
           </a>
         </li>
@@ -59,7 +59,7 @@
     {{#if this.canStepForward}}
       <li class="page-item">
         <a
-          href="#"
+          role="button"
           class="page-link"
           aria-label="Next"
           data-test-pagination-forward
@@ -75,11 +75,7 @@
       </li>
     {{else}}
       <li class="page-item disabled">
-        <a
-          href="#"
-          class="page-link"
-          aria-label="Next"
-        >
+        <a href="#" class="page-link" aria-label="Next">
           <span aria-hidden="true">
             &raquo;
           </span>
