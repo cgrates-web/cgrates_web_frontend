@@ -14,6 +14,7 @@ export default Mixin.create({
       );
     } catch (err) {
       this.flashMessages.danger('Something went wrong');
+      throw err;
     }
   }),
 });

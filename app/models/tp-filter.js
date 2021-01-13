@@ -33,13 +33,14 @@ const Validations = buildValidations({
   ],
   activationInterval: validator('length', { max: 64 }),
 });
-export default Model.extend(Validations, {
-  tpid: attr('string'),
-  tenant: attr('string'),
-  customId: attr('string'),
-  activationInterval: attr('string'),
-  createdAt: attr('date'),
-  cgType: attr('string'),
-  element: attr('string'),
-  values: attr('string'),
-});
+
+export default class TpFilterModel extends Model.extend(Validations) {
+  @attr('string') tpid;
+  @attr('string') tenant;
+  @attr('string') customId;
+  @attr('string') activationInterval;
+  @attr('date') createdAt;
+  @attr('string') cgType;
+  @attr('string') element;
+  @attr('string') values;
+}
