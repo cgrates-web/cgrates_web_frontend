@@ -126,6 +126,30 @@
                       {{moment-format tpFilter.createdAt}}
                     </LinkTo>
                   </td>
+                  <td>
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.cgType}}
+                    </LinkTo>
+                  </td>
+                  <td>
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.element}}
+                    </LinkTo>
+                  </td>
+                  <td>
+                    <LinkTo
+                      @route="tariff-plan.tp-filters.tp-filter"
+                      @model={{tpFilter}}
+                    >
+                      {{tpFilter.values}}
+                    </LinkTo>
+                  </td>
                   <td class="actions">
                     <LinkTo
                       @route="tariff-plan.tp-filters.tp-filter.edit"

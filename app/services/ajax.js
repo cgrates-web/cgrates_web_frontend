@@ -3,7 +3,7 @@ import AjaxService from 'ember-ajax/services/ajax';
 import { inject as service } from '@ember/service';
 import { path } from 'ramda';
 
-const getAccessToken = path('data.authenticated.access_token');
+const getAccessToken = path(['data', 'authenticated', 'access_token']);
 
 export default class Ajax extends AjaxService {
   @service()

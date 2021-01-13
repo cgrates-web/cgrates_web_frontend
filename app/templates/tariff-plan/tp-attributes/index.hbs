@@ -168,6 +168,30 @@
                       @route="tariff-plan.tp-attributes.tp-attribute"
                       @model={{tpAttribute}}
                     >
+                      {{tpAttribute.cgType}}
+                    </LinkTo>
+                  </td>
+                  <td>
+                    <LinkTo
+                      @route="tariff-plan.tp-attributes.tp-attribute"
+                      @model={{tpAttribute}}
+                    >
+                      {{tpAttribute.path}}
+                    </LinkTo>
+                  </td>
+                  <td>
+                    <LinkTo
+                      @route="tariff-plan.tp-attributes.tp-attribute"
+                      @model={{tpAttribute}}
+                    >
+                      {{tpAttribute.value}}
+                    </LinkTo>
+                  </td>
+                  <td>
+                    <LinkTo
+                      @route="tariff-plan.tp-attributes.tp-attribute"
+                      @model={{tpAttribute}}
+                    >
                       {{moment-format tpAttribute.createdAt}}
                     </LinkTo>
                   </td>

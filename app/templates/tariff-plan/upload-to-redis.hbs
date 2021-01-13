@@ -3,10 +3,10 @@
     <h2 class="subtitle">
       Upload to redis
     </h2>
-    <form {{action "upload" on="submit"}}>
+    <form>
       <div class="form-check" data-test-flush-db>
         <Input
-          @checked={{flushDB}}
+          @checked={{this.flushDB}}
           @id="flush-db"
           @type="checkbox"
           class="form-check-input"
@@ -17,7 +17,7 @@
       </div>
       <div class="form-check">
         <Input
-          @checked={{dryRun}}
+          @checked={{this.dryRun}}
           @id="dry-run"
           @type="checkbox"
           class="form-check-input"
@@ -28,7 +28,7 @@
       </div>
       <div class="form-check">
         <Input
-          @checked={{validate}}
+          @checked={{this.validate}}
           @id="validate"
           @type="checkbox"
           class="form-check-input"
@@ -37,13 +37,12 @@
           Validate
         </label>
       </div>
-      <button
-        class="btn btn-primary mt-2"
-        type="submit"
-        data-test-submit-button
-      >
-        Upload
-      </button>
+      <BsButton
+        @defaultText="Upload"
+        @pendingText="Uploading..."
+        @resolvedText="Upload complete!"
+        @onClick={{perform this.uploadTask}}
+      />
     </form>
   </div>
 </div>

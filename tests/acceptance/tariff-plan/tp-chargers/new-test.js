@@ -131,14 +131,7 @@ describe('Acceptance: TpChargers.New', function () {
         '[data-test-select-search-to-str="filter-ids"]',
         'filter_id'
       );
-      await selectSearch(
-        '[data-test-select-search-to-str="attribute-ids"]',
-        'attribute_id'
-      );
-      await selectChoose(
-        '[data-test-select-search-to-str="attribute-ids"]',
-        'attribute_id'
-      );
+      await fillIn('[data-test-attribute-ids]', 'attribute_id');
       await fillIn(
         '[data-test-activation-interval] input',
         'activation_interval'

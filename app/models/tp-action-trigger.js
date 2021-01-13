@@ -91,28 +91,29 @@ const Validations = buildValidations({
     }),
   ],
 });
-export default Model.extend(Validations, {
-  tpid: attr('string'),
-  tag: attr('string'),
-  uniqueId: attr('string'),
-  thresholdType: attr('string'),
-  thresholdValue: attr('number'),
-  recurrent: attr('boolean', { defaultValue: false }),
-  minSleep: attr('string'),
-  expiryTime: attr('string'),
-  activationTime: attr('string'),
-  balanceTag: attr('string'),
-  balanceType: attr('string'),
-  balanceCategories: attr('string'),
-  balanceDestinationTags: attr('string'),
-  balanceRatingSubject: attr('string'),
-  balanceSharedGroups: attr('string'),
-  balanceExpiryTime: attr('string'),
-  balanceTimingTags: attr('string'),
-  balanceWeight: attr('string'),
-  balanceBlocker: attr('boolean', { defaultValue: false }),
-  balanceDisabled: attr('boolean', { defaultValue: false }),
-  actionsTag: attr('string'),
-  weight: attr('number'),
-  createdAt: attr('date'),
-});
+
+export default class TpActionTriggerModel extends Model.extend(Validations) {
+  @attr('string') tpid;
+  @attr('string') tag;
+  @attr('string') uniqueId;
+  @attr('string') thresholdType;
+  @attr('number') thresholdValue;
+  @attr('boolean', { defaultValue: false }) recurrent;
+  @attr('string') minSleep;
+  @attr('string') expiryTime;
+  @attr('string') activationTime;
+  @attr('string') balanceTag;
+  @attr('string') balanceType;
+  @attr('string') balanceCategories;
+  @attr('string') balanceDestinationTags;
+  @attr('string') balanceRatingSubject;
+  @attr('string') balanceSharedGroups;
+  @attr('string') balanceExpiryTime;
+  @attr('string') balanceTimingTags;
+  @attr('string') balanceWeight;
+  @attr('string', { defaultValue: 'false' }) balanceBlocker;
+  @attr('string', { defaultValue: 'false' }) balanceDisabled;
+  @attr('string') actionsTag;
+  @attr('number') weight;
+  @attr('date') createdAt;
+}
