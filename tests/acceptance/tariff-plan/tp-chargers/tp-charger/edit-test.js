@@ -48,9 +48,6 @@ describe('Acceptance: TpChargers.Edit', function () {
           expect(params.data.attributes['filter-ids']).to.eq(
             'filter_id1,filter_id2'
           );
-          expect(params.data.attributes['attribute-ids']).to.eq(
-            'attr_id1,attr_id2'
-          );
           expect(params.data.attributes['activation-interval']).to.eq(
             'activation_interval'
           );
@@ -71,7 +68,6 @@ describe('Acceptance: TpChargers.Edit', function () {
         '[data-test-select-search-to-str="filter-ids"]',
         'filter_id2'
       );
-      await fillIn('[data-test-attribute-ids]', 'attr_id2');
       await fillIn(
         '[data-test-activation-interval] input',
         'activation_interval'

@@ -49,12 +49,6 @@ describe('Acceptance: TpRatingProfiles.New', function () {
       await visit('/tariff-plans/1/tp-rating-profiles/new');
       await click('[data-test-submit-button]');
     });
-    it('displays loadid error', function () {
-      expect(find('[data-test-loadid] input')).to.have.class('is-invalid');
-      expect(find('[data-test-loadid] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
     it('displays tenant error', function () {
       expect(find('[data-test-tenant] input')).to.have.class('is-invalid');
       expect(find('[data-test-tenant] .invalid-feedback')).to.have.class(

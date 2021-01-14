@@ -60,34 +60,6 @@ describe('Acceptance: TpAttributes.New', function () {
         'd-block'
       );
     });
-    it('displays contexts error', async function () {
-      expect(find('[data-test-contexts] input')).to.have.class('is-invalid');
-      expect(find('[data-test-contexts] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays filter-ids error', function () {
-      expect(
-        find('[data-test-select-search-to-str="filter-ids"] div')
-      ).to.have.class('is-invalid');
-      expect(
-        find('[data-test-select-search-to-str="filter-ids"] .invalid-feedback')
-      ).to.exist;
-    });
-    it('displays activation-interval error', async function () {
-      expect(find('[data-test-activation-interval] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-activation-interval] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays weight error', async function () {
-      expect(find('[data-test-weight] input')).to.have.class('is-invalid');
-      expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
   });
 
   describe('fill form with correct data and submit', () =>

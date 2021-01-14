@@ -86,8 +86,8 @@ describe('Acceptance: TpActionTriggers.Edit', function () {
             'destination-tag'
           );
           expect(params.data.attributes['recurrent']).to.eq(false);
-          expect(params.data.attributes['balance-blocker']).to.eq(false);
-          expect(params.data.attributes['balance-disabled']).to.eq(false);
+          expect(params.data.attributes['balance-blocker']).to.eq('false');
+          expect(params.data.attributes['balance-disabled']).to.eq('false');
         };
         return { data: { id: '1', type: 'tp-action-trigger' } };
       });

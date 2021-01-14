@@ -64,16 +64,6 @@ describe('Acceptance: TpResources.New', function () {
         find('[data-test-select-search-to-str="filter-ids"] .invalid-feedback')
       ).to.exist;
     });
-    it('displays threshold-ids error', function () {
-      expect(
-        find('[data-test-select-search-to-str="threshold-ids"] div')
-      ).to.have.class('is-invalid');
-      expect(
-        find(
-          '[data-test-select-search-to-str="threshold-ids"] .invalid-feedback'
-        )
-      ).to.exist;
-    });
     it('displays activation-interval error', async function () {
       expect(find('[data-test-activation-interval] input')).to.have.class(
         'is-invalid'
@@ -94,14 +84,6 @@ describe('Acceptance: TpResources.New', function () {
         'd-block'
       );
     });
-    it('displays allocation-message error', async function () {
-      expect(find('[data-test-allocation-message] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-allocation-message] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays weight error', async function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
       expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
@@ -119,7 +101,9 @@ describe('Acceptance: TpResources.New', function () {
           expect(params.data.attributes['tenant']).to.eq('tenant');
           expect(params.data.attributes['custom-id']).to.eq('custom_id');
           expect(params.data.attributes['filter-ids']).to.eq('test_id1');
-          expect(params.data.attributes['threshold-ids']).to.eq('test_id2');
+          expect(params.data.attributes['threshold-ids']).to.eq(
+            '*none,test_id2'
+          );
           expect(params.data.attributes['activation-interval']).to.eq(
             'activation_interval'
           );
@@ -129,8 +113,6 @@ describe('Acceptance: TpResources.New', function () {
             'allocation_message'
           );
           expect(params.data.attributes['weight']).to.eq(10);
-          expect(params.data.attributes['stored']).to.eq(true);
-          expect(params.data.attributes['blocker']).to.eq(true);
         };
         return { data: { id: '1', type: 'tp-resource' } };
       });

@@ -30,17 +30,6 @@ Router.map(function () {
       'tariff-plan',
       { resetNamespace: true, path: ':tariff_plan_id' },
       function () {
-        this.route('raw-supplier-rates', function () {
-          this.route('new');
-          this.route('csv-import');
-          this.route(
-            'raw-supplier-rate',
-            { path: ':raw_supplier_rate_id' },
-            function () {
-              this.route('edit');
-            }
-          );
-        });
         this.route('tp-smart-rates', function () {
           this.route('new');
           this.route('csv-import');

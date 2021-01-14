@@ -75,7 +75,6 @@ describe('Acceptance: TpActionPlans.New', function () {
   describe('fill form with correct data and submit', () =>
     it('saves new tp-action-plan with correct data', async function () {
       let counter = 0;
-      server.logging = true;
 
       server.post('/tp-action-plans/', function (schema, request) {
         counter = counter + 1;

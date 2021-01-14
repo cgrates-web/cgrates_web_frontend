@@ -39,7 +39,6 @@ const Validations = buildValidations({
     }),
   ],
   allocationMessage: [
-    validator('presence', true),
     validator('length', {
       max: 64,
     }),
@@ -58,18 +57,24 @@ const Validations = buildValidations({
     }),
   ],
 });
-export default Model.extend(Validations, {
-  tpid: attr('string'),
-  tenant: attr('string'),
-  customId: attr('string'),
-  filterIds: attr('string'),
-  activationInterval: attr('string'),
-  usageTtl: attr('string'),
-  limit: attr('string'),
-  allocationMessage: attr('string'),
-  blocker: attr('boolean', { defaultValue: false }),
-  stored: attr('boolean', { defaultValue: false }),
-  weight: attr('number'),
-  thresholdIds: attr('string'),
-  createdAt: attr('date'),
-});
+
+export default class TpResourceModel extends Model.extend(Validations) {
+  @attr('string') tpid;
+  @attr('string') tenant;
+  @attr('string') customId;
+  @attr('string') filterIds;
+  @attr('string') activationInterval;
+  @attr('string') usageTtl;
+  @attr('string') limit;
+  @attr('string', { defaultValue: '' }) allocationMessage;
+  @attr('string', { defaultValue: '' }) blocker;
+  @attr('string', { defaultValue: '' }) stored;
+  @attr('number') weight;
+  @attr('string', { defaultValue: '*none' }) thresholdIds;
+  @attr('date', {
+    defaultValue() {
+      return new Date();
+    },
+  })
+  createdAt;
+}

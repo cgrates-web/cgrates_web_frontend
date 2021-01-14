@@ -101,7 +101,6 @@ describe('Integration: InputTags', function () {
         this.server.get('/tp-rates/', () => ({
           data: [{ id: '1', type: 'tp-rate', attributes: { tag: 'test' } }],
         }));
-        this.server.logging = true;
         this.set('model', EmberObject.create({}));
         await render(hbs`('
           {{#bs-form model=model as |form|}}

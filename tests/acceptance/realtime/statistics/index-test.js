@@ -5,12 +5,11 @@ import { authenticateSession } from 'ember-simple-auth/test-support';
 import { visit, findAll, find } from '@ember/test-helpers';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 
-describe.only('Acceptance | Statistics page', function () {
+describe('Acceptance | Statistics page', function () {
   let hooks = setupApplicationTest();
   setupMirage(hooks);
 
   beforeEach(async function () {
-    server.logging = true;
     await authenticateSession({ email: 'user@exmple.com' });
   });
 

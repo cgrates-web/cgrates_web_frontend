@@ -12,6 +12,7 @@ export default Component.extend({
   phName: 'id',
   multiple: false,
   allowClear: false,
+  allowNone: false,
 
   init() {
     this._super(...arguments);
@@ -40,6 +41,7 @@ export default Component.extend({
     });
     let result = response.mapBy(this.searchField);
     result.push('*any');
+    if (this.allowNone) result.push('*none');
     return result;
   }).restartable(),
 

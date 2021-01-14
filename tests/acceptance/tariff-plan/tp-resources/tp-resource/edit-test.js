@@ -58,8 +58,6 @@ describe('Acceptance: TpResources.Edit', function () {
             'allocation_message'
           );
           expect(params.data.attributes['weight']).to.eq(10);
-          expect(params.data.attributes['stored']).to.eq(true);
-          expect(params.data.attributes['blocker']).to.eq(true);
         };
         return { data: { id: '1', type: 'tp-resource' } };
       });

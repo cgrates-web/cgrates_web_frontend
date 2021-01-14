@@ -60,32 +60,6 @@ describe('Acceptance: TpChargers.New', function () {
         'd-block'
       );
     });
-    it('displays filter-ids error', function () {
-      expect(
-        find('[data-test-select-search-to-str="filter-ids"] div')
-      ).to.have.class('is-invalid');
-      expect(
-        find('[data-test-select-search-to-str="filter-ids"] .invalid-feedback')
-      ).to.exist;
-    });
-    it('displays attribute-ids error', function () {
-      expect(
-        find('[data-test-select-search-to-str="attribute-ids"] div')
-      ).to.have.class('is-invalid');
-      expect(
-        find(
-          '[data-test-select-search-to-str="attribute-ids"] .invalid-feedback'
-        )
-      ).to.exist;
-    });
-    it('displays activation-interval error', async function () {
-      expect(find('[data-test-activation-interval] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-activation-interval] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
     it('displays run-id error', async function () {
       expect(find('[data-test-run-id] input')).to.have.class('is-invalid');
       expect(find('[data-test-run-id] .invalid-feedback')).to.have.class(
@@ -110,7 +84,6 @@ describe('Acceptance: TpChargers.New', function () {
           expect(params.data.attributes['tenant']).to.eq('tenant');
           expect(params.data.attributes['custom-id']).to.eq('custom_id');
           expect(params.data.attributes['filter-ids']).to.eq('filter_id');
-          expect(params.data.attributes['attribute-ids']).to.eq('attribute_id');
           expect(params.data.attributes['activation-interval']).to.eq(
             'activation_interval'
           );
@@ -131,7 +104,6 @@ describe('Acceptance: TpChargers.New', function () {
         '[data-test-select-search-to-str="filter-ids"]',
         'filter_id'
       );
-      await fillIn('[data-test-attribute-ids]', 'attribute_id');
       await fillIn(
         '[data-test-activation-interval] input',
         'activation_interval'

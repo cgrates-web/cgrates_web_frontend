@@ -44,69 +44,6 @@ describe('Acceptance: TpActions.New', function () {
         'd-block'
       );
     });
-    it('displays units error', async function () {
-      expect(find('[data-test-units] input')).to.have.class('is-invalid');
-      expect(find('[data-test-units] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays expiry-time error', async function () {
-      expect(find('[data-test-expiry-time] input')).to.have.class('is-invalid');
-      expect(find('[data-test-expiry-time] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays timing-tags error', async function () {
-      expect(find('[data-test-timing-tags] input')).to.have.class('is-invalid');
-      expect(find('[data-test-timing-tags] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays rating-subject error', async function () {
-      expect(find('[data-test-rating-subject] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-rating-subject] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays categories error', async function () {
-      expect(find('[data-test-categories] input')).to.have.class('is-invalid');
-      expect(find('[data-test-categories] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays shared-groups error', async function () {
-      expect(find('[data-test-shared-groups] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(find('[data-test-shared-groups] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
-    it('displays balance-weight error', async function () {
-      expect(find('[data-test-balance-weight] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-balance-weight] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-
-    it('displays extra-parameters error', async function () {
-      expect(find('[data-test-extra-parameters] input')).to.have.class(
-        'is-invalid'
-      );
-      expect(
-        find('[data-test-extra-parameters] .invalid-feedback')
-      ).to.have.class('d-block');
-    });
-    it('displays filter error', async function () {
-      expect(find('[data-test-filter] input')).to.have.class('is-invalid');
-      expect(find('[data-test-filter] .invalid-feedback')).to.have.class(
-        'd-block'
-      );
-    });
     it('displays weight error', async function () {
       expect(find('[data-test-weight] input')).to.have.class('is-invalid');
       expect(find('[data-test-weight] .invalid-feedback')).to.have.class(
