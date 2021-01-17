@@ -10,9 +10,9 @@ const Validations = buildValidations({
     gte: 0,
   }),
 });
-export default Model.extend(Validations, {
-  account: attr('string'),
-  balanceType: attr('string'),
-  overwrite: attr('boolean'),
-  value: attr('number'),
-});
+export default class AddBalance extends Model.extend(Validations) {
+  @attr('string') account;
+  @attr('string') balanceType;
+  @attr('boolean') overwrite;
+  @attr('number') value;
+};
