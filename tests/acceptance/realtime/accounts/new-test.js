@@ -13,12 +13,6 @@ describe('Acceptance: Accounts.New', function () {
     await authenticateSession({ email: 'user@eaxmple.com' });
   });
 
-  describe('visit /realtime/accounts/new', () =>
-    it('renders account form', async function () {
-      await visit('/realtime/accounts/new');
-      expect(findAll('form input').length).to.eq(3);
-    }));
-
   describe('go away without save', () =>
     it('removes not saved account', async function () {
       await visit('/realtime/accounts/new');
@@ -39,9 +33,7 @@ describe('Acceptance: Accounts.New', function () {
     it('saves new account with correct data', async function () {
       await visit('/realtime/accounts/new');
       await fillIn('[data-test-id] input', 'test');
-      await click('[data-test-disabled] input');
-      await click('[data-test-allow-negative] input');
       await click('[data-test-submit-button]');
-      expect(server.db.setAccountCommands).to.eq(1);
+      expect(server.db.setAccountCommands).to.have.length(1);
     }));
 });
