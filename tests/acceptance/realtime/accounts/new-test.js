@@ -37,22 +37,11 @@ describe('Acceptance: Accounts.New', function () {
 
   describe('fill form with correct data and submit', () =>
     it('saves new account with correct data', async function () {
-      let counter = 0;
-
-      server.post('/accounts/', function (schema, request) {
-        counter = counter + 1;
-        const params = JSON.parse(request.requestBody);
-        expect(params.data.id).to.eq('test');
-        expect(params.data.attributes['allow-negative']).to.eq(true);
-        expect(params.data.attributes['disabled']).to.eq(true);
-        return { data: { id: 'test', type: 'account' } };
-      });
-
       await visit('/realtime/accounts/new');
       await fillIn('[data-test-id] input', 'test');
       await click('[data-test-disabled] input');
       await click('[data-test-allow-negative] input');
       await click('[data-test-submit-button]');
-      expect(counter).to.eq(1);
+      expect(server.db.setAccountCommands).to.eq(1);
     }));
 });

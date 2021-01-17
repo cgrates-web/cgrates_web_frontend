@@ -21,6 +21,8 @@ export default function () {
   this.get('/accounts/:id');
   this.del('/accounts/:id');
 
+  this.post('/set-account-commands');
+
   this.get('tariff-plans');
   this.get('tariff-plans/:id');
   this.delete('/tariff-plans/:id');

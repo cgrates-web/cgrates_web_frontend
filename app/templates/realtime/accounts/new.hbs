@@ -9,24 +9,10 @@
 >
   <form.element
     @label="ID"
-    @property="id"
+    @property="account"
     @class="col-md-6"
     data-test-id={{true}}
   />
-  <div class="ml-3 mb-2">
-    <form.element
-      @label="Prefixes"
-      @property="disabled"
-      @controlType="checkbox"
-      data-test-disabled={{true}}
-    />
-    <form.element
-      @label="Allow negative"
-      @property="allowNegative"
-      @controlType="checkbox"
-      data-test-allow-negative={{true}}
-    />
-  </div>
   <BsButton
     @defaultText="Save"
     @type="primary"

@@ -28,29 +28,7 @@ describe('Acceptance: Account.AddBalance', function () {
         counter = counter + 1;
         const params = JSON.parse(request.requestBody);
         expect(params.data.attributes['account']).to.eq('test');
-        expect(params.data.attributes['balance-type']).to.eq('*monetary');
-        expect(params.data.attributes['directions']).to.eq('*out');
         expect(params.data.attributes['value']).to.eq(100);
-        expect(params.data.attributes['weight']).to.eq(10);
-        expect(params.data.attributes['balance-uuid']).to.eq(
-          '11111111-2222-3333-4444-555555555555'
-        );
-        expect(params.data.attributes['balance-id']).to.eq('balancetest');
-        expect(params.data.attributes['expiry-time']).to.eq(
-          '0001-01-01T00:00:00Z'
-        );
-        expect(params.data.attributes['rating-subject']).to.eq('ratingsubject');
-        expect(params.data.attributes['categories']).to.eq(
-          'category1, category2'
-        );
-        expect(params.data.attributes['destination-ids']).to.eq(
-          'destination1, destination2'
-        );
-        expect(params.data.attributes['timing-ids']).to.eq('timing1, timing2');
-        expect(params.data.attributes['shared-groups']).to.eq('group1, group2');
-        expect(params.data.attributes['overwrite']).to.eq(false);
-        expect(params.data.attributes['blocker']).to.eq(true);
-        expect(params.data.attributes['disabled']).to.eq(true);
         return { data: { id: '1', type: 'add-balance' } };
       });
 
