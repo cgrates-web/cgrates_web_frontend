@@ -4,7 +4,7 @@ import timescale from 'timescale';
 
 const nsToSec = (value) => timescale(value, 'ns', 's');
 
-const getTotalUsageInSec = pipe(prop('totalUsage'), nsToSec);
+const getTotalUsageInSec = pipe(prop('usageAvg'), nsToSec);
 
 export default class StatisticsCallsChart extends Component {
   get chartData() {
