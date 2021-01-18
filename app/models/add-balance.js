@@ -15,4 +15,4 @@ export default class AddBalance extends Model.extend(Validations) {
   @attr('string') balanceType;
   @attr('boolean') overwrite;
   @attr('number') value;
-};
+}
