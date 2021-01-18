@@ -3,13 +3,7 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import {
-  visit,
-  click,
-  find,
-  findAll,
-  currentRouteName,
-} from '@ember/test-helpers';
+import { visit, click, find, findAll } from '@ember/test-helpers';
 
 describe('Acceptance: Destinations', function () {
   let hooks = setupApplicationTest();
@@ -40,11 +34,5 @@ describe('Acceptance: Destinations', function () {
       await visit('/realtime/destinations');
       await click('[data-test-destination-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
-    }));
-  describe('click add button', () =>
-    it('redirects to new account page', async function () {
-      await visit('/realtime/destinations');
-      await click('[data-test-destinations-add]');
-      expect(currentRouteName()).to.equal('realtime.destinations.new');
     }));
 });

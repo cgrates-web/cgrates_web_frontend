@@ -11,7 +11,7 @@ Router.map(function () {
 
   this.route('realtime', function () {
     this.route('destinations', function () {
-      this.route('new');
+      this.route('destination');
     });
     this.route('accounts', function () {
       this.route('new');

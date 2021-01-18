@@ -49,7 +49,7 @@ describe('Acceptance | Statistics page', function () {
       expect(find('[data-test-avg-asr]')).to.have.trimmed.text('50');
     });
     it('renders total usage', function () {
-      expect(find('[data-test-total-usage]')).to.have.trimmed.text('11 sec.');
+      expect(find('[data-test-total-usage]')).to.have.trimmed.text('0.55 sec.');
     });
     it('renders correct total stats in the footer of the table', function () {
       const findFooterStat = (part) => find(`[data-test-table-footer-${part}]`);
