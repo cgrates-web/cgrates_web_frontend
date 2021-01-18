@@ -41,10 +41,4 @@ describe('Acceptance: Destinations', function () {
       await click('[data-test-destination-remove]');
       expect(findAll('table tbody tr').length).to.eq(1);
     }));
-  describe('click add button', () =>
-    it('redirects to new account page', async function () {
-      await visit('/realtime/destinations');
-      await click('[data-test-destinations-add]');
-      expect(currentRouteName()).to.equal('realtime.destinations.new');
-    }));
 });
