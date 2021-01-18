@@ -3,12 +3,7 @@ import { expect } from 'chai';
 import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
-import {
-  visit,
-  click,
-  find,
-  findAll,
-} from '@ember/test-helpers';
+import { visit, click, find, findAll } from '@ember/test-helpers';
 
 describe('Acceptance: Destinations', function () {
   let hooks = setupApplicationTest();
