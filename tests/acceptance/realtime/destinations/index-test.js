@@ -8,7 +8,6 @@ import {
   click,
   find,
   findAll,
-  currentRouteName,
 } from '@ember/test-helpers';
 
 describe('Acceptance: Destinations', function () {
