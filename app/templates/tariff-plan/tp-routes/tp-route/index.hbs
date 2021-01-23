@@ -1,0 +1,85 @@
+<main class="page-content">
+  <div class="container">
+    <div class="actions-subtitle">
+      <h2>Route: {{this.model.customId}}</h2>
+      <ul class="actions">
+        <li>
+          <LinkTo @route="tariff-plan.tp-routes.tp-route.edit" @model={{this.model}}>
+            <i class="material-icons circle btn btn-primary" data-test-tp-route-edit>edit</i>
+          </LinkTo>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 col-md-3">
+        <h5>Id</h5>
+        <p>{{this.model.customId}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route ID</h5>
+        <p>{{this.model.routeId}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Tenant</h5>
+        <p>{{this.model.tenant}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Weight</h5>
+        <p>{{this.model.routeWeight}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Sorting</h5>
+        <p>{{this.model.sorting}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Sorting Parameters</h5>
+        <p>{{this.model.sortingParameters}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Filter Ids</h5>
+        <p>{{this.model.filterIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Activation Interval</h5>
+        <p>{{this.model.activationInterval}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Filter Ids</h5>
+        <p>{{this.model.routeFilterIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Account Ids</h5>
+        <p>{{this.model.routeAccountIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Rating Plan Ids</h5>
+        <p>{{this.model.routeRatingplanIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Resource Ids</h5>
+        <p>{{this.model.routeResourceIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Stat Ids</h5>
+        <p>{{this.model.routeStatIds}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Blocker</h5>
+        <p>{{this.model.routeBlocker}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Route Parameters</h5>
+        <p>{{this.model.routeParameters}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Weight</h5>
+        <p>{{this.model.weight}}</p>
+      </div>
+      <div class="col-12 col-md-3">
+        <h5>Created at</h5>
+        <p>{{format-date model.createdAt}}</p>
+      </div>
+    </div>
+  </div>
+</main>

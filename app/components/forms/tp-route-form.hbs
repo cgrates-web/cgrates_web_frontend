@@ -1,0 +1,113 @@
+<BsForm
+  @model={{@model}}
+  @onSubmit={{perform @save}}
+  novalidate={{true}} as |form|
+>
+  <div class="form-row">
+    <form.element
+      @label="ID"
+      @property="customId"
+      @class="col-md-6"
+      data-test-custom-id
+    />
+    <form.element
+      @label="Route ID"
+      @property="routeId"
+      @class="col-md-6"
+      data-test-route-id
+    />
+    <form.element
+      @label="Tenant"
+      @property="tenant"
+      @class="col-md-6"
+      data-test-tenant
+    />
+    <form.element
+      @label="Sorting"
+      @property="sorting"
+      @class="col-md-6"
+      data-test-month-sorting
+    />
+    <form.element
+      @label="Sorting Parameters"
+      @property="sortingParameters"
+      @class="col-md-6"
+      data-test-week-sorting-parameters
+    />
+    <form.element
+      @label="Filter Ids"
+      @property="filterIds"
+      @class="col-md-6"
+      data-test-filter-ids
+    />
+    <form.element
+      @label="Activation Interval"
+      @property="activationInterval"
+      @class="col-md-6"
+      data-test-activation-interval
+    />
+    <form.element
+      @label="Route Filter Ids"
+      @property="routeFilterIds"
+      @class="col-md-6"
+      data-test-route-filter-ids
+    />
+    <form.element
+      @label="Route Account Ids"
+      @property="routeAccountIds"
+      @class="col-md-6"
+      data-test-route-account-ids
+    />
+    <form.element
+      @label="Route Rating Plan Ids"
+      @property="routeRatingplanIds"
+      @class="col-md-6"
+      data-test-route-rating-plan-ids
+    />
+    <form.element
+      @label="Route Resource Ids"
+      @property="routeResourceIds"
+      @class="col-md-6"
+      data-test-route-resource-ids
+    />
+    <form.element
+      @label="Route Stat Ids"
+      @property="routeStatIds"
+      @class="col-md-6"
+      data-test-route-stat-ids
+    />
+    <form.element
+      @label="Route Blocker"
+      @property="routeBlocker"
+      @class="col-md-6"
+      @controlType="checkbox"
+      data-test-route-blocker
+    />
+    <form.element
+      @label="Route Parameters"
+      @property="routeParameters"
+      @class="col-md-6"
+      data-test-route-parameters
+    />
+    <form.element
+      @label="Route Weight"
+      @property="routeWeight"
+      @class="col-md-6"
+      data-test-route-weight
+    />
+    <form.element
+      @label="Weight"
+      @property="weight"
+      @class="col-md-6"
+      data-test-weight
+    />
+  </div>
+  <BsButton
+    @type="primary"
+    @buttonType="submit"
+    disabled={{@save.isRunning}}
+    data-test-submit-button={{true}}
+  >
+    <LoadingButtonText @text="Save" @isLoading={{@save.isRunning}} />
+  </BsButton>
+</BsForm>

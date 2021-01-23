@@ -180,6 +180,12 @@ Router.map(function () {
             }
           );
         });
+        this.route('tp-routes', function () {
+          this.route('new');
+          this.route('tp-route', { path: ':tp_route_id' }, function () {
+            this.route('edit');
+          });
+        });
       }
     );
   });
