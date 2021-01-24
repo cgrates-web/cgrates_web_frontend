@@ -263,7 +263,7 @@ describe('Acceptance: TpActions.Index', function () {
         const sort = request.queryParams['sort'];
         switch (counter) {
           case 1:
-            expect(sort).to.eq('id');
+            expect(sort).to.eq('-id');
             break;
           case 2:
             expect(sort).to.eq('tag');
