@@ -1,18 +1,24 @@
-<div >
+<div>
   <BsForm
     @formLayout="vertical"
     @model={{this}}
     @onSubmit={{this.submit}} as |form|
   >
-    <InputSelect
-      @property="group"
-      @form={{form}}
-      @label="Group By"
-      @content={{this.groups}}
-      @dataTest="group-by"
-    />
-    <BsButton @type="primary" @buttonType="submit" data-test-submit-filters>
-      Show
-    </BsButton>
+    <div class="row">
+      <InputSelect
+        @property="group"
+        @form={{form}}
+        @label="Group By"
+        @content={{this.groups}}
+        @dataTest="group-by"
+        @class="col-2"
+      />
+      <form.element @label="Account" @property="account" @class="col-3" />
+      <div class="col-3 inline-form__button-col">
+        <BsButton @type="primary" @buttonType="submit" data-test-submit-filters>
+          Show
+        </BsButton>
+      </div>
+    </div>
   </BsForm>
 </div>
