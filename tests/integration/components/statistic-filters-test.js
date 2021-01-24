@@ -28,7 +28,9 @@ describe('Integration | Component | statistic-filters', function () {
       it('calls `onSubmit` function', async function () {
         await selectChoose('[data-test-select="group-by"]', 'weekly');
         await click('[data-test-submit-filters]');
-        expect(onSubmit.calledWith({ group: 'weekly', account: undefined })).to.eq(true);
+        expect(
+          onSubmit.calledWith({ group: 'weekly', account: undefined })
+        ).to.eq(true);
       });
     });
   });
