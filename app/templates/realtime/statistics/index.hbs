@@ -8,135 +8,143 @@
       Filters
     </h3>
 
-    <StatisticFilters @group={{this.group}} @onSubmit={{this.setFilters}} />
+    <StatisticFilters
+      @group={{this.group}}
+      @account={{this.account}}
+      @onSubmit={{this.setFilters}}
+    />
 
     <hr>
 
     {{#if this.fetchData.isRunning}}
       <i class="material-icons spinner">autorenew</i>
     {{else}}
-      <h3>
-        Calls&nbsp;
-        <small data-test-total-calls class="text-muted">
-          {{format-number this.totalCalls}}
-        </small>
-      </h3>
+      {{#if this.cdrStats.length}}
+        <h3>
+          Calls&nbsp;
+          <small data-test-total-calls class="text-muted">
+            {{format-number this.totalCalls}}
+          </small>
+        </h3>
 
-      <Statistics::CallsChart
-        @cdrStats={{this.cdrStats}}
-        @chartOptions={{this.chartOptions}}
-      />
+        <Statistics::CallsChart
+          @cdrStats={{this.cdrStats}}
+          @chartOptions={{this.chartOptions}}
+        />
 
-      <hr>
+        <hr>
 
-      <h3>
-        ASR - <span data-test-avg-asr>{{format-number this.avgAsr}}</span>%
-      </h3>
+        <h3>
+          ASR - <span data-test-avg-asr>{{format-number this.avgAsr}}</span>%
+        </h3>
 
-      <Statistics::AsrChart
-        @cdrStats={{this.cdrStats}}
-        @chartOptions={{this.chartOptions}}
-      />
+        <Statistics::AsrChart
+          @cdrStats={{this.cdrStats}}
+          @chartOptions={{this.chartOptions}}
+        />
 
-      <hr>
+        <hr>
 
-      <h3>
-        ACD
-        <small data-test-total-usage class="text-muted">
-          {{format-number (timescale this.avgUsage "ns" "s")}} sec.
-        </small>
-      </h3>
+        <h3>
+          ACD
+          <small data-test-total-usage class="text-muted">
+            {{format-number (timescale this.avgUsage "ns" "s")}} sec.
+          </small>
+        </h3>
 
-      <Statistics::AcdChart
-        @cdrStats={{this.cdrStats}}
-        @chartOptions={{this.chartOptions}}
-      />
+        <Statistics::AcdChart
+          @cdrStats={{this.cdrStats}}
+          @chartOptions={{this.chartOptions}}
+        />
 
-      <hr>
+        <hr>
 
-      <h3>
-        Overview
-      </h3>
+        <h3>
+          Overview
+        </h3>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Answered</th>
-            <th>Rejected</th>
-            <th>Normal Clearing</th>
-            <th>Errors</th>
-            <th>ASR %</th>
-            <th>Avg. Duration (sec)</th>
-            <th>Total Duration (min)</th>
-            <th>Cost $</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each this.cdrStats as |stat|}}
-            <tr data-test-cdr-stat-row>
-              <td>
-                {{moment-format stat.date "YYYY-MM-DD"}}
-              </td>
-              <td>
-                {{stat.answeredCount}}
-              </td>
-              <td>
-                {{stat.totalRejectedDisconnects}}
-              </td>
-              <td>
-                {{stat.totalNormalClearingDisconnects}}
-              </td>
-              <td>
-                {{stat.unknownDisconnectsCount}}
-              </td>
-              <td>
-                {{format-number stat.asr}} %
-              </td>
-              <td>
-                {{format-number (timescale stat.usageAvg "ns" "s")}}
-              </td>
-              <td>
-                {{format-number (timescale stat.totalUsage "ns" "m")}}
-              </td>
-              <td>
-                {{format-number stat.totalCost}}
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-        {{#if this.cdrStats.length}}
-          <tfoot>
+        <table class="table">
+          <thead>
             <tr>
-              <td><b>Total:</b></td>
-              <td data-test-table-footer-total-answered>
-                <b>{{this.totalAnswered}}</b>
-              </td>
-              <td data-test-table-footer-total-rejected>
-                <b>{{this.totalRejected}}</b>
-              </td>
-              <td data-test-table-footer-total-normal-clearing>
-                <b>{{this.totalNormalClearing}}</b>
-              </td>
-              <td data-test-table-footer-total-errors>
-                <b>{{this.totalErrors}}</b>
-              </td>
-              <td data-test-table-footer-avg-asr>
-                <b>{{format-number this.avgAsr}}</b>
-              </td>
-              <td data-test-table-footer-avg-usage>
-                <b>{{format-number (timescale this.avgUsage "ns" "s")}}</b>
-              </td>
-              <td data-test-table-footer-total-usage>
-                <b>{{format-number (timescale this.totalUsage "ns" "m")}}</b>
-              </td>
-              <td data-test-table-footer-total-cost>
-                <b>{{format-number this.totalCost}}</b>
-              </td>
+              <th>Date</th>
+              <th>Answered</th>
+              <th>Rejected</th>
+              <th>Normal Clearing</th>
+              <th>Errors</th>
+              <th>ASR %</th>
+              <th>Avg. Duration (sec)</th>
+              <th>Total Duration (min)</th>
+              <th>Cost $</th>
             </tr>
-          </tfoot>
-        {{/if}}
-      </table>
+          </thead>
+          <tbody>
+            {{#each this.cdrStats as |stat|}}
+              <tr data-test-cdr-stat-row>
+                <td>
+                  {{moment-format stat.date "YYYY-MM-DD"}}
+                </td>
+                <td>
+                  {{stat.answeredCount}}
+                </td>
+                <td>
+                  {{stat.totalRejectedDisconnects}}
+                </td>
+                <td>
+                  {{stat.totalNormalClearingDisconnects}}
+                </td>
+                <td>
+                  {{stat.unknownDisconnectsCount}}
+                </td>
+                <td>
+                  {{format-number stat.asr}} %
+                </td>
+                <td>
+                  {{format-number (timescale stat.usageAvg "ns" "s")}}
+                </td>
+                <td>
+                  {{format-number (timescale stat.totalUsage "ns" "m")}}
+                </td>
+                <td>
+                  {{format-number stat.totalCost}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+          {{#if this.cdrStats.length}}
+            <tfoot>
+              <tr>
+                <td><b>Total:</b></td>
+                <td data-test-table-footer-total-answered>
+                  <b>{{this.totalAnswered}}</b>
+                </td>
+                <td data-test-table-footer-total-rejected>
+                  <b>{{this.totalRejected}}</b>
+                </td>
+                <td data-test-table-footer-total-normal-clearing>
+                  <b>{{this.totalNormalClearing}}</b>
+                </td>
+                <td data-test-table-footer-total-errors>
+                  <b>{{this.totalErrors}}</b>
+                </td>
+                <td data-test-table-footer-avg-asr>
+                  <b>{{format-number this.avgAsr}}</b>
+                </td>
+                <td data-test-table-footer-avg-usage>
+                  <b>{{format-number (timescale this.avgUsage "ns" "s")}}</b>
+                </td>
+                <td data-test-table-footer-total-usage>
+                  <b>{{format-number (timescale this.totalUsage "ns" "m")}}</b>
+                </td>
+                <td data-test-table-footer-total-cost>
+                  <b>{{format-number this.totalCost}}</b>
+                </td>
+              </tr>
+            </tfoot>
+          {{/if}}
+        </table>
+      {{else}}
+        <BsAlert @type="warning" @dismissible={{false}}>There are no data</BsAlert>
+      {{/if}}
     {{/if}}
   </div>
 </main>

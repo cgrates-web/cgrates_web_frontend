@@ -1,7 +1,17 @@
 import Controller from '@ember/controller';
 import QueryParams from 'ember-parachute';
 import { task } from 'ember-concurrency';
-import { pipe, filter, complement, isEmpty, map, sum, prop } from 'ramda';
+import {
+  pipe,
+  filter,
+  isNil,
+  complement,
+  isEmpty,
+  map,
+  sum,
+  prop,
+  anyPass,
+} from 'ramda';
 import { renameKeysWith } from 'ramda-adjunct';
 import { underscore } from '@ember/string';
 import { action } from '@ember/object';
@@ -12,12 +22,15 @@ const statsQueryParams = new QueryParams({
   group: {
     refresh: true,
   },
+  account: {
+    refresh: true,
+  },
 });
 
 const sumBy = (list, key) => pipe(map(prop(key)), sum)(list);
 
 const prepareQueryParams = pipe(
-  filter(complement(isEmpty)),
+  filter(complement(anyPass([isEmpty, isNil]))),
   renameKeysWith(underscore)
 );
 
@@ -34,6 +47,9 @@ export default class StatisticsIndex extends Controller.extend(
 
   @tracked
   group = 'daily';
+
+  @tracked
+  account = null;
 
   @tracked
   cdrStats = [];
@@ -121,9 +137,9 @@ export default class StatisticsIndex extends Controller.extend(
     };
   }
 
-  @(task(function* ({ ratingPlanTag, createdAtLte, createdAtGte, group }) {
+  @(task(function* ({ createdAtLte, createdAtGte, group, account }) {
     this.cdrStats = yield this.store.query('cdr-stat', {
-      filter: prepareQueryParams({ ratingPlanTag, createdAtLte, createdAtGte }),
+      filter: prepareQueryParams({ account, createdAtLte, createdAtGte }),
       group,
     });
   }).restartable())
@@ -140,7 +156,8 @@ export default class StatisticsIndex extends Controller.extend(
   }
 
   @action
-  setFilters({ group }) {
+  setFilters({ group, account }) {
     this.group = group;
+    this.account = account;
   }
 }

@@ -6,15 +6,26 @@ export default class StatisticFiltersComponent extends Component {
 
   constructor() {
     super(...arguments);
-    this.filters = {};
+    this.filters = {
+      group: this.args.group,
+      account: this.args.account,
+    };
   }
 
   get group() {
-    return this.filters.group || this.args.group;
+    return this.filters.group;
   }
 
   set group(val) {
     this.filters.group = val;
+  }
+
+  get account() {
+    return this.filters.account;
+  }
+
+  set account(val) {
+    this.filters.account = val;
   }
 
   @action

@@ -11,7 +11,7 @@ function self() {
 
 export default Mixin.create({
   sortColumn: 'id',
-  sortOrder: 'asc',
+  sortOrder: 'desc',
 
   page: 1,
   pageSize: 10,
