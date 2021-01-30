@@ -22,4 +22,4 @@ export default class NewTpRouteRoute extends BaseRoute {
   filterParams = Object.freeze(['customId']);
 
   modelName = 'tp-route';
-};
+}

@@ -9,4 +9,4 @@ export default class TpRoutesIndexController extends BaseController {
   customId = null;
 
   permittedFilters = Object.freeze(['customId']);
-};
+}

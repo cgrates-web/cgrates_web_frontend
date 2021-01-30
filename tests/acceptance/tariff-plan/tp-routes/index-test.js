@@ -18,7 +18,7 @@ describe('Acceptance: TpRoutes.Index', function () {
 
   const setFilters = async () => {
     await fillIn('[data-test-filter-custom-id] input', '123');
-  }
+  };
 
   beforeEach(async function () {
     this.tariffPlan = server.create('tariff-plan', {
@@ -54,14 +54,18 @@ describe('Acceptance: TpRoutes.Index', function () {
     it('reditects to tp-route page', async function () {
       await visit('/tariff-plans/1/tp-routes');
       await click('table tbody tr td');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-routes.tp-route.index');
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-routes.tp-route.index'
+      );
     }));
 
   describe('click edit button', () =>
     it('reditects to edit tp-route page', async function () {
       await visit('/tariff-plans/1/tp-routes');
       await click('[data-test-tp-route-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-routes.tp-route.edit');
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-routes.tp-route.edit'
+      );
     }));
 
   describe('click remove button', () =>

@@ -6,4 +6,4 @@ export default class NewTpRouteRoute extends BaseRoute {
       tpid: this.modelFor('tariff-plan').alias,
     });
   }
-};
+}

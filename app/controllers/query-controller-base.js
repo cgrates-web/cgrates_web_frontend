@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { action } from '@ember/object'
+import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { __, includes, pipe, prop, reject, anyPass, pick, path } from 'ramda';
 
@@ -23,7 +23,7 @@ export default class TpNewOrEditControllerBase extends Controller {
     return pipe(
       prop('queryParams'),
       reject(anyPass([isPaginationQP, isSortingQP]))
-    )(this)
+    )(this);
   }
 
   get filters() {
@@ -39,7 +39,7 @@ export default class TpNewOrEditControllerBase extends Controller {
 
   get totalPages() {
     return this.meta.total_pages || 1;
-  };
+  }
 
   @action
   search(query) {
@@ -55,7 +55,7 @@ export default class TpNewOrEditControllerBase extends Controller {
   @action
   sortBy(sortColumn, sortOrder) {
     this.sortColumn = sortColumn;
-    this.sortOrder = sortOrder
+    this.sortOrder = sortOrder;
   }
 
   @action

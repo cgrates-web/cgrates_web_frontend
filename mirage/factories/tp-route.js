@@ -11,5 +11,5 @@ export default Factory.extend({
   },
   routeWeight() {
     return faker.random.number({ min: 0 });
-  }
+  },
 });

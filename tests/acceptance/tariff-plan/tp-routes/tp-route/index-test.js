@@ -33,6 +33,8 @@ describe('Acceptance: TpRoute.Index', function () {
     it('redirects to tp-route edit page', async function () {
       await visit('/tariff-plans/1/tp-routes/1');
       await click('[data-test-tp-route-edit]');
-      expect(currentRouteName()).to.equal('tariff-plan.tp-routes.tp-route.edit');
+      expect(currentRouteName()).to.equal(
+        'tariff-plan.tp-routes.tp-route.edit'
+      );
     }));
 });

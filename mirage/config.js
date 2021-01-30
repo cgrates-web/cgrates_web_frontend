@@ -250,7 +250,7 @@ export default function () {
 
   this.get('cdr-stats');
 
-  this.resource('tp-routes')
+  this.resource('tp-routes');
   this.get('/tp-routes', function (db, request) {
     return db.tpRoutes.where({ tpid: request.queryParams['tpid'] });
   });

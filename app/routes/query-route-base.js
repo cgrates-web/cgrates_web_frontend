@@ -6,7 +6,7 @@ import { set, action } from '@ember/object';
 export default class QueryRouteBase extends Route {
   _getFilterQuery(params) {
     return normalizeFilters(params, this.filterParams);
-  };
+  }
 
   _getSortQuery(params) {
     if (!isBlank(params.sortColumn)) {
@@ -16,18 +16,18 @@ export default class QueryRouteBase extends Route {
         return `${params.sortColumn.underscore()}`;
       }
     }
-  };
+  }
 
   _getPaginationQuery(params) {
     return {
       page: params.page,
       'page-size': params.pageSize,
     };
-  };
+  }
 
   _getTtpid() {
     return this.modelFor('tariff-plan').alias;
-  };
+  }
 
   model(params) {
     let fullQuery;
@@ -52,7 +52,7 @@ export default class QueryRouteBase extends Route {
       records: results,
       meta: results.meta,
     }));
-  };
+  }
 
   setupController(controller, { records, meta }) {
     set(controller, 'model', records);
@@ -60,10 +60,10 @@ export default class QueryRouteBase extends Route {
       set(controller, 'tariffPlanId', this._getTtpid());
     }
     return set(controller, 'meta', meta);
-  };
+  }
 
   @action
   refreshCurrentRoute() {
     this.refresh();
-  };
+  }
 }

@@ -31,8 +31,8 @@ describe('Acceptance: TpRoute.New', function () {
         tenant: 'my-tenant',
         weight: 10,
         routeWeight: 10,
-        routeId: 'my-route-id'
-      }
+        routeId: 'my-route-id',
+      };
       await visit('/tariff-plans/1/tp-routes/new');
       await fillIn('[data-test-custom-id] input', attrs.customId);
       await fillIn('[data-test-route-id] input', attrs.routeId);
