@@ -1,25 +1,27 @@
 <li>
-  <LinkTo @route={{newRouteName}} data-test-add={{true}}>
+  <LinkTo @route={{this.newRouteName}} data-test-add={{true}}>
     <i class="material-icons circle btn btn-success">add</i>
   </LinkTo>
 </li>
-<li>
-  <LinkTo @route={{csvImportRouteName}} data-test-upload={{true}}>
-    <i class="material-icons circle btn btn-success">cloud_upload</i>
-  </LinkTo>
-</li>
-<li>
-  <a {{action (perform exportToCsv)}} role="button" data-test-download>
-    <i class="material-icons circle btn btn-primary">cloud_download</i>
-  </a>
-</li>
+{{#unless @disableCsvActions}}
+  <li>
+    <LinkTo @route={{this.csvImportRouteName}} data-test-upload={{true}}>
+      <i class="material-icons circle btn btn-success">cloud_upload</i>
+    </LinkTo>
+  </li>
+  <li>
+    <a {{action (perform this.exportToCsv)}} role="button" data-test-download>
+      <i class="material-icons circle btn btn-primary">cloud_download</i>
+    </a>
+  </li>
+{{/unless}}
 <li>
   <a {{action "refresh"}} role="button" data-test-refresh>
     <i class="material-icons circle btn btn-info">refresh</i>
   </a>
 </li>
 <li>
-  <a {{action (perform deleteAll)}} role="button" data-test-delete-all>
+  <a {{action (perform this.deleteAll)}} role="button" data-test-delete-all>
     <i class="material-icons circle btn btn-danger" data-test-delete-all>cancel</i>
   </a>
 </li>

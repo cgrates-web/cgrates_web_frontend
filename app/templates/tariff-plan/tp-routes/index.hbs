@@ -1,0 +1,133 @@
+<main class="page-content">
+  <div class="container xl">
+    <div class="actions-subtitle">
+      <h2>
+        Routes list
+      </h2>
+      <ul class="actions">
+        <TpIndexButtons
+          @model={{this.model}}
+          @tariffPlanId={{this.tariffPlanId}}
+          @permittedFilters={{permittedFilters}}
+          @refresh={{route-action "refreshCurrentRoute"}}
+          @controller={{this}}
+          @disableCsvActions={{true}}
+        />
+      </ul>
+    </div>
+    <TotalRecords @totalRecords={{meta.total_records}} />
+    <div class="row">
+      <div class="col-md-9">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <SortHeader
+                  @label="ID"
+                  @key="customId"
+                  @sortColumn={{this.sortColumn}}
+                  @sortOrder={{this.sortOrder}}
+                  @sortAction={{this.sortBy}}
+                  data-test-sort-custom-id
+                />
+                <SortHeader
+                  @label="Tenant"
+                  @key="tenant"
+                  @sortColumn={{this.sortColumn}}
+                  @sortOrder={{this.sortOrder}}
+                  @sortAction={{this.sortBy}}
+                />
+                <SortHeader
+                  @label="Route ID"
+                  @key="routeId"
+                  @sortColumn={{this.sortColumn}}
+                  @sortOrder={{this.sortOrder}}
+                  @sortAction={{this.sortBy}}
+                />
+                <SortHeader
+                  @label="Created at"
+                  @key="createdAt"
+                  @sortColumn={{this.sortColumn}}
+                  @sortOrder={{this.sortOrder}}
+                  @sortAction={{this.sortBy}}
+                />
+                <td>
+                  Actions
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model as |route|}}
+                <tr>
+                  <td
+                    role="button"
+                    onclick={{transition-to "tariff-plan.tp-routes.tp-route" route.id}}
+                  >
+                    {{route.customId}}
+                  </td>
+                  <td
+                    role="button"
+                    onclick={{transition-to "tariff-plan.tp-routes.tp-route" route.id}}
+                  >
+                    {{route.tenant}}
+                  </td>
+                  <td
+                    role="button"
+                    onclick={{transition-to "tariff-plan.tp-routes.tp-route" route.id}}
+                  >
+                    {{route.routeId}}
+                  </td>
+                  <td
+                    role="button"
+                    onclick={{transition-to "tariff-plan.tp-routes.tp-route" route.id}}
+                  >
+                    {{format-date route.createdAt}}
+                  </td>
+                  <td class="actions">
+                    <a
+                      class="ml-1"
+                      role="button"
+                      onclick={{transition-to "tariff-plan.tp-routes.tp-route.edit" route.id}}
+                    >
+                      <i
+                        class="material-icons circle btn btn-primary"
+                        data-test-tp-route-edit
+                      >
+                        edit
+                      </i>
+                    </a>
+                    <a class="ml-1" role="button" onclick={{fn this.remove route}}>
+                      <i
+                        class="material-icons circle btn btn-danger"
+                        data-test-tp-route-remove
+                      >
+                        remove
+                      </i>
+                    </a>
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <PageNumbers
+          @content={{this.pagination}}
+          @action={{this.toPage}}
+          @numPagesToShow={{4}}
+        />
+      </div>
+      <div class="col-md-3">
+        <FiltersBlock
+          @search={{this.search}}
+          @activeFilters={{this.filters}} as |filtersBlock|
+        >
+          <FilterText
+            @label="ID"
+            @value={{filtersBlock.activeFilters.customId}}
+            data-test-filter-custom-id
+          />
+        </FiltersBlock>
+      </div>
+    </div>
+  </div>
+</main>

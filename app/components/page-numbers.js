@@ -54,8 +54,12 @@ export default class PageNumberComponent extends Component {
     return compact([
       leftDots,
       ...times(
-        index => new PageItem(index + shift, current),
-        Math.max(1, numPagesToShow + (Math.min(0, totalPages - (numPagesToShow + shift - 1))))
+        (index) => new PageItem(index + shift, current),
+        Math.max(
+          1,
+          numPagesToShow +
+            Math.min(0, totalPages - (numPagesToShow + shift - 1))
+        )
       ),
       rightDots,
     ]);
