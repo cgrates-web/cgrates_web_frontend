@@ -6,7 +6,7 @@ export default class ApplicationController extends Controller {
 
   @action
   logOut() {
-    this.session.invalidate()
+    this.session.invalidate();
     window.location.href = '/login';
   }
-};
+}

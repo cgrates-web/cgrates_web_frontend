@@ -36,23 +36,24 @@
             ...
           </span>
         </li>
-      {{/if}}
-      {{#if item.isCurrent}}
-        <li class="page-item active">
-          <a class="page-link">
-            {{item.content}}
-          </a>
-        </li>
       {{else}}
-        <li class="page-item">
-          <a
-            role="button"
-            class="page-link"
-            {{on "click" (fn this.pageClicked item.content)}}
-          >
-            {{item.content}}
-          </a>
-        </li>
+        {{#if item.isCurrent}}
+          <li class="page-item active">
+            <a class="page-link">
+              {{item.content}}
+            </a>
+          </li>
+        {{else}}
+          <li class="page-item">
+            <a
+              role="button"
+              class="page-link"
+              {{on "click" (fn this.pageClicked item.content)}}
+            >
+              {{item.content}}
+            </a>
+          </li>
+        {{/if}}
       {{/if}}
     {{/each}}
 
