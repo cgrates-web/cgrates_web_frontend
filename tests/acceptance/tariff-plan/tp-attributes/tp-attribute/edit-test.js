@@ -4,10 +4,6 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, click, fillIn } from '@ember/test-helpers';
-import {
-  selectSearch,
-  selectChoose,
-} from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpAttributes.Edit', function () {
   let hooks = setupApplicationTest();
@@ -48,9 +44,6 @@ describe('Acceptance: TpAttributes.Edit', function () {
           expect(params.data.attributes['path']).to.eq('path');
           expect(params.data.attributes['cg-type']).to.eq('cg-type');
           expect(params.data.attributes['value']).to.eq('value');
-          expect(params.data.attributes['filter-ids']).to.eq(
-            'test_id1,test_id2,test_id3'
-          );
           expect(params.data.attributes['activation-interval']).to.eq(
             'activation_interval'
           );
@@ -67,22 +60,6 @@ describe('Acceptance: TpAttributes.Edit', function () {
       await fillIn('[data-test-path] input', 'path');
       await fillIn('[data-test-cg-type] input', 'cg-type');
       await fillIn('[data-test-value] input', 'value');
-      await selectSearch(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id2'
-      );
-      await selectChoose(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id2'
-      );
-      await selectSearch(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id3'
-      );
-      await selectChoose(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id3'
-      );
       await fillIn(
         '[data-test-activation-interval] input',
         'activation_interval'

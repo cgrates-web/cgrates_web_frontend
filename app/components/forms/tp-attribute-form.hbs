@@ -22,17 +22,11 @@
       @class="col-md-6"
       data-test-contexts={{true}}
     />
-    <InputSelectSearchToString
+    <form.element
       @label="Filter IDs"
-      @value={{@model.filterIds}}
-      @searchModel="tp-filter"
-      @searchField="customId"
-      @tpid={{@model.tpid}}
-      @multiple={{true}}
       @property="filterIds"
-      @form={{form}}
       @class="col-md-6"
-      @dataTest="filter-ids"
+      data-test-filter-ids={{true}}
     />
     <form.element
       @label="Activation interval"

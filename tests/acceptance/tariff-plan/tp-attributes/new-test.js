@@ -4,10 +4,6 @@ import { setupApplicationTest } from 'ember-mocha';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { visit, find, findAll, click, fillIn } from '@ember/test-helpers';
-import {
-  selectSearch,
-  selectChoose,
-} from 'ember-power-select/test-support/helpers';
 
 describe('Acceptance: TpAttributes.New', function () {
   let hooks = setupApplicationTest();
@@ -94,21 +90,9 @@ describe('Acceptance: TpAttributes.New', function () {
       await fillIn('[data-test-path] input', 'path');
       await fillIn('[data-test-cg-type] input', 'cg-type');
       await fillIn('[data-test-value] input', 'value');
-      await selectSearch(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id1'
-      );
-      await selectChoose(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id1'
-      );
-      await selectSearch(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id2'
-      );
-      await selectChoose(
-        '[data-test-select-search-to-str="filter-ids"]',
-        'test_id2'
+      await fillIn(
+        '[data-test-filter-ids"]',
+        'test_id1,test_id2'
       );
       await fillIn(
         '[data-test-activation-interval] input',

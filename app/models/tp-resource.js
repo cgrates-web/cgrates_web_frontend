@@ -67,8 +67,8 @@ export default class TpResourceModel extends Model.extend(Validations) {
   @attr('string') usageTtl;
   @attr('string') limit;
   @attr('string', { defaultValue: '' }) allocationMessage;
-  @attr('string', { defaultValue: '' }) blocker;
-  @attr('string', { defaultValue: '' }) stored;
+  @attr('boolean', { defaultValue: false }) blocker;
+  @attr('boolean', { defaultValue: false }) stored;
   @attr('number') weight;
   @attr('string', { defaultValue: '*none' }) thresholdIds;
   @attr('date', {
