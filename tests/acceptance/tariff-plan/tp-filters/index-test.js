@@ -26,7 +26,8 @@ describe('Acceptance: TpFilters.Index', function () {
     });
     server.createList('tp-filter', 2, { tpid: this.tariffPlan.alias });
     server.createList('tp-filter', 2, { tpid: 'other' });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /tariff-plans/1/tp-filters', () =>

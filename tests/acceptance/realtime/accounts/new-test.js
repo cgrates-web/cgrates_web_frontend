@@ -10,7 +10,8 @@ describe('Acceptance: Accounts.New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    await authenticateSession({ email: 'user@eaxmple.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('go away without save', () =>

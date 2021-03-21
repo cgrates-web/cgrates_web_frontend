@@ -12,7 +12,8 @@ describe('Acceptance: Cdr.Index', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('basic rendering', function () {

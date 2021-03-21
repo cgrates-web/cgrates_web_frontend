@@ -19,7 +19,7 @@
     {{#if this.fetchData.isRunning}}
       <i class="material-icons spinner">autorenew</i>
     {{else}}
-      {{#if this.cdrStats.length}}
+      {{#if this.customerCdrStats.length}}
         <h3>
           Calls&nbsp;
           <small data-test-total-calls class="text-muted">
@@ -28,7 +28,7 @@
         </h3>
 
         <Statistics::CallsChart
-          @cdrStats={{this.cdrStats}}
+          @cdrStats={{this.customerCdrStats}}
           @chartOptions={{this.chartOptions}}
         />
 
@@ -39,7 +39,7 @@
         </h3>
 
         <Statistics::AsrChart
-          @cdrStats={{this.cdrStats}}
+          @cdrStats={{this.customerCdrStats}}
           @chartOptions={{this.chartOptions}}
         />
 
@@ -53,7 +53,7 @@
         </h3>
 
         <Statistics::AcdChart
-          @cdrStats={{this.cdrStats}}
+          @cdrStats={{this.customerCdrStats}}
           @chartOptions={{this.chartOptions}}
         />
 
@@ -75,42 +75,54 @@
               <th>Avg. Duration (sec)</th>
               <th>Total Duration (min)</th>
               <th>Cost $</th>
+              <th>Income $</th>
+              <th>Revenue $</th>
+              <th>Marginality %</th>
             </tr>
           </thead>
           <tbody>
-            {{#each this.cdrStats as |stat|}}
+            {{#each this.combinedStats as |stat|}}
               <tr data-test-cdr-stat-row>
                 <td>
-                  {{moment-format stat.date "YYYY-MM-DD"}}
+                  {{moment-format stat.customerStats.date "YYYY-MM-DD"}}
                 </td>
                 <td>
-                  {{stat.answeredCount}}
+                  {{stat.customerStats.answeredCount}}
                 </td>
                 <td>
-                  {{stat.totalRejectedDisconnects}}
+                  {{stat.customerStats.totalRejectedDisconnects}}
                 </td>
                 <td>
-                  {{stat.totalNormalClearingDisconnects}}
+                  {{stat.customerStats.totalNormalClearingDisconnects}}
                 </td>
                 <td>
-                  {{stat.unknownDisconnectsCount}}
+                  {{stat.customerStats.unknownDisconnectsCount}}
                 </td>
                 <td>
-                  {{format-number stat.asr}} %
+                  {{format-number stat.customerStats.asr}} %
                 </td>
                 <td>
-                  {{format-number (timescale stat.usageAvg "ns" "s")}}
+                  {{format-number (timescale stat.customerStats.usageAvg "ns" "s")}}
                 </td>
                 <td>
-                  {{format-number (timescale stat.totalUsage "ns" "m")}}
+                  {{format-number (timescale stat.customerStats.totalUsage "ns" "m")}}
                 </td>
                 <td>
-                  {{format-number stat.totalCost}}
+                  {{format-number stat.cost}}
+                </td>
+                <td>
+                  {{format-number stat.income}}
+                </td>
+                <td>
+                  {{format-number stat.revenue}}
+                </td>
+                <td>
+                  {{format-number stat.marginality}} %
                 </td>
               </tr>
             {{/each}}
           </tbody>
-          {{#if this.cdrStats.length}}
+          {{#if this.customerCdrStats.length}}
             <tfoot>
               <tr>
                 <td><b>Total:</b></td>
@@ -137,6 +149,15 @@
                 </td>
                 <td data-test-table-footer-total-cost>
                   <b>{{format-number this.totalCost}}</b>
+                </td>
+                <td data-test-table-footer-total-income>
+                  <b>{{format-number this.totalIncome}}</b>
+                </td>
+                <td data-test-table-footer-total-revenue>
+                  <b>{{format-number this.totalRevenue}}</b>
+                </td>
+                <td data-test-table-footer-total-marginality>
+                  <b>{{format-number this.totalMarginality}} %</b>
                 </td>
               </tr>
             </tfoot>

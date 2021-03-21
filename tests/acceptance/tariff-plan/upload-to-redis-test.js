@@ -15,7 +15,8 @@ describe('Acceptance: Upload Tariff plane to redis', function () {
       name: 'Test',
       alias: 'tptest',
     });
-    await authenticateSession({ email: 'user@exmple.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('go to load tariff-plan page and fill in form', function () {

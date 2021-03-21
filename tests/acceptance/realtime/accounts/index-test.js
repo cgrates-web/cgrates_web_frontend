@@ -18,7 +18,8 @@ describe('Acceptance: Accounts.Index', function () {
   beforeEach(async function () {
     server.create('account', { id: '2' });
     server.create('account', { id: '1' });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /realtime/accounts', function () {

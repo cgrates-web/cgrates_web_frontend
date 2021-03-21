@@ -11,7 +11,8 @@ describe('Acceptance: TariffPlan.Index', function () {
 
   beforeEach(async function () {
     this.tpPlan = server.create('tariff-plan', { name: 'Test TpPlan' });
-    await authenticateSession({ email: 'user@exmple.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
     await visit('tariff-plans');
     await click('[data-test-select-tp-plan]');
   });

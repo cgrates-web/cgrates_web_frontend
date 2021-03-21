@@ -32,7 +32,8 @@ describe('Acceptance: TpThresholds.Edit', function () {
       tpid: this.tariffPlan.alias,
       tag: 'action_id2',
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
   describe('fill form with correct data and submit', () =>
     it('sends correct data to the backend', async function () {

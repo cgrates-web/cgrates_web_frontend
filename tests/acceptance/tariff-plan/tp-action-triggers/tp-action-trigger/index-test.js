@@ -19,7 +19,8 @@ describe('Acceptance: TpActionTriggers.Index', function () {
       tpid: tariffPlan.alias,
       tag: 'tag-test',
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('basic rendering', () =>

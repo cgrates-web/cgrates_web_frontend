@@ -41,7 +41,8 @@ describe('Acceptance: TpDestinationRate.Edit', function () {
       rates_tag: this.tpRate1.tag,
       destinations_tag: this.tpDestination1.tag,
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   return describe('fill form with correct data and submit', () =>

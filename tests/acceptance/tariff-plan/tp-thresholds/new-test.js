@@ -26,7 +26,8 @@ describe('Acceptance: TpThresholds.New', function () {
       tpid: this.tariffPlan.alias,
       tag: 'test_id2',
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
   describe('visit /tariff-plans/1/tp-thresholds/new', () =>
     it('renders tp-thresholds form', async function () {

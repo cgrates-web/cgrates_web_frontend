@@ -10,7 +10,8 @@ describe('Acceptance: TariffPlan.Edit', function () {
   setupMirage(hooks);
   beforeEach(async function () {
     this.tp = server.create('tariff-plan');
-    await authenticateSession({ email: 'user@exmple.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('fill form with correct data and submit', () =>

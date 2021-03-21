@@ -1,4 +1,4 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 import { not } from '@ember/object/computed';
 import { validator, buildValidations } from 'ember-cp-validations';
 
@@ -14,9 +14,12 @@ const Validations = buildValidations({
     disabled: not('model.isNew'),
   }),
 });
-export default Model.extend(Validations, {
-  email: attr('string'),
-  password: attr('string'),
-  insertedAt: attr('date'),
-  updatedAt: attr('date'),
-});
+
+export default class User extends Model.extend(Validations) {
+  @attr('string') email;
+  @attr('string') password;
+  @attr('date') insertedAt;
+  @attr('date') updatedAt;
+
+  @belongsTo({ async: false }) tenant;
+}
