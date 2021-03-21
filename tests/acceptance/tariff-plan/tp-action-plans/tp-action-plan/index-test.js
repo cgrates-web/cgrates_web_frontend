@@ -20,7 +20,8 @@ describe('Acceptance: TpActionPlan.Index', function () {
       tpid: this.tariffPlan.alias,
       tag: 'test',
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit TpActionPlan index page', function () {

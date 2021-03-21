@@ -11,7 +11,8 @@ describe('Acceptance: User.Index', function () {
 
   beforeEach(async function () {
     this.user = server.create('user', { id: '1', email: 'test@example.com' });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('basic rendering', () =>

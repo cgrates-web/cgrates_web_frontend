@@ -10,7 +10,8 @@ describe('Acceptance | Statistics page', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    await authenticateSession({ email: 'user@exmple.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /realtime/statistics', function () {
@@ -62,6 +63,9 @@ describe('Acceptance | Statistics page', function () {
       expect(findFooterStat('avg-usage')).to.have.trimmed.text('0.55');
       expect(findFooterStat('total-usage')).to.have.trimmed.text('0.183');
       expect(findFooterStat('total-cost')).to.have.trimmed.text('0.5');
+      expect(findFooterStat('total-income')).to.have.trimmed.text('0.5');
+      expect(findFooterStat('total-revenue')).to.have.trimmed.text('0');
+      expect(findFooterStat('total-marginality')).to.have.trimmed.text('0 %');
     });
   });
 });

@@ -25,7 +25,8 @@ describe('Acceptance: TpResources.Index', function () {
     });
     server.createList('tp-resource', 2, { tpid: this.tariffPlan.alias });
     server.createList('tp-resource', 2, { tpid: 'other' });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
   describe('visit /tariff-plans/1/tp-resources', () =>
     it('renders table with tp-resources', async function () {

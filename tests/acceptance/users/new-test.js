@@ -10,7 +10,8 @@ describe('Acceptance: Users.New', function () {
   setupMirage(hooks);
 
   beforeEach(async function () {
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /users/new', () =>
@@ -23,7 +24,7 @@ describe('Acceptance: Users.New', function () {
     it('removes not saved user', async function () {
       await visit('/users/new');
       await click('[data-test-users-link]');
-      expect(findAll('table tbody tr').length).to.eq(0);
+      expect(findAll('table tbody tr').length).to.eq(1);
     }));
 
   describe('fill form with incorrect data and submit', function () {
@@ -47,7 +48,7 @@ describe('Acceptance: Users.New', function () {
     });
   });
 
-  return describe('fill form with correct data and submit', () =>
+  describe('fill form with correct data and submit', () =>
     it('saves new user with correct data', async function () {
       let counter = 0;
 

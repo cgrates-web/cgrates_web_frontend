@@ -16,7 +16,8 @@ describe('Acceptance: TpActions.New', function () {
       name: 'Test',
       alias: 'tptest',
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /tariff-plans/1/tp-actions/new', () =>

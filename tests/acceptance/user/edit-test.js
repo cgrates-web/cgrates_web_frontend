@@ -11,7 +11,8 @@ describe('Acceptance: User.Edit', function () {
 
   beforeEach(async function () {
     this.user = server.create('user', { id: '1' });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('fill form with incorrect data and submit', () =>

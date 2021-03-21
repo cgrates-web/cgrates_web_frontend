@@ -29,7 +29,8 @@ describe('Acceptance: TpDestinationRates.Index', function () {
       tpid: this.tariffPlan.alias,
     });
     this.other = server.createList('tp-destination-rate', 2, { tpid: 'other' });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /tariff-plans/1/tp-destination-rates', () =>

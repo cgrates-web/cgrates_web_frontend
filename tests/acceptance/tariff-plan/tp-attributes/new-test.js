@@ -23,7 +23,8 @@ describe('Acceptance: TpAttributes.New', function () {
       tpid: this.tariffPlan.alias,
       customId: 'test_id2',
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /tariff-plans/1/tp-attributes/new', () =>
@@ -90,10 +91,7 @@ describe('Acceptance: TpAttributes.New', function () {
       await fillIn('[data-test-path] input', 'path');
       await fillIn('[data-test-cg-type] input', 'cg-type');
       await fillIn('[data-test-value] input', 'value');
-      await fillIn(
-        '[data-test-filter-ids"]',
-        'test_id1,test_id2'
-      );
+      await fillIn('[data-test-filter-ids] input', 'test_id1,test_id2');
       await fillIn(
         '[data-test-activation-interval] input',
         'activation_interval'

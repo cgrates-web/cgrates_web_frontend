@@ -15,7 +15,8 @@ describe('Acceptance: TpAccountActions.TpAccountAction.Index', function () {
       alias: 'tptest',
     });
     server.create('tp-account-action', { id: '1', tpid: tariffPlan.alias });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('basic rendering', () =>

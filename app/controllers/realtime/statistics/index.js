@@ -40,10 +40,53 @@ const withoutTitle = {
   },
 };
 
+class CombinedStat {
+  supplierStats = null;
+  customerStats = null;
+
+  constructor(customerStats, supplierStats) {
+    this.customerStats = customerStats;
+    this.supplierStats = supplierStats;
+  }
+
+  get cost() {
+    return this.supplierStats?.totalCost || 0;
+  }
+
+  get income() {
+    return this.customerStats?.totalCost || 0;
+  }
+
+  get revenue() {
+    return this.income - this.cost;
+  }
+
+  get marginality() {
+    if (this.cost === 0) return 0;
+    return (this.revenue / this.cost) * 100;
+  }
+}
+
+/**
+ * Compares dates
+ * @param {Date} dateA
+ * @param {Date} dateB
+ * @returns
+ */
+const compareDates = (dateA, dateB) => {
+  return (
+    dateA.getDay() === dateB.getDay() &&
+    dateA.getMonth() === dateB.getMonth() &&
+    dateA.getFullYear() === dateB.getFullYear()
+  );
+};
+
 export default class StatisticsIndex extends Controller.extend(
   statsQueryParams.Mixin
 ) {
   @service intl;
+
+  @service currentUser;
 
   @tracked
   group = 'daily';
@@ -52,41 +95,44 @@ export default class StatisticsIndex extends Controller.extend(
   account = null;
 
   @tracked
-  cdrStats = [];
+  customerCdrStats = [];
+
+  @tracked
+  supplierCdrStats = [];
 
   @cached
   get totalCalls() {
-    return sumBy(this.cdrStats, 'totalCount');
+    return sumBy(this.customerCdrStats, 'totalCount');
   }
 
   @cached
   get totalUsage() {
-    return sumBy(this.cdrStats, 'totalUsage');
+    return sumBy(this.customerCdrStats, 'totalUsage');
   }
 
   @cached
   get totalRejected() {
-    return sumBy(this.cdrStats, 'totalRejectedDisconnects');
+    return sumBy(this.customerCdrStats, 'totalRejectedDisconnects');
   }
 
   @cached
   get totalNormalClearing() {
-    return sumBy(this.cdrStats, 'totalRejectedDisconnects');
+    return sumBy(this.customerCdrStats, 'totalRejectedDisconnects');
   }
 
   @cached
   get totalErrors() {
-    return sumBy(this.cdrStats, 'unknownDisconnectsCount');
+    return sumBy(this.customerCdrStats, 'unknownDisconnectsCount');
   }
 
   @cached
   get totalAnswered() {
-    return sumBy(this.cdrStats, 'answeredCount');
+    return sumBy(this.customerCdrStats, 'answeredCount');
   }
 
   @cached
   get avgAsr() {
-    return sumBy(this.cdrStats, 'asr') / this.cdrStats.length;
+    return sumBy(this.customerCdrStats, 'asr') / this.customerCdrStats.length;
   }
 
   @cached
@@ -96,7 +142,35 @@ export default class StatisticsIndex extends Controller.extend(
 
   @cached
   get totalCost() {
-    return sumBy(this.cdrStats, 'totalCost');
+    return sumBy(this.supplierCdrStats, 'totalCost');
+  }
+
+  @cached
+  get combinedStats() {
+    return this.customerCdrStats.map(
+      (customerStat) =>
+        new CombinedStat(
+          customerStat,
+          this.supplierCdrStats.find(({ date }) =>
+            compareDates(date, customerStat.date)
+          )
+        )
+    );
+  }
+
+  @cached
+  get totalIncome() {
+    return sumBy(this.combinedStats, 'income');
+  }
+
+  @cached
+  get totalRevenue() {
+    return sumBy(this.combinedStats, 'revenue');
+  }
+
+  @cached
+  get totalMarginality() {
+    return sumBy(this.combinedStats, 'marginality') / this.combinedStats.length;
   }
 
   @cached
@@ -107,7 +181,9 @@ export default class StatisticsIndex extends Controller.extend(
       },
       ...withoutTitle,
       xAxis: {
-        categories: this.cdrStats.map((s) => this.intl.formatDate(s.date)),
+        categories: this.customerCdrStats.map((s) =>
+          this.intl.formatDate(s.date)
+        ),
         ...withoutTitle,
       },
       yAxis: {
@@ -138,8 +214,17 @@ export default class StatisticsIndex extends Controller.extend(
   }
 
   @(task(function* ({ createdAtLte, createdAtGte, group, account }) {
-    this.cdrStats = yield this.store.query('cdr-stat', {
-      filter: prepareQueryParams({ account, createdAtLte, createdAtGte }),
+    const {
+      customerChargersRunId,
+      supplierChargersRunId,
+    } = this.currentUser.user.tenant;
+    const filter = prepareQueryParams({ account, createdAtLte, createdAtGte });
+    this.customerCdrStats = yield this.store.query('cdr-stat', {
+      filter: { run_id: customerChargersRunId, ...filter },
+      group,
+    });
+    this.supplierCdrStats = yield this.store.query('cdr-stat', {
+      filter: { run_id: supplierChargersRunId, ...filter },
       group,
     });
   }).restartable())

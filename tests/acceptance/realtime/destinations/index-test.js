@@ -12,7 +12,8 @@ describe('Acceptance: Destinations', function () {
   beforeEach(async function () {
     server.create('destination', { id: '2' });
     server.create('destination', { id: '1' });
-    await authenticateSession({ email: 'user@exmple.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
   it('renders table with 2 destinations', async function () {
     await visit('/realtime/destinations');

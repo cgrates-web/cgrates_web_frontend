@@ -19,7 +19,8 @@ describe('Acceptance: TpFilter.Edit', function () {
       id: '1',
       tpid: this.tariffPlan.alias,
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('fill form with correct data and submit', () =>

@@ -17,15 +17,16 @@ describe('Acceptance: Users.Index', function () {
 
   beforeEach(async function () {
     this.users = server.createList('user', 2);
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('visit /users', function () {
     beforeEach(async function () {
       await visit('/users');
     });
-    it('renders table with 2 users', async function () {
-      expect(findAll('table tbody tr').length).to.eq(2);
+    it('renders table with 3 users', async function () {
+      expect(findAll('table tbody tr').length).to.eq(3);
     });
     it('renders table with users sorted by id', function () {
       expect(
@@ -55,7 +56,7 @@ describe('Acceptance: Users.Index', function () {
     it('removes user', async function () {
       await visit('/users');
       await click('[data-test-user-remove]');
-      expect(findAll('table tbody tr').length).to.eq(1);
+      expect(findAll('table tbody tr').length).to.eq(2);
     }));
 
   return describe('click add button', () =>

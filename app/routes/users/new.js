@@ -1,15 +1,20 @@
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-export default Route.extend({
+export default class NewUserRoute extends Route {
+  @service
+  currentUser;
+
   model() {
-    return this.store.createRecord('user');
-  },
+    const { tenant } = this.currentUser.user;
+    return this.store.createRecord('user', { tenant });
+  }
 
-  actions: {
-    willTransition() {
-      if (this.currentModel.isNew) {
-        return this.currentModel.destroyRecord();
-      }
-    },
-  },
-});
+  @action
+  willTransition() {
+    if (this.currentModel.isNew) {
+      return this.currentModel.destroyRecord();
+    }
+  }
+}

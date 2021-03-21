@@ -32,7 +32,8 @@ describe('Acceptance: TpActionPlan.Edit', function () {
       tpid: this.tariffPlan.alias,
       actions_tag: this.tpAction1.tag,
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   return describe('fill form with correct data and submit', () =>

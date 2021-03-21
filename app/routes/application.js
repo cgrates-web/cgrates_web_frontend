@@ -8,6 +8,13 @@ export default class ApplicationRoute extends Route {
   @service
   session;
 
+  @service
+  currentUser;
+
+  beforeModel() {
+    return this.currentUser.loadCurrentUser();
+  }
+
   afterModel() {
     if (
       this.router.currentRouteName != 'login' &&

@@ -28,7 +28,8 @@ describe('Acceptance: TpAttributes.Edit', function () {
       tpid: this.tariffPlan.alias,
       customId: 'test_id3',
     });
-    await authenticateSession({ email: 'user@example.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
 
   describe('fill form with correct data and submit', () =>

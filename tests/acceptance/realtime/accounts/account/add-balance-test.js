@@ -11,7 +11,8 @@ describe('Acceptance: Account.AddBalance', function () {
 
   beforeEach(async function () {
     this.account = server.create('account', { id: 'test' });
-    await authenticateSession({ email: 'user@eaxmple.com' });
+    const user = server.create('user');
+    await authenticateSession({ email: 'user@example.com', user_id: user.id });
   });
   describe('fill form with correct data and submit', () =>
     it('submits correct data', async function () {
