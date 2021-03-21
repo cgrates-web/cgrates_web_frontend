@@ -1,6 +1,6 @@
 {
   "name": "cgrates-web-frontend",
-  "version": "0.3.5",
+  "version": "0.4.1",
   "private": true,
   "description": "Small description for cgrates-web-frontend goes here",
   "repository": "",
