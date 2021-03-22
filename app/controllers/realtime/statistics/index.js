@@ -72,7 +72,7 @@ const groupUnitMapper = {
   daily: 'day',
   weekly: 'week',
   monthly: 'month',
-}
+};
 
 const compareDates = (dateA, dateB, groupUnit) => {
   const unit = groupUnitMapper[groupUnit];
