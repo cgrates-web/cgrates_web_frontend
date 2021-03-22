@@ -17,6 +17,7 @@ import { underscore } from '@ember/string';
 import { action } from '@ember/object';
 import { tracked, cached } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import { DateTime } from 'luxon';
 
 const statsQueryParams = new QueryParams({
   group: {
@@ -67,17 +68,17 @@ class CombinedStat {
   }
 }
 
-/**
- * Compares dates
- * @param {Date} dateA
- * @param {Date} dateB
- * @returns
- */
-const compareDates = (dateA, dateB) => {
+const groupUnitMapper = {
+  daily: 'day',
+  weekly: 'week',
+  monthly: 'month',
+}
+
+const compareDates = (dateA, dateB, groupUnit) => {
+  const unit = groupUnitMapper[groupUnit];
   return (
-    dateA.getDay() === dateB.getDay() &&
-    dateA.getMonth() === dateB.getMonth() &&
-    dateA.getFullYear() === dateB.getFullYear()
+    DateTime.fromJSDate(dateA).startOf(unit).valueOf() ===
+    DateTime.fromJSDate(dateB).startOf(unit).valueOf()
   );
 };
 
@@ -152,7 +153,7 @@ export default class StatisticsIndex extends Controller.extend(
         new CombinedStat(
           customerStat,
           this.supplierCdrStats.find(({ date }) =>
-            compareDates(date, customerStat.date)
+            compareDates(date, customerStat.date, this.group)
           )
         )
     );
