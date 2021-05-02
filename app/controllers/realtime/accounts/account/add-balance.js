@@ -5,7 +5,12 @@ export default Controller.extend({
     save() {
       return this.model
         .save()
-        .then(() => this.transitionToRoute('realtime.accounts.account', this.model.account));
+        .then(() =>
+          this.transitionToRoute(
+            'realtime.accounts.account',
+            this.model.account
+          )
+        );
     },
   },
 });

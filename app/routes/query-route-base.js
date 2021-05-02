@@ -9,7 +9,7 @@ const keysToCamelCase = pipe(
   toPairs,
   map(([key, value]) => [camelize(key), value]),
   fromPairs
-)
+);
 
 export default class QueryRouteBase extends Route {
   _getFilterQuery(params) {
