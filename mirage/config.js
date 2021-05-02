@@ -34,6 +34,8 @@ export default function () {
   this.get('/cdrs');
   this.get('/cdrs/:id');
 
+  this.resource('call');
+
   this.get('/tp-destinations', function (db, request) {
     let tag = request.queryParams['filter[tag]'];
     let records = db.tpDestinations.where({

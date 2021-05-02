@@ -8,9 +8,52 @@
     <div class="container xl">
       <div class="row">
         <div class="col-md-9">
+          <h2>
+            Calls
+          </h2>
+          <span>Total: {{this.meta.totalCount}}</span>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>
+                    ID
+                  </th>
+                  <th>
+                    Destination
+                  </th>
+                  <th>
+                    Usage (sec)
+                  </th>
+                  <th>
+                    Cost
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each this.model as |call|}}
+                  <CallRow @call={{call}} />
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+          <PageNumbers
+            @content={{this.pagination}}
+            @action={{action "toPage"}}
+            @numPagesToShow={{4}}
+          />
         </div>
         <div class="col-md-3">
-          <Forms::CgratesLcrForm />
+          <FiltersBlock
+            @search={{this.search}}
+            @activeFilters={{this.filters}} as |filtersBlock|
+          >
+            <FilterText
+              @label="Destination"
+              @value={{filtersBlock.activeFilters.destination}}
+              data-test-filter-destination
+            />
+          </FiltersBlock>
         </div>
       </div>
     </div>

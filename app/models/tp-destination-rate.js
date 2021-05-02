@@ -12,7 +12,6 @@ const Validations = buildValidations({
   destinationsTag: validator('presence', true),
   roundingDecimals: validator('presence', true),
   maxCost: validator('presence', true),
-  maxCostStrategy: [validator('presence', true), validator('ds-error')],
   roundingMethod: [validator('presence', true), validator('ds-error')],
 });
 export default Model.extend(Validations, {
@@ -21,7 +20,7 @@ export default Model.extend(Validations, {
   roundingMethod: attr('string'),
   roundingDecimals: attr('number'),
   ratesTag: attr('string'),
-  maxCostStrategy: attr('string'),
+  maxCostStrategy: attr('string', { defaultValue: '' }),
   maxCost: attr('number'),
   destinationsTag: attr('string'),
   createdAt: attr('date'),
