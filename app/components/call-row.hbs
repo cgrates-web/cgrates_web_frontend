@@ -1,0 +1,105 @@
+<tr data-test-call-row role="button" onclick={{this.toggleExpanded}}>
+  <td>
+    {{@call.id}}
+  </td>
+  <td data-test-call-row-destination>
+    {{this.customerCdr.destination}}
+  </td>
+  <td data-test-call-row-usage>
+    {{this.customerCdr.usageInSec}}
+  </td>
+  <td data-test-call-row-cost>
+    {{this.customerCdr.cost}}
+  </td>
+</tr>
+
+{{#if this.expanded}}
+  <tr data-test-call-cdrs>
+    <td colspan="4">
+      <table class="table">
+        <thead>
+          <th>
+            ID
+          </th>
+          <th>
+            Run ID
+          </th>
+          <th>
+            Origin Host
+          </th>
+          <th>
+            Source
+          </th>
+          <th>
+            Origin ID
+          </th>
+          <th>
+            Type of record
+          </th>
+          <th>
+            Category
+          </th>
+          <th>
+            Subject
+          </th>
+          <th>
+            Setup Time
+          </th>
+          <th>
+            Answer Time
+          </th>
+          <th>
+            Usage (sec)
+          </th>
+          <th>
+            Cost
+          </th>
+        </thead>
+        <tbody>
+          {{#each @call.cdrs as |cdr|}}
+            <tr data-test-cdr-row>
+              <td>
+                <LinkTo @route="cdrs.cdr" @model={{cdr}}>
+                  {{cdr.id}}
+                </LinkTo>
+              </td>
+              <td>
+                {{cdr.runId}}
+              </td>
+              <td>
+                {{cdr.originHost}}
+              </td>
+              <td>
+                {{cdr.source}}
+              </td>
+              <td>
+                {{cdr.originId}}
+              </td>
+              <td>
+                {{cdr.tor}}
+              </td>
+              <td>
+                {{cdr.category}}
+              </td>
+              <td>
+                {{cdr.subject}}
+              </td>
+              <td>
+                {{cdr.setupTime}}
+              </td>
+              <td>
+                {{cdr.answerTime}}
+              </td>
+              <td>
+                {{cdr.usageInSec}}
+              </td>
+              <td>
+                {{cdr.cost}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </td>
+  </tr>
+{{/if}}

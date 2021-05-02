@@ -33,7 +33,7 @@ export default class TpNewOrEditControllerBase extends Controller {
   get pagination() {
     return {
       page: this.page,
-      totalPages: path(['meta', 'total_pages'], this) || 1,
+      totalPages: path(['meta', 'total_pages'], this) || path(['meta', 'totalPages'], this) || 1,
     };
   }
 

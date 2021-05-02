@@ -2,6 +2,14 @@ import Route from '@ember/routing/route';
 import { isBlank, isEqual } from '@ember/utils';
 import normalizeFilters from 'cgrates-web-frontend/utils/normalize-filters';
 import { set, action } from '@ember/object';
+import { pipe, toPairs, fromPairs, map } from 'ramda';
+import { camelize } from '@ember/string';
+
+const keysToCamelCase = pipe(
+  toPairs,
+  map(([key, value]) => [camelize(key), value]),
+  fromPairs
+)
 
 export default class QueryRouteBase extends Route {
   _getFilterQuery(params) {
@@ -59,7 +67,7 @@ export default class QueryRouteBase extends Route {
     if (!this.notInTariffPlan) {
       set(controller, 'tariffPlanId', this._getTtpid());
     }
-    return set(controller, 'meta', meta);
+    return set(controller, 'meta', keysToCamelCase(meta));
   }
 
   @action
