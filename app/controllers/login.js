@@ -25,15 +25,19 @@ export default class extends Controller.extend(Validations) {
   @service
   currentUser;
 
-  @(task(function*() {
+  @(task(function* () {
     try {
-      yield this.session.authenticate('authenticator:oauth2', this.email, this.password);
+      yield this.session.authenticate(
+        'authenticator:oauth2',
+        this.email,
+        this.password
+      );
       yield this.currentUser.loadCurrentUser();
       this.router.transitionTo('realtime');
     } catch (e) {
-      this.flashMessages.danger('Something went wrong')
+      this.flashMessages.danger('Something went wrong');
       throw e;
     }
   }).drop())
   signIn;
-};
+}
