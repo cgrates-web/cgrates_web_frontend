@@ -10,7 +10,7 @@
     <div class="col-12 col-md-6">
       <BsForm
         @model={{this}}
-        @onSubmit={{action "signIn"}}
+        @onSubmit={{perform this.signIn}}
         novalidate={{true}} as |form|
       >
         <form.element

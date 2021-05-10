@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { validator, buildValidations } from 'ember-cp-validations';
+import { task } from 'ember-concurrency';
 
 const Validations = buildValidations({
   email: [
@@ -11,19 +12,28 @@ const Validations = buildValidations({
   ],
   password: validator('presence', true),
 });
-export default Controller.extend(Validations, {
-  session: service(),
-  router: service(),
-  flashMessages: service(),
+export default class extends Controller.extend(Validations) {
+  @service
+  session;
 
-  actions: {
-    signIn() {
-      return this.session
-        .authenticate('authenticator:oauth2', this.email, this.password)
-        .then(() => {
-          return this.router.transitionTo('realtime');
-        });
-      //.catch(() => this.flashMessages.danger('Something went wrong'));
-    },
-  },
-});
+  @service
+  router;
+
+  @service
+  flashMessages;
+
+  @service
+  currentUser;
+
+  @(task(function*() {
+    try {
+      yield this.session.authenticate('authenticator:oauth2', this.email, this.password);
+      yield this.currentUser.loadCurrentUser();
+      this.router.transitionTo('realtime');
+    } catch (e) {
+      this.flashMessages.danger('Something went wrong')
+      throw e;
+    }
+  }).drop())
+  signIn;
+};
